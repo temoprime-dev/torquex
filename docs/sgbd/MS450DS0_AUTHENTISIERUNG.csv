@@ -1,0 +1,5 @@
+AUTH_NR,AUTH_TEXT
+0x01,Simple
+0x02,Symetrisch
+0x03,Asymetrisch
+0xFF,Keine

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "status": "REQUIRES_DATA",
+  "source_sha256": "31110cb55f0f55be8687ad15c00e3f6a606a1863b22658b9259c8e3e1f000acc",
+  "factor_from_flows": 0.791667,
+  "factor_from_trims": null,
+  "plan_status": null,
+  "details": {
+    "symbol": "ip_tib__n__maf",
+    "address": "0x09F8",
+    "shape": "16x12",
+    "cells": 192,
+    "units": "ms",
+    "stock_flow_cc_min": 190.0,
+    "new_flow_cc_min": 240.0,
+    "stock_time_ms": {
+      "min": 0.8747,
+      "max": 17.072
+    },
+    "untouched": {
+      "c_ti_min_iv": {
+        "units": "ms",
+        "stock": 0.352
+      },
+      "ip_ti_cst__n__tco": {
+        "units": "tco",
+        "cells": 24,
+        "min": 7.4987,
+        "max": 215.0025
+      },
+      "ip_tipr_cst__tco": {
+        "units": "ms",
+        "cells": 8,
+        "min": 13.7493,
+        "max": 239.9998
+      },
+      "c_ti_ad_fac_max": {
+        "units": "%",
+        "stock": 11.9996
+      },
+      "c_ti_ad_fac_min": {
+        "units": "%",
+        "stock": -8.0002
+      },
+      "c_ti_ad_add_max": {
+        "units": "ms",
+        "stock": 0.5016
+      }
+    },
+    "new_time_ms": {
+      "min": 0.6924,
+      "max": 13.5153
+    }
+  },
+  "findings": [
+    {
+      "code": "LOG_DATA_REQUIRED",
+      "severity": "info",
+      "message": "the log evidence file is a stub (example: no real logs yet), so the trims section carries no values yet; the factor stays unconfirmed"
+    }
+  ],
+  "patches": []
+}

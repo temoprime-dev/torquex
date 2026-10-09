@@ -1,0 +1,8 @@
+WERT,UWTEXT
+0x00,--
+0x01,"1 Regelung AUS, Einschaltbedingung noch nicht erfuellt"
+0x02,2 Regelung EIN
+0x04,3 Regelung AUS wegen Fahrbedingung
+0x08,4 Regelung AUS wegen erkanntem Fehler
+0x10,5 Regelung EIN mit Einschraenkung (Sensor Fehler)
+0xXY,Status unbekannt

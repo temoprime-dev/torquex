@@ -1,0 +1,10 @@
+WERT,UWTEXT
+0x00,0 Neutral oder Park/Neutral
+0x01,1. Gang
+0x02,2. Gang
+0x03,3. Gang
+0x04,4. Gang
+0x05,5. Gang
+0x06,6. Gang
+0x07,R  Rückwärtsgang
+0xFF,FF unbekanntes Getriebe

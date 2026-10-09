@@ -1,0 +1,20 @@
+SB,STATUS_TEXT
+0x00,Anlieferzustand
+0x01,Normalbetrieb
+0x02,nicht benutzt
+0x03,Speicher gelöscht
+0x04,nicht benutzt
+0x05,Signaturprüfung PAF nicht durchgeführt
+0x06,Signaturprüfung DAF nicht durchgeführt
+0x07,Programmprogrammiersitzung aktiv
+0x08,Datenprogrammiersitzung aktiv
+0x09,Hardwarereferenzeintrag fehlerhaft
+0x0A,Programmreferenzeintrag fehlerhaft
+0x0B,Referenzierungsfehler Hardware -> Programm
+0x0C,Programm nicht vorhanden oder nicht vollständig
+0x0D,Datenreferenzeintrag fehlerhaft
+0x0E,Referenzierungsfehler Programm -> Daten
+0x0F,Daten nicht vorhanden oder nicht vollständig
+0x10,Reserviert fuer BMW
+0x80,Reserviert fuer Zulieferer
+0xXY,unbekannter Programmierstatus

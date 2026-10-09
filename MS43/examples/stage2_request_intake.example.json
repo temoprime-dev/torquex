@@ -1,0 +1,19 @@
+{
+  "stage": "stage2",
+  "customer": "Пример (данные вымышлены)",
+  "notes": "Stage 2 привязан к комбинации железа: без блока hardware заявка отклоняется.",
+  "hardware": {
+    "chassis": "E46",
+    "engine": "M54B30",
+    "intake": "M50 manifold + adapter",
+    "injectors": "stock 315 cc/min, 3.5 bar",
+    "maf": "stock HFM5",
+    "exhaust": "headers, no catalyst (off-road use)",
+    "cams": "stock"
+  },
+  "intents": [
+    {"id": "v1", "kind": "vmax", "transmission": "manual", "value_kmh": 250, "hard_add_kmh": 5.0, "acknowledge_risk": true},
+    {"id": "i1", "kind": "intake"},
+    {"id": "t1", "kind": "torque"}
+  ]
+}

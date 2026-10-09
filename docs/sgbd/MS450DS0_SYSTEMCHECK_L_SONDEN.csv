@@ -1,0 +1,14 @@
+WERT,UWTEXT
+0x00,0 Diagnose nicht aktiv
+0x01,1 Diagnose Schritt 1
+0x02,2 Diagnose Schritt 2
+0x10,"10 Diagnose beendet, Sonden OK"
+0x11,"11 Diagnose beendet, Sonden vor Kat vertauscht"
+0x12,"12 Diagnose beendet, Sonden nach Kat vertauscht"
+0x13,"13 Diagnose beendet, Sonden vor und nach Kat vertauscht"
+0x14,"14 Diagnose beendet, Sonden vor Kat Bank 1 nicht plausibel"
+0x15,"15 Diagnose beendet, Sonden vor Kat Bank 2 nicht plausibel"
+0x16,"16 Diagnose beendet, Sonden nach Kat Bank 1 nicht plausibel"
+0x17,"17 Diagnose beendet, Sonden nach Kat Bank 2 nicht plausibel"
+0x18,"18 Diagnose beendet, keine brauchbaren Ergebnisse"
+0xXY,XY Status kann nicht ausgegeben werden

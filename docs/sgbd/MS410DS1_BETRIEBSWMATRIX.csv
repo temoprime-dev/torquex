@@ -1,0 +1,32 @@
+NAME,QUELLE,ZELLE,ORD,TYP,FAKT_A,FAKT_B,EINH
+ABGAS_VARIANTE,LINRAM,0x10006,--,1,1,0,rpm
+LAMBDA_COUNTER,LINRAM,0xEC56,LH,1,1,0,rpm
+Motordrehzahl,LINRAM,0xDA2A,HL,1,1,0,rpm
+Motortemperatur,LINRAM,0xDA5A,--,1,0.747,-48,degrees C
+Ansauglufttemp,LINRAM,0xDA50,--,1,0.747,-48,degrees C
+Dk_winkel,LINRAM,0xDA45,--,1,0.467,0,throttle degrees
+XQSOLL,LINRAM,0xFAE2,LH,1,0.25,0,[kg/h]
+Luftmasse,LINRAM,0xFAE2,LH,1,0.25,0,kg/h
+Last,LINRAM,0xE78E,HL,1,0.02119,0,mg/Stroke
+Zuendwinkel,LINRAM,0xE818,HL,1,0.01458,-23.6,KW degrees
+Einspritzzeit,LINRAM,0xDA1E,HL,1,0.005339,0,ms
+Tast_ll_Steller,LINRAM,0xDA38,HL,1,655.35,0,%
+Nw_Ist_Position,LINRAM,0xE873,--,1,0.3749,0,KW degrees
+Vanos_fr_verst_z,LINRAM,0xE876,HL,1,0.01,0,ms
+Vanos_sp_verst_z,LINRAM,0xE874,HL,1,0.01,0,ms
+Verstellwinkel,LINRAM,0xDAA4,--,1,0.02,0,KW degrees
+KMW1,LINRAM,0xDA64,--,1,0.02,0,V
+KMW2,LINRAM,0xDA68,--,1,0.02,0,V
+KMW3,LINRAM,0xDA66,--,1,0.02,0,V
+KMW4,LINRAM,0xDA69,--,1,0.02,0,V
+KMW5,LINRAM,0xDA65,--,1,0.02,0,V
+KMW6,LINRAM,0xDA63,--,1,0.02,0,V
+Integrator_1,LINRAM,0xD289,--,1,1,0,ms
+Integrator_2,LINRAM,0xD2AD,--,1,1,0,ms
+Adaptionsw_ADD_1,LINRAM,0xD297,--,1,1,0,ms
+Adaptionsw_ADD_2,LINRAM,0xD2bb,--,1,1,0,ms
+Adaptionsw_MUL_1,LINRAM,0xD28b,--,1,1,0,ms
+Adaptionsw_MUL_2,LINRAM,0xD2af,--,1,1,0,ms
+Lambdasonde_1,LINRAM,0xD1C9,--,1,1,0,Volt
+Lambdasonde_2,LINRAM,0x12be,--,1,1,0,Volt
+Ubatt,LINRAM,0xDA5B,--,1,0.102,0,Volt

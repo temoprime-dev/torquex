@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "kind": "stub",
+  "source": "no real MS41 logs are available yet",
+  "channels": [],
+  "notes": "Placeholder. Fill from real logs: run the log through MS41/tools/analyze_testo_log.py once a real Test0/TestO capture exists, then replace nulls with measured values and set kind to 'real' and source to the log file. Stub files must keep every value null.",
+  "sections": {
+    "rpm_limit": {
+      "validated": null,
+      "max_safe_rpm": null
+    },
+    "knock": {
+      "knock_retard_deg_max": null,
+      "rpm_at_max_knock": null
+    },
+    "lambda": {
+      "afr_error_percent_max": null,
+      "wideband_available": null
+    },
+    "maf": {
+      "voltage_max_v": null,
+      "saturated": null
+    },
+    "trims": {
+      "stft_percent": null,
+      "ltft_percent": null
+    },
+    "injectors": {
+      "duty_percent_max": null,
+      "maf_ceiling_kgh": null
+    }
+  }
+}

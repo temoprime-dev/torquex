@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "ecu": "MS45",
+  "prg_variants": [
+    "MS450DS0"
+  ],
+  "function": "stage0",
+  "title_ru": "Stage 0: общий контроль состояния (прогрев, холостой ход, городской круг)",
+  "how_to_ru": [
+    "File → Detect ECU: проверить, что определился правильный ЭБУ и версия (не похожее семейство).",
+    "В окне ЭБУ выбрать job из списка и перетащить в график нужные результаты (*_WERT).",
+    "Settings → Logging: папка <Desktop>\\Test0_Logs, разделитель CSV и формат времени — по умолчанию.",
+    "Внешний широкополосный зонд: подключить и выбрать как внешний источник ДО начала записи.",
+    "Сохранить набор как пресет Test0 (имя TorqueX_<ЭБУ>_<функция>) — дальше запуск одной кнопкой.",
+    "Перед заездом включить запись и убедиться, что все колонки заполняются."
+  ],
+  "test0_ru": "Пресет собирается в UI Test0: выбрать job-ы и результаты из списка jobs ниже и сохранить набор под именем TorqueX_MS45_stage0.",
+  "jobs": [
+    {
+      "job": "STATUS_MOTORDREHZAHL",
+      "results": [
+        "STAT_MOTORDREHZAHL_WERT"
+      ],
+      "note_ru": "STAT_MOTORDREHZAHL_SOLL_WERT в том же job-е — это заданные обороты, не факт; в канал rpm не берём",
+      "channel": "rpm",
+      "unit_hint": "1/min",
+      "title_ru": "обороты двигателя",
+      "alternatives_ru": [
+        "STATUS_MESSWERTE: STAT_NMOT_WERT, STAT_NSOL_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_MOTORTEMPERATUR",
+      "results": [
+        "STAT_MOTORTEMPERATUR_WERT"
+      ],
+      "channel": "coolant_temp",
+      "unit_hint": "C",
+      "title_ru": "температура охлаждающей жидкости, °C"
+    },
+    {
+      "job": "STATUS_AN_LUFTTEMPERATUR",
+      "results": [
+        "STAT_AN_LUFTTEMPERATUR_WERT"
+      ],
+      "channel": "intake_temp",
+      "unit_hint": "C",
+      "title_ru": "температура воздуха на впуске, °C"
+    },
+    {
+      "job": "STATUS_LMM_MASSE",
+      "results": [
+        "STAT_LMM_MASSE_WERT"
+      ],
+      "channel": "maf_airflow",
+      "unit_hint": "kg/h",
+      "title_ru": "расход воздуха (ДМРВ), кг/ч",
+      "alternatives_ru": [
+        "STATUS_MESSWERTE: STAT_MSHFM_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_DROSSELKLAPPE",
+      "results": [
+        "STAT_DROSSELKLAPPE_WERT"
+      ],
+      "note_ru": "дроссель; отдельного канала педали в PRG MS45 нет",
+      "channel": "pedal",
+      "unit_hint": "percent_or_deg",
+      "title_ru": "ход педали / положение дросселя, % или °"
+    },
+    {
+      "job": "STATUS_UBATT",
+      "results": [
+        "STAT_UBATT_WERT"
+      ],
+      "channel": "battery_voltage",
+      "unit_hint": "V",
+      "title_ru": "напряжение бортсети, В"
+    },
+    {
+      "job": "STATUS_L_SONDE",
+      "results": [
+        "STAT_L_SONDE_WERT"
+      ],
+      "channel": "lambda_bank1_voltage",
+      "unit_hint": "V",
+      "title_ru": "напряжение передней лямбды, банк 1 (узкополосная), В"
+    },
+    {
+      "job": "STATUS_LL_STELLER",
+      "results": [
+        "STAT_AUSGANG"
+      ],
+      "note_ru": "выгрузка PRG: значение — STAT_AUSGANG, единица — STAT_AUSGANG_EINH; имя одинаково у нескольких job-ов MS45 — различать по job-у",
+      "ambiguous": true,
+      "channel": "idle_actuator",
+      "unit_hint": "percent",
+      "title_ru": "регулятор холостого хода (скважность/интегратор)"
+    },
+    {
+      "job": "STATUS_MESSWERTE_VANOS",
+      "results": [
+        "STAT_EINLASS_WERT"
+      ],
+      "note_ru": "строка выгрузки обрезана (…+1): имя STAT_EINLASS_WERT ожидается по симметрии с видимым STAT_AUSLASS_WERT, но выгрузкой не подтверждено — проверить на первом реальном логе MS45",
+      "truncated_export": true,
+      "channel": "vanos_intake_actual",
+      "unit_hint": "deg_crank",
+      "title_ru": "фазы впуска, факт, °КВ"
+    }
+  ],
+  "unavailable_ru": [
+    "vehicle_speed (скорость автомобиля, км/ч): В PRG MS45 job-а скорости нет (идёт по CAN) — для MS45 пометить как недоступный."
+  ],
+  "drive_ru": [
+    "Записать холодный пуск и прогрев до 90 °C (2–3 минуты).",
+    "Проехать 10–15 минут в городском режиме (частичные нагрузки, 2–3 остановки).",
+    "В конце — один плавный разгон до 4000 об/мин без полного газа."
+  ]
+}

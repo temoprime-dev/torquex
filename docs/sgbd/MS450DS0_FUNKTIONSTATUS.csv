@@ -1,0 +1,8 @@
+WERT,UWTEXT
+0x00,0 Funktion nicht aktiv
+0x01,1 Systemtest kann nicht gestartet werden
+0x05,5 Systemtest ist nicht gestartet
+0x06,6 Systemtest ist beendet
+0x07,7 Externe Ansteuerung gestartet
+0x08,8 Externe Ansteuerung beendet
+0xXY,Status kann nicht ausgegeben werden

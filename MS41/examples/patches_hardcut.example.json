@@ -1,0 +1,13 @@
+{
+  "comment": "Example: hardcut request on a stock M52B28 calibration. Stock limiter is 6496 rpm with a 32 rpm re-enable hysteresis; this makes the limiter engage firmly at 6700 rpm and restores injection 96 rpm lower.",
+  "patches": [
+    {
+      "symbol": "c_n_max",
+      "value": 6700
+    },
+    {
+      "symbol": "c_n_max_hys",
+      "value": 96
+    }
+  ]
+}

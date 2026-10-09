@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "ecu": "MS45",
+  "prg_variants": [
+    "MS450DS0"
+  ],
+  "function": "fuel",
+  "title_ru": "Топливо: широкая лямбда на полном ходу и топливные коррекции",
+  "how_to_ru": [
+    "File → Detect ECU: проверить, что определился правильный ЭБУ и версия (не похожее семейство).",
+    "В окне ЭБУ выбрать job из списка и перетащить в график нужные результаты (*_WERT).",
+    "Settings → Logging: папка <Desktop>\\Test0_Logs, разделитель CSV и формат времени — по умолчанию.",
+    "Внешний широкополосный зонд: подключить и выбрать как внешний источник ДО начала записи.",
+    "Сохранить набор как пресет Test0 (имя TorqueX_<ЭБУ>_<функция>) — дальше запуск одной кнопкой.",
+    "Перед заездом включить запись и убедиться, что все колонки заполняются."
+  ],
+  "test0_ru": "Пресет собирается в UI Test0: выбрать job-ы и результаты из списка jobs ниже и сохранить набор под именем TorqueX_MS45_fuel.",
+  "jobs": [
+    {
+      "job": "STATUS_MOTORDREHZAHL",
+      "results": [
+        "STAT_MOTORDREHZAHL_WERT"
+      ],
+      "note_ru": "STAT_MOTORDREHZAHL_SOLL_WERT в том же job-е — это заданные обороты, не факт; в канал rpm не берём",
+      "channel": "rpm",
+      "unit_hint": "1/min",
+      "title_ru": "обороты двигателя",
+      "alternatives_ru": [
+        "STATUS_MESSWERTE: STAT_NMOT_WERT, STAT_NSOL_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_LMM_MASSE",
+      "results": [
+        "STAT_LMM_MASSE_WERT"
+      ],
+      "channel": "maf_airflow",
+      "unit_hint": "kg/h",
+      "title_ru": "расход воздуха (ДМРВ), кг/ч",
+      "alternatives_ru": [
+        "STATUS_MESSWERTE: STAT_MSHFM_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_ZEIT_EINSPRITZ",
+      "results": [
+        "STAT_ZEIT_WERT"
+      ],
+      "channel": "injector_pulse_width",
+      "unit_hint": "ms",
+      "title_ru": "время впрыска, мс"
+    },
+    {
+      "channel": "lambda_wideband",
+      "title_ru": "внешняя широкополосная лямбда (Innovate/AEM/PLX/14Point7/Techedge)",
+      "source": "external_ru",
+      "external_ru": "не SGBD: внешний источник Test0 (testo.ini [external_source]/[14point7])",
+      "unit_hint": "lambda_or_afr",
+      "note_ru": "Не канал SGBD: подключается в Test0 как внешний источник ([external_source]/[14point7] в testo.ini). Если логгер пишет AFR, анализатор пересчитывает AFR→λ по стехиометрии 14.7 (поле lambda2afr) — это фиксируется в доказательстве."
+    },
+    {
+      "job": "STATUS_INT",
+      "results": [
+        "STAT_INT_WERT"
+      ],
+      "channel": "lambda_integrator",
+      "unit_hint": "percent",
+      "title_ru": "интегратор лямбда-регулирования (STFT), %",
+      "alternatives_ru": [
+        "STATUS_ADD: STAT_ADD_WERT",
+        "STATUS_MUL: STAT_MUL_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_DROSSELKLAPPE",
+      "results": [
+        "STAT_DROSSELKLAPPE_WERT"
+      ],
+      "note_ru": "дроссель; отдельного канала педали в PRG MS45 нет",
+      "channel": "pedal",
+      "unit_hint": "percent_or_deg",
+      "title_ru": "ход педали / положение дросселя, % или °"
+    },
+    {
+      "job": "STATUS_MOTORTEMPERATUR",
+      "results": [
+        "STAT_MOTORTEMPERATUR_WERT"
+      ],
+      "channel": "coolant_temp",
+      "unit_hint": "C",
+      "title_ru": "температура охлаждающей жидкости, °C"
+    },
+    {
+      "job": "STATUS_AN_LUFTTEMPERATUR",
+      "results": [
+        "STAT_AN_LUFTTEMPERATUR_WERT"
+      ],
+      "channel": "intake_temp",
+      "unit_hint": "C",
+      "title_ru": "температура воздуха на впуске, °C"
+    }
+  ],
+  "unavailable_ru": [
+    "load (нагрузка (мг/такт)): В MS45 job-а с нагрузкой в мг/такт в PRG нет; замена (момент/расход HFM) требует отдельного решения — см. docs/TEST0_WEB_ANALYSIS_RU.md §6.",
+    "maf_voltage (напряжение ДМРВ, В): нет job-а в PRG этого ЭБУ"
+  ],
+  "drive_ru": [
+    "Подключить внешний широкополосный зонд (Innovate/AEM/PLX/14Point7/Techedge) и выбрать его в Test0 внешним источником.",
+    "2 разгона «газ в пол» с 2000 до 6000+ об/мин на 3-й передаче.",
+    "10 секунд ровного движения на частичной нагрузке (2000–2500 об/мин, педаль неподвижна).",
+    "Прогрев: ОЖ не ниже 80 °C до начала заезда."
+  ],
+  "pack": "fuel",
+  "pack_covered": [
+    "coolant_temp",
+    "injector_pulse_width",
+    "intake_temp",
+    "lambda_integrator",
+    "lambda_wideband",
+    "load",
+    "maf_airflow",
+    "pedal",
+    "rpm"
+  ],
+  "pack_missing_ru": {
+    "lambda_wideband": "внутренняя лямбда MS4x узкополосная (0–1 В); канал даёт только внешний зонд Test0 ([external_source]/[14point7])"
+  }
+}

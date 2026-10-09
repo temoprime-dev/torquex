@@ -1,0 +1,104 @@
+{
+  "kind": "pack_log",
+  "schema_version": 1,
+  "package": "ignition",
+  "generator": "torquex_pack_log_analyzer",
+  "analyzer_version": "1.0",
+  "sha256_normalization": "crlf-to-lf/1",
+  "source": "MS45/examples/logs/wot_knock_free.csv",
+  "source_sha256": "df8296ade0f9beba433478f8133e66b0918e729757ba6dd01f8b7d7c98d3f8e9",
+  "source_format": "csv",
+  "source_encoding": "utf-8",
+  "rows": 384,
+  "duration_s": 38.3,
+  "sample_rate_hz": 10.0,
+  "fuel_ron": 98,
+  "results": {
+    "wot_runs": 3,
+    "no_knock_fraction": 1.0,
+    "max_sustained_retard_seconds": 0.0,
+    "knock_spike_events": 0,
+    "max_iat_c": 32.98,
+    "wot_detection": "pedal"
+  },
+  "issues": [],
+  "notes": [],
+  "valid": true,
+  "pack_recommendation": {
+    "kind": "pack_recommendation",
+    "schema_version": 1,
+    "analyzer_version": "1.0",
+    "package": "ignition",
+    "confidence": "high",
+    "zones": [
+      {
+        "index": {
+          "rpm": 0,
+          "load": 1
+        },
+        "zone_ru": "n 2000–3000 / load 300–450 мг/такт",
+        "samples": 65,
+        "wot_runs": 3,
+        "recommendation_ru": "коррекции в зоне нет — допустима полная добавка +5°",
+        "delta_deg": 5.0,
+        "confidence": "high",
+        "knock_retard_max_deg": 0.39,
+        "knock_retard_mean_deg": 0.181
+      },
+      {
+        "index": {
+          "rpm": 1,
+          "load": 2
+        },
+        "zone_ru": "n 3000–4000 / load 450–700 мг/такт",
+        "samples": 64,
+        "wot_runs": 3,
+        "recommendation_ru": "коррекции в зоне нет — допустима полная добавка +5°",
+        "delta_deg": 5.0,
+        "confidence": "high",
+        "knock_retard_max_deg": 0.4,
+        "knock_retard_mean_deg": 0.197
+      },
+      {
+        "index": {
+          "rpm": 2,
+          "load": 2
+        },
+        "zone_ru": "n 4000–5000 / load 450–700 мг/такт",
+        "samples": 66,
+        "wot_runs": 3,
+        "recommendation_ru": "коррекции в зоне нет — допустима полная добавка +5°",
+        "delta_deg": 5.0,
+        "confidence": "high",
+        "knock_retard_max_deg": 0.4,
+        "knock_retard_mean_deg": 0.173
+      },
+      {
+        "index": {
+          "rpm": 3,
+          "load": 2
+        },
+        "zone_ru": "n 5000–6500 / load 450–700 мг/такт",
+        "samples": 93,
+        "wot_runs": 3,
+        "recommendation_ru": "коррекции в зоне нет — допустима полная добавка +5°",
+        "delta_deg": 5.0,
+        "confidence": "high",
+        "knock_retard_max_deg": 0.39,
+        "knock_retard_mean_deg": 0.189
+      }
+    ],
+    "warnings": [],
+    "limits": {
+      "max_add_deg_with_retard_log": 5.0,
+      "max_add_deg_without_retard_log": 3.0,
+      "knock_spike_ratio_vs_median": 3.0,
+      "note_ru": "рекомендация не обходит ворота генератора: RON91-карта не изменяется, защита по детонации сохраняется, сетка 0.375°"
+    },
+    "source_sha256": "df8296ade0f9beba433478f8133e66b0918e729757ba6dd01f8b7d7c98d3f8e9",
+    "notes_ru": [
+      "рекомендация действительна только вместе с исходным логом: генератор сверяет sha256 и версию анализатора",
+      "генератор применяет свои границы: рекомендация их не обходит"
+    ]
+  }
+}

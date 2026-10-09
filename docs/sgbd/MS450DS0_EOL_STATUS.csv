@@ -1,0 +1,11 @@
+WERT,UWTEXT
+0x00,0 Funktionstest läuft
+0x01,1 Startbedingungen nicht erfüllt
+0x02,2 Übergabeparameter nicht plausibel
+0x03,3 Funktion wartet auf Freigabe
+0x05,5 Funktion noch nicht gestartet
+0x06,6 Funktion beendet
+0x07,7 Funktion abgebrochen
+0x08,8 Funktion durchlaufen und kein Fehler erkannt
+0x09,9 Funktion durchlaufen und Fehler erkannt
+0xFF,FF Status kann nicht ausgegeben werden

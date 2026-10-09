@@ -1,0 +1,25 @@
+{
+  "stage": "stage1",
+  "variant": "v2",
+  "customer": "пример: вариант 2 (расширенный, по логам)",
+  "notes": "зажигание по логу детонации, лямбда полной нагрузки по широкой лямбде, ВАНос по логу фаз, обороты с подтверждениями. Доказательства выданы анализатором (см. logs/*.csv и logs/evidence_*.json); заявку запускать из каталога примеров, чтобы пути к доказательствам сошлись.",
+  "intents": [
+    {
+      "id": "ign1", "kind": "ignition", "delta_deg": 2.5,
+      "evidence": "logs/evidence_ignition.json"
+    },
+    {
+      "id": "fuel1", "kind": "fuel", "ti_fl_enrich_lambda": 0.03,
+      "evidence": "logs/evidence_fuel.json"
+    },
+    {
+      "id": "van1", "kind": "vanos",
+      "shift_in_deg": 2.0, "shift_ex_deg": -2.0,
+      "evidence": "logs/evidence_vanos.json"
+    },
+    {
+      "id": "rpm1", "kind": "rev_limit", "value": 6800, "transmission": "mt",
+      "acknowledge_risk": true, "acknowledge_oil_pump": true
+    }
+  ]
+}

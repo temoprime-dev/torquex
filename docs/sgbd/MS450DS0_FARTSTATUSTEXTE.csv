@@ -1,0 +1,10 @@
+BITNR,BITTEXT
+0x00,nicht aktiv
+0x01,Fehler momentan vorhanden
+0x02,Fehler geprueft
+0x11,E-Flag entprellt
+0x12,CARB-entprellt
+0x13,SCATT-aktiv
+0x14,MIL ein
+0x15,MIL blink
+0x16,Fehler sporadisch

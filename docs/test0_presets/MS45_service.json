@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "ecu": "MS45",
+  "prg_variants": [
+    "MS450DS0"
+  ],
+  "function": "service",
+  "title_ru": "Сервис: холостой ход, вентилятор/термостат, DISA и ISA",
+  "how_to_ru": [
+    "File → Detect ECU: проверить, что определился правильный ЭБУ и версия (не похожее семейство).",
+    "В окне ЭБУ выбрать job из списка и перетащить в график нужные результаты (*_WERT).",
+    "Settings → Logging: папка <Desktop>\\Test0_Logs, разделитель CSV и формат времени — по умолчанию.",
+    "Внешний широкополосный зонд: подключить и выбрать как внешний источник ДО начала записи.",
+    "Сохранить набор как пресет Test0 (имя TorqueX_<ЭБУ>_<функция>) — дальше запуск одной кнопкой.",
+    "Перед заездом включить запись и убедиться, что все колонки заполняются."
+  ],
+  "test0_ru": "Пресет собирается в UI Test0: выбрать job-ы и результаты из списка jobs ниже и сохранить набор под именем TorqueX_MS45_service.",
+  "jobs": [
+    {
+      "job": "STATUS_MOTORDREHZAHL",
+      "results": [
+        "STAT_MOTORDREHZAHL_WERT"
+      ],
+      "note_ru": "STAT_MOTORDREHZAHL_SOLL_WERT в том же job-е — это заданные обороты, не факт; в канал rpm не берём",
+      "channel": "rpm",
+      "unit_hint": "1/min",
+      "title_ru": "обороты двигателя",
+      "alternatives_ru": [
+        "STATUS_MESSWERTE: STAT_NMOT_WERT, STAT_NSOL_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_MOTORTEMPERATUR",
+      "results": [
+        "STAT_MOTORTEMPERATUR_WERT"
+      ],
+      "channel": "coolant_temp",
+      "unit_hint": "C",
+      "title_ru": "температура охлаждающей жидкости, °C"
+    },
+    {
+      "job": "STATUS_AN_LUFTTEMPERATUR",
+      "results": [
+        "STAT_AN_LUFTTEMPERATUR_WERT"
+      ],
+      "channel": "intake_temp",
+      "unit_hint": "C",
+      "title_ru": "температура воздуха на впуске, °C"
+    },
+    {
+      "job": "STATUS_LL_STELLER",
+      "results": [
+        "STAT_AUSGANG"
+      ],
+      "note_ru": "выгрузка PRG: значение — STAT_AUSGANG, единица — STAT_AUSGANG_EINH; имя одинаково у нескольких job-ов MS45 — различать по job-у",
+      "ambiguous": true,
+      "channel": "idle_actuator",
+      "unit_hint": "percent",
+      "title_ru": "регулятор холостого хода (скважность/интегратор)"
+    },
+    {
+      "job": "STATUS_E_LUEFTER",
+      "results": [
+        "STAT_AUSGANG"
+      ],
+      "note_ru": "выгрузка PRG: значение — STAT_AUSGANG, единица — STAT_AUSGANG_EINH, текст — STAT_AUSGANG_TEXT; имя STAT_AUSGANG одинаково у нескольких job-ов MS45, в логе различать по job-у",
+      "ambiguous": true,
+      "channel": "fan_duty",
+      "unit_hint": "step_or_percent",
+      "title_ru": "ступень/скважность электровентилятора"
+    },
+    {
+      "job": "STATUS_VIMDISA",
+      "results": [
+        "STAT_AUSGANG"
+      ],
+      "note_ru": "выгрузка PRG: значение — STAT_AUSGANG, текст — STAT_AUSGANG_TEXT (например, «ein/aus»); имя одинаково у нескольких job-ов MS45 — различать по job-у",
+      "ambiguous": true,
+      "channel": "disa_status",
+      "unit_hint": "text_or_step",
+      "title_ru": "состояние заслонок DISA/VIM"
+    },
+    {
+      "job": "STATUS_DROSSELKLAPPE",
+      "results": [
+        "STAT_DROSSELKLAPPE_WERT"
+      ],
+      "note_ru": "дроссель; отдельного канала педали в PRG MS45 нет",
+      "channel": "pedal",
+      "unit_hint": "percent_or_deg",
+      "title_ru": "ход педали / положение дросселя, % или °"
+    },
+    {
+      "job": "STATUS_UBATT",
+      "results": [
+        "STAT_UBATT_WERT"
+      ],
+      "channel": "battery_voltage",
+      "unit_hint": "V",
+      "title_ru": "напряжение бортсети, В"
+    }
+  ],
+  "unavailable_ru": [],
+  "drive_ru": [
+    "2 минуты прогретого холостого хода; в конце — включить кондиционер на 1 минуту.",
+    "Дать двигателю нагреться до включения вентилятора и записать момент включения.",
+    "Если в логе нет DISA/ISA — проверить, что в Test0 выбраны job-ы из этого пресета."
+  ]
+}

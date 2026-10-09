@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "description": "Explicit bench records only. An empty registry is intentional: no public MS42/MS43 round-5b package is field verified yet.",
+  "verified": []
+}

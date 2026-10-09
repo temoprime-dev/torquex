@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "kind": "stub",
+  "source": "example: no real logs yet",
+  "channels": [],
+  "notes": "Stub copy for the injector-scaling example: every value is null, so the tool reports REQUIRES_DATA.",
+  "sections": {
+    "rpm_limit": {"validated": null, "max_safe_rpm": null},
+    "knock": {"knock_retard_deg_max": null, "rpm_at_max_knock": null},
+    "lambda": {"afr_error_percent_max": null, "wideband_available": null},
+    "maf": {"voltage_max_v": null, "saturated": null},
+    "trims": {"stft_percent": null, "ltft_percent": null},
+    "injectors": {"duty_percent_max": null, "maf_ceiling_kgh": null}
+  }
+}

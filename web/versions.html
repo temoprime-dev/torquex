@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-i18n-title="versions.title">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="TorqueX: поддерживаемые версии ЭБУ Siemens MS41–MS45 и ограничения релиза.">
+<title>TorqueX</title>
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="versions.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="common.skip"></a>
+<header class="site-header" id="tx-header"></header>
+<div id="tx-demo-banner"></div>
+<p id="tx-live" class="sr-only" role="status" aria-live="polite"></p>
+<p id="tx-alert" class="sr-only" role="alert" aria-live="assertive"></p>
+<div id="tx-toasts" class="toasts" aria-live="polite"></div>
+
+<main id="main" class="wrap">
+  <h1 data-i18n="versions.title"></h1>
+  <p class="lead" data-i18n="versions.lead"></p>
+
+  <section class="card" id="trust">
+    <h2 data-i18n="trust.title"></h2>
+    <p>
+      <span class="badge badge-ok" data-i18n="trust.bytes_crc"></span>
+      <span class="badge badge-warn" data-i18n="trust.field_none"></span>
+    </p>
+    <details class="faq">
+      <summary data-i18n="home.verified.title"></summary>
+      <p data-i18n="home.verified.lead"></p>
+      <h3 data-i18n="home.verified.checked_title"></h3>
+      <ul class="list">
+        <li data-i18n="home.verified.c1"></li>
+        <li data-i18n="home.verified.c2"></li>
+        <li data-i18n="home.verified.c3"></li>
+      </ul>
+      <h3 data-i18n="home.verified.unchecked_title"></h3>
+      <ul class="list">
+        <li data-i18n="home.verified.u1"></li>
+        <li data-i18n="home.verified.u2"></li>
+        <li data-i18n="home.verified.u3"></li>
+      </ul>
+    </details>
+  </section>
+
+  <section class="card">
+    <div class="table-scroll">
+      <table class="table" id="versions-table">
+        <thead>
+          <tr>
+            <th scope="col" data-i18n="home.support.ecu"></th>
+            <th scope="col" data-i18n="home.support.what"></th>
+          </tr>
+        </thead>
+        <tbody id="versions-body">
+          <tr><td colspan="2" class="muted" data-i18n="versions.loading"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="versions.gs8"></h2>
+    <p data-i18n="versions.gs8_text"></p>
+    <h3 data-i18n="versions.gs8_alpina_title"></h3>
+    <ul class="list" id="versions-alpina"></ul>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="versions.ms43"></h2>
+    <p id="versions-ms43" data-i18n="versions.ms43_text"></p>
+    <p class="hint" data-i18n="versions.ms43_note"></p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="versions.ms41"></h2>
+    <p data-i18n="versions.ms41_text"></p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="versions.ms42"></h2>
+    <p data-i18n="versions.ms42_text"></p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="versions.ms45"></h2>
+    <p id="versions-ms45" data-i18n="versions.ms45_text"></p>
+    <p class="hint" data-i18n="versions.ms45_note"></p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="versions.common_title"></h2>
+    <ul class="list">
+      <li data-i18n="versions.c1"></li>
+      <li data-i18n="versions.c2"></li>
+      <li data-i18n="versions.c3"></li>
+    </ul>
+    <p class="hint" data-i18n="versions.source"></p>
+  </section>
+</main>
+
+<footer class="site-footer" id="tx-footer"></footer>
+</body>
+</html>

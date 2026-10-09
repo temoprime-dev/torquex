@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "description": "TorqueX MS41 patch allowlist. Default deny: a symbol can only be written when it is listed here. Limits are engineering values in the units of the XDF object. max_delta_percent is measured against the stock value found in the file being patched, and is skipped when the stock value is zero.",
+  "max_quantization_error_percent": 1.0,
+  "objects": {
+    "c_n_max": {
+      "min": 6200,
+      "max": 6900,
+      "max_delta_percent": 6.0,
+      "note": "Engine speed limit (NMAX). Raising it is a deliberate decision that must be backed by a log; stock is 6496 rpm on every MS41 calibrations we hold."
+    },
+    "c_n_max_hys": {
+      "min": 0,
+      "max": 512,
+      "note": "Hysteresis before injection is re-enabled (NMAX_HYS). A smaller value makes the limiter harder. Stock differs by variant: 0 rpm on M52B20, 32 rpm on M52B28."
+    },
+    "c_n_max_hys_max": {
+      "min": 0,
+      "max": 1600,
+      "note": "Hysteresis for re-enabling all injectors (NMAX_HYS_MAX). Stock is 800 rpm on M52B20 and 320 rpm on M52B28."
+    },
+    "c_n_max_max": {
+      "min": 0,
+      "max": 7100,
+      "note": "Upper engine speed limit (NMAX_MAX). Stock is 6592 rpm."
+    },
+    "c_var_vs_max_act": {
+      "min": 0,
+      "max": 1,
+      "note": "VAN_VMAX_AKT: variant switch 'vehicle speed limitation active'. Stock is 0 on every MS41 calibration we hold, so the limiter is switched off at the factory: c_vs_max=255 means 'above any reachable speed'. A launch limit needs this switch set to 1 for c_vs_max to be read at all. Only the launch_limiter intent writes it, and it always writes a boolean 0/1."
+    },
+    "c_vs_max": {
+      "min": 0,
+      "max": 255,
+      "note": "Vehicle speed limiter (km/h). Stock is 255, which is effectively unlimited."
+    },
+    "c_vs_max_hys": {
+      "min": 0,
+      "max": 20,
+      "note": "Vehicle speed limiter hysteresis (km/h). Stock is 2-3."
+    },
+    "c_n_hys_max_puc": {
+      "min": 0,
+      "max": 1600,
+      "note": "Overrun fuel cut upper engine speed hysteresis. Popcorn work item; individual road validation required."
+    },
+    "c_n_hys_min_puc": {
+      "min": 0,
+      "max": 1024,
+      "note": "Overrun fuel cut lower engine speed hysteresis."
+    },
+    "c_n_min_lgrd_pu": {
+      "min": 2048,
+      "max": 6144,
+      "note": "Engine speed threshold for retard during overrun."
+    },
+    "c_tco_min_pu": {
+      "min": 0,
+      "max": 110,
+      "note": "Coolant temperature above which overrun fuel cut is enabled (degC). Stock is 72-80. Lowering it enables overrun behaviour on a cold engine, which is exactly what popcorn needs and exactly what damages hardware if abused."
+    },
+    "c_pvs_grd_pu": {
+      "min": 0,
+      "max": 1200,
+      "note": "Throttle gradient threshold for overrun fuel cut (degTPS/s). Stock is 398-621."
+    },
+    "c_n_min_puc_diag": {
+      "min": 1024,
+      "max": 4096,
+      "note": "Engine speed threshold for the trailing-throttle fuel cut limp-home diagnostic (NMIN_SA_DIAG). Do not raise this to hide a fault."
+    },
+    "ip_maf_min_ivvt__n__tco": {
+      "min": 0.0,
+      "max": 1301.85,
+      "max_cells_per_patch": 55,
+      "note": "VANOS switching threshold, manual transmission (KF_LM_MIN_VANOS), 11 rpm rows x 5 coolant-temperature columns, mg/stroke. Written only by MS41/tools/vanos_switch.py from a MEASURED comparison of the two cam positions, and only in the temperature columns at or above the measurement temperature. No max_delta_percent: the whole point of a new threshold is that some rows move a long way, so the gate is the measurement itself, not a percentage. The value 1301.85 (raw 239) is the table's own 'never switch' sentinel and rows holding it stay stock."
+    },
+    "ip_dri_maf_min_ivvt__n__tco": {
+      "min": 0.0,
+      "max": 1301.85,
+      "max_cells_per_patch": 55,
+      "note": "VANOS switching threshold, automatic transmission (KF_FS_LM_MIN_VAN). A different table from the manual one - the same numbers do not apply to both cars. Same rules as the manual table: measured comparison file, warm columns only, 'never switch' rows kept."
+    },
+    "c_maf_max": {
+      "min": 0.0,
+      "max": 1389.0,
+      "max_delta_percent": 30.0,
+      "note": "Maximum air mass (LM_MAX) in mg/stroke, stock 800.7 (raw 147). Raised only by MS41/tools/maf_limits.py, and only by the same ratio as the new MAF curve's ceiling and only with a log proving the stock sensor was saturated. The 30% bound is where a sensor swap stops being a swap and becomes a different project (new housing or forced induction)."
+    },
+    "c_maf_max_diag": {
+      "min": 0.0,
+      "max": 1389.0,
+      "max_delta_percent": 30.0,
+      "note": "LM_MAX_DIAG: air-mass threshold for the MAF short-to-battery diagnosis, stock 1002.3 (raw 184). It must follow the sensor span or the diagnosis trips earlier than before, which is why it moves with the curve - never to silence a real fault. Same ratio and same log requirement as c_maf_max."
+    },
+    "ip_tib__n__maf": {
+      "min": 0.0,
+      "max": 30.0,
+      "max_delta_percent": 50.0,
+      "max_cells_per_patch": 256,
+      "note": "Base injection map (192 cells, ms). Opened only for a documented injector change driven by the 'injectors' intent, which refuses to write without a log-confirmed flow factor. The 50% band catches a wrong direction or a typo, not a physics limit: the map is rescaled by stock_flow/new_flow, and the intent's own 10% agreement rule between the datasheet factor and the logged trims is the real gate. Minimum injection time, cranking maps and adaptation limits stay outside this policy."
+    },
+    "id_maf_tab__v_maf_1__v_maf_2 (1x256)": {
+      "min": 0,
+      "max": 1023,
+      "max_cells_per_patch": 256,
+      "require_monotonic": true,
+      "note": "MAF transfer function in kg/h, one column per 5.018/255 V ADC step. A documented replacement sensor rewrites the whole curve, so the cell limit is the table itself; the ceiling is the 16-bit cell limit at the table's 1/64 scaling (1023.98 kg/h). Provenance, monotonicity and the deviation from stock are enforced by MS41/tools/maf_curve.py, not by this file."
+    },
+    "id_maf_tab__v_maf_1__v_maf_2 (16x16)": {
+      "min": 0,
+      "max": 1023,
+      "max_cells_per_patch": 256,
+      "require_monotonic": true,
+      "note": "MAF transfer function in kg/h, one column per 5.018/255 V ADC step. A documented replacement sensor rewrites the whole curve, so the cell limit is the table itself; the ceiling is the 16-bit cell limit at the table's 1/64 scaling (1023.98 kg/h). Provenance, monotonicity and the deviation from stock are enforced by MS41/tools/maf_curve.py, not by this file."
+    }
+  }
+}

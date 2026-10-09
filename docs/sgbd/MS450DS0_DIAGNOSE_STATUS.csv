@@ -1,0 +1,6 @@
+WERT,UWTEXT
+0x01,01 Systemtest läuft
+0x03,"03 Systemtest beendet, Messwerte gültig"
+0x06,06 Systemtest Start nicht möglich
+0x07,07 Systemtest nicht gestartet
+0xXY,FF Systemtest unbekannter Wert

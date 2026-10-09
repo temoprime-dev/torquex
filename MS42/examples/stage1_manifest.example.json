@@ -1,0 +1,358 @@
+{
+  "stage": "stage1",
+  "stage_number": 1,
+  "status": "READY",
+  "source": "MS42/firmware/Siemens_MS42_0110C6_E36Z3_M52TUB20_EU3.bin",
+  "source_sha256": "5197f17ee0b076db0fbc4da48dbf83e8f6cb0f9bb07f776be0442603d8113f62",
+  "output": "build/stage1.bin",
+  "output_sha256": "6a30db508653ca8a94349758adb8ff2458ab90f8defd6065db56c2f044fab4f8",
+  "dataset_id": "91c6w22g",
+  "osid": "0110C6",
+  "image_type": "full-flash-512K",
+  "policy_version": 4,
+  "hardware": {},
+  "donor": null,
+  "core_plan_status": "WRITTEN",
+  "value_bytes_changed": 10,
+  "crc_bytes_changed": 2,
+  "total_bytes_changed": 12,
+  "crc_records_recomputed": 1,
+  "crc_valid_after": true,
+  "unplanned_byte_changes": [],
+  "findings": [
+    {
+      "code": "CRC_BYTES_REWRITTEN",
+      "severity": "info",
+      "message": "2 CRC byte(s) rewritten in 1 record(s)"
+    }
+  ],
+  "packages": [
+    {
+      "id": "limits",
+      "stage": 1,
+      "title": "Ограничители",
+      "status": "READY",
+      "summary": "Soft vehicle speed limit 216 -> 240 km/h, hard stage offset 8 km/h; manual engine speed limiter: soft 6688/6688/6688 rpm, hard 6720/6720/6720 rpm; Trailing-throttle fuel cut hysteresis updated (no popcorn delay or ignition change is implied).",
+      "requirements": {},
+      "findings": [
+        {
+          "code": "OTHER_GEARBOX_TABLES_UNTOUCHED",
+          "severity": "info",
+          "message": "id_n_max_at__nvs / id_n_max_max_at__nvs are left stock: this request is for a manual gearbox, and MS42 selects the pair by the coded variant, not by the highest value."
+        }
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ],
+      "symbols": [
+        "c_vs_max_1",
+        "c_vs_max_add",
+        "c_n_min_vs_max",
+        "id_n_max_mt__nvs",
+        "id_n_max_at__nvs",
+        "c_n_hys_max_puc",
+        "c_n_hys_min_puc"
+      ],
+      "changes": [
+        {
+          "symbol": "c_vs_max_1",
+          "index": 0,
+          "value": 240.0,
+          "intent_id": "v1",
+          "intent_kind": "vmax",
+          "evidence": "customer_intent",
+          "requires_validation": true,
+          "validation_hint": "log vehicle speed and check the cylinder-shutoff stage engages where expected"
+        },
+        {
+          "symbol": "c_vs_max_add",
+          "index": 0,
+          "value": 8.0,
+          "intent_id": "v1",
+          "intent_kind": "vmax",
+          "evidence": "customer_intent",
+          "requires_validation": true,
+          "validation_hint": "the hard stage cuts the fuel pump at c_vs_max_1 + c_vs_max_add; verify the value is above the soft stage"
+        },
+        {
+          "symbol": "id_n_max_mt__nvs",
+          "index": 0,
+          "value": 6688.0,
+          "intent_id": "r1",
+          "intent_kind": "rpm_limit",
+          "evidence": "customer_intent",
+          "requires_validation": true,
+          "validation_hint": "log the limiter event: soft limiting must cut cylinders before the hard limiter cuts all of them"
+        }
+      ]
+    },
+    {
+      "id": "overrun_pops",
+      "stage": 1,
+      "title": "Хлопки на сбросе газа",
+      "status": "REQUIRES_DATA",
+      "summary": "Порог отсечки, углы и задержка на сбросе под профиль клиента (light/medium). Пишутся только с письменным подтверждением, что катализатора нет, и планом дорожной проверки; агрессивный пресет не предлагается.",
+      "requirements": {
+        "kind": "popcorn",
+        "summary": "Хлопки пишутся только по профилю клиента: письменное подтверждение, что катализатора нет, и явное согласие следить за температурой.",
+        "fields": [
+          "kind = 'popcorn'",
+          "no_catalyst = '<письменное подтверждение, катализатора нет>'",
+          "thermal_watch = true",
+          "road_validation_plan = '<план первых заездов>'",
+          "intensity = 'light' | 'medium'  (aggressive не предлагается)",
+          "threshold_add_rpm = 0..600 (light) / 0..2000 (medium)",
+          "retard_deg = -6..0 (light) / -12..0 (medium)",
+          "cut_delay_s = 0..1.2 (light) / 0..3.0 (medium)"
+        ],
+        "example": "MS42/examples/popcorn.example.json",
+        "load_with": "--popcorn",
+        "after_flash": [
+          "лог STATUS_SCHUB_AB на сбросе газа",
+          "температура выпуска и охлаждающей жидкости на первых заездах"
+        ],
+        "refused": [
+          "агрессивный публичный пресет",
+          "хлопки на машине с катализатором"
+        ],
+        "package": "overrun_pops",
+        "needs": [
+          "popcorn_profile",
+          "road_validation_plan"
+        ]
+      },
+      "findings": [
+        {
+          "code": "EVIDENCE_REQUIRED",
+          "severity": "reject",
+          "message": "Хлопки пишутся только по профилю клиента: письменное подтверждение, что катализатора нет, и явное согласие следить за температурой."
+        }
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ],
+      "symbols": [
+        "ip_n_min_puc__tco",
+        "ip_n_min_accin_puc__tco",
+        "ip_iga_puc__n__tco",
+        "ip_iga_accin_puc__n__tco",
+        "ip_t_puc_deacc__n__maf_mmv"
+      ],
+      "changes": []
+    },
+    {
+      "id": "idle",
+      "stage": 1,
+      "title": "Обороты холостого хода",
+      "status": "REQUIRES_DATA",
+      "summary": "Уставка холостого хода поднимается вместе со скважностью РХХ, иначе регулятор упирается в предел. Нужен лог холостого хода.",
+      "requirements": {
+        "package": "idle",
+        "summary": "Уставка холостого хода поднимается вместе со скважностью РХХ, иначе регулятор упирается в предел. Нужен лог холостого хода.",
+        "needs": [
+          "idle_log",
+          "rpm_target"
+        ],
+        "symbols": [
+          "ip_n_sp_is__tco",
+          "ip_isapwm__tco",
+          "c_n_sp_lgrd_is"
+        ]
+      },
+      "findings": [
+        {
+          "code": "EVIDENCE_REQUIRED",
+          "severity": "reject",
+          "message": "Уставка холостого хода поднимается вместе со скважностью РХХ, иначе регулятор упирается в предел. Нужен лог холостого хода."
+        }
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ],
+      "symbols": [
+        "ip_n_sp_is__tco",
+        "ip_isapwm__tco",
+        "c_n_sp_lgrd_is"
+      ],
+      "changes": []
+    },
+    {
+      "id": "ignition",
+      "stage": 1,
+      "title": "Зажигание (RON91/RON98)",
+      "status": "REQUIRES_DATA",
+      "summary": "Ignition timing needs a dyno and a knock log; no values are written.",
+      "requirements": {
+        "kind": "ignition",
+        "summary": "Ignition timing needs a dyno and a knock log; no values are written.",
+        "tables": [
+          {
+            "symbol": "ip_iga_tco_1_is_ivvt__n__maf",
+            "role": "cold idle target angle"
+          },
+          {
+            "symbol": "ip_iga_tco_1_pl_ivvt__n__maf",
+            "role": "cold part/full load"
+          },
+          {
+            "symbol": "ip_iga_tco_2_is_ivvt__n__maf",
+            "role": "warm idle target angle"
+          },
+          {
+            "symbol": "ip_iga_ron_91_pl_ivvt__n__maf",
+            "role": "RON91 base map"
+          },
+          {
+            "symbol": "ip_iga_ron_98_pl_ivvt__n__maf",
+            "role": "RON98 base map"
+          },
+          {
+            "symbol": "id_iga_dec_knk_1__n",
+            "role": "knock retard stage 1 (keep stock)"
+          },
+          {
+            "symbol": "id_iga_dec_knk_2__n",
+            "role": "knock retard stage 2 (keep stock)"
+          }
+        ],
+        "log_evidence": [
+          "knock retard per cylinder",
+          "lambda integrators",
+          "ignition angle"
+        ],
+        "bench_steps": [
+          "baseline dyno pull on the current calibration",
+          "one change at a time, 2-3 dyno pulls apart",
+          "knock retard must stay below the stock envelope on RON91 and RON98"
+        ],
+        "gates": [
+          "EVIDENCE_REQUIRED",
+          "TABLES_RESOLVED",
+          "KNOCK_HEADROOM",
+          "NOTHING_WRITTEN"
+        ],
+        "not_supported": [
+          "claimed power figures without a dyno sheet"
+        ],
+        "package": "ignition"
+      },
+      "findings": [
+        {
+          "code": "EVIDENCE_REQUIRED",
+          "severity": "reject",
+          "message": "Ignition timing needs a dyno and a knock log; no values are written."
+        }
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ],
+      "symbols": [
+        "ip_iga_ron_91_pl_ivvt__n__maf",
+        "ip_iga_ron_98_pl_ivvt__n__maf",
+        "ip_iga_tco_2_is_ivvt__n__maf"
+      ],
+      "changes": []
+    },
+    {
+      "id": "fueling",
+      "stage": 1,
+      "title": "Топливоподача",
+      "status": "REQUIRES_DATA",
+      "summary": "Fuel maps need a wideband log; the stock lambda control stays authoritative.",
+      "requirements": {
+        "kind": "fueling",
+        "summary": "Fuel maps need a wideband log; the stock lambda control stays authoritative.",
+        "tables": [
+          {
+            "symbol": "ip_tib__n__maf",
+            "role": "base injection time (VANOS fault + cold)"
+          },
+          {
+            "symbol": "ip_ti_tco_2_pl_ivvt_1__n__maf",
+            "role": "warm part load, bank 1"
+          },
+          {
+            "symbol": "ip_ti_tco_2_pl_ivvt_2__n__maf",
+            "role": "warm part load, bank 2"
+          },
+          {
+            "symbol": "ip_ti_tco_1_is_ivvt__n__maf",
+            "role": "cold idle"
+          },
+          {
+            "symbol": "ip_ti_tco_2_is_ivvt__n__maf",
+            "role": "warm idle"
+          }
+        ],
+        "log_evidence": [
+          "wideband lambda error",
+          "long/short term trims",
+          "injector duty"
+        ],
+        "bench_steps": [
+          "log trims on the stock calibration first",
+          "scale the base injection map, never the enrichment factors",
+          "verify duty cycle stays at or below 90% at the limiter"
+        ],
+        "gates": [
+          "EVIDENCE_REQUIRED",
+          "TRIMS_WITHIN_BAND",
+          "DUTY_HEADROOM",
+          "NOTHING_WRITTEN"
+        ],
+        "not_supported": [
+          "aftermarket injectors without documented flow and dead time"
+        ],
+        "package": "fueling"
+      },
+      "findings": [
+        {
+          "code": "EVIDENCE_REQUIRED",
+          "severity": "reject",
+          "message": "Fuel maps need a wideband log; the stock lambda control stays authoritative."
+        }
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ],
+      "symbols": [
+        "ip_tib__n__maf",
+        "ip_ti_tco_2_pl_ivvt_1__n__maf"
+      ],
+      "changes": []
+    }
+  ],
+  "patches": [
+    {
+      "symbol": "c_vs_max_1",
+      "index": 0,
+      "value": 240.0,
+      "intent_id": "v1",
+      "intent_kind": "vmax",
+      "evidence": "customer_intent",
+      "requires_validation": true,
+      "validation_hint": "log vehicle speed and check the cylinder-shutoff stage engages where expected"
+    },
+    {
+      "symbol": "c_vs_max_add",
+      "index": 0,
+      "value": 8.0,
+      "intent_id": "v1",
+      "intent_kind": "vmax",
+      "evidence": "customer_intent",
+      "requires_validation": true,
+      "validation_hint": "the hard stage cuts the fuel pump at c_vs_max_1 + c_vs_max_add; verify the value is above the soft stage"
+    },
+    {
+      "symbol": "id_n_max_mt__nvs",
+      "index": 0,
+      "value": 6688.0,
+      "intent_id": "r1",
+      "intent_kind": "rpm_limit",
+      "evidence": "customer_intent",
+      "requires_validation": true,
+      "validation_hint": "log the limiter event: soft limiting must cut cylinders before the hard limiter cuts all of them"
+    }
+  ],
+  "note": "Пример манифеста: списки изменений урезаны до трёх записей для читаемости."
+}

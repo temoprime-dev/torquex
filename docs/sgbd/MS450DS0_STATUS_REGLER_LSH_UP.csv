@@ -1,0 +1,9 @@
+WERT,UWTEXT
+0x00,00 Heizung aus
+0x01,01 Heizung langsam heraufregeln
+0x02,02 Heizung schnell herunterregelm
+0x03,03 Heizung langsam herunterregeln
+0x04,04 Heizung Regelung aktiv
+0x05,05 Batteriespannung Schutz
+0x06,06 Temperatur Schutz
+0xXY,FF Heizung unbekannter Wert

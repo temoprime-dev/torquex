@@ -1,0 +1,11 @@
+WERT,UWTEXT
+0x00,0 Systemtest SLS nicht aktiv
+0x01,1 Systemtest SLS wartet
+0x02,2 Systemtest SLS Luftmassen Überwachung
+0x03,3 Systemtest SLS Diagnose unterbrochen
+0x04,4 Systemtest SLS wartet auf Ventil Diagnose
+0x05,5 Systemtest SLS Ventil Diagnose
+0x06,6 Systemtest SLS geprüft
+0x07,7 Systemtest SLS beendet
+0x08,8 Systemtest SLS abgebrochen
+0xFF,XY Status kann nicht ausgegeben werden

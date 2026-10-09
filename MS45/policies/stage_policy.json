@@ -1,0 +1,5684 @@
+{
+  "version": 1,
+  "family": "MS45",
+  "software": [
+    "4560BL00S",
+    "4560BL30S",
+    "4560BM00S",
+    "4560BN00S",
+    "4560BO00S",
+    "4570LL00S",
+    "4570LL30S",
+    "4570LM00S",
+    "4570LN00S",
+    "4570LO00S"
+  ],
+  "max_quantization_error_percent": 1.0,
+  "description": "MS45 (MS45.0 / MS45.1). Разрешены только символы, подтверждённые стоковыми образами; адреса ролей vmax / rev_limit_* / pops_delay доказаны для всех десяти семейств: 4560BO00S (XDF, SW 456, E83), 4570LO00S (XDF, SW 457, E46 ZHP), 4560BN00S (XML, SW 456, E60) и структурными отпечатками по стокам — 4560BM00S, 4560BL00S, 4560BL30S, 4570LL00S, 4570LL30S, 4570LM00S, 4570LN00S. Проверка отпечатков воспроизводится в tests/test_family_stock_proof.py. Launch control, таблицы интенсивности ПХХ и прочие недоказанные карты — REQUIRES_DATA. Задание 3: зажигание (карта RON98) и ВАНос (прогретые карты частичной нагрузки) выпускаются по логам из docs/pack_log_requirements.json на семействах с доказанными адресами (4560BO00S, 4570LO00S); обогащение полной нагрузки — только на 4570LO00S, где доказаны ворота диагностики богатой смеси. Зажигание (только карта RON98) доказано по стокам и у 4560BL00S, 4560BM00S, 4570LL30S, 4570LM00S, 4570LN00S (tests/test_family_ignition_proof.py); у 4560BL30S и 4570LL00S один сток — зажигание REQUIRES_DATA.",
+  "families": {
+    "4560BL00S": {
+      "definition": "definitions/stock_derived_maps.json",
+      "roles": {
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops_delay": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit_amt": [
+          "id_n_max_amt",
+          "id_n_max_h_amt"
+        ],
+        "rev_limit_at": [
+          "id_n_max_at",
+          "id_n_max_h_at"
+        ],
+        "rev_limit_mt": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "packs": {
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "ack": {
+        "c_t_min_pu": "no-catalyst",
+        "c_t_min_pu_rng_l": "no-catalyst",
+        "c_t_min_pu_vs": "no-catalyst"
+      },
+      "read_only": {
+        "c_n_lim_min": "штатный порог «overrevving event» (7200 rpm во всех 7 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+        "c_t_min_pu_msr": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 7 стоках — инвариант всех семейств MS45",
+        "ip_iga_bas__n__maf": "fallback-карта зажигания (режим без VANOS); не трогаем",
+        "ip_iga_bas_ron_91__n__maf": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+        "val_mo3_cal_cks_high": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_cal_cks_low": "место хранения суммы MO3 — пишет только ядро"
+      },
+      "objects": {
+        "axis_ip_iga_bas_ron_98__n__maf_x": {
+          "address": "0x084E4",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "mg/stroke",
+          "equation": "0.021195*X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты RON98 — только чтение (форма добавки по нагрузке)",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 2359,
+            "max": 33027,
+            "uniform": true
+          }
+        },
+        "axis_ip_iga_bas_ron_98__n__maf_y": {
+          "address": "0x08668",
+          "size_bits": 16,
+          "shape": "1x20",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты RON98 — только чтение",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 320,
+            "max": 6500,
+            "uniform": true
+          }
+        },
+        "c_n_lim_min": {
+          "address": "0x05B32",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "штатный порог «overrevving event» (7200 rpm во всех 7 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 7200,
+            "max": 7200,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu": {
+          "address": "0x05CEA",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка активации ПХХ (сцепление выжато / круиз активен); только без катализатора",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 24,
+            "max": 24,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_msr": {
+          "address": "0x05CEC",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 7 стоках — инвариант всех семейств MS45",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 100,
+            "max": 100,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_rng_l": {
+          "address": "0x05CEE",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка в пониженном диапазоне",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 32,
+            "max": 32,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_vs": {
+          "address": "0x05CF0",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка при неподвижном автомобиле",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 18,
+            "max": 18,
+            "uniform": true
+          }
+        },
+        "c_vs_max": {
+          "address": "0x018AA",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "km/h",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 100.0,
+          "max": 255.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vmax",
+          "note": "км/ч; 255 = без ограничения; адрес доказан структурным отпечатком по 7 стокам",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 254,
+            "max": 254,
+            "uniform": true
+          }
+        },
+        "id_n_max_amt": {
+          "address": "0x06082",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 6520,
+            "max": 6520,
+            "uniform": true
+          }
+        },
+        "id_n_max_at": {
+          "address": "0x06094",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 6520,
+            "max": 6620,
+            "uniform": true
+          }
+        },
+        "id_n_max_h_amt": {
+          "address": "0x060A6",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 6520,
+            "max": 6520,
+            "uniform": true
+          }
+        },
+        "id_n_max_h_at": {
+          "address": "0x060B8",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 6520,
+            "max": 6620,
+            "uniform": true
+          }
+        },
+        "id_n_max_h_mt": {
+          "address": "0x060CA",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm; «Increased» — держать равным id_n_max_mt",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 6520,
+            "max": 6520,
+            "uniform": true
+          }
+        },
+        "id_n_max_mt": {
+          "address": "0x060DC",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 6520,
+            "max": 6520,
+            "uniform": true
+          }
+        },
+        "ip_iga_bas__n__maf": {
+          "address": "0x0A99E",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "fallback-карта зажигания (режим без VANOS); не трогаем",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 69,
+            "max": 197,
+            "uniform": true
+          }
+        },
+        "ip_iga_bas_ron_91__n__maf": {
+          "address": "0x0AD5E",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 50,
+            "max": 194,
+            "uniform": true
+          }
+        },
+        "ip_iga_bas_ron_98__n__maf": {
+          "address": "0x0AE9E",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": -9.75,
+          "max": 40.125,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "ignition",
+          "note": "°CRK; базовый угол RON98, 20x16; адрес доказан отпечатком кластера зажигания по 7 стокам. Добавка — по ignition_caps (Stage 1 без лога <= +3.0° для RON98, <= +1.5° для RON95, RON91 — 0); карта не убавляется",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 69,
+            "max": 194,
+            "uniform": true
+          }
+        },
+        "val_mo3_cal_cks_high": {
+          "address": "0x0587C",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 19088870,
+            "max": 19088870,
+            "uniform": true
+          }
+        },
+        "val_mo3_cal_cks_low": {
+          "address": "0x05880",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 2459230147,
+            "max": 2459230147,
+            "uniform": true
+          }
+        }
+      }
+    },
+    "4560BL30S": {
+      "definition": "definitions/stock_derived_maps.json",
+      "roles": {
+        "pops_delay": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit_amt": [
+          "id_n_max_amt",
+          "id_n_max_h_amt"
+        ],
+        "rev_limit_at": [
+          "id_n_max_at",
+          "id_n_max_h_at"
+        ],
+        "rev_limit_mt": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "packs": {
+        "pops": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "ack": {
+        "c_t_min_pu": "no-catalyst",
+        "c_t_min_pu_rng_l": "no-catalyst",
+        "c_t_min_pu_vs": "no-catalyst"
+      },
+      "read_only": {
+        "c_n_lim_min": "штатный порог «overrevving event» (7200 rpm во всех 1 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+        "c_t_min_pu_msr": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 1 стоках — инвариант всех семейств MS45",
+        "val_mo3_cal_cks_high": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_cal_cks_low": "место хранения суммы MO3 — пишет только ядро"
+      },
+      "objects": {
+        "c_n_lim_min": {
+          "address": "0x05B5C",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "штатный порог «overrevving event» (7200 rpm во всех 1 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 7200,
+            "max": 7200,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu": {
+          "address": "0x05D18",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка активации ПХХ (сцепление выжато / круиз активен); только без катализатора",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_msr": {
+          "address": "0x05D1A",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 1 стоках — инвариант всех семейств MS45",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 100,
+            "max": 100,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_rng_l": {
+          "address": "0x05D1C",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка в пониженном диапазоне",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_vs": {
+          "address": "0x05D1E",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка при неподвижном автомобиле",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 46,
+            "max": 46,
+            "uniform": true
+          }
+        },
+        "c_vs_max": {
+          "address": "0x018B2",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "km/h",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 100.0,
+          "max": 255.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vmax",
+          "note": "км/ч; 255 = без ограничения; адрес доказан структурным отпечатком по 1 стокам",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 238,
+            "max": 238,
+            "uniform": true
+          }
+        },
+        "id_n_max_amt": {
+          "address": "0x060B0",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6480,
+            "max": 6500,
+            "uniform": true
+          }
+        },
+        "id_n_max_at": {
+          "address": "0x060C2",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6480,
+            "max": 6600,
+            "uniform": true
+          }
+        },
+        "id_n_max_h_amt": {
+          "address": "0x060D4",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6480,
+            "max": 6500,
+            "uniform": true
+          }
+        },
+        "id_n_max_h_at": {
+          "address": "0x060E6",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6528,
+            "max": 6600,
+            "uniform": true
+          }
+        },
+        "id_n_max_h_mt": {
+          "address": "0x060F8",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm; «Increased» — держать равным id_n_max_mt",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6528,
+            "max": 6528,
+            "uniform": true
+          }
+        },
+        "id_n_max_mt": {
+          "address": "0x0610A",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6480,
+            "max": 6528,
+            "uniform": true
+          }
+        },
+        "val_mo3_cal_cks_high": {
+          "address": "0x0589C",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 19088866,
+            "max": 19088866,
+            "uniform": true
+          }
+        },
+        "val_mo3_cal_cks_low": {
+          "address": "0x058A0",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 2164482195,
+            "max": 2164482195,
+            "uniform": true
+          }
+        }
+      }
+    },
+    "4560BM00S": {
+      "definition": "definitions/stock_derived_maps.json",
+      "roles": {
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops_delay": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit_amt": [
+          "id_n_max_amt",
+          "id_n_max_h_amt"
+        ],
+        "rev_limit_at": [
+          "id_n_max_at",
+          "id_n_max_h_at"
+        ],
+        "rev_limit_mt": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "packs": {
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "ack": {
+        "c_t_min_pu": "no-catalyst",
+        "c_t_min_pu_rng_l": "no-catalyst",
+        "c_t_min_pu_vs": "no-catalyst"
+      },
+      "read_only": {
+        "c_n_lim_min": "штатный порог «overrevving event» (7200 rpm во всех 32 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+        "c_t_min_pu_msr": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 32 стоках — инвариант всех семейств MS45",
+        "ip_iga_bas__n__maf": "fallback-карта зажигания (режим без VANOS); не трогаем",
+        "ip_iga_bas_ron_91__n__maf": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+        "val_mo3_cal_cks_high": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_cal_cks_low": "место хранения суммы MO3 — пишет только ядро"
+      },
+      "objects": {
+        "axis_ip_iga_bas_ron_98__n__maf_x": {
+          "address": "0x08436",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "mg/stroke",
+          "equation": "0.021195*X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты RON98 — только чтение (форма добавки по нагрузке)",
+          "stock": {
+            "samples": 32,
+            "variants": 3,
+            "min": 1557,
+            "max": 33027,
+            "uniform": false
+          }
+        },
+        "axis_ip_iga_bas_ron_98__n__maf_y": {
+          "address": "0x085BA",
+          "size_bits": 16,
+          "shape": "1x20",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты RON98 — только чтение",
+          "stock": {
+            "samples": 32,
+            "variants": 4,
+            "min": 300,
+            "max": 6500,
+            "uniform": false
+          }
+        },
+        "c_n_lim_min": {
+          "address": "0x05A40",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "штатный порог «overrevving event» (7200 rpm во всех 32 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+          "stock": {
+            "samples": 32,
+            "variants": 1,
+            "min": 7200,
+            "max": 7200,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu": {
+          "address": "0x05C00",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка активации ПХХ (сцепление выжато / круиз активен); только без катализатора",
+          "stock": {
+            "samples": 32,
+            "variants": 3,
+            "min": 0,
+            "max": 24,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_msr": {
+          "address": "0x05C02",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 32 стоках — инвариант всех семейств MS45",
+          "stock": {
+            "samples": 32,
+            "variants": 1,
+            "min": 100,
+            "max": 100,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_rng_l": {
+          "address": "0x05C04",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка в пониженном диапазоне",
+          "stock": {
+            "samples": 32,
+            "variants": 4,
+            "min": 0,
+            "max": 120,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_vs": {
+          "address": "0x05C06",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка при неподвижном автомобиле",
+          "stock": {
+            "samples": 32,
+            "variants": 3,
+            "min": 18,
+            "max": 46,
+            "uniform": false
+          }
+        },
+        "c_vs_max": {
+          "address": "0x018C3",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "km/h",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 100.0,
+          "max": 255.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vmax",
+          "note": "км/ч; 255 = без ограничения; адрес доказан структурным отпечатком по 32 стокам",
+          "stock": {
+            "samples": 32,
+            "variants": 3,
+            "min": 235,
+            "max": 254,
+            "uniform": false
+          }
+        },
+        "id_n_max_amt": {
+          "address": "0x05F9A",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 32,
+            "variants": 2,
+            "min": 6480,
+            "max": 6520,
+            "uniform": false
+          }
+        },
+        "id_n_max_at": {
+          "address": "0x05FAC",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 32,
+            "variants": 2,
+            "min": 6480,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_amt": {
+          "address": "0x05FBE",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 32,
+            "variants": 4,
+            "min": 6480,
+            "max": 6700,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_at": {
+          "address": "0x05FD0",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 32,
+            "variants": 2,
+            "min": 6520,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_mt": {
+          "address": "0x05FE2",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm; «Increased» — держать равным id_n_max_mt",
+          "stock": {
+            "samples": 32,
+            "variants": 3,
+            "min": 6520,
+            "max": 6700,
+            "uniform": false
+          }
+        },
+        "id_n_max_mt": {
+          "address": "0x05FF4",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm",
+          "stock": {
+            "samples": 32,
+            "variants": 2,
+            "min": 6480,
+            "max": 6528,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas__n__maf": {
+          "address": "0x0A908",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "fallback-карта зажигания (режим без VANOS); не трогаем",
+          "stock": {
+            "samples": 32,
+            "variants": 4,
+            "min": 45,
+            "max": 206,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_91__n__maf": {
+          "address": "0x0ACC8",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+          "stock": {
+            "samples": 32,
+            "variants": 4,
+            "min": 48,
+            "max": 209,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_98__n__maf": {
+          "address": "0x0AE08",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": -13.5,
+          "max": 45.75,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "ignition",
+          "note": "°CRK; базовый угол RON98, 20x16; адрес доказан отпечатком кластера зажигания по 32 стокам. Добавка — по ignition_caps (Stage 1 без лога <= +3.0° для RON98, <= +1.5° для RON95, RON91 — 0); карта не убавляется",
+          "stock": {
+            "samples": 32,
+            "variants": 5,
+            "min": 59,
+            "max": 209,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_high": {
+          "address": "0x05780",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 32,
+            "variants": 6,
+            "min": 19088866,
+            "max": 19088871,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_low": {
+          "address": "0x05784",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 32,
+            "variants": 6,
+            "min": 37631548,
+            "max": 4246857055,
+            "uniform": false
+          }
+        }
+      }
+    },
+    "4560BN00S": {
+      "definition": "definitions/MS45 ECU Definitions.xml",
+      "roles": {
+        "pops_delay": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit_amt": [
+          "id_n_max_amt",
+          "id_n_max_h_amt"
+        ],
+        "rev_limit_at": [
+          "id_n_max_at",
+          "id_n_max_h_at"
+        ],
+        "rev_limit_mt": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "packs": {
+        "pops": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "ack": {
+        "c_t_min_pu": "no-catalyst",
+        "c_t_min_pu_rng_l": "no-catalyst",
+        "c_t_min_pu_vs": "no-catalyst"
+      },
+      "read_only": {
+        "c_n_lim_min": "штатный порог «overrevving event» (7200 rpm во всех 39 файлах семейства)",
+        "c_t_min_pu_msr": "задержка ПХХ после вмешательства MSR; 1.00 с во всех 39 файлах",
+        "lc_ad_clr_var": "сброс обученных вариантов — управляется диагностикой/владельцем, не калибровкой Stage",
+        "val_mo3_cal_cks_high": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_cal_cks_low": "место хранения суммы MO3 — пишет только ядро"
+      },
+      "objects": {
+        "c_n_lim_min": {
+          "address": "0x05A7C",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "штатный порог «overrevving event» (7200 rpm во всех 39 файлах семейства)",
+          "stock": {
+            "samples": 39,
+            "variants": 1,
+            "min": 7200,
+            "max": 7200,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu": {
+          "address": "0x05C42",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка активации ПХХ (pops, режим «timered»); только без катализатора",
+          "stock": {
+            "samples": 39,
+            "variants": 3,
+            "min": 0,
+            "max": 24,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_msr": {
+          "address": "0x05C44",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "задержка ПХХ после вмешательства MSR; 1.00 с во всех 39 файлах",
+          "stock": {
+            "samples": 39,
+            "variants": 1,
+            "min": 100,
+            "max": 100,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_rng_l": {
+          "address": "0x05C46",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с",
+          "stock": {
+            "samples": 39,
+            "variants": 3,
+            "min": 0,
+            "max": 120,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_vs": {
+          "address": "0x05C48",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с",
+          "stock": {
+            "samples": 39,
+            "variants": 2,
+            "min": 18,
+            "max": 46,
+            "uniform": false
+          }
+        },
+        "c_vs_max": {
+          "address": "0x018D4",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "km/h",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 100.0,
+          "max": 255.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vmax",
+          "note": "км/ч; 255 = без ограничения",
+          "stock": {
+            "samples": 39,
+            "variants": 2,
+            "min": 235,
+            "max": 254,
+            "uniform": false
+          }
+        },
+        "id_n_max_amt": {
+          "address": "0x05FDC",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 39,
+            "variants": 2,
+            "min": 6480,
+            "max": 6520,
+            "uniform": false
+          }
+        },
+        "id_n_max_at": {
+          "address": "0x05FEE",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 39,
+            "variants": 2,
+            "min": 6480,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_amt": {
+          "address": "0x06000",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 39,
+            "variants": 2,
+            "min": 6520,
+            "max": 6660,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_at": {
+          "address": "0x06012",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 39,
+            "variants": 2,
+            "min": 6520,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_mt": {
+          "address": "0x06024",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm; «Increased» — держать равным id_n_max_mt",
+          "stock": {
+            "samples": 39,
+            "variants": 2,
+            "min": 6520,
+            "max": 6528,
+            "uniform": false
+          }
+        },
+        "id_n_max_mt": {
+          "address": "0x06036",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm",
+          "stock": {
+            "samples": 39,
+            "variants": 2,
+            "min": 6480,
+            "max": 6528,
+            "uniform": false
+          }
+        },
+        "lc_ad_clr_var": {
+          "address": "0x049BE",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "сброс обученных вариантов — управляется диагностикой/владельцем, не калибровкой Stage",
+          "stock": {
+            "samples": 39,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "val_mo3_cal_cks_high": {
+          "address": "0x057AC",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 39,
+            "variants": 3,
+            "min": 19088867,
+            "max": 19088871,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_low": {
+          "address": "0x057B0",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 39,
+            "variants": 4,
+            "min": 37631548,
+            "max": 4246857055,
+            "uniform": false
+          }
+        }
+      }
+    },
+    "4560BO00S": {
+      "definition": "definitions/Siemens_MS450_456BO02S_116K.xdf",
+      "roles": {
+        "cat_delete": [
+          "c_conf_cat",
+          "lc_lsh_down_1",
+          "lc_lsh_down_2",
+          "lc_inh_ls_down_man_deac"
+        ],
+        "dtc_driver": [
+          "c_det_inc_vim",
+          "c_det_inc_isa_1",
+          "c_det_inc_isa_2"
+        ],
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops_delay": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit_amt": [
+          "id_n_max_amt",
+          "id_n_max_h_amt"
+        ],
+        "rev_limit_at": [
+          "id_n_max_at",
+          "id_n_max_h_at"
+        ],
+        "rev_limit_mt": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "sap_delete": [
+          "ip_t_sa_off_0",
+          "lc_inh_sa_man_deac",
+          "lc_sa_swi_acq"
+        ],
+        "vanos": [
+          "ip_cam_sp_2_in_pl__n__maf_ivvt",
+          "ip_cam_sp_2_ex_pl__n__maf_ivvt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "packs": {
+        "cat_delete": [
+          "c_conf_cat",
+          "lc_lsh_down_1",
+          "lc_lsh_down_2",
+          "lc_inh_ls_down_man_deac"
+        ],
+        "dtc_driver": [
+          "c_det_inc_vim",
+          "c_det_inc_isa_1",
+          "c_det_inc_isa_2"
+        ],
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "sap_delete": [
+          "ip_t_sa_off_0",
+          "lc_inh_sa_man_deac",
+          "lc_sa_swi_acq"
+        ],
+        "vanos": [
+          "ip_cam_sp_2_in_pl__n__maf_ivvt",
+          "ip_cam_sp_2_ex_pl__n__maf_ivvt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "ack": {
+        "c_conf_cat": "no-catalyst",
+        "c_t_min_pu": "no-catalyst",
+        "c_t_min_pu_rng_l": "no-catalyst",
+        "c_t_min_pu_vs": "no-catalyst",
+        "ip_t_sa_off_0": "no-catalyst",
+        "lc_inh_ls_down_man_deac": "no-catalyst",
+        "lc_inh_sa_man_deac": "no-catalyst",
+        "lc_lsh_down_1": "no-catalyst",
+        "lc_lsh_down_2": "no-catalyst",
+        "lc_sa_swi_acq": "no-catalyst"
+      },
+      "read_only": {
+        "c_n_lim_min": "штатный порог «overrevving event» (7200 rpm во всех 81 файле); новая отсечка <= 7000 rpm, поднимать нельзя",
+        "c_t_min_pu_msr": "задержка ПХХ после вмешательства MSR; к pops отношения не имеет",
+        "ip_cam_sp_1_ex_pl__n__maf_ivvt": "холодная карта фаз выпуска: продукт двигает только прогретые карты",
+        "ip_cam_sp_1_in_pl__n__maf_ivvt": "холодная карта фаз впуска: продукт двигает только прогретые карты",
+        "ip_cam_sp_2_ex_fl__n": "фазы выпуска полной нагрузки: двигается только частичная нагрузка",
+        "ip_cam_sp_2_in_fl__n": "фазы впуска полной нагрузки: двигается только частичная нагрузка",
+        "ip_iga_bas__n__maf": "fallback-карта зажигания (режим без VANOS); не трогаем",
+        "ip_iga_bas_max_knk__n__maf": "потолок угла по детонации — штатная защита; только чтение",
+        "ip_iga_bas_ron_91__n__maf": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+        "lc_ad_clr_var": "сброс обученных вариантов — управляется диагностикой/владельцем, не калибровкой Stage",
+        "val_mo3_cal_cks_high": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_cal_cks_low": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_swi_cal_cks": "переключатель проверки суммы MO3 (0xA5 отключает) — менять запрещено"
+      },
+      "objects": {
+        "axis_ip_cam_sp_2_ex_pl__n__maf_ivvt_x": {
+          "address": "0x0860A",
+          "size_bits": 16,
+          "shape": "1x12",
+          "units": "mg/stk",
+          "equation": "0.021195 * X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты фаз выпуска — только чтение",
+          "stock": {
+            "samples": 81,
+            "variants": 2,
+            "min": 2359,
+            "max": 28309,
+            "uniform": false
+          }
+        },
+        "axis_ip_cam_sp_2_ex_pl__n__maf_ivvt_y": {
+          "address": "0x0873E",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты фаз выпуска — только чтение",
+          "stock": {
+            "samples": 81,
+            "variants": 2,
+            "min": 600,
+            "max": 6500,
+            "uniform": false
+          }
+        },
+        "axis_ip_cam_sp_2_in_pl__n__maf_ivvt_x": {
+          "address": "0x0860A",
+          "size_bits": 16,
+          "shape": "1x12",
+          "units": "mg/stk",
+          "equation": "0.021195 * X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты фаз впуска — только чтение",
+          "stock": {
+            "samples": 81,
+            "variants": 2,
+            "min": 2359,
+            "max": 28309,
+            "uniform": false
+          }
+        },
+        "axis_ip_cam_sp_2_in_pl__n__maf_ivvt_y": {
+          "address": "0x0873E",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты фаз впуска — только чтение",
+          "stock": {
+            "samples": 81,
+            "variants": 2,
+            "min": 600,
+            "max": 6500,
+            "uniform": false
+          }
+        },
+        "axis_ip_iga_bas_ron_98__n__maf_x": {
+          "address": "0x0853C",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "mg/stk",
+          "equation": "0.021195 * X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты RON98 — только чтение (раскладка по зонам лога)",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 1557,
+            "max": 33027,
+            "uniform": false
+          }
+        },
+        "axis_ip_iga_bas_ron_98__n__maf_y": {
+          "address": "0x086C0",
+          "size_bits": 16,
+          "shape": "1x20",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты RON98 — только чтение (раскладка по зонам лога)",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 300,
+            "max": 6500,
+            "uniform": false
+          }
+        },
+        "axis_ip_lamb_fl__n_x": {
+          "address": "0x04DCE",
+          "size_bits": 8,
+          "shape": "1x12",
+          "units": "rpm",
+          "equation": "32.000000 * X",
+          "scale_a": 32.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты обогащения полной нагрузки — только чтение",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 19,
+            "max": 203,
+            "uniform": false
+          }
+        },
+        "c_conf_cat": {
+          "address": "0x01522",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 2,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "cat_delete",
+          "note": "конфигурация «катализатор есть» (сток 1 или 2); 0 — катализатора нет; только слой «без катализатора»",
+          "stock": {
+            "samples": 81,
+            "variants": 2,
+            "min": 1,
+            "max": 2,
+            "uniform": false
+          }
+        },
+        "c_det_inc_isa_1": {
+          "address": "0x015B0",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "dtc_driver",
+          "note": "приращение счётчика ошибки клапана холостого хода, канал 1; сток 1, максимум счётчика 6; 0 — код не выставляется (регулирование ХХ остаётся штатным)",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "c_det_inc_isa_2": {
+          "address": "0x015B1",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "dtc_driver",
+          "note": "приращение счётчика ошибки клапана холостого хода, канал 2; см. c_det_inc_isa_1",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "c_det_inc_vim": {
+          "address": "0x015B9",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "dtc_driver",
+          "note": "приращение счётчика ошибки привода DISA (VIM); сток 1 во всех файлах семейства, максимум счётчика 10; 0 — ошибка привода не выставляется (функцию заслонки не отключает)",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "c_n_lim_min": {
+          "address": "0x05AE2",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "штатный порог «overrevving event» (7200 rpm во всех 81 файле); новая отсечка <= 7000 rpm, поднимать нельзя",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 7200,
+            "max": 7200,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu": {
+          "address": "0x05CAA",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.010000 * X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка активации ПХХ (pops, режим «timered»); только без катализатора",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 0,
+            "max": 24,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_msr": {
+          "address": "0x05CAC",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.010000 * X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "задержка ПХХ после вмешательства MSR; к pops отношения не имеет",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 100,
+            "max": 100,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_rng_l": {
+          "address": "0x05CAE",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.010000 * X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка в пониженном диапазоне",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 0,
+            "max": 36,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_vs": {
+          "address": "0x05CB0",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.010000 * X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка при неподвижном автомобиле",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 1,
+            "max": 46,
+            "uniform": false
+          }
+        },
+        "c_vs_max": {
+          "address": "0x018DC",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "km/h",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 100.0,
+          "max": 255.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vmax",
+          "note": "км/ч; 255 = без ограничения (ms4x.net, «Vehicle Speed Limiter»)",
+          "stock": {
+            "samples": 81,
+            "variants": 4,
+            "min": 206,
+            "max": 255,
+            "uniform": false
+          }
+        },
+        "id_n_max_amt": {
+          "address": "0x06048",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 81,
+            "variants": 2,
+            "min": 6480,
+            "max": 6520,
+            "uniform": false
+          }
+        },
+        "id_n_max_at": {
+          "address": "0x0605A",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 81,
+            "variants": 4,
+            "min": 6480,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_amt": {
+          "address": "0x0606C",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 6480,
+            "max": 6700,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_at": {
+          "address": "0x0607E",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 81,
+            "variants": 2,
+            "min": 6520,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_mt": {
+          "address": "0x06090",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm; «Increased» — держать равным id_n_max_mt",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 6520,
+            "max": 6700,
+            "uniform": false
+          }
+        },
+        "id_n_max_mt": {
+          "address": "0x060A2",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm; выше 7000 rpm для M54B30 нужен демпфер (ms4x.net)",
+          "stock": {
+            "samples": 81,
+            "variants": 2,
+            "min": 6480,
+            "max": 6528,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_1_ex_pl__n__maf_ivvt": {
+          "address": "0x0A4FC",
+          "size_bits": 8,
+          "shape": "16x12",
+          "units": "&#176;CRK",
+          "equation": "-0.375000 * X+ -40.000000",
+          "scale_a": -0.375,
+          "scale_b": -40.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "холодная карта фаз выпуска: продукт двигает только прогретые карты",
+          "stock": {
+            "samples": 81,
+            "variants": 4,
+            "min": 117,
+            "max": 174,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_1_in_pl__n__maf_ivvt": {
+          "address": "0x0A5BC",
+          "size_bits": 8,
+          "shape": "16x12",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ 60.000000",
+          "scale_a": 0.375,
+          "scale_b": 60.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "холодная карта фаз впуска: продукт двигает только прогретые карты",
+          "stock": {
+            "samples": 81,
+            "variants": 4,
+            "min": 83,
+            "max": 176,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_2_ex_fl__n": {
+          "address": "0x01DA0",
+          "size_bits": 8,
+          "shape": "1x16",
+          "units": "&#176;CRK",
+          "equation": "-0.375000 * X+ -40.000000",
+          "scale_a": -0.375,
+          "scale_b": -40.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "фазы выпуска полной нагрузки: двигается только частичная нагрузка",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 111,
+            "max": 173,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_2_ex_pl__n__maf_ivvt": {
+          "address": "0x0A67C",
+          "size_bits": 8,
+          "shape": "16x12",
+          "units": "&#176;CRK",
+          "equation": "-0.375000 * X+ -40.000000",
+          "scale_a": -0.375,
+          "scale_b": -40.0,
+          "min": -109.75,
+          "max": -81.625,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vanos",
+          "note": "°CRK; фазы выпускного распредвала, прогретый, частичная нагрузка; сдвиг только по логу фаз, <= 5° от стока (по сетке 4.875°)",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 111,
+            "max": 173,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_2_in_fl__n": {
+          "address": "0x01DD4",
+          "size_bits": 8,
+          "shape": "1x16",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ 60.000000",
+          "scale_a": 0.375,
+          "scale_b": 60.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "фазы впуска полной нагрузки: двигается только частичная нагрузка",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 55,
+            "max": 176,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_2_in_pl__n__maf_ivvt": {
+          "address": "0x0A73C",
+          "size_bits": 8,
+          "shape": "16x12",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ 60.000000",
+          "scale_a": 0.375,
+          "scale_b": 60.0,
+          "min": 80.625,
+          "max": 130.875,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vanos",
+          "note": "°CRK; фазы впускного распредвала, прогретый, частичная нагрузка; сдвиг только по логу фаз, <= +5° от стока (по сетке 4.875°)",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 55,
+            "max": 176,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas__n__maf": {
+          "address": "0x0AA0C",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ -35.625000",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "fallback-карта зажигания (режим без VANOS); не трогаем",
+          "stock": {
+            "samples": 81,
+            "variants": 4,
+            "min": 45,
+            "max": 206,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_max_knk__n__maf": {
+          "address": "0x02F24",
+          "size_bits": 8,
+          "shape": "8x8",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ -35.625000",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "потолок угла по детонации — штатная защита; только чтение",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 45,
+            "max": 185,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_91__n__maf": {
+          "address": "0x0ADCC",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ -35.625000",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+          "stock": {
+            "samples": 81,
+            "variants": 4,
+            "min": 48,
+            "max": 209,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_98__n__maf": {
+          "address": "0x0AF0C",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ -35.625000",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": -15.75,
+          "max": 45.75,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "ignition",
+          "note": "°CRK; базовый угол RON98, 20x16. Добавка <= +1.5° без лога, <= +3.0° только по логу детонации; карта не убавляется",
+          "stock": {
+            "samples": 81,
+            "variants": 5,
+            "min": 53,
+            "max": 209,
+            "uniform": false
+          }
+        },
+        "ip_t_sa_off_0": {
+          "address": "0x07164",
+          "size_bits": 16,
+          "shape": "1x8",
+          "units": "s",
+          "equation": "0.010000 * X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 105.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "sap_delete",
+          "note": "задержки завершения продувки (СВП), 8 значений; 0 — продувка не удерживается; только слой «без катализатора»",
+          "stock": {
+            "samples": 81,
+            "variants": 5,
+            "min": 0,
+            "max": 10500,
+            "uniform": false
+          }
+        },
+        "lc_ad_clr_var": {
+          "address": "0x04A06",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "сброс обученных вариантов — управляется диагностикой/владельцем, не калибровкой Stage",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "lc_inh_ls_down_man_deac": {
+          "address": "0x04A4F",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "[-]",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "cat_delete",
+          "note": "ручное отключение диагностики заднего зонда (сток 0); 1 — диагностика выключена; только слой «без катализатора»",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "lc_inh_sa_man_deac": {
+          "address": "0x04A57",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "sap_delete",
+          "note": "ручное отключение диагностики СВП (сток 0); 1 — диагностика выключена; только слой «без катализатора»",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "lc_lsh_down_1": {
+          "address": "0x04A68",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "[-]",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "cat_delete",
+          "note": "подогрев заднего зонда, линия 1 (сток 1); 0 — мониторинг выключен; только слой «без катализатора»",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "lc_lsh_down_2": {
+          "address": "0x04A69",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "[-]",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "cat_delete",
+          "note": "подогрев заднего зонда, линия 2 (сток 1); 0 — мониторинг выключен; только слой «без катализатора»",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "lc_sa_swi_acq": {
+          "address": "0x04A83",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "sap_delete",
+          "note": "режим принятия решения СВП по модели (сток 0 у 4560BO00S, 1 у 4570LO00S); 0 — только слой «без катализатора»",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "val_mo3_cal_cks_high": {
+          "address": "0x05820",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "[-]",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 81,
+            "variants": 3,
+            "min": 19088866,
+            "max": 19088870,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_low": {
+          "address": "0x05824",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "[-]",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 81,
+            "variants": 5,
+            "min": 1366575693,
+            "max": 4031013454,
+            "uniform": false
+          }
+        },
+        "val_mo3_swi_cal_cks": {
+          "address": "0x05803",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "переключатель проверки суммы MO3 (0xA5 отключает) — менять запрещено",
+          "stock": {
+            "samples": 81,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        }
+      }
+    },
+    "4570LL00S": {
+      "definition": "definitions/stock_derived_maps.json",
+      "roles": {
+        "pops_delay": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit_amt": [
+          "id_n_max_amt",
+          "id_n_max_h_amt"
+        ],
+        "rev_limit_at": [
+          "id_n_max_at",
+          "id_n_max_h_at"
+        ],
+        "rev_limit_mt": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "packs": {
+        "pops": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "ack": {
+        "c_t_min_pu": "no-catalyst",
+        "c_t_min_pu_rng_l": "no-catalyst",
+        "c_t_min_pu_vs": "no-catalyst"
+      },
+      "read_only": {
+        "c_n_lim_min": "штатный порог «overrevving event» (7200 rpm во всех 1 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+        "c_t_min_pu_msr": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 1 стоках — инвариант всех семейств MS45",
+        "val_mo3_cal_cks_high": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_cal_cks_low": "место хранения суммы MO3 — пишет только ядро"
+      },
+      "objects": {
+        "c_n_lim_min": {
+          "address": "0x05DC2",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "штатный порог «overrevving event» (7200 rpm во всех 1 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 7200,
+            "max": 7200,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu": {
+          "address": "0x05F92",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка активации ПХХ (сцепление выжато / круиз активен); только без катализатора",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_msr": {
+          "address": "0x05F94",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 1 стоках — инвариант всех семейств MS45",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 100,
+            "max": 100,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_rng_l": {
+          "address": "0x05F96",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка в пониженном диапазоне",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_vs": {
+          "address": "0x05F98",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка при неподвижном автомобиле",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 46,
+            "max": 46,
+            "uniform": true
+          }
+        },
+        "c_vs_max": {
+          "address": "0x01917",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "km/h",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 100.0,
+          "max": 255.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vmax",
+          "note": "км/ч; 255 = без ограничения; адрес доказан структурным отпечатком по 1 стокам",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 235,
+            "max": 235,
+            "uniform": true
+          }
+        },
+        "id_n_max_amt": {
+          "address": "0x06324",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6480,
+            "max": 6500,
+            "uniform": true
+          }
+        },
+        "id_n_max_at": {
+          "address": "0x06336",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6480,
+            "max": 6600,
+            "uniform": true
+          }
+        },
+        "id_n_max_h_amt": {
+          "address": "0x06348",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6660,
+            "max": 6660,
+            "uniform": true
+          }
+        },
+        "id_n_max_h_at": {
+          "address": "0x0635A",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6528,
+            "max": 6600,
+            "uniform": true
+          }
+        },
+        "id_n_max_h_mt": {
+          "address": "0x0636C",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm; «Increased» — держать равным id_n_max_mt",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6528,
+            "max": 6528,
+            "uniform": true
+          }
+        },
+        "id_n_max_mt": {
+          "address": "0x0637E",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 6480,
+            "max": 6528,
+            "uniform": true
+          }
+        },
+        "val_mo3_cal_cks_high": {
+          "address": "0x05A80",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 19088869,
+            "max": 19088869,
+            "uniform": true
+          }
+        },
+        "val_mo3_cal_cks_low": {
+          "address": "0x05A84",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 1,
+            "variants": 1,
+            "min": 764138887,
+            "max": 764138887,
+            "uniform": true
+          }
+        }
+      }
+    },
+    "4570LL30S": {
+      "definition": "definitions/stock_derived_maps.json",
+      "roles": {
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops_delay": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit_amt": [
+          "id_n_max_amt",
+          "id_n_max_h_amt"
+        ],
+        "rev_limit_at": [
+          "id_n_max_at",
+          "id_n_max_h_at"
+        ],
+        "rev_limit_mt": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "packs": {
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "ack": {
+        "c_t_min_pu": "no-catalyst",
+        "c_t_min_pu_rng_l": "no-catalyst",
+        "c_t_min_pu_vs": "no-catalyst"
+      },
+      "read_only": {
+        "c_n_lim_min": "штатный порог «overrevving event» (7200 rpm во всех 6 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+        "c_t_min_pu_msr": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 6 стоках — инвариант всех семейств MS45",
+        "ip_iga_bas__n__maf": "fallback-карта зажигания (режим без VANOS); не трогаем",
+        "ip_iga_bas_ron_91__n__maf": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+        "val_mo3_cal_cks_high": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_cal_cks_low": "место хранения суммы MO3 — пишет только ядро"
+      },
+      "objects": {
+        "axis_ip_iga_bas_ron_98__n__maf_x": {
+          "address": "0x08BE0",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "mg/stroke",
+          "equation": "0.021195*X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты RON98 — только чтение (форма добавки по нагрузке)",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 2359,
+            "max": 33027,
+            "uniform": false
+          }
+        },
+        "axis_ip_iga_bas_ron_98__n__maf_y": {
+          "address": "0x08D4E",
+          "size_bits": 16,
+          "shape": "1x20",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты RON98 — только чтение",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 300,
+            "max": 6500,
+            "uniform": false
+          }
+        },
+        "c_n_lim_min": {
+          "address": "0x05DF0",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "штатный порог «overrevving event» (7200 rpm во всех 6 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+          "stock": {
+            "samples": 6,
+            "variants": 1,
+            "min": 7200,
+            "max": 7200,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu": {
+          "address": "0x05FC4",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка активации ПХХ (сцепление выжато / круиз активен); только без катализатора",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 0,
+            "max": 24,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_msr": {
+          "address": "0x05FC6",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 6 стоках — инвариант всех семейств MS45",
+          "stock": {
+            "samples": 6,
+            "variants": 1,
+            "min": 100,
+            "max": 100,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_rng_l": {
+          "address": "0x05FC8",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка в пониженном диапазоне",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 0,
+            "max": 32,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_vs": {
+          "address": "0x05FCA",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка при неподвижном автомобиле",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 18,
+            "max": 46,
+            "uniform": false
+          }
+        },
+        "c_vs_max": {
+          "address": "0x0191F",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "km/h",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 100.0,
+          "max": 255.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vmax",
+          "note": "км/ч; 255 = без ограничения; адрес доказан структурным отпечатком по 6 стокам",
+          "stock": {
+            "samples": 6,
+            "variants": 1,
+            "min": 235,
+            "max": 235,
+            "uniform": true
+          }
+        },
+        "id_n_max_amt": {
+          "address": "0x06356",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 6480,
+            "max": 6520,
+            "uniform": false
+          }
+        },
+        "id_n_max_at": {
+          "address": "0x06368",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 6480,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_amt": {
+          "address": "0x0637A",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 6520,
+            "max": 6660,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_at": {
+          "address": "0x0638C",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 6520,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_mt": {
+          "address": "0x0639E",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm; «Increased» — держать равным id_n_max_mt",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 6520,
+            "max": 6528,
+            "uniform": false
+          }
+        },
+        "id_n_max_mt": {
+          "address": "0x063B0",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 6480,
+            "max": 6528,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas__n__maf": {
+          "address": "0x0B0AE",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "fallback-карта зажигания (режим без VANOS); не трогаем",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 45,
+            "max": 206,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_91__n__maf": {
+          "address": "0x0B46E",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 50,
+            "max": 208,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_98__n__maf": {
+          "address": "0x0B5AE",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": -9.75,
+          "max": 45.375,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "ignition",
+          "note": "°CRK; базовый угол RON98, 20x16; адрес доказан отпечатком кластера зажигания по 6 стокам. Добавка — по ignition_caps (Stage 1 без лога <= +3.0° для RON98, <= +1.5° для RON95, RON91 — 0); карта не убавляется",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 69,
+            "max": 208,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_high": {
+          "address": "0x05AA4",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 19088869,
+            "max": 19088871,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_low": {
+          "address": "0x05AA8",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 6,
+            "variants": 2,
+            "min": 37631548,
+            "max": 730440167,
+            "uniform": false
+          }
+        }
+      }
+    },
+    "4570LM00S": {
+      "definition": "definitions/stock_derived_maps.json",
+      "roles": {
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops_delay": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit_amt": [
+          "id_n_max_amt",
+          "id_n_max_h_amt"
+        ],
+        "rev_limit_at": [
+          "id_n_max_at",
+          "id_n_max_h_at"
+        ],
+        "rev_limit_mt": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "packs": {
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "ack": {
+        "c_t_min_pu": "no-catalyst",
+        "c_t_min_pu_rng_l": "no-catalyst",
+        "c_t_min_pu_vs": "no-catalyst"
+      },
+      "read_only": {
+        "c_n_lim_min": "штатный порог «overrevving event» (7200 rpm во всех 7 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+        "c_t_min_pu_msr": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 7 стоках — инвариант всех семейств MS45",
+        "ip_iga_bas__n__maf": "fallback-карта зажигания (режим без VANOS); не трогаем",
+        "ip_iga_bas_ron_91__n__maf": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+        "val_mo3_cal_cks_high": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_cal_cks_low": "место хранения суммы MO3 — пишет только ядро"
+      },
+      "objects": {
+        "axis_ip_iga_bas_ron_98__n__maf_x": {
+          "address": "0x086A4",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "mg/stroke",
+          "equation": "0.021195*X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты RON98 — только чтение (форма добавки по нагрузке)",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 2359,
+            "max": 33027,
+            "uniform": false
+          }
+        },
+        "axis_ip_iga_bas_ron_98__n__maf_y": {
+          "address": "0x08824",
+          "size_bits": 16,
+          "shape": "1x20",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты RON98 — только чтение",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 300,
+            "max": 6500,
+            "uniform": false
+          }
+        },
+        "c_n_lim_min": {
+          "address": "0x05A56",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "штатный порог «overrevving event» (7200 rpm во всех 7 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 7200,
+            "max": 7200,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu": {
+          "address": "0x05C2E",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка активации ПХХ (сцепление выжато / круиз активен); только без катализатора",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 0,
+            "max": 24,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_msr": {
+          "address": "0x05C30",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 7 стоках — инвариант всех семейств MS45",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 100,
+            "max": 100,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_rng_l": {
+          "address": "0x05C32",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка в пониженном диапазоне",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 0,
+            "max": 32,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_vs": {
+          "address": "0x05C34",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка при неподвижном автомобиле",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 18,
+            "max": 46,
+            "uniform": false
+          }
+        },
+        "c_vs_max": {
+          "address": "0x0190C",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "km/h",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 100.0,
+          "max": 255.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vmax",
+          "note": "км/ч; 255 = без ограничения; адрес доказан структурным отпечатком по 7 стокам",
+          "stock": {
+            "samples": 7,
+            "variants": 1,
+            "min": 235,
+            "max": 235,
+            "uniform": true
+          }
+        },
+        "id_n_max_amt": {
+          "address": "0x05FBE",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 6480,
+            "max": 6520,
+            "uniform": false
+          }
+        },
+        "id_n_max_at": {
+          "address": "0x05FD0",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 6480,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_amt": {
+          "address": "0x05FE2",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 6520,
+            "max": 6660,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_at": {
+          "address": "0x05FF4",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 6520,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_mt": {
+          "address": "0x06006",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm; «Increased» — держать равным id_n_max_mt",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 6520,
+            "max": 6528,
+            "uniform": false
+          }
+        },
+        "id_n_max_mt": {
+          "address": "0x06018",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 6480,
+            "max": 6528,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas__n__maf": {
+          "address": "0x0AB98",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "fallback-карта зажигания (режим без VANOS); не трогаем",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 45,
+            "max": 206,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_91__n__maf": {
+          "address": "0x0AF58",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 50,
+            "max": 208,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_98__n__maf": {
+          "address": "0x0B098",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": -9.75,
+          "max": 45.375,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "ignition",
+          "note": "°CRK; базовый угол RON98, 20x16; адрес доказан отпечатком кластера зажигания по 7 стокам. Добавка — по ignition_caps (Stage 1 без лога <= +3.0° для RON98, <= +1.5° для RON95, RON91 — 0); карта не убавляется",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 69,
+            "max": 208,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_high": {
+          "address": "0x05714",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 19088869,
+            "max": 19088871,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_low": {
+          "address": "0x05718",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 7,
+            "variants": 2,
+            "min": 37631548,
+            "max": 730440167,
+            "uniform": false
+          }
+        }
+      }
+    },
+    "4570LN00S": {
+      "definition": "definitions/stock_derived_maps.json",
+      "roles": {
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops_delay": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit_amt": [
+          "id_n_max_amt",
+          "id_n_max_h_amt"
+        ],
+        "rev_limit_at": [
+          "id_n_max_at",
+          "id_n_max_h_at"
+        ],
+        "rev_limit_mt": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "packs": {
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "ack": {
+        "c_t_min_pu": "no-catalyst",
+        "c_t_min_pu_rng_l": "no-catalyst",
+        "c_t_min_pu_vs": "no-catalyst"
+      },
+      "read_only": {
+        "c_n_lim_min": "штатный порог «overrevving event» (7200 rpm во всех 8 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+        "c_t_min_pu_msr": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 8 стоках — инвариант всех семейств MS45",
+        "ip_iga_bas__n__maf": "fallback-карта зажигания (режим без VANOS); не трогаем",
+        "ip_iga_bas_ron_91__n__maf": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+        "val_mo3_cal_cks_high": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_cal_cks_low": "место хранения суммы MO3 — пишет только ядро"
+      },
+      "objects": {
+        "axis_ip_iga_bas_ron_98__n__maf_x": {
+          "address": "0x08702",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "mg/stroke",
+          "equation": "0.021195*X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты RON98 — только чтение (форма добавки по нагрузке)",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 2359,
+            "max": 33027,
+            "uniform": false
+          }
+        },
+        "axis_ip_iga_bas_ron_98__n__maf_y": {
+          "address": "0x08882",
+          "size_bits": 16,
+          "shape": "1x20",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты RON98 — только чтение",
+          "stock": {
+            "samples": 8,
+            "variants": 3,
+            "min": 300,
+            "max": 6500,
+            "uniform": false
+          }
+        },
+        "c_n_lim_min": {
+          "address": "0x05A92",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "штатный порог «overrevving event» (7200 rpm во всех 8 стоках семейства); новая отсечка <= 7000 rpm, поднимать нельзя",
+          "stock": {
+            "samples": 8,
+            "variants": 1,
+            "min": 7200,
+            "max": 7200,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu": {
+          "address": "0x05C70",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка активации ПХХ (сцепление выжато / круиз активен); только без катализатора",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 0,
+            "max": 24,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_msr": {
+          "address": "0x05C72",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "задержка ПХХ после вмешательства MSR: 1.00 с (raw 100) во всех 8 стоках — инвариант всех семейств MS45",
+          "stock": {
+            "samples": 8,
+            "variants": 1,
+            "min": 100,
+            "max": 100,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_rng_l": {
+          "address": "0x05C74",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка в пониженном диапазоне",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 0,
+            "max": 32,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_vs": {
+          "address": "0x05C76",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.01*X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; задержка при неподвижном автомобиле",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 18,
+            "max": 46,
+            "uniform": false
+          }
+        },
+        "c_vs_max": {
+          "address": "0x0191D",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "km/h",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 100.0,
+          "max": 255.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vmax",
+          "note": "км/ч; 255 = без ограничения; адрес доказан структурным отпечатком по 8 стокам",
+          "stock": {
+            "samples": 8,
+            "variants": 1,
+            "min": 235,
+            "max": 235,
+            "uniform": true
+          }
+        },
+        "id_n_max_amt": {
+          "address": "0x06000",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 6480,
+            "max": 6520,
+            "uniform": false
+          }
+        },
+        "id_n_max_at": {
+          "address": "0x06012",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 6480,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_amt": {
+          "address": "0x06024",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 6520,
+            "max": 6660,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_at": {
+          "address": "0x06036",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 6520,
+            "max": 6620,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_mt": {
+          "address": "0x06048",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm; «Increased» — держать равным id_n_max_mt",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 6520,
+            "max": 6528,
+            "uniform": false
+          }
+        },
+        "id_n_max_mt": {
+          "address": "0x0605A",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 6480,
+            "max": 6528,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas__n__maf": {
+          "address": "0x0ABF4",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "fallback-карта зажигания (режим без VANOS); не трогаем",
+          "stock": {
+            "samples": 8,
+            "variants": 3,
+            "min": 45,
+            "max": 206,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_91__n__maf": {
+          "address": "0x0AFB4",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+          "stock": {
+            "samples": 8,
+            "variants": 3,
+            "min": 50,
+            "max": 208,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_98__n__maf": {
+          "address": "0x0B0F4",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "°CRK",
+          "equation": "0.375*X+-35.625",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": -9.75,
+          "max": 45.375,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "ignition",
+          "note": "°CRK; базовый угол RON98, 20x16; адрес доказан отпечатком кластера зажигания по 8 стокам. Добавка — по ignition_caps (Stage 1 без лога <= +3.0° для RON98, <= +1.5° для RON95, RON91 — 0); карта не убавляется",
+          "stock": {
+            "samples": 8,
+            "variants": 3,
+            "min": 69,
+            "max": 208,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_high": {
+          "address": "0x05740",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 19088869,
+            "max": 19088871,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_low": {
+          "address": "0x05744",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 8,
+            "variants": 2,
+            "min": 37631548,
+            "max": 730440167,
+            "uniform": false
+          }
+        }
+      }
+    },
+    "4570LO00S": {
+      "definition": "definitions/Siemens_MS451_457LO02S_116K.xdf",
+      "roles": {
+        "cat_delete": [
+          "c_conf_cat",
+          "lc_lsh_down_1",
+          "lc_lsh_down_2",
+          "lc_inh_ls_down_man_deac"
+        ],
+        "dtc_driver": [
+          "c_det_inc_vim",
+          "c_det_inc_isa_1",
+          "c_det_inc_isa_2"
+        ],
+        "fuel": [
+          "ip_lamb_fl__n"
+        ],
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops_delay": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit_amt": [
+          "id_n_max_amt",
+          "id_n_max_h_amt"
+        ],
+        "rev_limit_at": [
+          "id_n_max_at",
+          "id_n_max_h_at"
+        ],
+        "rev_limit_mt": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "sap_delete": [
+          "ip_t_sa_off_0",
+          "lc_inh_sa_man_deac",
+          "lc_sa_swi_acq"
+        ],
+        "vanos": [
+          "ip_cam_sp_2_in_pl__n__maf_ivvt",
+          "ip_cam_sp_2_ex_pl__n__maf_ivvt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "packs": {
+        "cat_delete": [
+          "c_conf_cat",
+          "lc_lsh_down_1",
+          "lc_lsh_down_2",
+          "lc_inh_ls_down_man_deac"
+        ],
+        "dtc_driver": [
+          "c_det_inc_vim",
+          "c_det_inc_isa_1",
+          "c_det_inc_isa_2"
+        ],
+        "fuel": [
+          "ip_lamb_fl__n"
+        ],
+        "ignition": [
+          "ip_iga_bas_ron_98__n__maf"
+        ],
+        "pops": [
+          "c_t_min_pu",
+          "c_t_min_pu_vs",
+          "c_t_min_pu_rng_l"
+        ],
+        "rev_limit": [
+          "id_n_max_mt",
+          "id_n_max_h_mt"
+        ],
+        "sap_delete": [
+          "ip_t_sa_off_0",
+          "lc_inh_sa_man_deac",
+          "lc_sa_swi_acq"
+        ],
+        "vanos": [
+          "ip_cam_sp_2_in_pl__n__maf_ivvt",
+          "ip_cam_sp_2_ex_pl__n__maf_ivvt"
+        ],
+        "vmax": [
+          "c_vs_max"
+        ]
+      },
+      "ack": {
+        "c_conf_cat": "no-catalyst",
+        "c_t_min_pu": "no-catalyst",
+        "c_t_min_pu_rng_l": "no-catalyst",
+        "c_t_min_pu_vs": "no-catalyst",
+        "ip_t_sa_off_0": "no-catalyst",
+        "lc_inh_ls_down_man_deac": "no-catalyst",
+        "lc_inh_sa_man_deac": "no-catalyst",
+        "lc_lsh_down_1": "no-catalyst",
+        "lc_lsh_down_2": "no-catalyst",
+        "lc_sa_swi_acq": "no-catalyst"
+      },
+      "read_only": {
+        "c_lamb_min_ls_act_test_afr": "ворота диагностики «смесь слишком богатая» (0.8207 лямбды во всех стоках): пакет топлива обязан держать цель выше этого порога; символ не пишется",
+        "c_n_lim_min": "штатный порог «overrevving event» (7200 rpm во всех 33 файлах)",
+        "c_t_min_pu_msr": "задержка ПХХ после вмешательства MSR",
+        "ip_cam_sp_1_ex_pl__n__maf_ivvt": "холодная карта фаз выпуска: продукт двигает только прогретые карты",
+        "ip_cam_sp_1_in_pl__n__maf_ivvt": "холодная карта фаз впуска: продукт двигает только прогретые карты",
+        "ip_cam_sp_2_ex_fl__n": "фазы выпуска полной нагрузки: двигается только частичная нагрузка",
+        "ip_cam_sp_2_in_fl__n": "фазы впуска полной нагрузки: двигается только частичная нагрузка",
+        "ip_iga_bas__n__maf": "fallback-карта зажигания (режим без VANOS); не трогаем",
+        "ip_iga_bas_max_knk__n__maf": "потолок угла по детонации — штатная защита; только чтение",
+        "ip_iga_bas_ron_91__n__maf": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+        "lc_ad_clr_var": "сброс обученных вариантов",
+        "val_mo3_cal_cks_high": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_cal_cks_low": "место хранения суммы MO3 — пишет только ядро",
+        "val_mo3_swi_cal_cks": "переключатель проверки суммы MO3"
+      },
+      "objects": {
+        "axis_ip_cam_sp_2_ex_pl__n__maf_ivvt_x": {
+          "address": "0x088EA",
+          "size_bits": 16,
+          "shape": "1x12",
+          "units": "mg/stk",
+          "equation": "0.021195 * X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты фаз выпуска — только чтение",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 2359,
+            "max": 28309,
+            "uniform": false
+          }
+        },
+        "axis_ip_cam_sp_2_ex_pl__n__maf_ivvt_y": {
+          "address": "0x08A0C",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты фаз выпуска — только чтение",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 600,
+            "max": 6500,
+            "uniform": false
+          }
+        },
+        "axis_ip_cam_sp_2_in_pl__n__maf_ivvt_x": {
+          "address": "0x088EA",
+          "size_bits": 16,
+          "shape": "1x12",
+          "units": "mg/stk",
+          "equation": "0.021195 * X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты фаз впуска — только чтение",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 2359,
+            "max": 28309,
+            "uniform": false
+          }
+        },
+        "axis_ip_cam_sp_2_in_pl__n__maf_ivvt_y": {
+          "address": "0x08A0C",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты фаз впуска — только чтение",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 600,
+            "max": 6500,
+            "uniform": false
+          }
+        },
+        "axis_ip_iga_bas_ron_98__n__maf_x": {
+          "address": "0x08812",
+          "size_bits": 16,
+          "shape": "1x16",
+          "units": "mg/stk",
+          "equation": "0.021195 * X",
+          "scale_a": 0.021195,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось нагрузки карты RON98 — только чтение (раскладка по зонам лога)",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 1557,
+            "max": 33027,
+            "uniform": false
+          }
+        },
+        "axis_ip_iga_bas_ron_98__n__maf_y": {
+          "address": "0x08992",
+          "size_bits": 16,
+          "shape": "1x20",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты RON98 — только чтение (раскладка по зонам лога)",
+          "stock": {
+            "samples": 33,
+            "variants": 4,
+            "min": 300,
+            "max": 6500,
+            "uniform": false
+          }
+        },
+        "axis_ip_lamb_fl__n_x": {
+          "address": "0x04D5A",
+          "size_bits": 8,
+          "shape": "1x12",
+          "units": "rpm",
+          "equation": "32.000000 * X",
+          "scale_a": 32.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "axes",
+          "note": "ось оборотов карты обогащения полной нагрузки — только чтение",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 19,
+            "max": 203,
+            "uniform": false
+          }
+        },
+        "c_conf_cat": {
+          "address": "0x01561",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 2,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "cat_delete",
+          "note": "конфигурация «катализатор есть» (сток 2); 0 — катализатора нет; только слой «без катализатора»",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 2,
+            "max": 2,
+            "uniform": true
+          }
+        },
+        "c_det_inc_isa_1": {
+          "address": "0x015FC",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "dtc_driver",
+          "note": "приращение счётчика ошибки клапана холостого хода, канал 1; сток 1, максимум счётчика 6; 0 — код не выставляется (регулирование ХХ остаётся штатным)",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "c_det_inc_isa_2": {
+          "address": "0x015FD",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "dtc_driver",
+          "note": "приращение счётчика ошибки клапана холостого хода, канал 2; см. c_det_inc_isa_1",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "c_det_inc_vim": {
+          "address": "0x01605",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "dtc_driver",
+          "note": "приращение счётчика ошибки привода DISA (VIM); сток 1 во всех файлах семейства, максимум счётчика 10; 0 — ошибка привода не выставляется (функцию заслонки не отключает)",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "c_lamb_min_ls_act_test_afr": {
+          "address": "0x059FA",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "0.000977 * X",
+          "scale_a": 0.000977,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "ворота диагностики «смесь слишком богатая» (0.8207 лямбды во всех стоках): пакет топлива обязан держать цель выше этого порога; символ не пишется",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 840,
+            "max": 840,
+            "uniform": true
+          }
+        },
+        "c_n_lim_min": {
+          "address": "0x05B42",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "штатный порог «overrevving event» (7200 rpm во всех 33 файлах)",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 7200,
+            "max": 7200,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu": {
+          "address": "0x05D36",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.010000 * X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с; pops «timered»; только без катализатора",
+          "stock": {
+            "samples": 33,
+            "variants": 2,
+            "min": 0,
+            "max": 1,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_msr": {
+          "address": "0x05D38",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.010000 * X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "задержка ПХХ после вмешательства MSR",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 100,
+            "max": 100,
+            "uniform": true
+          }
+        },
+        "c_t_min_pu_rng_l": {
+          "address": "0x05D3A",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.010000 * X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 0,
+            "max": 6,
+            "uniform": false
+          }
+        },
+        "c_t_min_pu_vs": {
+          "address": "0x05D3C",
+          "size_bits": 16,
+          "shape": "1x1",
+          "units": "s",
+          "equation": "0.010000 * X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0.0,
+          "max": 1.5,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "pops_delay",
+          "note": "с",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 0,
+            "max": 18,
+            "uniform": false
+          }
+        },
+        "c_vs_max": {
+          "address": "0x01944",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "km/h",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 100.0,
+          "max": 255.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vmax",
+          "note": "км/ч; 255 = без ограничения",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 206,
+            "max": 255,
+            "uniform": false
+          }
+        },
+        "id_n_max_amt": {
+          "address": "0x060D4",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 6520,
+            "max": 6800,
+            "uniform": false
+          }
+        },
+        "id_n_max_at": {
+          "address": "0x060E6",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 33,
+            "variants": 4,
+            "min": 5380,
+            "max": 6900,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_amt": {
+          "address": "0x060F8",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_amt",
+          "note": "rpm",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 6520,
+            "max": 6800,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_at": {
+          "address": "0x0610A",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_at",
+          "note": "rpm",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 6520,
+            "max": 6900,
+            "uniform": false
+          }
+        },
+        "id_n_max_h_mt": {
+          "address": "0x0611C",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 6500,
+            "max": 6800,
+            "uniform": false
+          }
+        },
+        "id_n_max_mt": {
+          "address": "0x0612E",
+          "size_bits": 16,
+          "shape": "1x9",
+          "units": "rpm",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 6000.0,
+          "max": 7000.0,
+          "max_delta_percent": 10.0,
+          "read_only": false,
+          "group": "rev_limit_mt",
+          "note": "rpm",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 6500,
+            "max": 6800,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_1_ex_pl__n__maf_ivvt": {
+          "address": "0x0A8CC",
+          "size_bits": 8,
+          "shape": "16x12",
+          "units": "&#176;CRK",
+          "equation": "-0.375000 * X+ -40.000000",
+          "scale_a": -0.375,
+          "scale_b": -40.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "холодная карта фаз выпуска: продукт двигает только прогретые карты",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 115,
+            "max": 173,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_1_in_pl__n__maf_ivvt": {
+          "address": "0x0A98C",
+          "size_bits": 8,
+          "shape": "16x12",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ 60.000000",
+          "scale_a": 0.375,
+          "scale_b": 60.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "холодная карта фаз впуска: продукт двигает только прогретые карты",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 83,
+            "max": 176,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_2_ex_fl__n": {
+          "address": "0x01DFD",
+          "size_bits": 8,
+          "shape": "1x16",
+          "units": "&#176;CRK",
+          "equation": "-0.375000 * X+ -40.000000",
+          "scale_a": -0.375,
+          "scale_b": -40.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "фазы выпуска полной нагрузки: двигается только частичная нагрузка",
+          "stock": {
+            "samples": 33,
+            "variants": 4,
+            "min": 122,
+            "max": 173,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_2_ex_pl__n__maf_ivvt": {
+          "address": "0x0AA4C",
+          "size_bits": 8,
+          "shape": "16x12",
+          "units": "&#176;CRK",
+          "equation": "-0.375000 * X+ -40.000000",
+          "scale_a": -0.375,
+          "scale_b": -40.0,
+          "min": -109.75,
+          "max": -83.875,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vanos",
+          "note": "°CRK; фазы выпускного распредвала, прогретый, частичная нагрузка; сдвиг только по логу фаз, <= 5° от стока (по сетке 4.875°)",
+          "stock": {
+            "samples": 33,
+            "variants": 4,
+            "min": 117,
+            "max": 173,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_2_in_fl__n": {
+          "address": "0x01E31",
+          "size_bits": 8,
+          "shape": "1x16",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ 60.000000",
+          "scale_a": 0.375,
+          "scale_b": 60.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "фазы впуска полной нагрузки: двигается только частичная нагрузка",
+          "stock": {
+            "samples": 33,
+            "variants": 4,
+            "min": 67,
+            "max": 176,
+            "uniform": false
+          }
+        },
+        "ip_cam_sp_2_in_pl__n__maf_ivvt": {
+          "address": "0x0AB0C",
+          "size_bits": 8,
+          "shape": "16x12",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ 60.000000",
+          "scale_a": 0.375,
+          "scale_b": 60.0,
+          "min": 85.125,
+          "max": 130.875,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "vanos",
+          "note": "°CRK; фазы впускного распредвала, прогретый, частичная нагрузка; сдвиг только по логу фаз, <= +5° от стока (по сетке 4.875°)",
+          "stock": {
+            "samples": 33,
+            "variants": 4,
+            "min": 67,
+            "max": 176,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas__n__maf": {
+          "address": "0x0AD4C",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ -35.625000",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "fallback-карта зажигания (режим без VANOS); не трогаем",
+          "stock": {
+            "samples": 33,
+            "variants": 5,
+            "min": 45,
+            "max": 206,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_max_knk__n__maf": {
+          "address": "0x0300F",
+          "size_bits": 8,
+          "shape": "8x8",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ -35.625000",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "потолок угла по детонации — штатная защита; только чтение",
+          "stock": {
+            "samples": 33,
+            "variants": 3,
+            "min": 45,
+            "max": 185,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_91__n__maf": {
+          "address": "0x0B10C",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ -35.625000",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "карта RON91 — защитный пол октановой адаптации; не пишется никогда",
+          "stock": {
+            "samples": 33,
+            "variants": 5,
+            "min": 36,
+            "max": 208,
+            "uniform": false
+          }
+        },
+        "ip_iga_bas_ron_98__n__maf": {
+          "address": "0x0B24C",
+          "size_bits": 8,
+          "shape": "20x16",
+          "units": "&#176;CRK",
+          "equation": "0.375000 * X+ -35.625000",
+          "scale_a": 0.375,
+          "scale_b": -35.625,
+          "min": -16.125,
+          "max": 45.375,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "ignition",
+          "note": "°CRK; базовый угол RON98, 20x16. Добавка <= +1.5° без лога, <= +3.0° только по логу детонации; карта не убавляется",
+          "stock": {
+            "samples": 33,
+            "variants": 5,
+            "min": 52,
+            "max": 208,
+            "uniform": false
+          }
+        },
+        "ip_lamb_fl__n": {
+          "address": "0x06DD0",
+          "size_bits": 16,
+          "shape": "1x12",
+          "units": "-",
+          "equation": "0.000977 * X",
+          "scale_a": 0.000977,
+          "scale_b": 0.0,
+          "min": 0.819703,
+          "max": 0.942805,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "fuel",
+          "note": "лямбда полной нагрузки; только обогащение (в меньшую сторону), сдвиг <= 0.03 лямбды и только по логу широкой лямбды; пол 0.82; не обедняем относительно стока",
+          "stock": {
+            "samples": 33,
+            "variants": 4,
+            "min": 886,
+            "max": 965,
+            "uniform": false
+          }
+        },
+        "ip_t_sa_off_0": {
+          "address": "0x073D0",
+          "size_bits": 16,
+          "shape": "1x8",
+          "units": "s",
+          "equation": "0.010000 * X",
+          "scale_a": 0.01,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 41.0,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "sap_delete",
+          "note": "задержки завершения продувки (СВП), 8 значений; 0 — продувка не удерживается; только слой «без катализатора»",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 0,
+            "max": 4100,
+            "uniform": true
+          }
+        },
+        "lc_ad_clr_var": {
+          "address": "0x04957",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "сброс обученных вариантов",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "lc_inh_ls_down_man_deac": {
+          "address": "0x049A9",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "[-]",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "cat_delete",
+          "note": "ручное отключение диагностики заднего зонда (сток 0); 1 — диагностика выключена; только слой «без катализатора»",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "lc_inh_sa_man_deac": {
+          "address": "0x049B0",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "sap_delete",
+          "note": "ручное отключение диагностики СВП (сток 0); 1 — диагностика выключена; только слой «без катализатора»",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        },
+        "lc_lsh_down_1": {
+          "address": "0x049C6",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "[-]",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "cat_delete",
+          "note": "подогрев заднего зонда, линия 1 (сток 1); 0 — мониторинг выключен; только слой «без катализатора»",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "lc_lsh_down_2": {
+          "address": "0x049C7",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "[-]",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "cat_delete",
+          "note": "подогрев заднего зонда, линия 2 (сток 1); 0 — мониторинг выключен; только слой «без катализатора»",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "lc_sa_swi_acq": {
+          "address": "0x049EC",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": 0,
+          "max": 1,
+          "max_delta_percent": null,
+          "read_only": false,
+          "group": "sap_delete",
+          "note": "режим принятия решения СВП по модели (сток 0 у 4560BO00S, 1 у 4570LO00S); 0 — только слой «без катализатора»",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 1,
+            "max": 1,
+            "uniform": true
+          }
+        },
+        "val_mo3_cal_cks_high": {
+          "address": "0x057DC",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "[-]",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 33,
+            "variants": 4,
+            "min": 19088859,
+            "max": 19088872,
+            "uniform": false
+          }
+        },
+        "val_mo3_cal_cks_low": {
+          "address": "0x057E0",
+          "size_bits": 32,
+          "shape": "1x1",
+          "units": "[-]",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "место хранения суммы MO3 — пишет только ядро",
+          "stock": {
+            "samples": 33,
+            "variants": 4,
+            "min": 203792985,
+            "max": 3708661317,
+            "uniform": false
+          }
+        },
+        "val_mo3_swi_cal_cks": {
+          "address": "0x057BF",
+          "size_bits": 8,
+          "shape": "1x1",
+          "units": "-",
+          "equation": "X",
+          "scale_a": 1.0,
+          "scale_b": 0.0,
+          "min": null,
+          "max": null,
+          "max_delta_percent": null,
+          "read_only": true,
+          "group": "protected",
+          "note": "переключатель проверки суммы MO3",
+          "stock": {
+            "samples": 33,
+            "variants": 1,
+            "min": 0,
+            "max": 0,
+            "uniform": true
+          }
+        }
+      }
+    }
+  }
+}

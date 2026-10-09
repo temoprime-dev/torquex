@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "comment": "Машиночитаемые требования к клиентским логам пакетов зажигание/топливо/ВАНос. Источник истины — docs/PACKS_LOG_REQUIREMENTS_RU.md; числа обязаны совпадать. Валидатор — tools/pack_log_analyzer.py (задание 1 ревью): алиасы каналов, единицы в квадратных скобках и обязательность каналов читаются отсюда.",
+  "file_format": {
+    "type": "csv",
+    "delimiters": [",", ";"],
+    "encodings": ["utf-8", "cp1251"],
+    "decimal_separator": [".", ","],
+    "time_column": "time",
+    "time_monotonic": true,
+    "time_step_tolerance_percent": 20
+  },
+  "channels": {
+    "time": {"aliases": ["time", "timestamp", "zeit", "uhrzeit", "seconds", "время"], "unit_aliases": ["s", "sec", "seconds", "сек"], "units": "s", "required_by": ["ignition", "fuel", "vanos"], "hard_required": true},
+    "rpm": {"aliases": ["rpm", "engine speed", "motordrehzahl", "drehzahl", "обороты", "обороты двигателя"], "unit_aliases": ["rpm", "1/min", "ob/min", "об/мин"], "units": "rpm", "required_by": ["ignition", "fuel", "vanos"], "hard_required": true},
+    "load": {"aliases": ["load", "engine load", "mg/stroke", "status_last", "нагрузка", "нагрузка двигателя"], "unit_aliases": ["mg/stroke", "mg/stk", "мг/такт"], "units": "mg/stroke", "required_by": ["ignition", "fuel", "vanos"], "hard_required": true},
+    "maf_airflow": {"aliases": ["maf", "mass air flow", "luftmasse", "airflow", "air mass", "дмрв_расход"], "unit_aliases": ["kg/h", "кг/ч"], "units": "kg/h", "required_by": ["ignition", "fuel"], "hard_required": true},
+    "ignition": {"aliases": ["ignition angle", "ignition timing", "ignition advance", "zuendwinkel", "угол_зажигания", "угол опережения"], "unit_aliases": ["deg", "deg crk", "°", "°crk", "grad"], "units": "deg_crank", "required_by": ["ignition", "vanos"], "hard_required": true},
+    "knock_retard": {"aliases": ["knock retard", "knock correction", "коррекция_детонации", "коррекция по детонации"], "unit_aliases": ["deg", "deg crk", "°", "°crk"], "units": "deg_crank", "required_by": ["ignition", "vanos"], "hard_required": true, "note": "вердикт ЭБУ о детонации; сырые напряжения датчиков заменой не являются (фильтрация по окнам и порогам внутри DME)"},
+    "knock_cylinders": {"aliases": ["knock voltage cyl", "knock voltage", "knks", "детонация_цил", "напряжение датчика детонации"], "unit_aliases": ["v", "в"], "units": "V", "count": 6, "required_by": ["ignition"], "hard_required": false, "note": "вспомогательный фильтр одиночных пиков; без него доказательство принимается (замечание в отчёте)"},
+    "injector_pulse_width": {"aliases": ["ipw", "injection time", "einspritzzeit", "время_впрыска"], "unit_aliases": ["ms", "мс"], "units": "ms", "required_by": ["fuel"], "hard_required": true},
+    "lambda_wideband": {"aliases": ["wideband", "wbo2", "lambda_ext", "lambda actual value", "лямбда_широкополосная"], "unit_aliases": ["lambda", "λ", "afr", "-"], "units": "lambda", "required_by": ["fuel"], "hard_required": true, "note": "при нескольких банках используется банк 1"},
+    "lambda_integrator": {"aliases": ["lambda integrator", "stft", "лямбда_интегратор"], "unit_aliases": ["%", "percent", "процент"], "units": "percent", "required_by": ["fuel"], "hard_required": true},
+    "pedal": {"aliases": ["throttle", "pvs", "pedalwert", "pedal position", "accelerator pedal", "throttle position", "педаль", "педаль газа"], "unit_aliases": ["%", "deg", "percent", "процент"], "units": "percent", "required_by": [], "hard_required": false, "note": "если канала нет, «газ в пол» определяется по нагрузке (см. wot_run.load_min_mg_stroke) — замена документирована в веб-анализе §9"},
+    "coolant_temp": {"aliases": ["coolant", "coolant temp", "coolant temperature", "tco", "kuehlmittel", "охлаждающая_жидкость", "температура ож"], "unit_aliases": ["deg c", "°c", "c", "deg"], "units": "C", "required_by": ["ignition", "fuel", "vanos"], "hard_required": true, "note": "проверка прогретости мотора; заменить нечем"},
+    "intake_temp": {"aliases": ["iat", "intake air temp", "tia", "ansaugluft", "воздух_на_впуске", "температура впуска"], "unit_aliases": ["deg c", "°c", "c", "deg"], "units": "C", "required_by": ["ignition", "fuel"], "hard_required": true},
+    "vehicle_speed": {"aliases": ["vehicle speed", "speed", "geschwindigkeit", "скорость"], "unit_aliases": ["km/h", "км/ч"], "units": "km/h", "required_by": []},
+    "vanos_intake_actual": {"aliases": ["vanos intake actual", "intake vanos: actual value", "intake vanos actual value", "cam_in", "ванос_впуск_факт"], "unit_aliases": ["deg", "deg crk", "°", "°crk"], "units": "deg_crank", "required_by": ["vanos"], "hard_required": true},
+    "vanos_exhaust_actual": {"aliases": ["vanos exhaust actual", "exhaust vanos: actual value", "exhaust vanos actual value", "cam_ex", "ванос_выпуск_факт"], "unit_aliases": ["deg", "deg crk", "°", "°crk"], "units": "deg_crank", "required_by": ["vanos"], "hard_required": true},
+    "vanos_intake_target": {"aliases": ["vanos intake target", "intake vanos: target value", "intake vanos target value", "ванос_впуск_цель"], "unit_aliases": ["deg", "deg crk", "°", "°crk"], "units": "deg_crank", "required_by": ["vanos"], "hard_required": true},
+    "vanos_exhaust_target": {"aliases": ["vanos exhaust target", "exhaust vanos: target value", "exhaust vanos target value", "ванос_выпуск_цель"], "unit_aliases": ["deg", "deg crk", "°", "°crk"], "units": "deg_crank", "required_by": ["vanos"], "hard_required": true}
+  },
+  "conditions": {
+    "coolant_min_c": 80,
+    "coolant_max_c": 105,
+    "intake_temp_max_c": 45,
+    "min_ron_for_ignition_evidence": 98
+  },
+  "packages": {
+    "ignition": {
+      "min_rate_hz": 10,
+      "min_wot_runs": 3,
+      "wot_run": {"rpm_start": 2000, "load_min_mg_stroke": 400},
+      "no_knock": {
+        "max_retard_deg": 0.75,
+        "min_fraction_above_load": 0.99,
+        "max_sustained_retard_deg": 1.5,
+        "max_sustained_seconds": 0.5,
+        "knock_spike_ratio_vs_median": 3.0
+      },
+      "gates": {
+        "comment": "Потолки добавки зажигания — ЕДИНЫЙ источник констант (задание docs/TASK_STAGE1_RU.md §1–2, раунд 4): Stage 1 (v1, без логов) и Stage 2 (v2+, с логом детонации). Читаются модулем tools/ignition_caps.py; генераторы MS43/MS45, анализатор и сайт обязаны брать числа отсюда, а не хардкодить.",
+        "delta_without_log_deg": 3.0,
+        "delta_with_log_deg": 5.0,
+        "octane_no_log_deg": {
+          "ron98": 3.0,
+          "ron95": 1.5,
+          "ron91": 0.0,
+          "unspecified": 1.5
+        },
+        "octane_with_log_deg": {
+          "ron98": 5.0,
+          "ron95": 5.0,
+          "ron91": 0.0,
+          "unspecified": 5.0
+        },
+        "octane_note_ru": "профиль клиента ограничивает запись в карту RON98: RON98 — до +3.0° без лога, RON95 — до +1.5° (на рабочей точке 95-го ЭБУ получает лишь часть добавки из-за интерполяции по выученному октану), RON91 — карта не трогается; с логом детонации (Stage 2) RON98 и RON95 — до +5.0°, RON91 — по-прежнему 0",
+        "ms43_ceiling": "ip_iga_optm_tco_1/2 (сток версии, не выше)",
+        "ms45_ceiling": "карты MBT с доказанной семантикой в MS45 нет (кандидат ip_iga_ref__n__maf отклонён, см. layout.ms45) — раскладка по запасу до MBT честно REQUIRES_DATA; Stage 2 с проверенным логом — относительный предел +5.0",
+        "ron91_map": "никогда не изменяется",
+        "fallback_maps": ["ip_igab__n__maf", "ip_iga_bas__n__maf"],
+        "cold_maps": "не изменяются"
+      },
+      "layout": {
+        "comment": "Раскладка добавки по ячейкам (задание §2а): добавка = min(потолок стадии, запас_до_MBT × k), форма по нагрузке, сглаживание. Числа читает tools/ignition_layout.py; это параметры алгоритма, а не разрешения — ворота потолков остаются в gates.",
+        "formula": "add_cell = min(stage_cap, max(0, MBT − stock) × k) × shape(load); соседние ячейки различаются не более чем на neighbour_max_step_deg; запись никогда не превышает карту MBT и не убавляет угол",
+        "mbt_gain_k": {"stage1": 0.5, "stage2": 1.0},
+        "mbt_gain_k_note_ru": "k=0.5 в Stage 1 — половина запаса: кривая КПД зажигания (ip_eff_iga_mon) почти плоская в первых градусах от оптимума, поэтому половина запаса даёт основную часть прироста, оставляя столько же запаса до оптимума; в Stage 2 с проверенным логом — цель у самого оптимума (k=1.0), но не за ним",
+        "neighbour_max_step_deg": 1.5,
+        "shape_low_mg_stroke": 200.0,
+        "shape_high_mg_stroke": 600.0,
+        "shape_note_ru": "ниже 200 мг/такт добавки нет (ХХ и ПХХ: прироста момента нет, риск нестабильности и NOx), линейный рост до 600 мг/такт — те же пороги, что в §7 веб-анализа для MS45",
+        "quantum_deg": 0.375,
+        "ms43": {
+          "mbt_map": "ip_iga_optm_tco_2__n__maf",
+          "axes": ["ldpm_n_14", "ldpm_maf_iga_2"]
+        },
+        "ms45": {
+          "mbt_map": null,
+          "note_ru": "аналога MBT-карты с доказанной семантикой нет: ip_iga_ref__n__maf («Basic reference ignition angle at max. spread», 16×12) не принят — на стоке 4560BO00S её значения не ведут себя как потолок момента (наоборот, расходятся с ip_iga_bas_max_knk), описание не подтверждено DAMOS/XDF-формулами; ip_iga_bas_max_knk__n__maf — предел ЗАДЕРЖКИ по детонации, а не угол; раскладка по запасу до MBT остаётся REQUIRES_DATA, форма по нагрузке применяется"
+        }
+      }
+    },
+    "fuel": {
+      "min_rate_hz": 10,
+      "min_wot_runs": 2,
+      "partial_load_hold_seconds": 10,
+      "criteria": {
+        "wideband_variance_min": 1e-4,
+        "lambda_stdev_max_wot": 0.03,
+        "partial_load_trim_max_percent": 8.0,
+        "lambda_target_min": 0.82,
+        "ms43_delta_ti_fl_lambda_max": 0.05,
+        "ms45_delta_lamb_fl_max": 0.03,
+        "ms43_tib_add_ms_max": 0.25,
+        "ms43_tib_add_percent_max": 4.0
+      },
+      "gates": {
+        "ms45_no_log": "ничего не писать (уставка стока внутри допусков)",
+        "wideband_required": true,
+        "lambda_check_symbol_ms45": "c_lamb_min_ls_act_test_afr (проверка запаса в наряде, не запись)"
+      }
+    },
+    "vanos": {
+      "min_rate_hz": 10,
+      "hold_points": {
+        "rpm": [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000],
+        "load_mg_stroke": [150, 300, 450, 600],
+        "min_hold_seconds": 3.0
+      },
+      "criteria": {
+        "max_track_error_deg": 3.0,
+        "settle_seconds": 1.5,
+        "max_shift_from_stock_deg": 5.0,
+        "post_flash_knock_retard_max_deg": 0.75
+      },
+      "gates": {
+        "without_log": "REQUIRES_DATA всегда",
+        "part_load_maps_only": true,
+        "full_load_maps": "не изменяются (сток на механическом потолке)",
+        "idle_maps": "не изменяются",
+        "mechanical_limits": "из формул объектов версии (для впуска типа 0.375*X+60 это 86..126 при c_cam_ini=126, adj_rng=40)"
+      }
+    }
+  }
+}

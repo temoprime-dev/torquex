@@ -1,0 +1,9 @@
+BITNR,BITTEXT
+0x00,nicht aktiv            
+0x11,Diagnose aktiv         
+0x12,Diagnose gestoppt      
+0x13,Zyklus-Flag gesetzt    
+0x14,Error-Flag gesetzt     
+0x15,MIL ein                
+0x16,Fehler in Entprellphase
+0xXY,Status unbekannt

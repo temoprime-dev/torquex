@@ -1,0 +1,8 @@
+WERT,UWTEXT
+0x00,0 ES - Motor steht
+0x01,1 ST - Motor startet
+0x02,2 IS - Motor im Leerlauf
+0x03,3 PL - Motor in Teillast
+0x04,4 PU - Motor im Schubbetrieb
+0x05,5 PUC - Motor im Schubbetrieb mit Einspritzabschaltung
+0xFF,FFMotor undefinierter Zustand

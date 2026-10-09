@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-i18n-title="privacy.title">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="TorqueX: privacy of shared logs.">
+<title>TorqueX</title>
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="page.js"></script>
+</head>
+<body data-page="privacy">
+<a class="skip-link" href="#main" data-i18n="common.skip"></a>
+<header class="site-header" id="tx-header"></header>
+<div id="tx-demo-banner"></div>
+<p id="tx-live" class="sr-only" role="status" aria-live="polite"></p>
+<p id="tx-alert" class="sr-only" role="alert" aria-live="assertive"></p>
+<div id="tx-toasts" class="toasts" aria-live="polite"></div>
+
+<main id="main" class="wrap">
+  <h1 data-i18n="privacy.title"></h1>
+  <p class="lead" data-i18n="privacy.lead"></p>
+
+  <section class="card">
+    <h2 data-i18n="privacy.what.title"></h2>
+    <ul class="support-list">
+      <li data-i18n="privacy.what.item1"></li>
+      <li data-i18n="privacy.what.item2"></li>
+      <li data-i18n="privacy.what.item3" data-i18n-vin="privacy.what.item3_vin"></li>
+    </ul>
+  </section>
+  <section class="card">
+    <h2 data-i18n="privacy.why.title"></h2>
+    <p data-i18n="privacy.why.text"></p>
+  </section>
+  <section class="card">
+    <h2 data-i18n="privacy.keep.title"></h2>
+    <p data-i18n="privacy.keep.text"></p>
+    <p><a href="logs.html" data-i18n="privacy.keep.link"></a></p>
+  </section>
+  <section class="card">
+    <h2 data-i18n="privacy.never.title"></h2>
+    <ul class="support-list">
+      <li data-i18n="privacy.never.item1"></li>
+      <li data-i18n="privacy.never.item2"></li>
+      <li data-i18n="privacy.never.item3"></li>
+    </ul>
+  </section>
+  <section class="card">
+    <h2 data-i18n="privacy.contact.title"></h2>
+    <p><span data-i18n="privacy.contact.text"></span> <a href="support.html" data-i18n="footer.support"></a></p>
+  </section>
+  <p class="hint" data-i18n="privacy.disclaimer"></p>
+</main>
+
+<footer class="site-footer" id="tx-footer"></footer>
+</body>
+</html>

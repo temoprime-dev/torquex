@@ -1,0 +1,687 @@
+{
+  "schema": 1,
+  "family": "MS42",
+  "title": "База знаний MS4X для MS42",
+  "updated": "2026-10-05",
+  "sources": [
+    {
+      "id": "ms4x-ms42",
+      "title": "MS4X Wiki — Siemens MS42",
+      "url": "https://www.ms4x.net/index.php?title=Siemens_MS42",
+      "retrieved": "2026-10-05",
+      "what": "Лагерь памяти, контрольные суммы, вариантные переключатели, MAF, модель нагрузки, впрыск, зажигание, VANOS, холостой ход, полная нагрузка, ограничители, хлопки, ghost cam, удаление РХХ, подавление DTC."
+    },
+    {
+      "id": "ms4x-b25-tuning",
+      "title": "MS4X Wiki — M52TUB25 Tuning",
+      "url": "https://www.ms4x.net/index.php?title=M52TUB25_Tuning",
+      "retrieved": "2026-10-05",
+      "what": "Разбор, чем BMW ограничил M52TU относительно M54: DISA закрывает канал ровно на пике мощности; карты DISA предлагается переносить 1:1."
+    },
+    {
+      "id": "e36tuning-guides",
+      "title": "e36tuning.co.uk — Tuning Guides (E36 M52)",
+      "url": "https://www.e36tuning.co.uk/guides",
+      "retrieved": "2026-10-05",
+      "what": "Рыночное определение Stage 1 / Stage 2 для M52: Stage 1 — стоковое железо (+5–10 л.с. по их оценке), Stage 2 — впуск M50, выпуск, каты."
+    },
+    {
+      "id": "chaos-calibrations",
+      "title": "Chaos Calibrations — MS41 Stage 0+/1/2 (рыночная структура)",
+      "url": "https://www.chaoscalibrations.com/store/MS41-ECU-Tuning-Performance-Tune-E36-3-Series-Z3-E39-5-Series-p421623718",
+      "retrieved": "2026-10-05",
+      "what": "Что рынок кладёт в Stage 1 (сток) и Stage 2 (впуск/выпуск/коллектор), включая SAP/rear-O2 bypass и ожидания по мощности."
+    },
+    {
+      "id": "seemslegit-revlimit",
+      "title": "Seems Legit Garage — описание услуг по MS42/MS43",
+      "url": "https://www.seemslegitgarage.com/product-page/SLGECU",
+      "retrieved": "2026-10-05",
+      "what": "Практическое предупреждение: не поднимать отсечку выше 6750 об/мин без решения по масляному насосу; варианты burble/launch."
+    },
+    {
+      "id": "hpacademy-maf",
+      "title": "HPAcademy — Fuel tuning: MAF scaling vs injector pulsewidth map",
+      "url": "https://www.hpacademy.com/forum/reflashing/show/fuel-tuning-maf-scaling-vs-injector-pulsewidth-map/",
+      "retrieved": "2026-10-05",
+      "what": "Обсуждение, почему на MS41/MS42 правка MAF-скейла затрагивает ~30 таблиц нагрузки и допустима только при замене датчика."
+    }
+  ],
+  "entries": [
+    {
+      "id": "memory-layout",
+      "title": "Раскладка памяти 512 КиБ",
+      "stage": [],
+      "verdict": "implemented",
+      "symbols": [],
+      "summary": "Bootloader 0x00000–0x0FFFF, программный код 0x10000–0x3FFFF и 0x50000–0x7FFFF, калибровка 0x48000–0x4FFFF (32 КиБ), 0x40000–0x47FFF не используется. Инструменты определяют раскладку по размеру и по подписи 0110C6, а не по имени файла.",
+      "evidence": [
+        "analyze_firmware.py: 16/16 образов распознаны как full-flash-512K"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "checksums",
+      "title": "Три записи CRC16",
+      "stage": [],
+      "verdict": "implemented",
+      "symbols": [],
+      "summary": "boot @0x3C24 (seed 0x2D2D), cal @0x4FEE0 (seed 0x3643, покрытие 0x48000..0x4F843), prog @0x50306 (seed 0x3030, 7 сегментов). CRC-16/ARC, little endian, самоописывающие записи. Доказано на 16/16 образах.",
+      "evidence": [
+        "checksum.py: verify + repair, повторная проверка перед записью файла"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "variant-switches",
+      "title": "Вариантные переключатели (c_conf_*)",
+      "stage": [],
+      "verdict": "research",
+      "symbols": [
+        "c_conf_cat",
+        "c_conf_cru_main_swi",
+        "c_conf_ecf",
+        "c_conf_ef",
+        "c_conf_sav_diag"
+      ],
+      "summary": "Конфигурация лямбда-зондов, круиза, электро-вентилятора, заслонки выпуска, DMTL и диагностики SAV задаётся константами, а не кодированием по VIN. После смены c_conf_cat нужен сброс выученных вариантов и отключение лишних зондов. Переключателя DMTL в определении 0110C6 нет, хотя вики его перечисляет: в этом наборе он не подтверждён.",
+      "evidence": [
+        "нужно решение о юридических последствиях и подтверждение конфигурации конкретной машины"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "vmax",
+      "title": "Ограничитель скорости",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "implemented",
+      "symbols": [
+        "c_vs_max_1",
+        "c_vs_max_add",
+        "c_vs_max_hys",
+        "c_n_min_vs_max"
+      ],
+      "summary": "Мягкая ступень — c_vs_max_1 (отключение цилиндров), жёсткая — c_vs_max_1 + c_vs_max_add (отсечка бензонасоса). Полное снятие — поднять порог активации c_n_min_vs_max до 8160 об/мин (raw 255). Сток: 216 км/ч на B20, 255 на остальных.",
+      "evidence": [
+        "генератор: value_kmh / hard_add_kmh / disable + acknowledge_risk",
+        "дорожная проверка обязательна: модель ступеней из документации сообщества"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "rpm-limit",
+      "title": "Ограничитель оборотов",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "implemented",
+      "symbols": [
+        "id_n_max_mt__nvs",
+        "id_n_max_max_mt__nvs",
+        "id_n_max_at__nvs",
+        "id_n_max_max_at__nvs",
+        "id_n_max_cycnr__vs",
+        "c_n_max_hys",
+        "c_n_max_hys_max"
+      ],
+      "summary": "Мягкая отсечка гасит цилиндры по шаблону (счётчик шагов id_n_max_cycnr__vs), жёсткая отключает все. Отдельные таблицы для MT и AT: генератор требует указать коробку и не трогает вторую пару. Выше 6750 об/мин требуется отдельное подтверждение acknowledge_oil_pump: таблицы представимы до 8160 об/мин, но штатный насос — известное слабое место, а измерений у нас нет.",
+      "evidence": [
+        "любой подъём выше стока требует acknowledge_risk",
+        "выше 6750 об/мин — acknowledge_oil_pump после acknowledge_risk (реализовано в генераторе)"
+      ],
+      "sources": [
+        "ms4x-ms42",
+        "seemslegit-revlimit"
+      ]
+    },
+    {
+      "id": "hardcut",
+      "title": "Гистерезис отсечки на сбросе газа",
+      "stage": [
+        1
+      ],
+      "verdict": "implemented",
+      "symbols": [
+        "c_n_hys_max_puc",
+        "c_n_hys_min_puc"
+      ],
+      "summary": "Два порога возврата/удержания отсечки при отпущенном газе. Сами по себе не создают хлопков: задержка и углы — отдельные таблицы.",
+      "evidence": [
+        "пересечение порогов отклоняется планировщиком"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "injector-scaling",
+      "title": "Масштабирование форсунок",
+      "stage": [
+        2
+      ],
+      "verdict": "gated",
+      "symbols": [
+        "ip_tipr_cst__tco",
+        "ip_ti_cst__n__tco",
+        "ip_ti_tco_1_is_ivvt__n__maf",
+        "ip_tib__n__maf",
+        "ip_ti_tco_2_is_ivvt__n__maf",
+        "ip_ti_tco_2_pl_ivvt_1__n__maf",
+        "ip_ti_tco_2_pl_ivvt_2__n__maf",
+        "ip_ti_slow_wf_thd_min__tco",
+        "ip_ti_fast_wf_thd_min__tco"
+      ],
+      "summary": "MS4X: умножать карты длительности впрыска на отношение потоков, обогатительные множители (ip_ti_cast, ip_ti_cr_cst, ip_ti_cr_cast) не трогать. Цель — лямбда-интеграторы в ±5 %, скважность форсунок не выше ~90 %.",
+      "evidence": [
+        "нужен задокументированный профиль форсунок: поток и кривая задержки",
+        "после прошивки обязательны логи интеграторов и скважности"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "injector-dead-time",
+      "title": "Время срабатывания форсунок",
+      "stage": [
+        2
+      ],
+      "verdict": "gated",
+      "symbols": [
+        "ip_ti_add_dly__vb"
+      ],
+      "summary": "KF_TI_ADD_TOTZ — коррекция мёртвого времени по напряжению бортсети, 1x8 при 0.032 мс на шаг, сток 0.064..3.616 мс. Меняется только вместе с документированной кривой новых форсунок, ось напряжений не трогается.",
+      "evidence": [
+        "профиль форсунок обязан содержать 8 значений кривой"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "fuel-consumption-gauge",
+      "title": "Коррекция расхода топлива",
+      "stage": [
+        2
+      ],
+      "verdict": "gated",
+      "symbols": [
+        "ip_fco_map_cor__pq_ main_col"
+      ],
+      "summary": "После масштабирования форсунок на множитель f таблицу расхода делят на f, иначе прибор показывает неверный расход. В XDF у заголовка лишний пробел после 'pq_' и неверные единицы измерения.",
+      "evidence": [
+        "применяется автоматически тем же профилем, что и масштабирование"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "maf-curve",
+      "title": "Кривая ДМРВ",
+      "stage": [
+        2
+      ],
+      "verdict": "gated",
+      "symbols": [
+        "id_maf_tab",
+        "id_maf_tab__v_maf_1__v_maf_2"
+      ],
+      "summary": "Передаточная функция 0–5 В → кг/ч, 256 точек по 0.015625 кг/ч; интерполяции нет, шкала напряжений задана разрядностью АЦП и не настраивается. Замена кривой допустима только под документированный датчик: правка скейла смещает нагрузку примерно в 30 таблицах.",
+      "evidence": [
+        "нужен файл кривой с происхождением (даташит или стенд)",
+        "кривая обязана быть неубывающей и внутри 0..1023.98 кг/ч"
+      ],
+      "sources": [
+        "ms4x-ms42",
+        "hpacademy-maf"
+      ]
+    },
+    {
+      "id": "maf-diagnostics",
+      "title": "Диагностика и failsafe ДМРВ",
+      "stage": [
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "c_maf_max_diag",
+        "c_maf_min_diag",
+        "ip_maf_1_diag__n__tps_av"
+      ],
+      "summary": "При росте продувки MS4X советует поднять c_maf_max_diag чуть выше максимальной нагрузки мотора и перестроить таблицу подмены ip_maf_1_diag__n__tps_av (по логам MAF/pedal/rpm). Таблица подмены не заменяет датчик. Порог c_maf_max_diag можно взять справочным значением с донорской калибровки MS43 (режим reference, только по явному hardware.use_donor_references) или заменить измеренным максимумом нагрузки.",
+      "evidence": [
+        "нужны логи нагрузки и педали; без них значение c_maf_max_diag — догадка",
+        "донор: c_maf_max_diag M54B30 = 890 кг/ч против 750 у M52TUB28 (MS43/firmware/, режим reference)"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "ignition-ron",
+      "title": "Зажигание: RON91/RON98 и адаптация по топливу",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "ip_iga_tco_1_is_ivvt__n__maf",
+        "ip_iga_tco_1_pl_ivvt__n__maf",
+        "ip_iga_tco_2_is_ivvt__n__maf",
+        "ip_iga_ron_91_pl_ivvt__n__maf",
+        "ip_iga_ron_98_pl_ivvt__n__maf"
+      ],
+      "summary": "Сток непрерывно интерполирует между картами RON91 и RON98 по выученному октановому фактору (на основе детонации). RON91 обязан остаться консервативным; RON98 можно оптимизировать, но заводская калибровка уже агрессивна.",
+      "evidence": [
+        "нужны стенд, лог детонации и широкополосная лямбда",
+        "наш продукт: отдельные BIN под RON 91/95/98 — что именно заливать в карты, решается только по замерам"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "ignition-mbt",
+      "title": "Карты оптимального зажигания (MBT)",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "ip_iga_optm_tco_1__n__maf",
+        "ip_iga_optm_tco_2__n__maf"
+      ],
+      "summary": "Это не цели, а ориентиры MBT: используются для расчёта снижения момента и температуры выпуска. Если целевой угол их превышает, ЭБУ вмешивается в момент.",
+      "evidence": [
+        "изменять только по стендовым данным; сейчас не входят в allowlist"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "anti-jerk",
+      "title": "Anti-Jerk (сглаживание момента)",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "c_tco_min_aj",
+        "ip_iga_aj_ron91__n__maf",
+        "ip_iga_aj_ron98__n__maf"
+      ],
+      "summary": "Карты _aj кратковременно задерживают зажигание при резком открытии газа. MS4X: функция отключается поднятием c_tco_min_aj до ~142.5 °C; на наддуве вместо отключения советуют править переходную детонацию (tra_knk).",
+      "evidence": [
+        "отключение anti-jerk меняет поведение машины; нужно подтверждение клиента и дорожная проверка"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "catalyst-heating",
+      "title": "Прогрев катализатора (_ch)",
+      "stage": [
+        1
+      ],
+      "verdict": "research",
+      "symbols": [],
+      "summary": "Карты с «_ch» намеренно задерживают зажигание после холодного пуска, чтобы ускорить прогрев катализатора. Их правка напрямую влияет на выбросы и температуру выпуска.",
+      "evidence": [
+        "не предлагается без стенда и ясной причины"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "idle-speed",
+      "title": "Обороты холостого хода",
+      "stage": [
+        1
+      ],
+      "verdict": "research",
+      "symbols": [
+        "ip_n_sp_is__tco",
+        "ip_dri_n_sp_is__tco",
+        "ip_acin_n_sp_is__tco",
+        "ip_isapwm__tco",
+        "ip_isapwm_dri__tco",
+        "ip_isapwm_acin__tco",
+        "ip_isapwm_dri_acin__tco",
+        "c_n_sp_lgrd_is"
+      ],
+      "summary": "Задание холостого хода складывается из базовой уставки, надбавок (кондиционер, прогрев, обогрев) и упирается в таблицы скважности РХХ. MS4X прямо предупреждает: подняв уставку и не поправив скважность, регулятор упрётся в предел.",
+      "evidence": [
+        "нужен лог холостого хода и скважности РХХ; в скобках — единицы XDF для этих таблиц подписаны неверно (сказано °C)"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "vanos-setpoints",
+      "title": "Уставки VANOS",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "ip_cam_sp_tco_1_in_is__n__maf_ivvt",
+        "ip_cam_sp_tco_1_ex_is__n__maf_ivvt",
+        "ip_cam_sp_tco_1_in_pl__n__maf_ivvt",
+        "ip_cam_sp_tco_1_ex_pl__n__maf_ivvt",
+        "ip_cam_sp_tco_1_in_fl__n",
+        "ip_cam_sp_tco_1_ex_fl__n",
+        "ip_cam_sp_tco_2_in_is__n__maf_ivvt",
+        "ip_cam_sp_tco_2_ex_is__n__maf_ivvt",
+        "ip_cam_sp_tco_2_in_pl__n__maf_ivvt",
+        "ip_cam_sp_tco_2_ex_pl__n__maf_ivvt",
+        "ip_cam_sp_tco_2_in_fl__n",
+        "ip_cam_sp_tco_2_ex_fl__n"
+      ],
+      "summary": "Холодные и тёплые уставки для холостого хода, частичной и полной нагрузки; переход между состояниями смешивается по таблицам ip_fac_*__tco__tco_st. Рабочий диапазон ограничен c_cam_ini ± c_cam_adj_rng_max (около 40 °CRK).",
+      "evidence": [
+        "нужно измеренное сравнение «задано/фактически» и прирост момента на точку"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "camshaft-calibration",
+      "title": "Калибровка распредвалов",
+      "stage": [
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "c_cam_op_in",
+        "c_cam_op_ex",
+        "c_cam_adj_rng_max_in",
+        "c_cam_adj_rng_max_ex",
+        "c_cam_ini_in",
+        "c_cam_ini_ex",
+        "c_cor_cam_in_ref",
+        "c_cor_cam_ex_ref"
+      ],
+      "summary": "При установке других валов правятся длительность, максимальный диапазон VANOS, начальный опорный угол и коррекция опорного угла; после этого пересчитываются уставки VANOS. Диагностика валов имеет окна допустимых зубьев, выход за них = ошибка.",
+      "evidence": [
+        "нужны паспортные данные валов и проверка фаз на машине"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "full-load",
+      "title": "Полная нагрузка",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "c_n_min_fl",
+        "id_pvs_fl__n",
+        "id_pvs_fl_ivvt__n",
+        "ip_ti_fl__n",
+        "id_vim_fl__n_vim",
+        "c_pvs_fl_accin"
+      ],
+      "summary": "Полная нагрузка включается по порогам педали/оборотов, после чего впрыск обогащается множителем ip_ti_fl__n, VANOS и DISA переходят на отдельные таблицы, а компрессор кондиционера отключается по c_pvs_fl_accin.",
+      "evidence": [
+        "правка обогащения и порогов требует стенда; сейчас только исследование"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "load-model-vo",
+      "title": "Модель нагрузки и VO-таблицы",
+      "stage": [
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "ip_maf_vo_1__map__n",
+        "ip_maf_vo_2__map__n",
+        "ip_maf_vo_3__map__n",
+        "ip_maf_vo_4__map__n",
+        "ip_maf_vo_5__map__n",
+        "ip_maf_vo_6__map__n",
+        "ip_maf_vo_7__map__n",
+        "ip_maf_vo_8__map__n",
+        "ip_vol_im__n__maf_mes",
+        "ip_vol_im_neg__n__maf_mes"
+      ],
+      "summary": "Нагрузка для впрыска и зажигания считается через объёмную модель впуска: давление по уравнению состояния, затем 8 VO-таблиц по перекрытию клапанов. При серьёзном изменении впуска (наддув, коллектор) правится именно эта модель, иначе топливо упирается в «lean wall».",
+      "evidence": [
+        "нужны логи нагрузки/давления и понимание модели; отдельная задача, не Stage 1"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "intake-disa",
+      "title": "DISA и впуск M50/M54",
+      "stage": [
+        2
+      ],
+      "verdict": "implemented",
+      "symbols": [
+        "id_vim_fl__n_vim",
+        "id_vim_pl__n_vim__maf"
+      ],
+      "summary": "MS4X: у M52TU заслонка DISA закрывает канал ровно там, где мотор выдаёт пиковую мощность, и это программно ограничивает полку после 5500 об/мин; для M54 карты другие, и «перенос 1:1» предлагается как рецепт. Донорские калибровки MS43 лежат в MS43/firmware, и перенос карт DISA сделан инструментом (tools/donor.py) с доказательством адресации донора, проверками формы, шкалы, порядка байт и политики. Замена коллектора на M50 — отдельный рыночный Stage 2.",
+      "evidence": [
+        "каталог переносов MS42/donor/ms43_to_ms42.json (пары заданы руками, каждая с запиской и источником)",
+        "перенос применяется только вместе с документированной заменой впуска (hardware.intake) и требует дорожной проверки"
+      ],
+      "sources": [
+        "ms4x-b25-tuning",
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "exhaust-pops",
+      "title": "Хлопки на сбросе газа (popcorn)",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "gated",
+      "symbols": [
+        "ip_n_min_puc__tco",
+        "ip_n_min_accin_puc__tco",
+        "ip_iga_puc__n__tco",
+        "ip_iga_accin_puc__n__tco",
+        "ip_t_puc_deacc__n__maf_mmv"
+      ],
+      "summary": "Порог отсечки, углы во время отсечки и задержка перед ней. Пишутся через tools/popcorn.py и stages.py --popcorn только по профилю клиента: письменное подтверждение «катализатора нет», согласие следить за температурой, план дорожной проверки и полоса light/medium. Публичного агрессивного пресета нет сознательно.",
+      "evidence": [
+        "письменное подтверждение «катализатора нет» (no_catalyst)",
+        "план дорожной проверки (road_validation_plan) и thermal_watch",
+        "полоса light (порог ≤ +600 об/мин, угол ≥ −6°, задержка ≤ 1.2 с) или medium"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "ghost-cam",
+      "title": "Lumpy idle / ghost cam",
+      "stage": [
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "ip_cam_sp_tco_2_in_is__n__maf_ivvt",
+        "ip_cam_sp_tco_2_ex_is__n__maf_ivvt",
+        "c_cam_adj_rng_max_in",
+        "c_cam_adj_rng_max_ex"
+      ],
+      "summary": "Неровный холостой ход получается расширением перекрытия клапанов на холостом ходу (впуск до ~80–86°, выпуск в минус). MS4X описывает рецепт, но это меняет устойчивость холостого хода и выбросы.",
+      "evidence": [
+        "нужна проверка холостого хода и стабильности; измеренных данных нет"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "icv-delete",
+      "title": "Удаление РХХ",
+      "stage": [
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "ip_pvs_isa_isapwm__isapwm",
+        "ip_tps_sp_pvs_tco_1__pvs__n",
+        "ip_tps_sp_pvs_tco_2__pvs__n",
+        "c_cam_sp_in_isapwm_min_lgrd"
+      ],
+      "summary": "При удалении клапана холостого хода перестраиваются таблицы связи PVS/ISA и уставки дросселя, чтобы холостой ход держался дросселем.",
+      "evidence": [
+        "аппаратное изменение; нужна проверка холостого хода и пуска"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "dtc-suppression",
+      "title": "Подавление DTC",
+      "stage": [
+        2
+      ],
+      "verdict": "refused",
+      "symbols": [
+        "c_abc_inc_cam",
+        "c_abc_inc_cam_ex",
+        "c_abc_inc_isa_1",
+        "c_abc_inc_isa_2"
+      ],
+      "summary": "MS4X описывает подавление ошибок через обнуление порогов c_abc_inc_*: функция остаётся активной, но ошибка не выставляется. Мы это не продаём: скрытая ошибка неотличима от исправной машины, а SAP/rear-O2 bypass — предмет отдельного юридического решения (off-road).",
+      "evidence": [
+        "сознательный отказ, зафиксирован в документах"
+      ],
+      "sources": [
+        "ms4x-ms42",
+        "chaos-calibrations"
+      ]
+    },
+    {
+      "id": "map-reduction",
+      "title": "Сокращение карт (map reduction)",
+      "stage": [
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "ip_fac_cam_sp_in_pl__tco__tco_st",
+        "ip_fac_cam_sp_ex_pl__tco__tco_st",
+        "ip_fac_pl_ivvt__tco__tco_st",
+        "ip_fac_is_ivvt__tco__tco_st"
+      ],
+      "summary": "Обнуление температурного смешивания (1.0 вместо переходных факторов) убирает плавность: холодные и тёплые карты перестают смешиваться. Применяется для упрощения калибровки на гоночных машинах.",
+      "evidence": [
+        "ухудшает холодный пуск и переходные режимы; не для дорожных машин"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "stage-definition",
+      "title": "Что такое Stage 1 и Stage 2 на рынке",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "research",
+      "symbols": [],
+      "summary": "Stage 1 у всех продавцов — стоковое железо: зажигание, топливо, VANOS, отсечка, ограничитель, холостой ход, хлопки; ожидания +5–10 л.с. Stage 2 — впуск/выпуск/коллектор/каты: +10–15 л.с. Эти цифры — маркетинговые ожидания, а не измеренный результат конкретной машины.",
+      "evidence": [
+        "наши стендовые данные отсутствуют: мощность в наряд не попадает"
+      ],
+      "sources": [
+        "e36tuning-guides",
+        "chaos-calibrations"
+      ]
+    },
+    {
+      "id": "rev-limit-advice",
+      "title": "Совет по отсечке свыше 6750 об/мин",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "gated",
+      "symbols": [],
+      "summary": "Практика сообщества: без решения по масляному насосу отсечку выше 6750 об/мин не поднимать. Генератор реализует это как ворота: подъём выше стока требует acknowledge_risk, а выше 6750 об/мин — отдельного acknowledge_oil_pump; без него файл не собирается.",
+      "evidence": [
+        "внешний источник, не наши измерения",
+        "ворота HIGH_RPM_OIL_PUMP_ACK_REQUIRED в tools/generate_patches.py"
+      ],
+      "sources": [
+        "seemslegit-revlimit"
+      ]
+    },
+    {
+      "id": "octane-bins",
+      "title": "Отдельные BIN под RON 91/95/98",
+      "stage": [
+        1,
+        2
+      ],
+      "verdict": "research",
+      "symbols": [
+        "ip_iga_ron_91_pl_ivvt__n__maf",
+        "ip_iga_ron_98_pl_ivvt__n__maf"
+      ],
+      "summary": "Сток сам интерполирует между RON91 и RON98 по выученной детонации, поэтому «бины под топливо» для MS42 — это не переключение карт, а разные калибровки под измеренный запас по детонации. Продуктовое правило «отдельный BIN на RON» остаётся, но наполнение требует стенда.",
+      "evidence": [
+        "без стенда и лога детонации разница между бинами недоказуема"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    },
+    {
+      "id": "checksum-disable",
+      "title": "Отключение контрольной суммы калибровки",
+      "stage": [],
+      "verdict": "refused",
+      "symbols": [],
+      "summary": "Рецепт сообщества (0x4FEFE = 0xFFFF, 0x5002C = 0xA8) отключает проверку целостности калибровки. Инструмент этого не делает: без проверки ЭБУ теряет способность замечать повреждение данных.",
+      "evidence": [
+        "сама MS4X помечает раздел как «только для образовательных целей»"
+      ],
+      "sources": [
+        "ms4x-ms42"
+      ]
+    }
+  ]
+}

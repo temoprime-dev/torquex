@@ -1,0 +1,12 @@
+ARTMASKE,ARTNR,ARTTEXT
+xxxxxxx0,10,Diagnose läuft nicht
+xxxxxxx1,11,Diagnose läuft
+xxxxx0xx,30,Zyklus-Flag nicht gesetzt
+xxxxx1xx,31,Zyklus-Flag gesetzt
+xxxx0xxx,40,kein Fehler durch Tester
+xxxx1xxx,41,Fehler durch Tester
+xxx0xxxx,50,MIL aus
+xxx1xxxx,51,MIL ein
+xx0xxxxx,60,Fehler in Entprellphase
+xx1xxxxx,61,"Fehler entprellt, keine Scan Tool Ausgabe"
+xxxxxxxx,0,--

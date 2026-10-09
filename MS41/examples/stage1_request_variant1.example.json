@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "customer": "пример: вариант 1 (базовый)",
+  "stage": 1,
+  "ron": 95,
+  "catalyst": "present",
+  "notes": "Вариант 1 для MS41: только разрешённые к записи ограничители (дорожный лимитер и отсечка с подтверждением риска). Хлопков, диагностического слоя и карт зажигания в примере нет: у MS41 они BLOCKED/REQUIRES_DATA (см. docs/OCTANE_OPTIONS_MS41_MS42_RU.md).",
+  "intents": [
+    {
+      "id": "vmax",
+      "kind": "vmax",
+      "mode": "raise",
+      "value_kmh": 250,
+      "reason": "пример: клиент просит дорожный лимитер 250 км/ч"
+    },
+    {
+      "id": "rpm",
+      "kind": "rpm_limit",
+      "mode": "raise",
+      "value_rpm": 6700,
+      "acknowledge_risk": true,
+      "reason": "пример: отсечка 6700 rpm с подтверждением риска"
+    }
+  ]
+}

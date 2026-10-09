@@ -1,0 +1,23 @@
+{
+  "engine": "m52b28",
+  "dme_variant": "ms411",
+  "transmission": "manual",
+  "manifold": "m50",
+  "cams": "stock",
+  "exhaust": "headers_and_cat_back",
+  "intake": "performance_stock_housing",
+  "maf": "stock_hfm",
+  "maf_curve_documented": true,
+  "maf_ceiling_kgh": 480,
+  "injectors": "known_replacement",
+  "injector_part_number": "example-part-number",
+  "injector_flow_cc_min": 240.0,
+  "injector_stock_flow_cc_min": 190.0,
+  "injector_dead_time_documented": true,
+  "compression": "stock",
+  "displacement": "stock",
+  "catalyst": "present",
+  "fuel_ron": 95,
+  "hardcut": false,
+  "popcorn": false
+}

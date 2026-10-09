@@ -1,0 +1,105 @@
+{
+  "kind": "pack_log",
+  "schema_version": 1,
+  "package": "fuel",
+  "generator": "torquex_pack_log_analyzer",
+  "analyzer_version": "1.0",
+  "sha256_normalization": "crlf-to-lf/1",
+  "source": "MS43/examples/logs/wot_wideband.csv",
+  "source_sha256": "8f22fc1782da46fcfccd308ddbd25832123cf39abe81919f473c6a553aa1f07a",
+  "source_format": "csv",
+  "source_encoding": "utf-8",
+  "rows": 366,
+  "duration_s": 36.5,
+  "sample_rate_hz": 10.0,
+  "fuel_ron": 98,
+  "results": {
+    "wot_runs": 2,
+    "lambda_variance": 0.000202,
+    "lambda_stdev_wot": 0.0157,
+    "lambda_floor": 0.85,
+    "partial_load_hold_seconds": 13.0,
+    "partial_load_trim_max_percent": 2.98,
+    "wot_detection": "pedal"
+  },
+  "issues": [],
+  "notes": [],
+  "valid": true,
+  "pack_recommendation": {
+    "kind": "pack_recommendation",
+    "schema_version": 1,
+    "analyzer_version": "1.0",
+    "package": "fuel",
+    "confidence": "high",
+    "zones": [
+      {
+        "index": {
+          "rpm": 0,
+          "load": 1
+        },
+        "zone_ru": "n 2000–3000 / load 300–450 мг/такт",
+        "samples": 44,
+        "wot_runs": 2,
+        "lambda_min": 0.85,
+        "lambda_median": 0.87,
+        "recommendation_ru": "λ min 0.850 против пола 0.82: запас ×1.037 — обогащение в этих пределах, но не ниже пола",
+        "enrichment_factor": 1.0366,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 1,
+          "load": 2
+        },
+        "zone_ru": "n 3000–4000 / load 450–700 мг/такт",
+        "samples": 44,
+        "wot_runs": 2,
+        "lambda_min": 0.85,
+        "lambda_median": 0.87,
+        "recommendation_ru": "λ min 0.850 против пола 0.82: запас ×1.037 — обогащение в этих пределах, но не ниже пола",
+        "enrichment_factor": 1.0366,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 2,
+          "load": 2
+        },
+        "zone_ru": "n 4000–5000 / load 450–700 мг/такт",
+        "samples": 44,
+        "wot_runs": 2,
+        "lambda_min": 0.85,
+        "lambda_median": 0.87,
+        "recommendation_ru": "λ min 0.850 против пола 0.82: запас ×1.037 — обогащение в этих пределах, но не ниже пола",
+        "enrichment_factor": 1.0366,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 3,
+          "load": 2
+        },
+        "zone_ru": "n 5000–6500 / load 450–700 мг/такт",
+        "samples": 62,
+        "wot_runs": 2,
+        "lambda_min": 0.85,
+        "lambda_median": 0.87,
+        "recommendation_ru": "λ min 0.850 против пола 0.82: запас ×1.037 — обогащение в этих пределах, но не ниже пола",
+        "enrichment_factor": 1.0366,
+        "confidence": "high"
+      }
+    ],
+    "warnings": [],
+    "limits": {
+      "lambda_floor": 0.82,
+      "lambda_stdev_max_wot": 0.03,
+      "partial_load_trim_max_percent": 8.0,
+      "note_ru": "узкополосная лямбда коррекций не даёт: рекомендация строится только по внешней широкополосной λ"
+    },
+    "source_sha256": "8f22fc1782da46fcfccd308ddbd25832123cf39abe81919f473c6a553aa1f07a",
+    "notes_ru": [
+      "рекомендация действительна только вместе с исходным логом: генератор сверяет sha256 и версию анализатора",
+      "генератор применяет свои границы: рекомендация их не обходит"
+    ]
+  }
+}

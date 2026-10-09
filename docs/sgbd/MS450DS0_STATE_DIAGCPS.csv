@@ -1,0 +1,8 @@
+WERT,UWTEXT
+0x00,00 Systemtest TEV Initialisierung
+0x01,01 Systemtest TEV Schritt 1
+0x02,02 Systemtest TEV Schritt 2
+0x03,03 Systemtest TEV Schritt 3
+0x04,04 Systemtest TEV Rampe
+0x05,05 Systemtest TEV abgeschlossen LOCK_STEP
+0xXY,FF Systemtest TEV unbekannter Wert

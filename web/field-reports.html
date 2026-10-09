@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-i18n-title="reports.title">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="TorqueX: журнал полевых проверок — отчёты «до/после» по протоколу.">
+<title>TorqueX</title>
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="reports.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="common.skip"></a>
+<header class="site-header" id="tx-header"></header>
+<div id="tx-demo-banner"></div>
+<p id="tx-live" class="sr-only" role="status" aria-live="polite"></p>
+<p id="tx-alert" class="sr-only" role="alert" aria-live="assertive"></p>
+<div id="tx-toasts" class="toasts" aria-live="polite"></div>
+
+<main id="main" class="wrap">
+  <h1 data-i18n="reports.title"></h1>
+  <p class="lead" data-i18n="reports.lead"></p>
+
+  <!-- Заполняется из словаря в reports.js (заголовок + текст пустого состояния). -->
+  <div class="empty-state" id="reports-empty" hidden></div>
+
+  <div class="table-scroll">
+    <table class="table" id="reports-table">
+      <thead>
+        <tr>
+          <th scope="col" data-i18n="reports.date"></th>
+          <th scope="col" data-i18n="reports.ecu"></th>
+          <th scope="col" data-i18n="reports.variant"></th>
+          <th scope="col" data-i18n="reports.sha"></th>
+          <th scope="col" data-i18n="reports.car"></th>
+          <th scope="col" data-i18n="reports.result"></th>
+          <th scope="col" data-i18n="reports.log"></th>
+        </tr>
+      </thead>
+      <tbody id="reports-body"></tbody>
+    </table>
+  </div>
+
+  <section class="card">
+    <h2 data-i18n="trust.title"></h2>
+    <p><span class="badge badge-ok" data-i18n="trust.bytes_crc"></span></p>
+    <p><span class="badge badge-warn" data-i18n="trust.field_none"></span></p>
+    <p class="hint" data-i18n="reports.rule"></p>
+    <p class="hint" data-i18n="reports.privacy"></p>
+  </section>
+</main>
+
+<footer class="site-footer" id="tx-footer"></footer>
+</body>
+</html>

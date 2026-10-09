@@ -1,0 +1,11 @@
+{
+  "stage": "stage1",
+  "customer": "Пример (данные вымышлены)",
+  "notes": "Stage 1 с хлопками: профиль передаётся отдельным файлом --popcorn. Без письменного подтверждения и плана проверки пакет остаётся в ожидании.",
+  "intents": [
+    {"id": "v1", "kind": "vmax", "value_kmh": 240, "hard_add_kmh": 8.0},
+    {"id": "r1", "kind": "rpm_limit", "transmission": "manual",
+     "soft_rpm": 6688, "hard_rpm": 6720, "acknowledge_risk": true},
+    {"id": "p1", "kind": "popcorn"}
+  ]
+}

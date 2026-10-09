@@ -1,0 +1,9 @@
+WERT,UWTEXT
+0x00,0 Motor angehalten
+0x01,1 Motor läuft
+0x02,2 Sychronisiert und Zündung ein
+0x03,3 Sychronisiert und Zündung aus
+0x04,4 Motor in Nachlauf Phase und Zündung aus
+0x05,5 Motor blockiert und Zündung ein
+0x06,6 WAKE UP
+0xFF,FF Status unbekannt

@@ -1,0 +1,215 @@
+{
+  "kind": "pack_log",
+  "schema_version": 1,
+  "package": "vanos",
+  "generator": "torquex_pack_log_analyzer",
+  "analyzer_version": "1.0",
+  "sha256_normalization": "crlf-to-lf/1",
+  "source": "MS43/examples/logs/vanos_grid.csv",
+  "source_sha256": "b71c6148c128c5b8caa2ce39ee2c6ca8109319fd10df555b96af0957406c6e4b",
+  "source_format": "csv",
+  "source_encoding": "utf-8",
+  "rows": 1334,
+  "duration_s": 133.3,
+  "sample_rate_hz": 10.0,
+  "fuel_ron": 98,
+  "results": {
+    "hold_points": 36,
+    "hold_points_required": 36,
+    "max_track_error_deg": 0.8,
+    "min_hold_seconds": 3.5,
+    "wot_runs": 1,
+    "wot_detection": "pedal"
+  },
+  "issues": [],
+  "notes": [],
+  "valid": true,
+  "pack_recommendation": {
+    "kind": "pack_recommendation",
+    "schema_version": 1,
+    "analyzer_version": "1.0",
+    "package": "vanos",
+    "confidence": "high",
+    "zones": [
+      {
+        "index": {
+          "rpm": 0,
+          "load": 0
+        },
+        "zone_ru": "n 2000–3000 / load 150–300 мг/такт",
+        "samples": 32,
+        "wot_runs": 3,
+        "track_error_max_deg": 0.79,
+        "track_error_median_deg": 0.425,
+        "recommendation_ru": "механика держит цель (максимум 0.79°, медиана 0.43°) — допустим сдвиг цели +0.43° в стабильной зоне",
+        "shift_deg": 0.425,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 0,
+          "load": 1
+        },
+        "zone_ru": "n 2000–3000 / load 300–450 мг/такт",
+        "samples": 73,
+        "wot_runs": 3,
+        "track_error_max_deg": 0.8,
+        "track_error_median_deg": 0.41,
+        "recommendation_ru": "механика держит цель (максимум 0.80°, медиана 0.41°) — допустим сдвиг цели +0.41° в стабильной зоне",
+        "shift_deg": 0.41,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 0,
+          "load": 2
+        },
+        "zone_ru": "n 2000–3000 / load 450–700 мг/такт",
+        "samples": 126,
+        "wot_runs": 4,
+        "track_error_max_deg": 0.8,
+        "track_error_median_deg": 0.32,
+        "recommendation_ru": "механика держит цель (максимум 0.80°, медиана 0.32°) — допустим сдвиг цели +0.32° в стабильной зоне",
+        "shift_deg": 0.32,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 1,
+          "load": 0
+        },
+        "zone_ru": "n 3000–4000 / load 150–300 мг/такт",
+        "samples": 39,
+        "wot_runs": 4,
+        "track_error_max_deg": 0.78,
+        "track_error_median_deg": 0.43,
+        "recommendation_ru": "механика держит цель (максимум 0.78°, медиана 0.43°) — допустим сдвиг цели +0.43° в стабильной зоне",
+        "shift_deg": 0.43,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 1,
+          "load": 1
+        },
+        "zone_ru": "n 3000–4000 / load 300–450 мг/такт",
+        "samples": 81,
+        "wot_runs": 3,
+        "track_error_max_deg": 0.8,
+        "track_error_median_deg": 0.42,
+        "recommendation_ru": "механика держит цель (максимум 0.80°, медиана 0.42°) — допустим сдвиг цели +0.42° в стабильной зоне",
+        "shift_deg": 0.42,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 1,
+          "load": 2
+        },
+        "zone_ru": "n 3000–4000 / load 450–700 мг/такт",
+        "samples": 115,
+        "wot_runs": 4,
+        "track_error_max_deg": 0.8,
+        "track_error_median_deg": 0.38,
+        "recommendation_ru": "механика держит цель (максимум 0.80°, медиана 0.38°) — допустим сдвиг цели +0.38° в стабильной зоне",
+        "shift_deg": 0.38,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 2,
+          "load": 0
+        },
+        "zone_ru": "n 4000–5000 / load 150–300 мг/такт",
+        "samples": 46,
+        "wot_runs": 6,
+        "track_error_max_deg": 0.8,
+        "track_error_median_deg": 0.395,
+        "recommendation_ru": "механика держит цель (максимум 0.80°, медиана 0.40°) — допустим сдвиг цели +0.40° в стабильной зоне",
+        "shift_deg": 0.395,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 2,
+          "load": 1
+        },
+        "zone_ru": "n 4000–5000 / load 300–450 мг/такт",
+        "samples": 72,
+        "wot_runs": 3,
+        "track_error_max_deg": 0.79,
+        "track_error_median_deg": 0.33,
+        "recommendation_ru": "механика держит цель (максимум 0.79°, медиана 0.33°) — допустим сдвиг цели +0.33° в стабильной зоне",
+        "shift_deg": 0.33,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 2,
+          "load": 2
+        },
+        "zone_ru": "n 4000–5000 / load 450–700 мг/такт",
+        "samples": 128,
+        "wot_runs": 4,
+        "track_error_max_deg": 0.8,
+        "track_error_median_deg": 0.365,
+        "recommendation_ru": "механика держит цель (максимум 0.80°, медиана 0.37°) — допустим сдвиг цели +0.37° в стабильной зоне",
+        "shift_deg": 0.365,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 3,
+          "load": 0
+        },
+        "zone_ru": "n 5000–6500 / load 150–300 мг/такт",
+        "samples": 62,
+        "wot_runs": 5,
+        "track_error_max_deg": 0.79,
+        "track_error_median_deg": 0.39,
+        "recommendation_ru": "механика держит цель (максимум 0.79°, медиана 0.39°) — допустим сдвиг цели +0.39° в стабильной зоне",
+        "shift_deg": 0.39,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 3,
+          "load": 1
+        },
+        "zone_ru": "n 5000–6500 / load 300–450 мг/такт",
+        "samples": 78,
+        "wot_runs": 3,
+        "track_error_max_deg": 0.8,
+        "track_error_median_deg": 0.395,
+        "recommendation_ru": "механика держит цель (максимум 0.80°, медиана 0.39°) — допустим сдвиг цели +0.39° в стабильной зоне",
+        "shift_deg": 0.395,
+        "confidence": "high"
+      },
+      {
+        "index": {
+          "rpm": 3,
+          "load": 2
+        },
+        "zone_ru": "n 5000–6500 / load 450–700 мг/такт",
+        "samples": 147,
+        "wot_runs": 3,
+        "track_error_max_deg": 0.79,
+        "track_error_median_deg": 0.27,
+        "recommendation_ru": "механика держит цель (максимум 0.79°, медиана 0.27°) — допустим сдвиг цели +0.27° в стабильной зоне",
+        "shift_deg": 0.27,
+        "confidence": "high"
+      }
+    ],
+    "warnings": [],
+    "limits": {
+      "max_track_error_deg": 3.0,
+      "max_shift_deg": 5.0,
+      "note_ru": "сдвиг только в зонах с устойчивым отслеживанием цели"
+    },
+    "source_sha256": "b71c6148c128c5b8caa2ce39ee2c6ca8109319fd10df555b96af0957406c6e4b",
+    "notes_ru": [
+      "рекомендация действительна только вместе с исходным логом: генератор сверяет sha256 и версию анализатора",
+      "генератор применяет свои границы: рекомендация их не обходит"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+NAME,QUELLE,ZELLE,ORD,TYP,FAKT_A,FAKT_B,EINH
+Geberrad_adapt,LINRAM,0xFD56,--,1,1,0,HEX
+Motortemp,LINRAM,0xe38f,--,1,0.75,-48,Grad C
+Ansauglufttemp,LINRAM,0xe391,--,1,0.75,-48,Grad C
+KMW1,LINRAM,0xc49c,LH,1,0.000078,0,V
+KMW2,LINRAM,0xc4a4,LH,1,0.000078,0,V
+KMW3,LINRAM,0xc4a0,LH,1,0.000078,0,V
+KMW4,LINRAM,0xc4a6,LH,1,0.000078,0,V
+KMW5,LINRAM,0xc49e,LH,1,0.000078,0,V
+KMW6,LINRAM,0xc4a2,LH,1,0.000078,0,V
+Anz fehlende KW Zaehne,LINRAM,0xd7e2,--,1,1,0,HEX
+Anz ungueltige KW Zaehne,LINRAM,0xd7e4,--,1,1,0,HEX
+Anz zuviel erkannte KW Zaehne,LINRAM,0xd7e6,--,1,1,0,HEX
+Anz durchgefuerte Starts,LINRAM,0xd7e8,--,1,1,0,HEX
+Anz Neusysnchronisation n. KW Fehler,LINRAM,0xd7e0,--,1,1,0,HEX
+Anz erkannte Spike auf NWE,LINRAM,0xd7ea,--,1,1,0,HEX
+Anz fehlende NWE Flanken,LINRAM,0xd7ec,--,1,1,0,HEX
+Anz NWA ctr_last,LINRAM,0xd7ee,--,1,1,0,HEX
+Anz NWE Flanken H/L ausserhalb Diagfenster,LINRAM,0xd7f0,--,1,1,0,HEX
+Anz NWE Flanken L/H ausserhalb Diagfenster,LINRAM,0xd7f2,--,1,1,0,HEX
+Anz erkannte Spike auf NWA,LINRAM,0xd7f4,--,1,1,0,HEX
+Anz fehlende NWA Flanken,LINRAM,0xd7f6,--,1,1,0,HEX
+Anz NWA ctr_last,LINRAM,0xd7f8,--,1,1,0,HEX
+Anz NWA Flanken H/L ausserhalb Diagfenster,LINRAM,0xd7fa,--,1,1,0,HEX
+Anz NWA Flanken L/H ausserhalb Diagfenster,LINRAM,0xd7fc,--,1,1,0,HEX

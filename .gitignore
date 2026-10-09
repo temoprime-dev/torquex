@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+MS41/.cache/
+
+.cache/
+.venv/
+
+# Переданные пользователями очищенные логи (TORQUEX_LOG_STORE по умолчанию)
+data/
+
+# Чужие данные: не коммитим
+MS4*/firmware*/
+MS4*/definitions/
+MS45/damos/
+MS45/a2l/
+config/gs8_factory_cal.json
+*.bin
+*.xdf
+*.a2l
+*.0pa
+*.0da

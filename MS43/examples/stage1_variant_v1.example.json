@@ -1,0 +1,10 @@
+{
+  "stage": "stage1",
+  "variant": "v1",
+  "customer": "пример: вариант 1 (базовый, без логов)",
+  "notes": "только зажигание до +1.5° и малая добавка времени впрыска",
+  "intents": [
+    {"id": "ign1", "kind": "ignition", "delta_deg": 1.5},
+    {"id": "fuel1", "kind": "fuel", "tib_add_ms": 0.15, "tib_add_percent": 4.0}
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "ecu": "MS41",
+  "prg_variants": [
+    "MS410DS0",
+    "MS410DS1",
+    "MS410DS2",
+    "MS410DS3",
+    "MS411DS1",
+    "MS411DS2"
+  ],
+  "function": "stage0",
+  "title_ru": "Stage 0: общий контроль состояния (прогрев, холостой ход, городской круг)",
+  "how_to_ru": [
+    "File → Detect ECU: проверить, что определился правильный ЭБУ и версия (не похожее семейство).",
+    "В окне ЭБУ выбрать job из списка и перетащить в график нужные результаты (*_WERT).",
+    "Settings → Logging: папка <Desktop>\\Test0_Logs, разделитель CSV и формат времени — по умолчанию.",
+    "Внешний широкополосный зонд: подключить и выбрать как внешний источник ДО начала записи.",
+    "Сохранить набор как пресет Test0 (имя TorqueX_<ЭБУ>_<функция>) — дальше запуск одной кнопкой.",
+    "Перед заездом включить запись и убедиться, что все колонки заполняются."
+  ],
+  "test0_ru": "Пресет собирается в UI Test0: выбрать job-ы и результаты из списка jobs ниже и сохранить набор под именем TorqueX_MS41_stage0.",
+  "jobs": [
+    {
+      "job": "STATUS_MOTORDREHZAHL",
+      "results": [
+        "STATUS_MOTORDREHZAHL_WERT",
+        "STAT_MOTORDREHZAHL_WERT"
+      ],
+      "channel": "rpm",
+      "unit_hint": "1/min",
+      "title_ru": "обороты двигателя"
+    },
+    {
+      "job": "STATUS_MOTORTEMPERATUR",
+      "results": [
+        "STATUS_MOTORTEMPERATUR_WERT",
+        "STAT_MOTORTEMPERATUR_WERT"
+      ],
+      "channel": "coolant_temp",
+      "unit_hint": "C",
+      "title_ru": "температура охлаждающей жидкости, °C"
+    },
+    {
+      "job": "STATUS_AN_LUFTTEMPERATUR",
+      "results": [
+        "STATUS_AN_LUFTTEMPERATUR_WERT",
+        "STAT_AN_LUFTTEMPERATUR_WERT"
+      ],
+      "channel": "intake_temp",
+      "unit_hint": "C",
+      "title_ru": "температура воздуха на впуске, °C"
+    },
+    {
+      "job": "STATUS_LMM",
+      "results": [
+        "STATUS_LMM_WERT"
+      ],
+      "channel": "maf_airflow",
+      "unit_hint": "kg/h",
+      "title_ru": "расход воздуха (ДМРВ), кг/ч",
+      "alternatives_ru": [
+        "STATUS_LMM_MASSE: STAT_LMM_MASSE_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_DKP",
+      "results": [
+        "STATUS_DKP_WERT"
+      ],
+      "note_ru": "положение дроссельной заслонки",
+      "channel": "pedal",
+      "unit_hint": "percent_or_deg",
+      "title_ru": "ход педали / положение дросселя, % или °"
+    },
+    {
+      "job": "STATUS_GESCHWINDIGKEIT",
+      "results": [
+        "STATUS_GESCHWINDIGKEIT_WERT"
+      ],
+      "channel": "vehicle_speed",
+      "unit_hint": "km/h",
+      "title_ru": "скорость автомобиля, км/ч"
+    },
+    {
+      "job": "STATUS_UBATT",
+      "results": [
+        "STATUS_UBATT_WERT",
+        "STAT_UBATT_WERT"
+      ],
+      "channel": "battery_voltage",
+      "unit_hint": "V",
+      "title_ru": "напряжение бортсети, В"
+    },
+    {
+      "job": "STATUS_L_SONDE",
+      "results": [
+        "STATUS_L_SONDE_WERT"
+      ],
+      "channel": "lambda_bank1_voltage",
+      "unit_hint": "V",
+      "title_ru": "напряжение передней лямбды, банк 1 (узкополосная), В"
+    },
+    {
+      "job": "STATUS_TAST_LL_STELLER",
+      "results": [
+        "STATUS_TAST_LL_STELLER_WERT"
+      ],
+      "channel": "idle_actuator",
+      "unit_hint": "percent",
+      "title_ru": "регулятор холостого хода (скважность/интегратор)",
+      "alternatives_ru": [
+        "STATUS_LL_REGLER: STATUS_LL_REGLER_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_NW_IST_POSITION",
+      "results": [
+        "STATUS_NW_IST_POSITION_WERT"
+      ],
+      "note_ru": "в MS41 один VANOS (впуск)",
+      "channel": "vanos_intake_actual",
+      "unit_hint": "deg_crank",
+      "title_ru": "фазы впуска, факт, °КВ"
+    }
+  ],
+  "unavailable_ru": [],
+  "drive_ru": [
+    "Записать холодный пуск и прогрев до 90 °C (2–3 минуты).",
+    "Проехать 10–15 минут в городском режиме (частичные нагрузки, 2–3 остановки).",
+    "В конце — один плавный разгон до 4000 об/мин без полного газа."
+  ]
+}

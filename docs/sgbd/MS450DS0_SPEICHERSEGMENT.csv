@@ -1,0 +1,13 @@
+SEG_BYTE,SEG_NAME,SEG_TEXT
+0x00,LAR,linearAdressRange
+0x01,ROMI,"ROM / EPROM, internal"
+0x02,ROMX,"ROM / EPROM, external"
+0x03,NVRAM,"NV-RAM (characteristic zones, DTC memory"
+0x04,RAMIS,"RAM, internal (short MOV)"
+0x05,RAMXX,"RAM, external (x data MOV)"
+0x06,FLASH,"Flash EPROM, internal"
+0x07,UIFM,User Info Field Memory
+0x08,VODM,Vehicle Order Data Memory
+0x09,FLASHX,"Flash EPROM, external"
+0x0B,RAMIL,"RAM, internal (long MOV / Register)"
+0xFF,???,unbekanntes Speichersegment

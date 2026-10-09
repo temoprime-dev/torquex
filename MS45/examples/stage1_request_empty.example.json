@@ -1,0 +1,8 @@
+{
+  "stage": "stage1",
+  "customer": "Пример: заявка без подтверждений (так нельзя)",
+  "intents": [
+    {"kind": "vmax", "value": 255},
+    {"kind": "pops", "delay_s": 0.5}
+  ]
+}

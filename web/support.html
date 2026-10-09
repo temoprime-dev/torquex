@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-i18n-title="support.title">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="TorqueX: поддержать проект добровольным донатом и как сравнивать тюнинг по фактам.">
+<title>TorqueX</title>
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="page.js"></script>
+</head>
+<body data-page="support">
+<a class="skip-link" href="#main" data-i18n="common.skip"></a>
+<header class="site-header" id="tx-header"></header>
+<div id="tx-demo-banner"></div>
+<p id="tx-live" class="sr-only" role="status" aria-live="polite"></p>
+<p id="tx-alert" class="sr-only" role="alert" aria-live="assertive"></p>
+<div id="tx-toasts" class="toasts" aria-live="polite"></div>
+
+<main id="main" class="wrap">
+  <h1 data-i18n="support.title"></h1>
+  <p class="lead" data-i18n="support.bio"></p>
+
+  <section class="card">
+    <p class="support-actions">
+      <a class="btn btn-primary btn-big" id="support-paypal" href="https://paypal.me/TNasibovi" target="_blank" rel="noopener noreferrer" data-i18n="support.btn_paypal"></a>
+      <a class="btn btn-ghost btn-big" id="support-boosty" href="https://boosty.to/torquex.live/donate" target="_blank" rel="noopener noreferrer" data-i18n="support.btn_boosty"></a>
+    </p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="support.advice.title"></h2>
+    <p data-i18n="support.advice.lead"></p>
+    <ol class="support-list">
+      <li data-i18n="support.advice.item1"></li>
+      <li data-i18n="support.advice.item2"></li>
+      <li data-i18n="support.advice.item3"></li>
+      <li data-i18n="support.advice.item4"></li>
+    </ol>
+    <p data-i18n="support.advice.close"></p>
+  </section>
+  <section class="card">
+    <h2 data-i18n="support.flags.title"></h2>
+    <p data-i18n="support.flags.lead"></p>
+    <ul class="support-list">
+      <li data-i18n="support.flags.item1"></li>
+      <li data-i18n="support.flags.item2"></li>
+      <li data-i18n="support.flags.item3"></li>
+      <li data-i18n="support.flags.item4"></li>
+      <li data-i18n="support.flags.item5"></li>
+    </ul>
+    <p data-i18n="support.flags.close"></p>
+  </section>
+  <p class="hint" data-i18n="support.disclaimer"></p>
+</main>
+
+<footer class="site-footer" id="tx-footer"></footer>
+</body>
+</html>

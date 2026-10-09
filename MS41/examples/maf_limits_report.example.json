@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "status": "REQUIRES_DATA",
+  "source_sha256": "31110cb55f0f55be8687ad15c00e3f6a606a1863b22658b9259c8e3e1f000acc",
+  "plan_status": null,
+  "ratio": 1.06,
+  "stock_ceiling_kgh": 725.0938,
+  "new_ceiling_kgh": 768.5994,
+  "details": {
+    "curve_sensor": "пример (не даташит): стоковая кривая B28 с +6 % выше 2 В",
+    "curve_provenance": "derived",
+    "reviewed_not_changed": {
+      "c_maf_max_ch_3": "предел воздуха для подогрева катализатора — термический предел выхлопа, а не диапазон датчика",
+      "c_maf_min_diag": "нижний порог диагностики; верхняя часть диапазона датчика на него не влияет",
+      "c_maf_lam_tol_tra": "порог взвешивания коррекции впрыска — калибровочное решение, требует отдельного лога, а не пропорции",
+      "c_maf_ti_ad_max": "предел амбиентной лямбда-адаптации — задаёт, где адаптация выключается, менять вместе с датчиком нельзя",
+      "c_maf_max_isa": "предел адаптации регулятора холостого хода",
+      "c_maf_ad_isa": "воздух для адаптации холостого хода",
+      "c_abc_max_maf": "лимит счётчика неисправностей датчика",
+      "c_maf_dyw": "динамическое окно воздуха для лямбда-адаптации",
+      "c_maf_hys_cop": "гистерезис защиты от перегрева катализатора"
+    },
+    "limits": {
+      "c_maf_max": {
+        "description": "LM_MAX | Maximum air mass",
+        "units": "mg/stroke",
+        "address": "0x01B5",
+        "stock": 800.7176,
+        "aligned": 848.7607,
+        "aligned_raw": 156,
+        "aligned_representable": 849.7412,
+        "quantization_error_percent": 0.11551
+      },
+      "c_maf_max_diag": {
+        "description": "LM_MAX_DIAG | Maximum air mass for MAF sensor diagnosis: short circuit to battery",
+        "units": "mg/stroke",
+        "address": "0x01B6",
+        "stock": 1002.2588,
+        "aligned": 1062.3944,
+        "aligned_raw": 195,
+        "aligned_representable": 1062.1765,
+        "quantization_error_percent": 0.02051
+      }
+    },
+    "ratio_percent": 6.0,
+    "policy_delta_bound_percent": 30.0
+  },
+  "findings": [
+    {
+      "code": "SATURATION_NOT_PROVEN",
+      "severity": "info",
+      "message": "файл логов — заглушка (no real MS41 logs are available yet), секция maf пуста: насыщение стокового датчика не подтверждено"
+    }
+  ],
+  "patches": []
+}

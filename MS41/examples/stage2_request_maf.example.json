@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "customer": "example-client",
+  "stage": 2,
+  "ron": 95,
+  "catalyst": "present",
+  "intents": [
+    {
+      "id": "curve",
+      "kind": "maf_curve",
+      "curve_file": "maf_curve_example.json",
+      "reason": "поставлен датчик, у которого есть документированная кривая"
+    },
+    {
+      "id": "vmax",
+      "kind": "vmax",
+      "mode": "raise",
+      "value_kmh": 250,
+      "reason": "просьба клиента: ограничитель 250 км/ч"
+    }
+  ]
+}

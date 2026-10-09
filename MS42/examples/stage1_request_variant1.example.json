@@ -1,0 +1,15 @@
+{
+  "stage": "stage1",
+  "customer": "Пример (данные вымышлены)",
+  "octane": "ron98",
+  "notes": "Вариант 1 для MS42: профиль топлива RON98 и запрос опций. Ограничители записываются; зажигание ждёт лога детонации, топливо — широкополосной лямбды, опции (DISA off, ISA off, вентилятор/термостат) честно ждут данных — так и должно быть.",
+  "intents": [
+    {"id": "o1", "kind": "octane", "fuel": "ron98"},
+    {"id": "v1", "kind": "vmax", "value_kmh": 240, "hard_add_kmh": 8.0},
+    {"id": "r1", "kind": "rpm_limit", "transmission": "manual",
+     "soft_rpm": 6688, "hard_rpm": 6720, "acknowledge_risk": true},
+    {"id": "d1", "kind": "disa_off"},
+    {"id": "s1", "kind": "isa_off"},
+    {"id": "f1", "kind": "fan_thermostat"}
+  ]
+}

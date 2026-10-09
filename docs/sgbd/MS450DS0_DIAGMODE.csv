@@ -1,0 +1,15 @@
+NR,MODE,MODE_TEXT
+0x81,DEFAULT,DefaultMode
+0x82,PT,PeriodicTransmissions
+0x84,EOLSSM,EndOfLineSystemSupplierMode
+0x85,ECUPM,ECUProgrammingMode
+0x86,ECUDM,ECUDevelopmentMode
+0x87,ECUAM,ECUAdjustmentMode
+0x88,ECUVCM,ECUVariantCodingMode
+0x89,ECUSM,ECUSafetyMode
+0xFA,SSS_A,SystemSupplierSpecific (A)
+0xFB,SSS_B,SystemSupplierSpecific (B)
+0xFC,SSS_C,SystemSupplierSpecific (C)
+0xFD,SSS_D,SystemSupplierSpecific (D)
+0xFE,SSS_E,SystemSupplierSpecific (E)
+0xXY,--,unbekannter Diagnose-Mode

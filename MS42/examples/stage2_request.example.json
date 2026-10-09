@@ -1,0 +1,19 @@
+{
+  "stage": "stage2",
+  "customer": "Пример (данные вымышлены)",
+  "notes": "Stage 2 привязан к комбинации железа: файл без блока hardware не собирается.",
+  "hardware": {
+    "chassis": "E46",
+    "engine": "M52TUB28",
+    "intake": "M50 manifold + adapter",
+    "injectors": "240 cc/min, 4 bar regulator",
+    "maf": "stock HFM5",
+    "exhaust": "headers, no catalyst (off-road use)",
+    "cams": "stock"
+  },
+  "intents": [
+    {"id": "v1", "kind": "vmax", "value_kmh": 250, "hard_add_kmh": 8.0},
+    {"id": "r1", "kind": "rpm_limit", "transmission": "manual",
+     "soft_rpm": 6688, "hard_rpm": 6720, "acknowledge_risk": true}
+  ]
+}

@@ -1,0 +1,6 @@
+WERT,UWTEXT
+0x00,MS45 bereit Startwert zu empfangen
+0x01,kein freier Startwert Speicherplatz vorhanden
+0x02,noch kein Startwert gespeichert
+0x03,Startwert nicht plausibel
+0xXY,unbekannter Status

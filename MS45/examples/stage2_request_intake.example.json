@@ -1,0 +1,15 @@
+{
+  "stage": "stage2",
+  "customer": "Пример: E85/впуск — то, что нельзя сделать без стенда",
+  "notes": "Установлен впуск и форсунки другого артикула; замеров пока нет.",
+  "hardware": {
+    "intake": "после рынка, артикул не указан",
+    "injectors": "артикул не указан",
+    "maf": "сток",
+    "cat": "removed"
+  },
+  "intents": [
+    {"kind": "rev_limit", "value": 6700, "transmission": "mt", "acknowledge_risk": true},
+    {"kind": "stage2"}
+  ]
+}

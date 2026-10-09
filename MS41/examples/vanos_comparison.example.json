@@ -1,0 +1,63 @@
+{
+  "engine": "m52b28",
+  "transmission": "manual",
+  "source": "SYNTHETIC EXAMPLE — replace with a real dyno/log comparison before use",
+  "provenance": "derived",
+  "units": "mg/stroke",
+  "measured_tco_c": 80.0,
+  "crossing_rpm": 2250,
+  "advanced": [
+    [
+      704,
+      300
+    ],
+    [
+      1504,
+      430
+    ],
+    [
+      2752,
+      540
+    ],
+    [
+      4064,
+      560
+    ]
+  ],
+  "retarded": [
+    [
+      704,
+      250
+    ],
+    [
+      1504,
+      400
+    ],
+    [
+      2752,
+      560
+    ],
+    [
+      4064,
+      620
+    ]
+  ],
+  "threshold": [
+    [
+      704,
+      270
+    ],
+    [
+      1504,
+      410
+    ],
+    [
+      2752,
+      550
+    ],
+    [
+      4064,
+      580
+    ]
+  ]
+}

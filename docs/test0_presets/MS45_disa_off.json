@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "ecu": "MS45",
+  "prg_variants": [
+    "MS450DS0"
+  ],
+  "function": "disa_off",
+  "title_ru": "DISA off: поведение впуска на низких и средних оборотах",
+  "how_to_ru": [
+    "File → Detect ECU: проверить, что определился правильный ЭБУ и версия (не похожее семейство).",
+    "В окне ЭБУ выбрать job из списка и перетащить в график нужные результаты (*_WERT).",
+    "Settings → Logging: папка <Desktop>\\Test0_Logs, разделитель CSV и формат времени — по умолчанию.",
+    "Внешний широкополосный зонд: подключить и выбрать как внешний источник ДО начала записи.",
+    "Сохранить набор как пресет Test0 (имя TorqueX_<ЭБУ>_<функция>) — дальше запуск одной кнопкой.",
+    "Перед заездом включить запись и убедиться, что все колонки заполняются."
+  ],
+  "test0_ru": "Пресет собирается в UI Test0: выбрать job-ы и результаты из списка jobs ниже и сохранить набор под именем TorqueX_MS45_disa_off.",
+  "jobs": [
+    {
+      "job": "STATUS_MOTORDREHZAHL",
+      "results": [
+        "STAT_MOTORDREHZAHL_WERT"
+      ],
+      "note_ru": "STAT_MOTORDREHZAHL_SOLL_WERT в том же job-е — это заданные обороты, не факт; в канал rpm не берём",
+      "channel": "rpm",
+      "unit_hint": "1/min",
+      "title_ru": "обороты двигателя",
+      "alternatives_ru": [
+        "STATUS_MESSWERTE: STAT_NMOT_WERT, STAT_NSOL_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_LMM_MASSE",
+      "results": [
+        "STAT_LMM_MASSE_WERT"
+      ],
+      "channel": "maf_airflow",
+      "unit_hint": "kg/h",
+      "title_ru": "расход воздуха (ДМРВ), кг/ч",
+      "alternatives_ru": [
+        "STATUS_MESSWERTE: STAT_MSHFM_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_DROSSELKLAPPE",
+      "results": [
+        "STAT_DROSSELKLAPPE_WERT"
+      ],
+      "note_ru": "дроссель; отдельного канала педали в PRG MS45 нет",
+      "channel": "pedal",
+      "unit_hint": "percent_or_deg",
+      "title_ru": "ход педали / положение дросселя, % или °"
+    },
+    {
+      "job": "STATUS_MOTORTEMPERATUR",
+      "results": [
+        "STAT_MOTORTEMPERATUR_WERT"
+      ],
+      "channel": "coolant_temp",
+      "unit_hint": "C",
+      "title_ru": "температура охлаждающей жидкости, °C"
+    },
+    {
+      "job": "STATUS_AN_LUFTTEMPERATUR",
+      "results": [
+        "STAT_AN_LUFTTEMPERATUR_WERT"
+      ],
+      "channel": "intake_temp",
+      "unit_hint": "C",
+      "title_ru": "температура воздуха на впуске, °C"
+    },
+    {
+      "job": "STATUS_LL_STELLER",
+      "results": [
+        "STAT_AUSGANG"
+      ],
+      "note_ru": "выгрузка PRG: значение — STAT_AUSGANG, единица — STAT_AUSGANG_EINH; имя одинаково у нескольких job-ов MS45 — различать по job-у",
+      "ambiguous": true,
+      "channel": "idle_actuator",
+      "unit_hint": "percent",
+      "title_ru": "регулятор холостого хода (скважность/интегратор)"
+    }
+  ],
+  "unavailable_ru": [
+    "load (нагрузка (мг/такт)): В MS45 job-а с нагрузкой в мг/такт в PRG нет; замена (момент/расход HFM) требует отдельного решения — см. docs/TEST0_WEB_ANALYSIS_RU.md §6."
+  ],
+  "drive_ru": [
+    "2 подхода: плавные разгоны с 1500 до 3500 об/мин на 40–60 % педали, по 5–8 секунд каждый.",
+    "10 секунд ровного движения на 2000 об/мин — посмотреть, нет ли вялости/провала внизу.",
+    "Холостой ход 1 минуту: убедиться, что обороты стоят (после отключения DISA это первое, что проверяют).",
+    "Если появилась ошибка по DISA/VIM — записать код в карточку, лог всё равно присылать."
+  ]
+}

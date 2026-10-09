@@ -1,0 +1,17 @@
+NR,CBS_K,CBS_K_TEXT
+0x01,Oel,Motoroel
+0x02,Br_v,Bremsbelag vorne
+0x03,Brfl,Bremsfluessigkeit
+0x04,Filt,Mikrofilter
+0x06,Br_h,Bremsbelag hinten
+0x07,CSF,Dieselpartikelfilter
+0x08,Batt,Batterie
+0x09,VTG,Verteilergetriebeoel
+0x10,ZKrz,Zuendkerzen
+0x11,Sic,Sichtpruefung/Fahrzeug-Check
+0x12,Kfl,Kuehlfluessigkeit
+0x13,H2,H2-Check
+0x14,Ueb,Uebergabedurchsicht
+0x16,DAD,Additiv fuer Partikelfilter
+0x20,TUV,§Fahrzeuguntersuchung
+0x21,AU,§Abgasuntersuchung

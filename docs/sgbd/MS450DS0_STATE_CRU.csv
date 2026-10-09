@@ -1,0 +1,8 @@
+WERT,UWTEXT
+0x00,0 FGR passiv
+0x01,1 FGR aktiv
+0x03,3 FGR Taste 0/1
+0x05,5 FGR Taste +
+0x07,7 FGR Taste -
+0x09,9 FGR Taste TIP
+0xFF,FFStatus unbekannt

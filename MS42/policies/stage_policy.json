@@ -1,0 +1,480 @@
+{
+  "version": 4,
+  "description": "TorqueX MS42 patch allowlist (v4: + popcorn ignition with AC and + the DISA/MAF-diagnosis objects that a documented MS43 donor can supply; v3: + MS4X-documented Stage 2 injector and fuel-consumption objects, plus an explicit per-object quantum tolerance for the sub-millisecond tables). Default deny: a symbol can only be written when it is listed here. Limits are engineering values in the units of the XDF object. max_delta_percent is measured against the stock value found in the file being patched, and is skipped when the stock value is zero. Every stock value quoted below was read out of the 16 stock 0110C6 images in MS42/firmware with MS42/tools/analyze_firmware.py and the XDF in MS42/definitions/.",
+  "max_quantization_error_percent": 1.0,
+  "objects": {
+    "c_vs_max_1": {
+      "min": 0,
+      "max": 255,
+      "note": "VMAX_1, the SOFT vehicle speed limiter threshold in km/h (cylinders are shut down). Stock: 216 on the M52TUB20 images (E36Z3/E39/E46, all 4 B20 files) and 255 on every other variant, so 255 is the factory 'no soft stage worth having' value. 255 is also the highest reachable value; the hard stage is c_vs_max_1 + c_vs_max_add."
+    },
+    "c_vs_max_add": {
+      "min": 0,
+      "max": 31.875,
+      "note": "VMAX_ADD, the additive offset that produces the HARD vehicle speed limiter threshold (c_vs_max_1 + c_vs_max_add, fuel pump cut). 8-bit cell at 0.125 km/h per count, so the whole range is 0..31.875 km/h; stock is raw 40 = 5.0 km/h on all 16 images. MS4X wiki: maxing c_vs_max_1 and c_vs_max_add raises the limit to about 287 km/h."
+    },
+    "c_n_min_vs_max": {
+      "min": 0,
+      "max": 8160,
+      "note": "N_MIN_V_BEG, minimum engine speed for the vehicle speed limiter to act. 8-bit cell at 32 rpm per count, so 8160 rpm is the top of the range (raw 255) and disables the limiter completely; stock is 800 rpm on all 16 images. Writing 8160 is a deliberate removal of a factory protection, so the generator only offers it when the request says so explicitly."
+    },
+    "c_vs_max_hys": {
+      "min": 0,
+      "max": 20,
+      "note": "VMAX_HYS, hysteresis on the maximum vehicle speed. Stock is 3 km/h on all 16 images. Popcorn-style work item: lowering it makes the limiter chatter, so the policy allows only a small band."
+    },
+    "id_n_max_mt__nvs": {
+      "min": 2000,
+      "max": 8160,
+      "max_cells_per_patch": 3,
+      "note": "TAB_NMAX_MT, the SOFT engine speed limiter for a manual gearbox, one value per detected gear (3 entries), 8-bit at 32 rpm per count. Stock: 6624/6528/6528 rpm on the B28 images and 6496/6496/6496 on the B25 images. Soft limiting shuts cylinders down in the fuelcut pattern, so a raised value is reachable but not free."
+    },
+    "id_n_max_max_mt__nvs": {
+      "min": 2000,
+      "max": 8160,
+      "max_cells_per_patch": 3,
+      "note": "TAB_NMAX_MAX_MT, the HARD engine speed limiter for a manual gearbox (all cylinders cut), 8-bit at 32 rpm per count. Stock: 6688/6624/6624 rpm on the B28 images. Raising the hard limiter above the soft limiter's value is meaningless; the generator enforces 'soft <= hard' instead of guessing here."
+    },
+    "id_n_max_at__nvs": {
+      "min": 2000,
+      "max": 8160,
+      "max_cells_per_patch": 3,
+      "note": "TAB_NMAX_AT, the SOFT engine speed limiter for an automatic gearbox. Same cell format as the manual table. Stock: 6592/6496/6496 rpm on the B28 images. This is a DIFFERENT table from the manual one; the generator writes the pair that matches the customer's gearbox and reports the other pair as untouched."
+    },
+    "id_n_max_max_at__nvs": {
+      "min": 2000,
+      "max": 8160,
+      "max_cells_per_patch": 3,
+      "note": "TAB_NMAX_MAX_AT, the HARD engine speed limiter for an automatic gearbox. Stock: 6656/6592/6592 rpm on the B28 images."
+    },
+    "id_n_max_cycnr__vs": {
+      "min": 0,
+      "max": 255,
+      "max_cells_per_patch": 5,
+      "note": "TAB_NMAX_ZYKA__TV, number of combustion cycles between two steps of the soft limiter's cylinder shutoff escalation, indexed by vehicle speed (axis ldp_vs__n_max_cycnr = 38/90/142/196/234 km/h). Stock: 13/19/23/26/26 on B28, 1/1/20/40/40 on B20. This is the 'harshness' of the soft limiter and stays stock unless a request asks for it."
+    },
+    "c_n_max_hys": {
+      "min": 0,
+      "max": 512,
+      "note": "NMAX_HYS, engine speed hysteresis before injection is re-enabled after hitting the limiter. 8-bit at 32 rpm. Stock: 0 rpm on the B20/B25 images and 32 rpm on the B28 images."
+    },
+    "c_n_max_hys_max": {
+      "min": 0,
+      "max": 1600,
+      "note": "NMAX_HYS_MAX, hysteresis before ALL injectors are switched back on. Stock: 800 rpm on the B20 images and 320 rpm on the B25/B28 images."
+    },
+    "c_n_hys_max_puc": {
+      "min": 0,
+      "max": 1600,
+      "note": "N_HYS_MAX_SA, upper engine speed hysteresis of the trailing-throttle fuel cut (overrun cut). 8-bit at 32 rpm. Stock: 640 rpm on B20/B28 and 480 rpm on B25/THAI. Popcorn work item; individual road validation required."
+    },
+    "c_n_hys_min_puc": {
+      "min": 0,
+      "max": 1024,
+      "note": "N_HYS_MIN_SA, lower engine speed hysteresis of the trailing-throttle fuel cut. Stock: 128 rpm on B28 and 448 rpm on B20/B25. Popcorn work item."
+    },
+    "ip_n_min_puc__tco": {
+      "min": 0,
+      "max": 8160,
+      "max_cells_per_patch": 6,
+      "note": "Minimum engine speed for trailing-throttle fuel cut activation with the AC OFF (1 table x 6 coolant-temperature columns), 8-bit at 32 rpm. Stock: 1024..1600 rpm on B28, 992..1600 on B25, 1024..1600 on B20. Raising it to an unreachable speed gives continuous exhaust pops; that is a deliberate hardware decision (catalyst!) and the generator gates it on evidence, not on this range."
+    },
+    "ip_n_min_accin_puc__tco": {
+      "min": 0,
+      "max": 8160,
+      "max_cells_per_patch": 6,
+      "note": "Same as ip_n_min_puc__tco but for the AC ON branch; the AC state is the factory-provided switch that can toggle pops without touching the off-branch. Stock: 1056..1600 rpm on B28, 1024..1600 on B25, 1216..1600 on B20."
+    },
+    "ip_iga_puc__n__tco": {
+      "min": -23.625,
+      "max": 10.875,
+      "max_cells_per_patch": 24,
+      "note": "Ignition angle during trailing-throttle fuel cut-off, 6x4, 8-bit at 0.375 degCRK - 23.625. Retarding the angle is the 'pop intensity' knob and is the only direction a popcorn profile moves it. The ceiling is the stock maximum over the 16 images (10.875 = raw 92), the floor is the raw floor of the object - nothing here is advanced past what a stock file already holds. The XDF labels these tables in degC, the values are degrees crank (definition units defect, the report prints the corrected unit from tools/popcorn.py)."
+    },
+    "ip_t_puc_deacc__n__maf_mmv": {
+      "min": 0,
+      "max": 8.0,
+      "max_cells_per_patch": 24,
+      "note": "Delay before the trailing-throttle fuel cut is activated, 6x4, 16-bit at 0.000128 per count - seconds despite the XDF units field saying mg/strk. Stock: 0.48..0.87 s on B28/B25 and 0.9..1.7 s on B20. Sets how long the pop lasts; values above 8 s are outside any plausible calibration."
+    },
+    "id_maf_tab": {
+      "min": 0.0,
+      "max": 1023.98,
+      "max_delta_percent": 30.0,
+      "max_cells_per_patch": 256,
+      "require_monotonic": true,
+      "xdf_index": 0,
+      "note": "MAF transfer function: 256 columns, 16-bit at 0.015625 kg/h, file address 0x497A6. xdf_index 0 picks the 256x1 view; the second definition of the same title is the 16x16 view of the same bytes (identical raw values) and the two '(MAF Hack 2048kg/h)' views use a doubled scale that is only valid AFTER the community program patch, which this repository does not apply. The curve must stay non-decreasing; the table is the index for every load-based map. The stock curve peaks at raw 49786 = 777.9 kg/h on all 16 images, so a hardware/variant limit, not a difference between them. max_delta_percent 30 keeps an edit inside 'same sensor, corrected curve' territory."
+    },
+    "ip_tipr_cst__tco": {
+      "min": 0,
+      "max": 459.0,
+      "max_delta_percent": 60,
+      "max_cells_per_patch": 8,
+      "note": "Pre-crank (cold start) pulse width, 1x8 16-bit at 0.004 ms per count. Stock across the 16 images: 9.888..229.5 ms. MS4X wiki 'Aftermarket Injector Scaling': multiply the pulse-width maps by the flow ratio, never the enrichment factors; target lambda integrators within plus/minus 5% and injector duty at or below 90%. max is twice the highest stock value on any image (engineering ceiling, not a tuning window); max_delta_percent 60 keeps a single pass inside a documented injector swap."
+    },
+    "ip_ti_cst__n__tco": {
+      "min": 0,
+      "max": 267.32,
+      "max_delta_percent": 60,
+      "max_cells_per_patch": 24,
+      "note": "Cranking pulse width, 3x8 16-bit at 0.004 ms per count. Stock across the 16 images: 5.376..133.7 ms. MS4X wiki 'Aftermarket Injector Scaling': multiply the pulse-width maps by the flow ratio, never the enrichment factors; target lambda integrators within plus/minus 5% and injector duty at or below 90%. max is twice the highest stock value on any image (engineering ceiling, not a tuning window); max_delta_percent 60 keeps a single pass inside a documented injector swap."
+    },
+    "ip_ti_tco_1_is_ivvt__n__maf": {
+      "min": 0,
+      "max": 21.832,
+      "max_delta_percent": 60,
+      "max_cells_per_patch": 36,
+      "note": "Cold idle pulse width, 6x6 16-bit at 0.004 ms per count. Stock across the 16 images: 0.752..10.92 ms. MS4X wiki 'Aftermarket Injector Scaling': multiply the pulse-width maps by the flow ratio, never the enrichment factors; target lambda integrators within plus/minus 5% and injector duty at or below 90%. max is twice the highest stock value on any image (engineering ceiling, not a tuning window); max_delta_percent 60 keeps a single pass inside a documented injector swap."
+    },
+    "ip_tib__n__maf": {
+      "min": 0,
+      "max": 32.464,
+      "max_delta_percent": 60,
+      "max_cells_per_patch": 192,
+      "note": "Cold engine and vanos-fault pulse width, 16x12 16-bit at 0.004 ms per count. Stock across the 16 images: 0.64..16.23 ms. MS4X wiki 'Aftermarket Injector Scaling': multiply the pulse-width maps by the flow ratio, never the enrichment factors; target lambda integrators within plus/minus 5% and injector duty at or below 90%. max is twice the highest stock value on any image (engineering ceiling, not a tuning window); max_delta_percent 60 keeps a single pass inside a documented injector swap."
+    },
+    "ip_ti_tco_2_is_ivvt__n__maf": {
+      "min": 0,
+      "max": 21.416,
+      "max_delta_percent": 60,
+      "max_cells_per_patch": 36,
+      "note": "Warm idle pulse width, 6x6 16-bit at 0.004 ms per count. Stock across the 16 images: 0.756..10.71 ms. MS4X wiki 'Aftermarket Injector Scaling': multiply the pulse-width maps by the flow ratio, never the enrichment factors; target lambda integrators within plus/minus 5% and injector duty at or below 90%. max is twice the highest stock value on any image (engineering ceiling, not a tuning window); max_delta_percent 60 keeps a single pass inside a documented injector swap."
+    },
+    "ip_ti_tco_2_pl_ivvt_1__n__maf": {
+      "min": 0,
+      "max": 32.36,
+      "max_delta_percent": 60,
+      "max_cells_per_patch": 192,
+      "note": "Warm part-load pulse width, bank 1, 16x12 16-bit at 0.004 ms per count. Stock across the 16 images: 0.62..16.18 ms. MS4X wiki 'Aftermarket Injector Scaling': multiply the pulse-width maps by the flow ratio, never the enrichment factors; target lambda integrators within plus/minus 5% and injector duty at or below 90%. max is twice the highest stock value on any image (engineering ceiling, not a tuning window); max_delta_percent 60 keeps a single pass inside a documented injector swap."
+    },
+    "ip_ti_tco_2_pl_ivvt_2__n__maf": {
+      "min": 0,
+      "max": 32.552,
+      "max_delta_percent": 60,
+      "max_cells_per_patch": 192,
+      "note": "Warm part-load pulse width, bank 2, 16x12 16-bit at 0.004 ms per count. Stock across the 16 images: 0.72..16.28 ms. MS4X wiki 'Aftermarket Injector Scaling': multiply the pulse-width maps by the flow ratio, never the enrichment factors; target lambda integrators within plus/minus 5% and injector duty at or below 90%. max is twice the highest stock value on any image (engineering ceiling, not a tuning window); max_delta_percent 60 keeps a single pass inside a documented injector swap."
+    },
+    "ip_ti_slow_wf_thd_min__tco": {
+      "min": 0,
+      "max": 0.368,
+      "max_delta_percent": 60,
+      "max_cells_per_patch": 4,
+      "note": "Slow cylinder-wall-wetting compensation, 1x4 16-bit at 0.004 ms per count. Stock across the 16 images: 0.148..0.184 ms. MS4X wiki 'Aftermarket Injector Scaling': multiply the pulse-width maps by the flow ratio, never the enrichment factors; target lambda integrators within plus/minus 5% and injector duty at or below 90%. max is twice the highest stock value on any image (engineering ceiling, not a tuning window); max_delta_percent 60 keeps a single pass inside a documented injector swap. Квант 0.032 мс, поэтому относительная ошибка округления для малых значений (0.2 мс) достигает 4 %; абсолютная ошибка не превышает половины шага (0.016 мс). Толерантность квантования для этого объекта задана явно и не влияет на остальные.",
+      "max_quantization_error_percent": 10.0
+    },
+    "ip_ti_fast_wf_thd_min__tco": {
+      "min": 0,
+      "max": 0.536,
+      "max_delta_percent": 60,
+      "max_cells_per_patch": 4,
+      "note": "Fast cylinder-wall-wetting compensation, 1x4 16-bit at 0.004 ms per count. Stock across the 16 images: 0.204..0.268 ms. MS4X wiki 'Aftermarket Injector Scaling': multiply the pulse-width maps by the flow ratio, never the enrichment factors; target lambda integrators within plus/minus 5% and injector duty at or below 90%. max is twice the highest stock value on any image (engineering ceiling, not a tuning window); max_delta_percent 60 keeps a single pass inside a documented injector swap. Квант 0.032 мс, поэтому относительная ошибка округления для малых значений (0.2 мс) достигает 4 %; абсолютная ошибка не превышает половины шага (0.016 мс). Толерантность квантования для этого объекта задана явно и не влияет на остальные.",
+      "max_quantization_error_percent": 10.0
+    },
+    "ip_ti_add_dly__vb": {
+      "min": 0,
+      "max": 8.0,
+      "max_delta_percent": 200,
+      "max_cells_per_patch": 8,
+      "note": "KF_TI_ADD_TOTZ: injector dead-time correction over battery voltage, 1x8 16-bit at 0.032 ms per count. Stock: 0.064..3.616 ms. Written only together with a documented new-injector latency curve; the stock voltage axis is not changed. Квант 0.032 мс, поэтому относительная ошибка округления для малых значений (0.2 мс) достигает 4 %; абсолютная ошибка не превышает половины шага (0.016 мс). Толерантность квантования для этого объекта задана явно и не влияет на остальные.",
+      "max_quantization_error_percent": 10.0
+    },
+    "ip_fco_map_cor__pq_ main_col": {
+      "min": 0.5,
+      "max": 50.0,
+      "max_delta_percent": 300,
+      "max_cells_per_patch": 6,
+      "note": "Fuel-consumption correction factor (XDF title contains a space after 'pq_'; the axis is ldp_pq_main_col__fco_map_cor). Stock: 3.601..4.567. MS4X wiki: after scaling the pulse-width maps by a factor f, divide this table by f to keep the cluster consumption reading correct. Units in the XDF are wrong (says degC)."
+    },
+    "ip_iga_accin_puc__n__tco": {
+      "min": -23.625,
+      "max": 11.25,
+      "max_cells_per_patch": 24,
+      "note": "Ignition angle during trailing-throttle fuel cut-off with the AC ON (companion of ip_iga_puc__n__tco, added in policy v4). Popcorn profiles write both tables so the behaviour does not depend on the air conditioning being on. Same bounds as the AC-off table: retarding only, ceiling = stock maximum over the 16 images (11.25 = raw 93), floor = raw floor. The XDF mislabels the units as degC; tools/popcorn.py prints degrees crank."
+    },
+    "id_vim_pl__n_vim__maf": {
+      "min": 0,
+      "max": 1,
+      "max_cells_per_patch": 48,
+      "note": "DISA activation setpoints at part load (0/1 flap position per rpm x load cell). Written only with a documented intake change (M54 manifold) and an MS43 donor calibration: MS4X M52TUB25 Tuning says the factory M52TU DISA closes the channel exactly where the engine makes peak power and suggests copying the M54 maps 1:1. Сток на B28 LHD: 0..1 [mg/strk], 8x6 по 1."
+    },
+    "id_vim_fl__n_vim": {
+      "min": 0,
+      "max": 1,
+      "max_cells_per_patch": 8,
+      "note": "DISA activation setpoints at full load (1x8, one value per rpm point). Same rules as the part-load table: only with the matching manifold and a donor calibration. Сток на B28 LHD: 0..1 [1/min], 1x8 по 1."
+    },
+    "id_pvs_fl_vim__n_vim": {
+      "min": 0,
+      "max": 100,
+      "max_cells_per_patch": 8,
+      "note": "Accelerator pedal threshold for entering DISA full load (x0.4686 %TPS). Donor-derived: the threshold belongs to the manifold, not to the engine, but it still needs the donor calibration to be reproducible. Сток на B28 LHD: 37.49..62.33 [1/min], 1x8 по 0.468627."
+    },
+    "c_maf_hys_vim": {
+      "min": 0,
+      "max": 100,
+      "max_cells_per_patch": 1,
+      "note": "Engine load hysteresis for DISA switching. MS43 uses a different scale (10.8941 mg/stk per count against 5.44706 here), so a donor value is NOT transferable - this entry exists so the transfer tool can refuse it out loud instead of silently rescaling. Сток на B28 LHD: 27.24..27.24 [mg/strk], 1x1 по 5.44706."
+    },
+    "c_n_hys_vim": {
+      "min": 0,
+      "max": 500,
+      "max_cells_per_patch": 1,
+      "note": "Engine speed hysteresis for DISA switching, 1 rpm per count on both families. Сток на B28 LHD: 30..30 [U/min], 1x1 по 1."
+    },
+    "c_maf_max_diag": {
+      "min": 100,
+      "max": 2000,
+      "max_cells_per_patch": 1,
+      "note": "Maximum MAF load threshold before a short-to-positive fault is latched. MS4X: raise it just above the maximum load the engine can actually produce when breathing is improved. Written either from a measured maximum load or, explicitly opted in, from the donor calibration. Сток на B28 LHD: 750..750 [kg/h], 1x1 по 0.25."
+    },
+    "c_maf_min_diag": {
+      "min": 0,
+      "max": 100,
+      "max_cells_per_patch": 1,
+      "note": "Minimum MAF load threshold for the short-to-ground fault. Left stock unless a measured reason exists; listed so a donor 'reference' transfer has a policy bound. Сток на B28 LHD: 5.5..5.5 [kg/h], 1x1 по 0.25."
+    },
+    "ip_iga_ron_98_pl_ivvt__n__maf": {
+      "min": -23.625,
+      "max": 72.0,
+      "max_delta_percent": null,
+      "max_cells_per_patch": 320,
+      "require_monotonic": false,
+      "xdf_index": null,
+      "note": "ip_iga_ron_98_pl_ivvt__n__maf: XDF 0110C6 20x16; stock measured across 16 real 0110C6 images (-16.875..39.75).",
+      "address": "0x6F12",
+      "size_bits": 8,
+      "shape": "20x16",
+      "units": "[mg/strk]",
+      "equation": "0.375*X+-23.625",
+      "stock": {
+        "samples": 16,
+        "variants": 122,
+        "min": -16.875,
+        "max": 39.75,
+        "uniform": false,
+        "note": "measured from repository stock images"
+      },
+      "source": "MS42/definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf + MS42/firmware"
+    },
+    "ip_iga_optm_tco_2__n__maf": {
+      "min": -23.625,
+      "max": 72.0,
+      "max_delta_percent": null,
+      "max_cells_per_patch": 192,
+      "require_monotonic": false,
+      "xdf_index": null,
+      "note": "ip_iga_optm_tco_2__n__maf: XDF 0110C6 16x12; stock measured across 16 real 0110C6 images (-7.875..37.125).",
+      "address": "0x6AB0",
+      "size_bits": 8,
+      "shape": "16x12",
+      "units": "[mg/strk]",
+      "equation": "0.375*X+-23.625",
+      "stock": {
+        "samples": 16,
+        "variants": 102,
+        "min": -7.875,
+        "max": 37.125,
+        "uniform": false,
+        "note": "measured from repository stock images"
+      },
+      "source": "MS42/definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf + MS42/firmware",
+      "read_only": true,
+      "write_context": "ignition_optm_link"
+    },
+    "ldpm_n__iga_ron_91_pl_ivvt": {
+      "min": 0.0,
+      "max": 65535.0,
+      "max_delta_percent": null,
+      "max_cells_per_patch": 20,
+      "require_monotonic": false,
+      "xdf_index": null,
+      "note": "ldpm_n__iga_ron_91_pl_ivvt: XDF 0110C6 20x1; stock measured across 16 real 0110C6 images (200..6500).",
+      "address": "0x16BA",
+      "size_bits": 16,
+      "shape": "20x1",
+      "units": "[1/min]",
+      "equation": "1.0*X+0.0",
+      "stock": {
+        "samples": 16,
+        "variants": 31,
+        "min": 200.0,
+        "max": 6500.0,
+        "uniform": false,
+        "note": "measured from repository stock images"
+      },
+      "source": "MS42/definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf + MS42/firmware",
+      "read_only": true
+    },
+    "ldpm_maf__iga_ron_91_pl_ivvt": {
+      "min": 0.0,
+      "max": 1389.0143249999999,
+      "max_delta_percent": null,
+      "max_cells_per_patch": 16,
+      "require_monotonic": false,
+      "xdf_index": null,
+      "note": "ldpm_maf__iga_ron_91_pl_ivvt: XDF 0110C6 16x1; stock measured across 16 real 0110C6 images (33.0006..619.996).",
+      "address": "0x16E4",
+      "size_bits": 16,
+      "shape": "16x1",
+      "units": "[mg/strk]",
+      "equation": "0.021195*X+0.0",
+      "stock": {
+        "samples": 16,
+        "variants": 39,
+        "min": 33.000614999999996,
+        "max": 619.99614,
+        "uniform": false,
+        "note": "measured from repository stock images"
+      },
+      "source": "MS42/definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf + MS42/firmware",
+      "read_only": true
+    },
+    "id_pvs_fl__n": {
+      "min": 0.0,
+      "max": 119.499885,
+      "max_delta_percent": null,
+      "max_cells_per_patch": 16,
+      "require_monotonic": false,
+      "xdf_index": null,
+      "note": "id_pvs_fl__n: XDF 0110C6 1x16; stock measured across 16 real 0110C6 images (29.9921..76.8548).",
+      "address": "0x7429",
+      "size_bits": 8,
+      "shape": "1x16",
+      "units": "[1/min]",
+      "equation": "0.468627*X+0.0",
+      "stock": {
+        "samples": 16,
+        "variants": 20,
+        "min": 29.992128,
+        "max": 76.854828,
+        "uniform": false,
+        "note": "measured from repository stock images"
+      },
+      "source": "MS42/definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf + MS42/firmware",
+      "write_context": "pedal_response"
+    },
+    "id_pvs_fl_ivvt__n": {
+      "min": 0.0,
+      "max": 119.499885,
+      "max_delta_percent": null,
+      "max_cells_per_patch": 16,
+      "require_monotonic": false,
+      "xdf_index": null,
+      "note": "id_pvs_fl_ivvt__n: XDF 0110C6 1x16; stock measured across 16 real 0110C6 images (39.8333..76.8548).",
+      "address": "0x7441",
+      "size_bits": 8,
+      "shape": "1x16",
+      "units": "[1/min]",
+      "equation": "0.468627*X+0.0",
+      "stock": {
+        "samples": 16,
+        "variants": 22,
+        "min": 39.833295,
+        "max": 76.854828,
+        "uniform": false,
+        "note": "measured from repository stock images"
+      },
+      "source": "MS42/definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf + MS42/firmware",
+      "write_context": "pedal_response"
+    },
+    "ip_tqi_pvs_tco_2__n__pvs": {
+      "min": 0.0,
+      "max": 65535.0,
+      "max_delta_percent": null,
+      "max_cells_per_patch": 144,
+      "require_monotonic": false,
+      "xdf_index": null,
+      "note": "ip_tqi_pvs_tco_2__n__pvs: XDF 0110C6 12x12; stock measured across 16 real 0110C6 images (0..288).",
+      "address": "0x2B60",
+      "size_bits": 16,
+      "shape": "12x12",
+      "units": "[&#176;TPS]",
+      "equation": "1.0*X+0.0",
+      "stock": {
+        "samples": 16,
+        "variants": 213,
+        "min": 0.0,
+        "max": 288.0,
+        "uniform": false,
+        "note": "measured from repository stock images"
+      },
+      "source": "MS42/definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf + MS42/firmware",
+      "read_only": true,
+      "write_context": "pedal_response"
+    },
+    "ip_tqi_maf__n__maf": {
+      "min": 0.0,
+      "max": 65535.0,
+      "max_delta_percent": null,
+      "max_cells_per_patch": 64,
+      "require_monotonic": false,
+      "xdf_index": null,
+      "note": "ip_tqi_maf__n__maf: XDF 0110C6 16x2; stock measured across 16 real 0110C6 images (5..422).",
+      "address": "0x2A00",
+      "size_bits": 16,
+      "shape": "16x2",
+      "units": "[mg/strk]",
+      "equation": "1.0*X+0.0",
+      "stock": {
+        "samples": 16,
+        "variants": 54,
+        "min": 5.0,
+        "max": 422.0,
+        "uniform": false,
+        "note": "measured from repository stock images"
+      },
+      "source": "MS42/definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf + MS42/firmware",
+      "read_only": true,
+      "write_context": "pedal_response"
+    },
+    "ip_cam_sp_tco_2_in_pl__n__maf_ivvt": {
+      "min": 60.0,
+      "max": 155.625,
+      "max_delta_percent": null,
+      "max_cells_per_patch": 192,
+      "require_monotonic": false,
+      "xdf_index": null,
+      "note": "ip_cam_sp_tco_2_in_pl__n__maf_ivvt: XDF 0110C6 16x12; stock measured across 16 real 0110C6 images (82.875..120).",
+      "address": "0x5A10",
+      "size_bits": 8,
+      "shape": "16x12",
+      "units": "[mg/strk]",
+      "equation": "0.375*X+60.0",
+      "stock": {
+        "samples": 16,
+        "variants": 94,
+        "min": 82.875,
+        "max": 120.0,
+        "uniform": false,
+        "note": "measured from repository stock images"
+      },
+      "source": "MS42/definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf + MS42/firmware",
+      "write_context": "vanos_stage1"
+    },
+    "ip_cam_sp_tco_2_ex_pl__n__maf_ivvt": {
+      "min": -155.625,
+      "max": -60.0,
+      "max_delta_percent": null,
+      "max_cells_per_patch": 192,
+      "require_monotonic": false,
+      "xdf_index": null,
+      "note": "ip_cam_sp_tco_2_ex_pl__n__maf_ivvt: XDF 0110C6 16x12; stock measured across 16 real 0110C6 images (-105..-80.625).",
+      "address": "0x5950",
+      "size_bits": 8,
+      "shape": "16x12",
+      "units": "[mg/strk]",
+      "equation": "-0.375*X+-60.0",
+      "stock": {
+        "samples": 16,
+        "variants": 65,
+        "min": -105.0,
+        "max": -80.625,
+        "uniform": false,
+        "note": "measured from repository stock images"
+      },
+      "source": "MS42/definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf + MS42/firmware",
+      "write_context": "vanos_stage1"
+    }
+  }
+}

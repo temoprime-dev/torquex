@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-i18n-title="logs.title">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="TorqueX: log analysis and voluntary log sharing.">
+<title>TorqueX</title>
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="logs.js"></script>
+</head>
+<body data-page="logs">
+<a class="skip-link" href="#main" data-i18n="common.skip"></a>
+<header class="site-header" id="tx-header"></header>
+<div id="tx-demo-banner"></div>
+<p id="tx-live" class="sr-only" role="status" aria-live="polite"></p>
+<p id="tx-alert" class="sr-only" role="alert" aria-live="assertive"></p>
+<div id="tx-toasts" class="toasts" aria-live="polite"></div>
+
+<main id="main" class="wrap">
+  <h1 data-i18n="logs.title"></h1>
+  <p class="lead" data-i18n="logs.lead"></p>
+
+  <section class="card">
+    <form id="log-form" novalidate>
+      <div class="field">
+        <label for="log-file" data-i18n="logs.file"></label>
+        <input type="file" id="log-file" accept=".csv,.db">
+        <p class="hint" data-i18n="logs.file_hint"></p>
+      </div>
+      <div class="field">
+        <label for="log-package" data-i18n="logs.package"></label>
+        <select id="log-package">
+          <option value="ignition" data-i18n="logs.pkg_ignition"></option>
+          <option value="fuel" data-i18n="logs.pkg_fuel"></option>
+          <option value="vanos" data-i18n="logs.pkg_vanos"></option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="switch-row">
+          <input type="checkbox" id="log-consent">
+          <label for="log-consent" data-i18n="logs.consent"></label>
+        </div>
+        <div class="switch-row" id="log-share-row" hidden>
+          <input type="checkbox" id="log-share">
+          <label for="log-share" data-i18n="logs.share"></label>
+        </div>
+        <p class="hint" id="log-share-note" hidden>
+          <span data-i18n="logs.share_note"></span>
+          <a href="privacy.html" data-i18n="footer.privacy"></a>
+        </p>
+      </div>
+      <button type="submit" class="btn btn-primary" id="log-submit" data-i18n="logs.submit" disabled></button>
+    </form>
+  </section>
+
+  <section class="card" id="log-result" hidden></section>
+
+  <section class="card">
+    <h2 data-i18n="logs.delete_title"></h2>
+    <p data-i18n="logs.delete_lead"></p>
+    <div class="field">
+      <label for="log-delete-code" data-i18n="logs.delete_code"></label>
+      <input type="text" id="log-delete-code" autocomplete="off" spellcheck="false">
+    </div>
+    <button type="button" class="btn btn-ghost" id="log-delete" data-i18n="logs.delete_btn"></button>
+    <p id="log-delete-status" role="status" aria-live="polite"></p>
+  </section>
+</main>
+
+<footer class="site-footer" id="tx-footer"></footer>
+</body>
+</html>

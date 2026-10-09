@@ -1,0 +1,27 @@
+WERT,UWTEXT
+0x00,0 Start
+0x01,1 Referenzleck Messung
+0x02,2 Grobleck Messung Start
+0x03,3 Grobleck Messung erweitert
+0x04,4 Grobleck Messung beendet
+0x05,5 Feinleck Messung Start
+0x06,6 Feinleck Messung erweitert
+0x07,7 2. Referenzleck Messung
+0x08,8 Tank geprüft
+0x09,9 Feinleck
+0x0A,A Grobleck
+0x0B,B Modulfehler
+0x0C,C Ende
+0x11,11 Batteriespannung aus gültigem Bereich
+0x12,12 elektrischer Fehler
+0x21,21 Tank Nachfüllen festgestellt
+0x22,22 Tankverschluss offen
+0x23,23 Batteriespannung Fluktuation zu hoch
+0x24,24 Diagnose maximale Zeit erreicht
+0x25,25 Fluktuationen Referenzstrom zu hoch
+0x26,26 Pumpenstrom abgefallen während der Messung
+0x0100,1 Funktion läuft
+0x0300,3 Werte gültig
+0x0600,6 Start verhindert
+0x0700,7 nicht gestartet
+0xXY,XY Status kann nicht ausgegeben werden

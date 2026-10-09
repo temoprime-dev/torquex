@@ -1,0 +1,5 @@
+WERT,UWTEXT
+0x00,0 kein Sporttaster
+0x01,1 Sporttaster vorhanden
+0x02,2 Sporttaster mit SSG
+0xFF,FFStatus unbekannt

@@ -1,0 +1,13 @@
+WERT,UWTEXT
+0x00,0 Position Notlauf 1
+0x01,1 Position oberer Anschlag
+0x02,2 Position Notlauf 2
+0x03,3 Positionen Ende
+0x04,4 Adaption Notlauf 1
+0x05,5 Adaption oberer Anschlag
+0x06,6 Adaption Notlauf 2
+0x07,7 Adaption unterer Ansschlag
+0x08,8 Adaption Notlauf
+0x09,9 Adaption Notlauf 3
+0x0A,10 Adaption Ende
+0xFF,FF Status unbekannt

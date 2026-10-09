@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "comment": "Каналы логирования Test0/TestO по ЭБУ: какие job-ы и результаты (поля STAT*_WERT) включать. Источник имён — только выгрузки из PRG (docs/sgbd/*_jobs.md, PR #29); ничего не выдумано. Файл читают: анализатор (tools/test0_log.py) и генератор пресетов (tools/test0_presets.py). Тест tests/test_test0_log.py сверяет каждое имя с docs/sgbd/*.",
+  "loggers": {
+    "primary": "Test0 v2 (phenoboy.kapsi.fi/Test0-2.0), EDIABAS/EdiabasLib",
+    "legacy": "TestO (2017)",
+    "verdict": "Имена job-ов и результатов ниже совпадают с EDIABAS-полями PRG, поэтому один и тот же набор подходит Test0 v2 и legacy TestO."
+  },
+  "ecus": {
+    "MS41": {
+      "title": "Siemens MS41 (M52/M52TU, E36/E39/Z3)",
+      "prg_variants": ["MS410DS0", "MS410DS1", "MS410DS2", "MS410DS3", "MS411DS1", "MS411DS2"],
+      "jobs_files": ["MS410DS0_jobs.md", "MS410DS1_jobs.md", "MS410DS2_jobs.md", "MS410DS3_jobs.md", "MS411DS1_jobs.md", "MS411DS2_jobs.md"]
+    },
+    "MS42": {
+      "title": "Siemens MS42 (M52TU, E46/E39/E36 Z3)",
+      "prg_variants": ["MS420DS0"],
+      "jobs_files": ["MS420DS0_jobs.md"]
+    },
+    "MS43": {
+      "title": "Siemens MS43 (M54, E46/E39/E53/E60/E83)",
+      "prg_variants": ["MS430DS0"],
+      "jobs_files": ["MS430DS0_jobs.md"]
+    },
+    "MS45": {
+      "title": "Siemens MS45 / MS45.1 (M54, E60/E83/E46/Z4)",
+      "prg_variants": ["MS450DS0"],
+      "jobs_files": ["MS450DS0_jobs.md"]
+    }
+  },
+  "channels": {
+    "rpm": {
+      "title_ru": "обороты двигателя",
+      "unit": "1/min",
+      "ecus": {
+        "MS41": [{"job": "STATUS_MOTORDREHZAHL", "results": ["STATUS_MOTORDREHZAHL_WERT", "STAT_MOTORDREHZAHL_WERT"]}],
+        "MS42": [{"job": "STATUS_MOTORDREHZAHL", "results": ["STAT_MOTORDREHZAHL_WERT", "STATUS_MOTORDREHZAHL_WERT"]}],
+        "MS43": [{"job": "STATUS_MOTORDREHZAHL", "results": ["STAT_MOTORDREHZAHL_WERT", "STATUS_MOTORDREHZAHL_WERT"]}],
+        "MS45": [
+          {"job": "STATUS_MOTORDREHZAHL", "results": ["STAT_MOTORDREHZAHL_WERT"], "note_ru": "STAT_MOTORDREHZAHL_SOLL_WERT в том же job-е — это заданные обороты, не факт; в канал rpm не берём"},
+          {"job": "STATUS_MESSWERTE", "results": ["STAT_NMOT_WERT", "STAT_NSOL_WERT"], "note_ru": "по возможности не дублировать: выберите один job; NMOT/NSOL/MSHFM/MIIST — сокращения из PRG (единицы берутся из *_EINH на реальном логе)"}
+        ]
+      }
+    },
+    "load": {
+      "title_ru": "нагрузка (мг/такт)",
+      "unit": "mg/stroke",
+      "note_ru": "В MS45 job-а с нагрузкой в мг/такт в PRG нет; замена (момент/расход HFM) требует отдельного решения — см. docs/TEST0_WEB_ANALYSIS_RU.md §6.",
+      "ecus": {
+        "MS41": [{"job": "STATUS_LAST", "results": ["STATUS_LAST_WERT", "STAT_LAST_WERT"]}],
+        "MS42": [{"job": "STATUS_LAST", "results": ["STAT_LAST_WERT"]}],
+        "MS43": [{"job": "STATUS_LAST", "results": ["STAT_LAST_WERT"]}]
+      }
+    },
+    "maf_airflow": {
+      "title_ru": "расход воздуха (ДМРВ), кг/ч",
+      "unit": "kg/h",
+      "ecus": {
+        "MS41": [
+          {"job": "STATUS_LMM", "results": ["STATUS_LMM_WERT"]},
+          {"job": "STATUS_LMM_MASSE", "results": ["STAT_LMM_MASSE_WERT"]}
+        ],
+        "MS42": [
+          {"job": "STATUS_LMM", "results": ["STATUS_LMM_WERT"]},
+          {"job": "STATUS_LMM_MASSE", "results": ["STAT_LMM_MASSE_WERT"]}
+        ],
+        "MS43": [
+          {"job": "STATUS_LMM", "results": ["STAT_LMM_WERT", "STATUS_LMM_WERT"]},
+          {"job": "STATUS_LMM_MASSE", "results": ["STAT_LMM_MASSE_WERT"]}
+        ],
+        "MS45": [
+          {"job": "STATUS_LMM_MASSE", "results": ["STAT_LMM_MASSE_WERT"]},
+          {"job": "STATUS_MESSWERTE", "results": ["STAT_MSHFM_WERT"], "note_ru": "тот же расход по данным внутри ЭБУ"}
+        ]
+      }
+    },
+    "maf_voltage": {
+      "title_ru": "напряжение ДМРВ, В",
+      "unit": "V",
+      "ecus": {
+        "MS41": [{"job": "STATUS_LMM_VOLT", "results": ["STATUS_LMM_VOLT_WERT"]}],
+        "MS42": [{"job": "STATUS_LMM_SPANNUNG", "results": ["STAT_LMM_SPANNUNG_WERT"]}],
+        "MS43": [{"job": "STATUS_LMM_SPANNUNG", "results": ["STAT_LMM_SPANNUNG_WERT"]}]
+      }
+    },
+    "ignition": {
+      "title_ru": "фактический угол зажигания, °КВ",
+      "unit": "deg_crank",
+      "ecus": {
+        "MS41": [{"job": "STATUS_ZUENDWINKEL", "results": ["STATUS_ZUENDWINKEL_WERT", "STAT_ZUENDWINKEL_WERT"]}],
+        "MS42": [{"job": "STATUS_ZUENDWINKEL", "results": ["STAT_ZUENDWINKEL_WERT"]}],
+        "MS43": [{"job": "STATUS_ZUENDWINKEL", "results": ["STAT_ZUENDWINKEL_WERT"]}],
+        "MS45": [{"job": "STATUS_ZUENDWINKEL", "results": ["STAT_ZUENDWINKEL_WERT"]}]
+      }
+    },
+    "knock_voltage_bank1": {
+      "title_ru": "напряжение датчика детонации 1 (банк 1, цилиндры 1–3)",
+      "unit": "V",
+      "note_ru": "Сырое напряжение ADC, не вердикт ЭБУ; только вспомогательный фильтр пиков. Два датчика на шесть цилиндров.",
+      "ecus": {
+        "MS41": [{"job": "STATUS_KLOPF_ADC1", "results": ["STATUS_KLOPF_ADC1_WERT"]}],
+        "MS42": [{"job": "STATUS_KLOPF_ADC1", "results": ["STAT_KLOPF_ADC1_WERT"]}],
+        "MS43": [{"job": "STATUS_KLOPF_ADC1", "results": ["STAT_KLOPF_ADC1_WERT"]}]
+      }
+    },
+    "knock_voltage_bank2": {
+      "title_ru": "напряжение датчика детонации 2 (банк 2, цилиндры 4–6)",
+      "unit": "V",
+      "note_ru": "Сырое напряжение ADC, не вердикт ЭБУ; только вспомогательный фильтр пиков.",
+      "ecus": {
+        "MS41": [{"job": "STATUS_KLOPF_ADC2", "results": ["STATUS_KLOPF_ADC2_WERT"]}],
+        "MS42": [{"job": "STATUS_KLOPF_ADC2", "results": ["STAT_KLOPF_ADC2_WERT"]}],
+        "MS43": [{"job": "STATUS_KLOPF_ADC2", "results": ["STAT_KLOPF_ADC2_WERT"]}]
+      }
+    },
+    "knock_status": {
+      "title_ru": "состояние тракта детонации (MS45), семантика и единицы НЕ доказаны",
+      "unit": null,
+      "note_ru": "Единственная запись про детонацию в MS45. Пока не подтверждено, что это коррекция угла: считать вспомогательным сигналом и не подменять им обязательный канал «коррекция детонации» (docs/PACKS_LOG_REQUIREMENTS_RU.md §1.1).",
+      "ecus": {
+        "MS45": [{"job": "STATUS_KLOPFEN", "results": ["STAT_KLOPFEN_WERT"]}]
+      }
+    },
+    "injector_pulse_width": {
+      "title_ru": "время впрыска, мс",
+      "unit": "ms",
+      "ecus": {
+        "MS41": [{"job": "STATUS_EINSPRITZZEIT", "results": ["STATUS_EINSPRITZZEIT_WERT", "STAT_EINSPRITZZEIT_WERT"]}],
+        "MS42": [{"job": "STATUS_EINSPRITZZEIT", "results": ["STAT_EINSPRITZZEIT_WERT"]}],
+        "MS43": [{"job": "STATUS_EINSPRITZZEIT", "results": ["STAT_EINSPRITZZEIT_WERT"]}],
+        "MS45": [{"job": "STATUS_ZEIT_EINSPRITZ", "results": ["STAT_ZEIT_WERT"]}]
+      }
+    },
+    "lambda_bank1_voltage": {
+      "title_ru": "напряжение передней лямбды, банк 1 (узкополосная), В",
+      "unit": "V",
+      "note_ru": "Диагностический сигнал; для топливного пакета нужна внешняя широкополосная лямбда (канал lambda_wideband).",
+      "ecus": {
+        "MS41": [{"job": "STATUS_L_SONDE", "results": ["STATUS_L_SONDE_WERT"]}],
+        "MS42": [{"job": "STATUS_L_SONDE", "results": ["STATUS_L_SONDE_WERT", "STAT_L_SONDE_WERT"]}],
+        "MS43": [{"job": "STATUS_L_SONDE", "results": ["STAT_L_SONDE_WERT", "STATUS_L_SONDE_WERT"]}],
+        "MS45": [{"job": "STATUS_L_SONDE", "results": ["STAT_L_SONDE_WERT"]}]
+      }
+    },
+    "lambda_integrator": {
+      "title_ru": "интегратор лямбда-регулирования (STFT), %",
+      "unit": "percent",
+      "ecus": {
+        "MS41": [{"job": "STATUS_LAMBDA_INTEGRATOR_1", "results": ["STAT_LAMBDA_INTEGRATOR_1_WERT"]}],
+        "MS42": [{"job": "STATUS_LAMBDA_INTEGRATOR_1", "results": ["STAT_LAMBDA_INTEGRATOR_1_WERT"]}],
+        "MS43": [
+          {"job": "STATUS_LAMBDA_INTEGRATOR_1", "results": ["STAT_LAMBDA_INTEGRATOR_1_WERT"]},
+          {"job": "STATUS_INT", "results": ["STAT_INT_WERT", "STATUS_INT_WERT"], "note_ru": "то же регулирование, другое имя поля"}
+        ],
+        "MS45": [
+          {"job": "STATUS_INT", "results": ["STAT_INT_WERT"]},
+          {"job": "STATUS_ADD", "results": ["STAT_ADD_WERT"], "note_ru": "аддитивная адаптация, не путать с интегратором"},
+          {"job": "STATUS_MUL", "results": ["STAT_MUL_WERT"], "note_ru": "мультипликативная адаптация, не путать с интегратором"}
+        ]
+      }
+    },
+    "coolant_temp": {
+      "title_ru": "температура охлаждающей жидкости, °C",
+      "unit": "C",
+      "ecus": {
+        "MS41": [{"job": "STATUS_MOTORTEMPERATUR", "results": ["STATUS_MOTORTEMPERATUR_WERT", "STAT_MOTORTEMPERATUR_WERT"]}],
+        "MS42": [
+          {"job": "STATUS_MOTORTEMPERATUR", "results": ["STAT_MOTORTEMPERATUR_WERT", "STATUS_MOTORTEMPERATUR_WERT"]},
+          {"job": "STATUS_MOTORTEMPERATUR_MWB", "results": ["STAT_MOTORTEMPERATUR_MWB_WERT", "STATUS_MOTORTEMPERATUR_MWB_WERT"]}
+        ],
+        "MS43": [
+          {"job": "STATUS_MOTORTEMPERATUR", "results": ["STAT_MOTORTEMPERATUR_WERT", "STATUS_MOTORTEMPERATUR_WERT"]},
+          {"job": "STATUS_MOTORTEMPERATUR_MWB", "results": ["STAT_MOTORTEMPERATUR_MWB_WERT", "STATUS_MOTORTEMPERATUR_MWB_WERT"]}
+        ],
+        "MS45": [{"job": "STATUS_MOTORTEMPERATUR", "results": ["STAT_MOTORTEMPERATUR_WERT"]}]
+      }
+    },
+    "intake_temp": {
+      "title_ru": "температура воздуха на впуске, °C",
+      "unit": "C",
+      "ecus": {
+        "MS41": [{"job": "STATUS_AN_LUFTTEMPERATUR", "results": ["STATUS_AN_LUFTTEMPERATUR_WERT", "STAT_AN_LUFTTEMPERATUR_WERT"]}],
+        "MS42": [
+          {"job": "STATUS_AN_LUFTTEMPERATUR", "results": ["STAT_AN_LUFTTEMPERATUR_WERT", "STATUS_AN_LUFTTEMPERATUR_WERT"]},
+          {"job": "STATUS_AN_LUFTTEMPERATUR_MWB", "results": ["STAT_AN_LUFTTEMPERATUR_MWB_WERT", "STATUS_AN_LUFTTEMPERATUR_MWB_WERT"]}
+        ],
+        "MS43": [
+          {"job": "STATUS_AN_LUFTTEMPERATUR", "results": ["STAT_AN_LUFTTEMPERATUR_WERT", "STATUS_AN_LUFTTEMPERATUR_WERT"]},
+          {"job": "STATUS_AN_LUFTTEMPERATUR_MWB", "results": ["STAT_AN_LUFTTEMPERATUR_MWB_WERT", "STATUS_AN_LUFTTEMPERATUR_MWB_WERT"]}
+        ],
+        "MS45": [{"job": "STATUS_AN_LUFTTEMPERATUR", "results": ["STAT_AN_LUFTTEMPERATUR_WERT"]}]
+      }
+    },
+    "pedal": {
+      "title_ru": "ход педали / положение дросселя, % или °",
+      "unit": "percent_or_deg",
+      "note_ru": "У MS42/MS43 есть и педаль (PWG), и дроссель (DK): требованию лога достаточно одного канала — выбирайте тот, что ближе к «запросу водителя».",
+      "ecus": {
+        "MS41": [{"job": "STATUS_DKP", "results": ["STATUS_DKP_WERT"], "note_ru": "положение дроссельной заслонки"}],
+        "MS42": [
+          {"job": "STATUS_DKP_WINKEL", "results": ["STAT_DKP_WINKEL_WERT"]},
+          {"job": "STATUS_PWG_WINKEL", "results": ["STAT_PWG_WINKEL_WERT"], "note_ru": "педаль"}
+        ],
+        "MS43": [
+          {"job": "STATUS_DKP_WINKEL", "results": ["STAT_DKP_WINKEL_WERT"]},
+          {"job": "STATUS_PWG_WINKEL", "results": ["STAT_PWG_WINKEL_WERT"], "note_ru": "педаль"}
+        ],
+        "MS45": [{"job": "STATUS_DROSSELKLAPPE", "results": ["STAT_DROSSELKLAPPE_WERT"], "note_ru": "дроссель; отдельного канала педали в PRG MS45 нет"}]
+      }
+    },
+    "pedal_voltage": {
+      "title_ru": "напряжение датчика педали/дросселя, В",
+      "unit": "V",
+      "note_ru": "Вспомогательный канал: по напряжению нельзя судить о «газе в пол» без тарировки, но он пригодится для диагностики.",
+      "ecus": {
+        "MS41": [{"job": "STATUS_DKP_VOLT", "results": ["STATUS_DKP_VOLT_WERT"]}],
+        "MS42": [{"job": "STATUS_PWG_POTI_SPANNUNG", "results": ["STAT_PWG_POTI_SPANNUNG_1_WERT", "STAT_PWG_POTI_SPANNUNG_2_WERT"]}],
+        "MS43": [{"job": "STATUS_PWG_POTI_SPANNUNG", "results": ["STAT_PWG_POTI_SPANNUNG_1_WERT", "STAT_PWG_POTI_SPANNUNG_2_WERT"]}],
+        "MS45": [
+          {"job": "STATUS_DKP_VOLT", "results": ["STAT_DKP_VOLT_WERT"]},
+          {"job": "STATUS_PWG_POTI_SPANNUNG", "results": ["STAT_PWG_POTI_SPANNUNG_1_WERT"]}
+        ]
+      }
+    },
+    "vehicle_speed": {
+      "title_ru": "скорость автомобиля, км/ч",
+      "unit": "km/h",
+      "note_ru": "В PRG MS45 job-а скорости нет (идёт по CAN) — для MS45 пометить как недоступный.",
+      "ecus": {
+        "MS41": [{"job": "STATUS_GESCHWINDIGKEIT", "results": ["STATUS_GESCHWINDIGKEIT_WERT"]}],
+        "MS42": [{"job": "STATUS_GESCHWINDIGKEIT", "results": ["STAT_GESCHWINDIGKEIT_WERT"]}],
+        "MS43": [{"job": "STATUS_GESCHWINDIGKEIT", "results": ["STAT_GESCHWINDIGKEIT_WERT"]}]
+      }
+    },
+    "vanos_intake_actual": {
+      "title_ru": "фазы впуска, факт, °КВ",
+      "unit": "deg_crank",
+      "ecus": {
+        "MS41": [{"job": "STATUS_NW_IST_POSITION", "results": ["STATUS_NW_IST_POSITION_WERT"], "note_ru": "в MS41 один VANOS (впуск)"}],
+        "MS42": [{"job": "STATUS_VANOS_NW_LAGE_EINLASS", "results": ["STAT_VANOS_NW_LAGE_EINLASS_IST_WERT"]}],
+        "MS43": [
+          {"job": "STATUS_VANOS_NW_LAGE_EINLASS", "results": ["STAT_VANOS_NW_LAGE_EINLASS_IST_WERT"]},
+          {"job": "STATUS_VANOS_NW_LAGE_IST_SOLL_REF_EINLASS", "results": ["STAT_VANOS_NW_LAGE_EINLASS_IST_WERT"]}
+        ],
+        "MS45": [{"job": "STATUS_MESSWERTE_VANOS", "results": ["STAT_EINLASS_WERT"], "truncated_export": true, "note_ru": "строка выгрузки обрезана (…+1): имя STAT_EINLASS_WERT ожидается по симметрии с видимым STAT_AUSLASS_WERT, но выгрузкой не подтверждено — проверить на первом реальном логе MS45"}]
+      }
+    },
+    "vanos_intake_target": {
+      "title_ru": "фазы впуска, цель, °КВ",
+      "unit": "deg_crank",
+      "ecus": {
+        "MS42": [{"job": "STATUS_VANOS_NW_LAGE_EINLASS", "results": ["STAT_VANOS_NW_LAGE_EINLASS_SOLL_WERT"]}],
+        "MS43": [
+          {"job": "STATUS_VANOS_NW_LAGE_IST_SOLL_REF_EINLASS", "results": ["STAT_VANOS_NW_LAGE_EINLASS_SOLL_WERT"]}
+        ],
+        "MS45": [{"job": "STATUS_MESSWERTE_VANOS", "results": ["STAT_EINLASS_SOLL_WERT"]}]
+      }
+    },
+    "vanos_exhaust_actual": {
+      "title_ru": "фазы выпуска, факт, °КВ",
+      "unit": "deg_crank",
+      "ecus": {
+        "MS42": [{"job": "STATUS_VANOS_NW_LAGE_AUSLASS", "results": ["STAT_VANOS_NW_LAGE_AUSLASS_IST_WERT"]}],
+        "MS43": [
+          {"job": "STATUS_VANOS_NW_LAGE_AUSLASS", "results": ["STAT_VANOS_NW_LAGE_AUSLASS_IST_WERT"]},
+          {"job": "STATUS_VANOS_NW_LAGE_IST_SOLL_REF_AUSLASS", "results": ["STAT_VANOS_NW_LAGE_AUSLASS_IST_WERT"]}
+        ],
+        "MS45": [{"job": "STATUS_MESSWERTE_VANOS", "results": ["STAT_AUSLASS_WERT"]}]
+      }
+    },
+    "vanos_exhaust_target": {
+      "title_ru": "фазы выпуска, цель, °КВ",
+      "unit": "deg_crank",
+      "ecus": {
+        "MS42": [{"job": "STATUS_VANOS_NW_LAGE_AUSLASS", "results": ["STAT_VANOS_NW_LAGE_AUSLASS_SOLL_WERT"]}],
+        "MS43": [
+          {"job": "STATUS_VANOS_NW_LAGE_IST_SOLL_REF_AUSLASS", "results": ["STAT_VANOS_NW_LAGE_AUSLASS_SOLL_WERT"]}
+        ],
+        "MS45": [{"job": "STATUS_MESSWERTE_VANOS", "results": ["STAT_AUSLASS_SOLL_WERT"]}]
+      }
+    },
+    "torque_actual": {
+      "title_ru": "фактический момент (внутренняя величина ЭБУ), Н·м — MS45",
+      "unit": "Nm",
+      "note_ru": "Вспомогательный канал MS45. Единицы и знак берутся из поля *_EINH; подменять им «нагрузку мг/такт» без решения владельца нельзя.",
+      "ecus": {
+        "MS45": [{"job": "STATUS_MESSWERTE", "results": ["STAT_MIIST_WERT"]}]
+      }
+    },
+    "battery_voltage": {
+      "title_ru": "напряжение бортсети, В",
+      "unit": "V",
+      "ecus": {
+        "MS41": [{"job": "STATUS_UBATT", "results": ["STATUS_UBATT_WERT", "STAT_UBATT_WERT"]}],
+        "MS42": [{"job": "STATUS_UBATT", "results": ["STAT_UBATT_WERT", "STATUS_UBATT_WERT"]}],
+        "MS43": [{"job": "STATUS_UBATT", "results": ["STAT_UBATT_WERT", "STATUS_UBATT_WERT"]}],
+        "MS45": [{"job": "STATUS_UBATT", "results": ["STAT_UBATT_WERT"]}]
+      }
+    },
+    "fan_duty": {
+      "title_ru": "ступень/скважность электровентилятора",
+      "unit": "step_or_percent",
+      "ecus": {
+        "MS42": [{"job": "STATUS_DREHZAHL_E_LUEFTER_VON_AC", "results": ["STAT_DREHZAHL_E_LUEFTER_VON_AC_WERT"]}],
+        "MS43": [{"job": "STATUS_DREHZAHL_E_LUEFTER_VON_AC", "results": ["STAT_DREHZAHL_E_LUEFTER_VON_AC_WERT"]}],
+        "MS45": [{"job": "STATUS_E_LUEFTER", "results": ["STAT_AUSGANG"], "ambiguous": true, "note_ru": "выгрузка PRG: значение — STAT_AUSGANG, единица — STAT_AUSGANG_EINH, текст — STAT_AUSGANG_TEXT; имя STAT_AUSGANG одинаково у нескольких job-ов MS45, в логе различать по job-у"}]
+      }
+    },
+    "idle_actuator": {
+      "title_ru": "регулятор холостого хода (скважность/интегратор)",
+      "unit": "percent",
+      "ecus": {
+        "MS41": [
+          {"job": "STATUS_TAST_LL_STELLER", "results": ["STATUS_TAST_LL_STELLER_WERT"]},
+          {"job": "STATUS_LL_REGLER", "results": ["STATUS_LL_REGLER_WERT"]}
+        ],
+        "MS42": [
+          {"job": "STATUS_LL_STELLER_TV", "results": ["STAT_LL_STELLER_TV_WERT"]},
+          {"job": "STATUS_LL_INTEGRATOR", "results": ["STAT_LL_INTEGRATOR_WERT"]}
+        ],
+        "MS43": [
+          {"job": "STATUS_LL_STELLER_TV", "results": ["STAT_LL_STELLER_TV_WERT"]},
+          {"job": "STATUS_LL_INTEGRATOR", "results": ["STAT_LL_INTEGRATOR_WERT"]}
+        ],
+        "MS45": [{"job": "STATUS_LL_STELLER", "results": ["STAT_AUSGANG"], "ambiguous": true, "note_ru": "выгрузка PRG: значение — STAT_AUSGANG, единица — STAT_AUSGANG_EINH; имя одинаково у нескольких job-ов MS45 — различать по job-у"}]
+      }
+    },
+    "disa_status": {
+      "title_ru": "состояние заслонок DISA/VIM",
+      "unit": "text_or_step",
+      "note_ru": "У MS42/MS43 в PRG есть только управление STEUERN_DISA (не измерение). Статус — только MS45 (STATUS_VIMDISA).",
+      "ecus": {
+        "MS45": [{"job": "STATUS_VIMDISA", "results": ["STAT_AUSGANG"], "ambiguous": true, "note_ru": "выгрузка PRG: значение — STAT_AUSGANG, текст — STAT_AUSGANG_TEXT (например, «ein/aus»); имя одинаково у нескольких job-ов MS45 — различать по job-у"}]
+      }
+    },
+    "lambda_wideband": {
+      "title_ru": "внешняя широкополосная лямбда (Innovate/AEM/PLX/14Point7/Techedge)",
+      "unit": "lambda_or_afr",
+      "external": true,
+      "note_ru": "Не канал SGBD: подключается в Test0 как внешний источник ([external_source]/[14point7] в testo.ini). Если логгер пишет AFR, анализатор пересчитывает AFR→λ по стехиометрии 14.7 (поле lambda2afr) — это фиксируется в доказательстве.",
+      "ecus": {}
+    }
+  },
+  "unavailable_ru": {
+    "knock_retard": "Канал «коррекция детонации (°)» — вердикт ЭБУ — через SGBD MS41–MS45 недоступен: у MS41/42/43 есть только сырые напряжения датчиков (STATUS_KLOPF_ADC1/2), у MS45 — непроверенный STATUS_KLOPFEN. Следствие: пакет «зажигание» с добавкой выше порога требует либо подтверждения семантики STATUS_KLOPFEN, либо замены «по углу зажигания», которая должна быть утверждена владельцем (сейчас — REQUIRES_DATA).",
+    "load_ms45": "В MS45 нет job-а нагрузки в мг/такт. Кандидаты замены: момент (STAT_MIIST_WERT) и расход HFM (STAT_MSHFM_WERT) — оба требуют проверки на реальном логе.",
+    "vehicle_speed_ms45": "Скорость в MS45 идёт по CAN и в PRG MS45 как job отсутствует.",
+    "ms45_block_results": "Полные списки результатов STATUS_MESSWERTE и STATUS_MESSWERTBLOCK_0..7 в выгрузке обрезаны (показаны первые 12 + счётчик). Если понадобятся конкретные каналы из них — запросить полную выгрузку PRG у Claude."
+  }
+}

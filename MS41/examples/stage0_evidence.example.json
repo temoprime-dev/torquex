@@ -1,0 +1,24 @@
+{
+  "confirmations": {
+    "no_misfire": true,
+    "no_vacuum_leak": true,
+    "fuel_pressure_verified": true,
+    "maf_ok": true,
+    "lambda_sensors_ok": true,
+    "iat_ect_ok": true,
+    "vanos_ok": true,
+    "knock_sensors_ok": true,
+    "stock_backup_saved": true
+  },
+  "dtcs": {
+    "active": [],
+    "pending": []
+  },
+  "fuel_trims_percent": {
+    "bank1_ltft": 2.1,
+    "bank2_ltft": 1.8,
+    "bank1_stft": -0.7,
+    "bank2_stft": -0.4
+  },
+  "minimum_fuel_ron": 95
+}

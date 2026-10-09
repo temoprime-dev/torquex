@@ -1,0 +1,11 @@
+WERT,UWTEXT
+0x00,Startwert verstanden und akzeptiert
+0x01,Startwert verstanden aber nicht akzeptiert
+0x02,Startwert nicht verstanden
+0x03,Interfacefehler: Frame oder Parity oder Timeout
+0x04,Prozess laeuft
+0x05,Startwert Programmierung/Synchronisation wird nicht ausgefuehrt in diesem Zyklus
+0x06,Dieselbe Zufallszahl wie beim letzten Start
+0x07,Kein Startwert programmiert
+0x21,2 aus 3 Startwert im Flasch nicht ok
+0xXY,unbekannter Status

@@ -1,0 +1,9 @@
+WERT,UWTEXT
+0x00,0 keine Taste gedrückt
+0x01,1 Beschleunigen / Taste+
+0x02,2 Verlangsamen / Taste-
+0x03,3 Taste Setzen / Wiederaufnahme
+0x04,4 Taste I/O
+0x06,6 Fehler
+0x07,7 kein Text in Spec
+0xFF,FFStatus unbekannt

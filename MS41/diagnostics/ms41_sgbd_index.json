@@ -1,0 +1,256 @@
+[
+  {
+    "variant": "MS410DS0",
+    "source": "/tmp/ms41sgbd/MS410DS0.md",
+    "ecu": "MS 41.0 fuer M52",
+    "revision": "1.905",
+    "language": "deutsch",
+    "job_count": 83,
+    "status_job_count": 51,
+    "tables": {
+      "BETRIEBSWMATRIX": [
+        28,
+        8
+      ],
+      "BITS": [
+        14,
+        4
+      ],
+      "FORTTEXTE": [
+        52,
+        6
+      ],
+      "FARTMATRIX": [
+        50,
+        17
+      ],
+      "FARTTEXTE": [
+        10,
+        2
+      ],
+      "FUMWELTTEXTE": [
+        29,
+        5
+      ],
+      "NULLEINSTEXTE": [
+        4,
+        3
+      ],
+      "JOBRESULT": [
+        8,
+        2
+      ]
+    }
+  },
+  {
+    "variant": "MS410DS1",
+    "source": "/tmp/ms41sgbd/MS410DS1.md",
+    "ecu": "MS 41.0 fuer M52",
+    "revision": "1.10",
+    "language": "deutsch",
+    "job_count": 86,
+    "status_job_count": 52,
+    "tables": {
+      "BETRIEBSWMATRIX": [
+        31,
+        8
+      ],
+      "BITS": [
+        21,
+        4
+      ],
+      "FORTTEXTE": [
+        97,
+        6
+      ],
+      "FARTMATRIX": [
+        50,
+        17
+      ],
+      "FARTTEXTE": [
+        10,
+        2
+      ],
+      "FUMWELTTEXTE": [
+        29,
+        5
+      ],
+      "NULLEINSTEXTE": [
+        4,
+        3
+      ],
+      "JOBRESULT": [
+        8,
+        2
+      ]
+    }
+  },
+  {
+    "variant": "MS410DS2",
+    "source": "/tmp/ms41sgbd/MS410DS2.md",
+    "ecu": "MS 41.0 fuer M52 Flash",
+    "revision": "1.10",
+    "language": "deutsch",
+    "job_count": 89,
+    "status_job_count": 54,
+    "tables": {
+      "BETRIEBSWMATRIX": [
+        32,
+        8
+      ],
+      "BITS": [
+        21,
+        4
+      ],
+      "FORTTEXTE": [
+        97,
+        6
+      ],
+      "FARTMATRIX": [
+        50,
+        17
+      ],
+      "FARTTEXTE": [
+        10,
+        2
+      ],
+      "FUMWELTTEXTE": [
+        29,
+        5
+      ],
+      "NULLEINSTEXTE": [
+        4,
+        3
+      ],
+      "JOBRESULT": [
+        8,
+        2
+      ]
+    }
+  },
+  {
+    "variant": "MS410DS3",
+    "source": "/tmp/ms41sgbd/MS410DS3.md",
+    "ecu": "MS 41.0 fuer M52 Flash",
+    "revision": "1.08",
+    "language": "deutsch",
+    "job_count": 91,
+    "status_job_count": 55,
+    "tables": {
+      "BETRIEBSWMATRIX": [
+        32,
+        8
+      ],
+      "BITS": [
+        21,
+        4
+      ],
+      "FORTTEXTE": [
+        97,
+        6
+      ],
+      "FARTMATRIX": [
+        50,
+        17
+      ],
+      "FARTTEXTE": [
+        10,
+        2
+      ],
+      "FUMWELTTEXTE": [
+        29,
+        5
+      ],
+      "NULLEINSTEXTE": [
+        4,
+        3
+      ],
+      "JOBRESULT": [
+        8,
+        2
+      ]
+    }
+  },
+  {
+    "variant": "MS411DS1",
+    "source": "/tmp/ms41sgbd/MS411DS1.md",
+    "ecu": "MS 41.1 fuer M52 OBD II",
+    "revision": "1.13",
+    "language": "deutsch",
+    "job_count": 118,
+    "status_job_count": 66,
+    "tables": {
+      "BETRIEBSWMATRIX": [
+        37,
+        8
+      ],
+      "BITS": [
+        22,
+        4
+      ],
+      "FORTTEXTE": [
+        97,
+        6
+      ],
+      "FARTMATRIX": [
+        95,
+        17
+      ],
+      "FARTTEXTE": [
+        10,
+        2
+      ],
+      "FUMWELTTEXTE": [
+        29,
+        5
+      ],
+      "NULLEINSTEXTE": [
+        4,
+        3
+      ],
+      "JOBRESULT": [
+        8,
+        2
+      ]
+    }
+  },
+  {
+    "variant": "MS411DS2",
+    "source": "/tmp/ms41sgbd/MS411DS2.md",
+    "ecu": "MS 41.1 fuer M52 OBD II LDP",
+    "revision": "1.03",
+    "language": "deutsch",
+    "job_count": 120,
+    "status_job_count": 68,
+    "tables": {
+      "BETRIEBSWMATRIX": [
+        37,
+        8
+      ],
+      "BITS": [
+        23,
+        4
+      ],
+      "FORTTEXTE": [
+        104,
+        6
+      ],
+      "FARTMATRIX": [
+        95,
+        17
+      ],
+      "FARTTEXTE": [
+        10,
+        2
+      ],
+      "FUMWELTTEXTE": [
+        29,
+        5
+      ],
+      "JOBRESULT": [
+        8,
+        2
+      ]
+    }
+  }
+]

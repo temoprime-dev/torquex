@@ -1,0 +1,10 @@
+{
+  "max_injector_pulse_width_ms": 14.8,
+  "rpm_at_max_ipw": 6200,
+  "max_maf_voltage": 4.42,
+  "max_maf_airflow_kgh": 393.0,
+  "fuel_trims_percent": {
+    "bank1_ltft": 3.4,
+    "bank2_ltft": 2.9
+  }
+}

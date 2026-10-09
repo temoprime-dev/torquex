@@ -1,0 +1,5 @@
+WERT,UWTEXT
+0x00,Betriebsstundenzaehler verstanden und akzeptiert (top_w < 10h)
+0x01,Betriebsstundenzaehler verstanden aber nicht akzeptiert (top_w > 10h)
+0x02,Betriebsstundenzaehler nicht verstanden und nicht akzeptiert
+0xXY,Betriebsstundenzaehler kann nicht ausgegeben werden

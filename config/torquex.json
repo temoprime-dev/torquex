@@ -1,0 +1,8 @@
+{
+  "bench_required": true,
+  "release_note": "MS42/MS43 linked ignition, pedal_response and vanos_stage1 stay out of the public API until the owner records a bench verification; conservative RON98 Stage 1 ignition remains public.",
+  "ignition_public": {
+    "rpm_threshold": 3000,
+    "high_rpm_factor": 0.5
+  }
+}

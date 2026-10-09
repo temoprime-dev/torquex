@@ -1,0 +1,34 @@
+# Двоичные артефакты MS4x: Git не должен их трогать при checkout.
+#
+# Windows с core.autocrlf=true переводит переводы строк у «текстовых» файлов, а
+# образ прошивки — это не текст: после такой замены перестают сходиться все
+# контрольные суммы, и стенд видит «битый» сток. Помечаем двоичное двоичным.
+*.bin binary
+*.0PA binary
+*.0DA binary
+*.s19 binary
+*.XDF binary
+*.xdf binary
+*.a2l binary
+*.A2L binary
+*.ext binary
+*.cks binary
+
+# Тексты MS45/MS43 — в UTF-8 и всегда с LF: артефакты (политика, манифест,
+# наряд, отчёты) обязаны совпадать побайтово на Windows и Linux.
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+# Логи пакетов и их доказательства: на Windows с core.autocrlf=true CRLF
+# ломает sha256, записанный в доказательство (задание 1 ревью №2) — всегда LF.
+*.csv text eol=lf
+*.ps1 text eol=crlf
+
+# Сайт (web/) — тексты в UTF-8 и всегда с LF: одинаковый вид на Windows и Linux,
+# а diff не «прыгает» из-за CRLF при autocrlf=true.
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.sh text eol=lf

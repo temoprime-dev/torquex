@@ -1,0 +1,6 @@
+WERT,UWTEXT
+0x00,0 Diagnose Anfang
+0x01,1 Diagnose Schritt FETT
+0x02,2 Diagnose Schritt MAGER
+0x03,3 Diagnose Ende
+0xFF,XY Status kann nicht ausgegeben werden

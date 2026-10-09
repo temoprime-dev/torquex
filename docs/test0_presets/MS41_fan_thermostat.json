@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "ecu": "MS41",
+  "prg_variants": [
+    "MS410DS0",
+    "MS410DS1",
+    "MS410DS2",
+    "MS410DS3",
+    "MS411DS1",
+    "MS411DS2"
+  ],
+  "function": "fan_thermostat",
+  "title_ru": "Вентилятор и термостат: пороги включения и температура",
+  "how_to_ru": [
+    "File → Detect ECU: проверить, что определился правильный ЭБУ и версия (не похожее семейство).",
+    "В окне ЭБУ выбрать job из списка и перетащить в график нужные результаты (*_WERT).",
+    "Settings → Logging: папка <Desktop>\\Test0_Logs, разделитель CSV и формат времени — по умолчанию.",
+    "Внешний широкополосный зонд: подключить и выбрать как внешний источник ДО начала записи.",
+    "Сохранить набор как пресет Test0 (имя TorqueX_<ЭБУ>_<функция>) — дальше запуск одной кнопкой.",
+    "Перед заездом включить запись и убедиться, что все колонки заполняются."
+  ],
+  "test0_ru": "Пресет собирается в UI Test0: выбрать job-ы и результаты из списка jobs ниже и сохранить набор под именем TorqueX_MS41_fan_thermostat.",
+  "jobs": [
+    {
+      "job": "STATUS_MOTORTEMPERATUR",
+      "results": [
+        "STATUS_MOTORTEMPERATUR_WERT",
+        "STAT_MOTORTEMPERATUR_WERT"
+      ],
+      "channel": "coolant_temp",
+      "unit_hint": "C",
+      "title_ru": "температура охлаждающей жидкости, °C"
+    },
+    {
+      "job": "STATUS_AN_LUFTTEMPERATUR",
+      "results": [
+        "STATUS_AN_LUFTTEMPERATUR_WERT",
+        "STAT_AN_LUFTTEMPERATUR_WERT"
+      ],
+      "channel": "intake_temp",
+      "unit_hint": "C",
+      "title_ru": "температура воздуха на впуске, °C"
+    },
+    {
+      "job": "STATUS_MOTORDREHZAHL",
+      "results": [
+        "STATUS_MOTORDREHZAHL_WERT",
+        "STAT_MOTORDREHZAHL_WERT"
+      ],
+      "channel": "rpm",
+      "unit_hint": "1/min",
+      "title_ru": "обороты двигателя"
+    },
+    {
+      "job": "STATUS_UBATT",
+      "results": [
+        "STATUS_UBATT_WERT",
+        "STAT_UBATT_WERT"
+      ],
+      "channel": "battery_voltage",
+      "unit_hint": "V",
+      "title_ru": "напряжение бортсети, В"
+    },
+    {
+      "job": "STATUS_GESCHWINDIGKEIT",
+      "results": [
+        "STATUS_GESCHWINDIGKEIT_WERT"
+      ],
+      "channel": "vehicle_speed",
+      "unit_hint": "km/h",
+      "title_ru": "скорость автомобиля, км/ч"
+    }
+  ],
+  "unavailable_ru": [
+    "fan_duty (ступень/скважность электровентилятора): нет job-а в PRG этого ЭБУ"
+  ],
+  "drive_ru": [
+    "Дать прогретому двигателю постоять на холостом ходу до включения вентилятора (обычно 2–5 минут).",
+    "Записать момент включения и выключения вентилятора и температуру в эти моменты.",
+    "Повторить цикл ещё раз (вентилятор включается дважды: сначала первая ступень).",
+    "Просьба не проверять термостат на трассе: нужен именно прогретый холостой ход."
+  ]
+}

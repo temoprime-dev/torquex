@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "ecu": "MS43",
+  "prg_variants": [
+    "MS430DS0"
+  ],
+  "function": "ignition",
+  "title_ru": "Зажигание и детонация: запас угла на полном ходу",
+  "how_to_ru": [
+    "File → Detect ECU: проверить, что определился правильный ЭБУ и версия (не похожее семейство).",
+    "В окне ЭБУ выбрать job из списка и перетащить в график нужные результаты (*_WERT).",
+    "Settings → Logging: папка <Desktop>\\Test0_Logs, разделитель CSV и формат времени — по умолчанию.",
+    "Внешний широкополосный зонд: подключить и выбрать как внешний источник ДО начала записи.",
+    "Сохранить набор как пресет Test0 (имя TorqueX_<ЭБУ>_<функция>) — дальше запуск одной кнопкой.",
+    "Перед заездом включить запись и убедиться, что все колонки заполняются."
+  ],
+  "test0_ru": "Пресет собирается в UI Test0: выбрать job-ы и результаты из списка jobs ниже и сохранить набор под именем TorqueX_MS43_ignition.",
+  "jobs": [
+    {
+      "job": "STATUS_MOTORDREHZAHL",
+      "results": [
+        "STAT_MOTORDREHZAHL_WERT",
+        "STATUS_MOTORDREHZAHL_WERT"
+      ],
+      "channel": "rpm",
+      "unit_hint": "1/min",
+      "title_ru": "обороты двигателя"
+    },
+    {
+      "job": "STATUS_LAST",
+      "results": [
+        "STAT_LAST_WERT"
+      ],
+      "channel": "load",
+      "unit_hint": "mg/stroke",
+      "title_ru": "нагрузка (мг/такт)"
+    },
+    {
+      "job": "STATUS_ZUENDWINKEL",
+      "results": [
+        "STAT_ZUENDWINKEL_WERT"
+      ],
+      "channel": "ignition",
+      "unit_hint": "deg_crank",
+      "title_ru": "фактический угол зажигания, °КВ"
+    },
+    {
+      "job": "STATUS_LMM",
+      "results": [
+        "STAT_LMM_WERT",
+        "STATUS_LMM_WERT"
+      ],
+      "channel": "maf_airflow",
+      "unit_hint": "kg/h",
+      "title_ru": "расход воздуха (ДМРВ), кг/ч",
+      "alternatives_ru": [
+        "STATUS_LMM_MASSE: STAT_LMM_MASSE_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_DKP_WINKEL",
+      "results": [
+        "STAT_DKP_WINKEL_WERT"
+      ],
+      "channel": "pedal",
+      "unit_hint": "percent_or_deg",
+      "title_ru": "ход педали / положение дросселя, % или °",
+      "alternatives_ru": [
+        "STATUS_PWG_WINKEL: STAT_PWG_WINKEL_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_KLOPF_ADC1",
+      "results": [
+        "STAT_KLOPF_ADC1_WERT"
+      ],
+      "channel": "knock_voltage_bank1",
+      "unit_hint": "V",
+      "title_ru": "напряжение датчика детонации 1 (банк 1, цилиндры 1–3)"
+    },
+    {
+      "job": "STATUS_KLOPF_ADC2",
+      "results": [
+        "STAT_KLOPF_ADC2_WERT"
+      ],
+      "channel": "knock_voltage_bank2",
+      "unit_hint": "V",
+      "title_ru": "напряжение датчика детонации 2 (банк 2, цилиндры 4–6)"
+    },
+    {
+      "job": "STATUS_MOTORTEMPERATUR",
+      "results": [
+        "STAT_MOTORTEMPERATUR_WERT",
+        "STATUS_MOTORTEMPERATUR_WERT"
+      ],
+      "channel": "coolant_temp",
+      "unit_hint": "C",
+      "title_ru": "температура охлаждающей жидкости, °C",
+      "alternatives_ru": [
+        "STATUS_MOTORTEMPERATUR_MWB: STAT_MOTORTEMPERATUR_MWB_WERT, STATUS_MOTORTEMPERATUR_MWB_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_AN_LUFTTEMPERATUR",
+      "results": [
+        "STAT_AN_LUFTTEMPERATUR_WERT",
+        "STATUS_AN_LUFTTEMPERATUR_WERT"
+      ],
+      "channel": "intake_temp",
+      "unit_hint": "C",
+      "title_ru": "температура воздуха на впуске, °C",
+      "alternatives_ru": [
+        "STATUS_AN_LUFTTEMPERATUR_MWB: STAT_AN_LUFTTEMPERATUR_MWB_WERT, STATUS_AN_LUFTTEMPERATUR_MWB_WERT"
+      ]
+    }
+  ],
+  "unavailable_ru": [],
+  "drive_ru": [
+    "Одна передача (обычно 3-я), 3 разгона «газ в пол» с 2000 до 6000+ об/мин.",
+    "Между разгонами 30–60 секунд спокойного движения (впуск должен остыть).",
+    "Топливо в баке — то, под которое заказан файл (для доказательства по зажиганию — RON 98).",
+    "Если слышна детонация или появился провал — прекратить заезд и записать это в карточку."
+  ],
+  "pack": "ignition",
+  "pack_covered": [
+    "coolant_temp",
+    "ignition",
+    "intake_temp",
+    "load",
+    "maf_airflow",
+    "pedal",
+    "rpm"
+  ],
+  "pack_missing_ru": {
+    "knock_retard": "вердикта детонации (°) в SGBD MS41–MS43 нет (только сырые ADC), у MS45 имя STATUS_KLOPFEN не подтверждено; замена — расчёт по поведению угла зажигания (нижняя граница доказательства, решение — docs/TEST0_WEB_ANALYSIS_RU.md §6)",
+    "knock_cylinders": "поцилиндровых датчиков в PRG нет: у MS41–MS43 — два датчика (банки), используются как вспомогательный фильтр пиков"
+  }
+}

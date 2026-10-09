@@ -1,0 +1,12 @@
+{
+  "customer": "example work order - no real customer data",
+  "notes": "Shows what an intent without local data produces: a requirements plan, not values.",
+  "intents": [
+    {"id": "p1", "kind": "popcorn"},
+    {"id": "i1", "kind": "ignition"},
+    {"id": "f1", "kind": "fueling"},
+    {"id": "n1", "kind": "vanos"},
+    {"id": "m1", "kind": "maf_curve"},
+    {"id": "l1", "kind": "launch_limiter"}
+  ]
+}

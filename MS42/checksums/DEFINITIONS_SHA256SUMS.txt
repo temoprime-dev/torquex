@@ -1,0 +1,2 @@
+a0da696814ef25f4e70b33133be749b1734f56ccb013a54ef2c3917992f4af81  definitions/Siemens_MS42_0110C6_ENG_32K_v1.3.xdf
+ab94fbfc9c21f2e8829e338df9f214e992c7bc9acbefdab3a5799eafdf5a41bb  definitions/Siemens_MS42_0110C6_ENG_512K_v1.3.xdf

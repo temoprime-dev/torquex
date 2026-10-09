@@ -1,0 +1,9 @@
+WERT,UWTEXT
+0x00,00 kein externer Eingriff
+0x01,01 Traktionskontrolle
+0x02,02 Sequentielles Manuelles Getriebe
+0x04,04 Getriebesteuerung
+0x08,08 Abstandsregelung
+0x10,10 Anti Roll Stabilisierung
+0x20,20 Servolenkung Typ 2
+0xFF,FF unbekannter Eingriff

@@ -1,0 +1,21 @@
+{
+  "stage": "stage2",
+  "customer": "Пример (данные вымышлены)",
+  "notes": "Stage 2: ограничители + перенос карт впуска с донорской калибровки MS43 (--donor-bin). hardware.use_donor_references оставлен false, поэтому справочные значения не пишутся.",
+  "hardware": {
+    "chassis": "E46",
+    "engine": "M52TUB28",
+    "intake": "M54B30 впускной коллектор с DISA, адаптер под M52TU",
+    "injectors": "сток",
+    "maf": "сток HFM5",
+    "exhaust": "сток",
+    "cams": "сток",
+    "use_donor_references": false,
+    "donor": "MS43 430069 M54B30 EU4 LHD (C769Y548)"
+  },
+  "intents": [
+    {"id": "v1", "kind": "vmax", "value_kmh": 240, "hard_add_kmh": 8.0},
+    {"id": "r1", "kind": "rpm_limit", "transmission": "manual",
+     "soft_rpm": 6688, "hard_rpm": 6720, "acknowledge_risk": true}
+  ]
+}

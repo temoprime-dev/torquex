@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-i18n-title="wizard.title">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>TorqueX</title>
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="app-redirect.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="common.skip"></a>
+<header class="site-header" id="tx-header"></header>
+<div id="tx-demo-banner"></div>
+<p id="tx-live" class="sr-only" role="status" aria-live="polite"></p>
+<p id="tx-alert" class="sr-only" role="alert" aria-live="assertive"></p>
+<div id="tx-toasts" class="toasts" aria-live="polite"></div>
+
+<main id="main" class="wrap">
+  <h1 data-i18n="wizard.title"></h1>
+  <p data-i18n="wizard.legacy_redirect"></p>
+  <a class="btn btn-primary" href="index.html" data-i18n="wizard.legacy_link"></a>
+</main>
+
+<footer class="site-footer" id="tx-footer"></footer>
+</body>
+</html>

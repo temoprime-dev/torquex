@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "customer": "example-client",
+  "stage": 1,
+  "ron": 95,
+  "catalyst": "present",
+  "intents": [
+    {
+      "id": "vmax",
+      "kind": "vmax",
+      "mode": "raise",
+      "value_kmh": 250,
+      "reason": "клиент просит поднять ограничитель скорости до 250 км/ч"
+    },
+    {
+      "id": "hardcut",
+      "kind": "hardcut",
+      "mode": "harden",
+      "hysteresis_rpm": 96,
+      "reason": "жёстче отсечка на сбросе газа"
+    },
+    {
+      "id": "rpm",
+      "kind": "rpm_limit",
+      "mode": "raise",
+      "value_rpm": 6700,
+      "acknowledge_risk": true,
+      "reason": "поднять отсечку до 6700, клиент в курсе риска"
+    }
+  ]
+}

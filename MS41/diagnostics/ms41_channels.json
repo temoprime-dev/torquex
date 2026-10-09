@@ -1,0 +1,1808 @@
+[
+  {
+    "variant": "MS410DS0",
+    "ecu": "MS 41.0 fuer M52",
+    "signals": {
+      "rpm": {
+        "job": "STATUS_MOTORDREHZAHL",
+        "result": "STATUS_MOTORDREHZAHL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motordrehzahl",
+          "source": "LINRAM",
+          "cell": "0xDA2A",
+          "order": "HL",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "1/min"
+        }
+      },
+      "coolant_temp": {
+        "job": "STATUS_MOTORTEMPERATUR",
+        "result": "STATUS_MOTORTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motortemperatur",
+          "source": "LINRAM",
+          "cell": "0xDA5A",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "intake_temp": {
+        "job": "STATUS_AN_LUFTTEMPERATUR",
+        "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ansauglufttemp",
+          "source": "LINRAM",
+          "cell": "0xDA50",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "vehicle_speed": {
+        "job": "STATUS_GESCHWINDIGKEIT",
+        "result": "STATUS_GESCHWINDIGKEIT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "battery_voltage": {
+        "job": "STATUS_UBATT",
+        "result": "STATUS_UBATT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ubatt",
+          "source": "LINRAM",
+          "cell": "0xDA5B",
+          "order": "--",
+          "scale_a": 0.102,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "maf_voltage": {
+        "job": "STATUS_LMM_VOLT",
+        "result": "STATUS_LMM_VOLT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "maf_airflow": {
+        "job": "STATUS_LMM",
+        "result": "STATUS_LMM_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Luftmasse",
+          "source": "LINRAM",
+          "cell": "0xFAE0",
+          "order": "LH",
+          "scale_a": 0.25,
+          "offset_b": 0.0,
+          "unit": "kg/h"
+        }
+      },
+      "load": {
+        "job": "STATUS_LAST",
+        "result": "STATUS_LAST_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Last",
+          "source": "LINRAM",
+          "cell": "0xE78E",
+          "order": "HL",
+          "scale_a": 0.02119,
+          "offset_b": 0.0,
+          "unit": "mg/Hub"
+        }
+      },
+      "ignition": {
+        "job": "STATUS_ZUENDWINKEL",
+        "result": "STATUS_ZUENDWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Zuendwinkel",
+          "source": "LINRAM",
+          "cell": "0xE818",
+          "order": "HL",
+          "scale_a": 0.01458,
+          "offset_b": -23.6,
+          "unit": "Grad KW"
+        }
+      },
+      "injector_pulse_width": {
+        "job": "STATUS_EINSPRITZZEIT",
+        "result": "STATUS_EINSPRITZZEIT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Einspritzzeit",
+          "source": "LINRAM",
+          "cell": "0xDA1E",
+          "order": "HL",
+          "scale_a": 0.005339,
+          "offset_b": 0.0,
+          "unit": "ms"
+        }
+      },
+      "lambda_bank1": {
+        "job": "STATUS_L_SONDE",
+        "result": "STATUS_L_SONDE_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_1",
+          "source": "LINRAM",
+          "cell": "0xD1C9",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "lambda_bank2": {
+        "job": "STATUS_L_SONDE_2",
+        "result": "STATUS_L_SONDE_2_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_2",
+          "source": "LINRAM",
+          "cell": "0x12be",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "knock_bank1": {
+        "job": "STATUS_KLOPF_ADC1",
+        "result": "STATUS_KLOPF_ADC1_WERT",
+        "type": "real",
+        "available": true
+      },
+      "knock_bank2": {
+        "job": "STATUS_KLOPF_ADC2",
+        "result": "STATUS_KLOPF_ADC2_WERT",
+        "type": "real",
+        "available": true
+      },
+      "idle_actuator_duty": {
+        "job": "STATUS_TAST_LL_STELLER",
+        "result": "STATUS_TAST_LL_STELLER_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Tast_ll_Steller",
+          "source": "LINRAM",
+          "cell": "0xDA38",
+          "order": "HL",
+          "scale_a": 655.35,
+          "offset_b": 0.0,
+          "unit": "%"
+        }
+      },
+      "vanos_angle": {
+        "job": "STATUS_VANOS_VERSTELLWINKEL",
+        "result": "STATUS_VANOS_VERSTELLWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Verstellwinkel",
+          "source": "LINRAM",
+          "cell": "0xDAA4",
+          "order": "--",
+          "scale_a": 0.02,
+          "offset_b": 0.0,
+          "unit": "Grad KW"
+        }
+      }
+    },
+    "status_digital_job": "STATUS_DIGITAL",
+    "booleans": [
+      {
+        "result": "STATUS_VL_EIN",
+        "type": "int",
+        "meaning": "full-load switch"
+      },
+      {
+        "result": "STATUS_LL_EIN",
+        "type": "int",
+        "meaning": "idle switch"
+      },
+      {
+        "result": "STATUS_DWA_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_FS_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_KO_EIN",
+        "type": "int",
+        "meaning": "A/C compressor active"
+      },
+      {
+        "result": "STATUS_AC_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_GE_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_1_EIN",
+        "type": "int",
+        "meaning": "bank 1 closed loop active"
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_2_EIN",
+        "type": "int",
+        "meaning": "bank 2 closed loop active"
+      },
+      {
+        "result": "STATUS_VANOS_EIN",
+        "type": "int",
+        "meaning": "VANOS actuation active"
+      },
+      {
+        "result": "STATUS_EKP_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_CAN_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_ASR_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_MSR_EIN",
+        "type": "int",
+        "meaning": "MSR/ASC intervention"
+      }
+    ],
+    "unsupported_signals": [
+      "throttle",
+      "tank_pressure"
+    ]
+  },
+  {
+    "variant": "MS410DS1",
+    "ecu": "MS 41.0 fuer M52",
+    "signals": {
+      "rpm": {
+        "job": "STATUS_MOTORDREHZAHL",
+        "result": "STATUS_MOTORDREHZAHL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motordrehzahl",
+          "source": "LINRAM",
+          "cell": "0xDA2A",
+          "order": "HL",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "1/min"
+        }
+      },
+      "coolant_temp": {
+        "job": "STATUS_MOTORTEMPERATUR",
+        "result": "STATUS_MOTORTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motortemperatur",
+          "source": "LINRAM",
+          "cell": "0xDA5A",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "intake_temp": {
+        "job": "STATUS_AN_LUFTTEMPERATUR",
+        "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ansauglufttemp",
+          "source": "LINRAM",
+          "cell": "0xDA50",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "vehicle_speed": {
+        "job": "STATUS_GESCHWINDIGKEIT",
+        "result": "STATUS_GESCHWINDIGKEIT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "throttle": {
+        "job": "STATUS_DKP_VOLT",
+        "result": "STATUS_DKP_VOLT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Dk_winkel",
+          "source": "LINRAM",
+          "cell": "0xDA45",
+          "order": "--",
+          "scale_a": 0.467,
+          "offset_b": 0.0,
+          "unit": "Grad DK"
+        }
+      },
+      "battery_voltage": {
+        "job": "STATUS_UBATT",
+        "result": "STATUS_UBATT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ubatt",
+          "source": "LINRAM",
+          "cell": "0xDA5B",
+          "order": "--",
+          "scale_a": 0.102,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "maf_voltage": {
+        "job": "STATUS_LMM_VOLT",
+        "result": "STATUS_LMM_VOLT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "maf_airflow": {
+        "job": "STATUS_LMM",
+        "result": "STATUS_LMM_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Luftmasse",
+          "source": "LINRAM",
+          "cell": "0xFAE2",
+          "order": "LH",
+          "scale_a": 0.25,
+          "offset_b": 0.0,
+          "unit": "kg/h"
+        }
+      },
+      "load": {
+        "job": "STATUS_LAST",
+        "result": "STATUS_LAST_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Last",
+          "source": "LINRAM",
+          "cell": "0xE78E",
+          "order": "HL",
+          "scale_a": 0.02119,
+          "offset_b": 0.0,
+          "unit": "mg/Hub"
+        }
+      },
+      "ignition": {
+        "job": "STATUS_ZUENDWINKEL",
+        "result": "STATUS_ZUENDWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Zuendwinkel",
+          "source": "LINRAM",
+          "cell": "0xE818",
+          "order": "HL",
+          "scale_a": 0.01458,
+          "offset_b": -23.6,
+          "unit": "Grad KW"
+        }
+      },
+      "injector_pulse_width": {
+        "job": "STATUS_EINSPRITZZEIT",
+        "result": "STATUS_EINSPRITZZEIT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Einspritzzeit",
+          "source": "LINRAM",
+          "cell": "0xDA1E",
+          "order": "HL",
+          "scale_a": 0.005339,
+          "offset_b": 0.0,
+          "unit": "ms"
+        }
+      },
+      "lambda_bank1": {
+        "job": "STATUS_L_SONDE",
+        "result": "STATUS_L_SONDE_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_1",
+          "source": "LINRAM",
+          "cell": "0xD1C9",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "lambda_bank2": {
+        "job": "STATUS_L_SONDE_2",
+        "result": "STATUS_L_SONDE_2_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_2",
+          "source": "LINRAM",
+          "cell": "0x12be",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "knock_bank1": {
+        "job": "STATUS_KLOPF_ADC1",
+        "result": "STATUS_KLOPF_ADC1_WERT",
+        "type": "real",
+        "available": true
+      },
+      "knock_bank2": {
+        "job": "STATUS_KLOPF_ADC2",
+        "result": "STATUS_KLOPF_ADC2_WERT",
+        "type": "real",
+        "available": true
+      },
+      "idle_actuator_duty": {
+        "job": "STATUS_TAST_LL_STELLER",
+        "result": "STATUS_TAST_LL_STELLER_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Tast_ll_Steller",
+          "source": "LINRAM",
+          "cell": "0xDA38",
+          "order": "HL",
+          "scale_a": 655.35,
+          "offset_b": 0.0,
+          "unit": "%"
+        }
+      },
+      "vanos_angle": {
+        "job": "STATUS_VANOS_VERSTELLWINKEL",
+        "result": "STATUS_VANOS_VERSTELLWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Verstellwinkel",
+          "source": "LINRAM",
+          "cell": "0xDAA4",
+          "order": "--",
+          "scale_a": 0.02,
+          "offset_b": 0.0,
+          "unit": "Grad KW"
+        }
+      }
+    },
+    "status_digital_job": "STATUS_DIGITAL",
+    "booleans": [
+      {
+        "result": "STATUS_VL_EIN",
+        "type": "int",
+        "meaning": "full-load switch"
+      },
+      {
+        "result": "STATUS_LL_EIN",
+        "type": "int",
+        "meaning": "idle switch"
+      },
+      {
+        "result": "STATUS_DWA_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_FS_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_KO_EIN",
+        "type": "int",
+        "meaning": "A/C compressor active"
+      },
+      {
+        "result": "STATUS_AC_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_GE_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_1_EIN",
+        "type": "int",
+        "meaning": "bank 1 closed loop active"
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_2_EIN",
+        "type": "int",
+        "meaning": "bank 2 closed loop active"
+      },
+      {
+        "result": "STATUS_VANOS_EIN",
+        "type": "int",
+        "meaning": "VANOS actuation active"
+      },
+      {
+        "result": "STATUS_EKP_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_CAN_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_ASR_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_MSR_EIN",
+        "type": "int",
+        "meaning": "MSR/ASC intervention"
+      }
+    ],
+    "unsupported_signals": [
+      "tank_pressure"
+    ]
+  },
+  {
+    "variant": "MS410DS2",
+    "ecu": "MS 41.0 fuer M52 Flash",
+    "signals": {
+      "rpm": {
+        "job": "STATUS_MOTORDREHZAHL",
+        "result": "STATUS_MOTORDREHZAHL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motordrehzahl",
+          "source": "LINRAM",
+          "cell": "0xDA2A",
+          "order": "HL",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "1/min"
+        }
+      },
+      "coolant_temp": {
+        "job": "STATUS_MOTORTEMPERATUR",
+        "result": "STATUS_MOTORTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motortemperatur",
+          "source": "LINRAM",
+          "cell": "0xDA5A",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "intake_temp": {
+        "job": "STATUS_AN_LUFTTEMPERATUR",
+        "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ansauglufttemp",
+          "source": "LINRAM",
+          "cell": "0xDA50",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "vehicle_speed": {
+        "job": "STATUS_GESCHWINDIGKEIT",
+        "result": "STATUS_GESCHWINDIGKEIT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "throttle": {
+        "job": "STATUS_DKP_VOLT",
+        "result": "STATUS_DKP_VOLT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Dk_winkel",
+          "source": "LINRAM",
+          "cell": "0xDA45",
+          "order": "--",
+          "scale_a": 0.467,
+          "offset_b": 0.0,
+          "unit": "Grad DK"
+        }
+      },
+      "battery_voltage": {
+        "job": "STATUS_UBATT",
+        "result": "STATUS_UBATT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ubatt",
+          "source": "LINRAM",
+          "cell": "0xDA5B",
+          "order": "--",
+          "scale_a": 0.102,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "maf_voltage": {
+        "job": "STATUS_LMM_VOLT",
+        "result": "STATUS_LMM_VOLT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "maf_airflow": {
+        "job": "STATUS_LMM",
+        "result": "STATUS_LMM_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Luftmasse",
+          "source": "LINRAM",
+          "cell": "0xFAFC",
+          "order": "LH",
+          "scale_a": 0.25,
+          "offset_b": 0.0,
+          "unit": "kg/h"
+        }
+      },
+      "load": {
+        "job": "STATUS_LAST",
+        "result": "STATUS_LAST_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Last",
+          "source": "LINRAM",
+          "cell": "0xE78E",
+          "order": "HL",
+          "scale_a": 0.02119,
+          "offset_b": 0.0,
+          "unit": "mg/Hub"
+        }
+      },
+      "ignition": {
+        "job": "STATUS_ZUENDWINKEL",
+        "result": "STATUS_ZUENDWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Zuendwinkel",
+          "source": "LINRAM",
+          "cell": "0xE818",
+          "order": "HL",
+          "scale_a": 0.01458,
+          "offset_b": -23.6,
+          "unit": "Grad KW"
+        }
+      },
+      "injector_pulse_width": {
+        "job": "STATUS_EINSPRITZZEIT",
+        "result": "STATUS_EINSPRITZZEIT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Einspritzzeit",
+          "source": "LINRAM",
+          "cell": "0xDA1E",
+          "order": "HL",
+          "scale_a": 0.005339,
+          "offset_b": 0.0,
+          "unit": "ms"
+        }
+      },
+      "lambda_bank1": {
+        "job": "STATUS_L_SONDE",
+        "result": "STATUS_L_SONDE_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_1",
+          "source": "LINRAM",
+          "cell": "0xD1C9",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "lambda_bank2": {
+        "job": "STATUS_L_SONDE_2",
+        "result": "STATUS_L_SONDE_2_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_2",
+          "source": "LINRAM",
+          "cell": "0x12be",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "knock_bank1": {
+        "job": "STATUS_KLOPF_ADC1",
+        "result": "STATUS_KLOPF_ADC1_WERT",
+        "type": "real",
+        "available": true
+      },
+      "knock_bank2": {
+        "job": "STATUS_KLOPF_ADC2",
+        "result": "STATUS_KLOPF_ADC2_WERT",
+        "type": "real",
+        "available": true
+      },
+      "idle_actuator_duty": {
+        "job": "STATUS_TAST_LL_STELLER",
+        "result": "STATUS_TAST_LL_STELLER_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Tast_ll_Steller",
+          "source": "LINRAM",
+          "cell": "0xDA38",
+          "order": "HL",
+          "scale_a": 655.35,
+          "offset_b": 0.0,
+          "unit": "%"
+        }
+      },
+      "vanos_angle": {
+        "job": "STATUS_VANOS_VERSTELLWINKEL",
+        "result": "STATUS_VANOS_VERSTELLWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Verstellwinkel",
+          "source": "LINRAM",
+          "cell": "0xDAA4",
+          "order": "--",
+          "scale_a": 0.02,
+          "offset_b": 0.0,
+          "unit": "Grad KW"
+        }
+      }
+    },
+    "status_digital_job": "STATUS_DIGITAL",
+    "booleans": [
+      {
+        "result": "STATUS_VL_EIN",
+        "type": "int",
+        "meaning": "full-load switch"
+      },
+      {
+        "result": "STATUS_LL_EIN",
+        "type": "int",
+        "meaning": "idle switch"
+      },
+      {
+        "result": "STATUS_DWA_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_FS_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_KO_EIN",
+        "type": "int",
+        "meaning": "A/C compressor active"
+      },
+      {
+        "result": "STATUS_AC_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_GE_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_1_EIN",
+        "type": "int",
+        "meaning": "bank 1 closed loop active"
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_2_EIN",
+        "type": "int",
+        "meaning": "bank 2 closed loop active"
+      },
+      {
+        "result": "STATUS_VANOS_EIN",
+        "type": "int",
+        "meaning": "VANOS actuation active"
+      },
+      {
+        "result": "STATUS_EKP_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_CAN_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_ASR_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_MSR_EIN",
+        "type": "int",
+        "meaning": "MSR/ASC intervention"
+      }
+    ],
+    "unsupported_signals": [
+      "tank_pressure"
+    ]
+  },
+  {
+    "variant": "MS410DS3",
+    "ecu": "MS 41.0 fuer M52 Flash",
+    "signals": {
+      "rpm": {
+        "job": "STATUS_MOTORDREHZAHL",
+        "result": "STATUS_MOTORDREHZAHL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motordrehzahl",
+          "source": "LINRAM",
+          "cell": "0xDA2A",
+          "order": "HL",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "1/min"
+        }
+      },
+      "coolant_temp": {
+        "job": "STATUS_MOTORTEMPERATUR",
+        "result": "STATUS_MOTORTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motortemperatur",
+          "source": "LINRAM",
+          "cell": "0xDA5A",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "intake_temp": {
+        "job": "STATUS_AN_LUFTTEMPERATUR",
+        "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ansauglufttemp",
+          "source": "LINRAM",
+          "cell": "0xDA50",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "vehicle_speed": {
+        "job": "STATUS_GESCHWINDIGKEIT",
+        "result": "STATUS_GESCHWINDIGKEIT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "throttle": {
+        "job": "STATUS_DKP_VOLT",
+        "result": "STATUS_DKP_VOLT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Dk_winkel",
+          "source": "LINRAM",
+          "cell": "0xDA45",
+          "order": "--",
+          "scale_a": 0.467,
+          "offset_b": 0.0,
+          "unit": "Grad DK"
+        }
+      },
+      "battery_voltage": {
+        "job": "STATUS_UBATT",
+        "result": "STATUS_UBATT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ubatt",
+          "source": "LINRAM",
+          "cell": "0xDA5B",
+          "order": "--",
+          "scale_a": 0.102,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "maf_voltage": {
+        "job": "STATUS_LMM_VOLT",
+        "result": "STATUS_LMM_VOLT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "maf_airflow": {
+        "job": "STATUS_LMM",
+        "result": "STATUS_LMM_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Luftmasse",
+          "source": "LINRAM",
+          "cell": "0xFAFE",
+          "order": "LH",
+          "scale_a": 0.25,
+          "offset_b": 0.0,
+          "unit": "kg/h"
+        }
+      },
+      "load": {
+        "job": "STATUS_LAST",
+        "result": "STATUS_LAST_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Last",
+          "source": "LINRAM",
+          "cell": "0xE78E",
+          "order": "HL",
+          "scale_a": 0.02119,
+          "offset_b": 0.0,
+          "unit": "mg/Hub"
+        }
+      },
+      "ignition": {
+        "job": "STATUS_ZUENDWINKEL",
+        "result": "STATUS_ZUENDWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Zuendwinkel",
+          "source": "LINRAM",
+          "cell": "0xE818",
+          "order": "HL",
+          "scale_a": 0.01458,
+          "offset_b": -23.6,
+          "unit": "Grad KW"
+        }
+      },
+      "injector_pulse_width": {
+        "job": "STATUS_EINSPRITZZEIT",
+        "result": "STATUS_EINSPRITZZEIT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Einspritzzeit",
+          "source": "LINRAM",
+          "cell": "0xDA1E",
+          "order": "HL",
+          "scale_a": 0.005339,
+          "offset_b": 0.0,
+          "unit": "ms"
+        }
+      },
+      "lambda_bank1": {
+        "job": "STATUS_L_SONDE",
+        "result": "STATUS_L_SONDE_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_1",
+          "source": "LINRAM",
+          "cell": "0xD1C9",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "lambda_bank2": {
+        "job": "STATUS_L_SONDE_2",
+        "result": "STATUS_L_SONDE_2_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_2",
+          "source": "LINRAM",
+          "cell": "0x12be",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "knock_bank1": {
+        "job": "STATUS_KLOPF_ADC1",
+        "result": "STATUS_KLOPF_ADC1_WERT",
+        "type": "real",
+        "available": true
+      },
+      "knock_bank2": {
+        "job": "STATUS_KLOPF_ADC2",
+        "result": "STATUS_KLOPF_ADC2_WERT",
+        "type": "real",
+        "available": true
+      },
+      "idle_actuator_duty": {
+        "job": "STATUS_TAST_LL_STELLER",
+        "result": "STATUS_TAST_LL_STELLER_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Tast_ll_Steller",
+          "source": "LINRAM",
+          "cell": "0xDA38",
+          "order": "HL",
+          "scale_a": 655.35,
+          "offset_b": 0.0,
+          "unit": "%"
+        }
+      },
+      "vanos_angle": {
+        "job": "STATUS_VANOS_VERSTELLWINKEL",
+        "result": "STATUS_VANOS_VERSTELLWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Verstellwinkel",
+          "source": "LINRAM",
+          "cell": "0xDAA4",
+          "order": "--",
+          "scale_a": 0.02,
+          "offset_b": 0.0,
+          "unit": "Grad KW"
+        }
+      }
+    },
+    "status_digital_job": "STATUS_DIGITAL",
+    "booleans": [
+      {
+        "result": "STATUS_VL_EIN",
+        "type": "int",
+        "meaning": "full-load switch"
+      },
+      {
+        "result": "STATUS_LL_EIN",
+        "type": "int",
+        "meaning": "idle switch"
+      },
+      {
+        "result": "STATUS_DWA_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_FS_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_KO_EIN",
+        "type": "int",
+        "meaning": "A/C compressor active"
+      },
+      {
+        "result": "STATUS_AC_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_GE_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_1_EIN",
+        "type": "int",
+        "meaning": "bank 1 closed loop active"
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_2_EIN",
+        "type": "int",
+        "meaning": "bank 2 closed loop active"
+      },
+      {
+        "result": "STATUS_VANOS_EIN",
+        "type": "int",
+        "meaning": "VANOS actuation active"
+      },
+      {
+        "result": "STATUS_EKP_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_CAN_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_ASR_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_MSR_EIN",
+        "type": "int",
+        "meaning": "MSR/ASC intervention"
+      }
+    ],
+    "unsupported_signals": [
+      "tank_pressure"
+    ]
+  },
+  {
+    "variant": "MS411DS1",
+    "ecu": "MS 41.1 fuer M52 OBD II",
+    "signals": {
+      "rpm": {
+        "job": "STATUS_MOTORDREHZAHL",
+        "result": "STATUS_MOTORDREHZAHL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motordrehzahl",
+          "source": "LINRAM",
+          "cell": "0xDA2A",
+          "order": "HL",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "1/min"
+        }
+      },
+      "coolant_temp": {
+        "job": "STATUS_MOTORTEMPERATUR",
+        "result": "STATUS_MOTORTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motortemperatur",
+          "source": "LINRAM",
+          "cell": "0xDA5A",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "intake_temp": {
+        "job": "STATUS_AN_LUFTTEMPERATUR",
+        "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ansauglufttemp",
+          "source": "LINRAM",
+          "cell": "0xDA50",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "vehicle_speed": {
+        "job": "STATUS_GESCHWINDIGKEIT",
+        "result": "STATUS_GESCHWINDIGKEIT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "throttle": {
+        "job": "STATUS_DKP_VOLT",
+        "result": "STATUS_DKP_VOLT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Dk_winkel",
+          "source": "LINRAM",
+          "cell": "0xDA45",
+          "order": "--",
+          "scale_a": 0.467,
+          "offset_b": 0.0,
+          "unit": "Grad DK"
+        }
+      },
+      "battery_voltage": {
+        "job": "STATUS_UBATT",
+        "result": "STATUS_UBATT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ubatt",
+          "source": "LINRAM",
+          "cell": "0xDA5B",
+          "order": "--",
+          "scale_a": 0.102,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "maf_voltage": {
+        "job": "STATUS_LMM_VOLT",
+        "result": "STATUS_LMM_VOLT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "maf_airflow": {
+        "job": "STATUS_LMM",
+        "result": "STATUS_LMM_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Luftmasse",
+          "source": "LINRAM",
+          "cell": "0xDA34",
+          "order": "LH",
+          "scale_a": 0.25,
+          "offset_b": 0.0,
+          "unit": "kg/h"
+        }
+      },
+      "load": {
+        "job": "STATUS_LAST",
+        "result": "STATUS_LAST_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Last",
+          "source": "LINRAM",
+          "cell": "0xE78E",
+          "order": "HL",
+          "scale_a": 0.02119,
+          "offset_b": 0.0,
+          "unit": "mg/Hub"
+        }
+      },
+      "ignition": {
+        "job": "STATUS_ZUENDWINKEL",
+        "result": "STATUS_ZUENDWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Zuendwinkel",
+          "source": "LINRAM",
+          "cell": "0xE818",
+          "order": "HL",
+          "scale_a": 0.01458,
+          "offset_b": -23.6,
+          "unit": "Grad KW"
+        }
+      },
+      "injector_pulse_width": {
+        "job": "STATUS_EINSPRITZZEIT",
+        "result": "STATUS_EINSPRITZZEIT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Einspritzzeit",
+          "source": "LINRAM",
+          "cell": "0xDA1E",
+          "order": "HL",
+          "scale_a": 0.005339,
+          "offset_b": 0.0,
+          "unit": "ms"
+        }
+      },
+      "lambda_bank1": {
+        "job": "STATUS_L_SONDE",
+        "result": "STATUS_L_SONDE_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_1",
+          "source": "LINRAM",
+          "cell": "0xD1C9",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "lambda_bank2": {
+        "job": "STATUS_L_SONDE_2",
+        "result": "STATUS_L_SONDE_2_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_2",
+          "source": "LINRAM",
+          "cell": "0x12be",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "knock_bank1": {
+        "job": "STATUS_KLOPF_ADC1",
+        "result": "STATUS_KLOPF_ADC1_WERT",
+        "type": "real",
+        "available": true
+      },
+      "knock_bank2": {
+        "job": "STATUS_KLOPF_ADC2",
+        "result": "STATUS_KLOPF_ADC2_WERT",
+        "type": "real",
+        "available": true
+      },
+      "idle_actuator_duty": {
+        "job": "STATUS_TAST_LL_STELLER",
+        "result": "STATUS_TAST_LL_STELLER_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Tast_ll_Steller",
+          "source": "LINRAM",
+          "cell": "0xDA38",
+          "order": "HL",
+          "scale_a": 655.35,
+          "offset_b": 0.0,
+          "unit": "%"
+        }
+      },
+      "vanos_angle": {
+        "job": "STATUS_VANOS_VERSTELLWINKEL",
+        "result": "STATUS_VANOS_VERSTELLWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Verstellwinkel",
+          "source": "LINRAM",
+          "cell": "0xDAA4",
+          "order": "--",
+          "scale_a": 0.02,
+          "offset_b": 0.0,
+          "unit": "Grad KW"
+        }
+      },
+      "tank_pressure": {
+        "job": "STATUS_TANKDRUCKSENSOR",
+        "result": "STATUS_TANKDRUCKSENSOR_WERT",
+        "type": "real",
+        "available": true
+      }
+    },
+    "status_digital_job": "STATUS_DIGITAL",
+    "booleans": [
+      {
+        "result": "STATUS_VL_EIN",
+        "type": "int",
+        "meaning": "full-load switch"
+      },
+      {
+        "result": "STATUS_LL_EIN",
+        "type": "int",
+        "meaning": "idle switch"
+      },
+      {
+        "result": "STATUS_SCHUB_AB_EIN",
+        "type": "int",
+        "meaning": "overrun fuel cut active"
+      },
+      {
+        "result": "STATUS_DWA_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_FS_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_KO_EIN",
+        "type": "int",
+        "meaning": "A/C compressor active"
+      },
+      {
+        "result": "STATUS_AC_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_GE_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_1_EIN",
+        "type": "int",
+        "meaning": "bank 1 closed loop active"
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_2_EIN",
+        "type": "int",
+        "meaning": "bank 2 closed loop active"
+      },
+      {
+        "result": "STATUS_VANOS_EIN",
+        "type": "int",
+        "meaning": "VANOS actuation active"
+      },
+      {
+        "result": "STATUS_EKP_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_CAN_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_ASR_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_MSR_EIN",
+        "type": "int",
+        "meaning": "MSR/ASC intervention"
+      }
+    ],
+    "unsupported_signals": []
+  },
+  {
+    "variant": "MS411DS2",
+    "ecu": "MS 41.1 fuer M52 OBD II LDP",
+    "signals": {
+      "rpm": {
+        "job": "STATUS_MOTORDREHZAHL",
+        "result": "STATUS_MOTORDREHZAHL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motordrehzahl",
+          "source": "LINRAM",
+          "cell": "0xDA2A",
+          "order": "HL",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "1/min"
+        }
+      },
+      "coolant_temp": {
+        "job": "STATUS_MOTORTEMPERATUR",
+        "result": "STATUS_MOTORTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Motortemperatur",
+          "source": "LINRAM",
+          "cell": "0xDA5A",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "intake_temp": {
+        "job": "STATUS_AN_LUFTTEMPERATUR",
+        "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ansauglufttemp",
+          "source": "LINRAM",
+          "cell": "0xDA50",
+          "order": "--",
+          "scale_a": 0.747,
+          "offset_b": -48.0,
+          "unit": "Grad C"
+        }
+      },
+      "vehicle_speed": {
+        "job": "STATUS_GESCHWINDIGKEIT",
+        "result": "STATUS_GESCHWINDIGKEIT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "throttle": {
+        "job": "STATUS_DKP_VOLT",
+        "result": "STATUS_DKP_VOLT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Dk_winkel",
+          "source": "LINRAM",
+          "cell": "0xDA45",
+          "order": "--",
+          "scale_a": 0.467,
+          "offset_b": 0.0,
+          "unit": "Grad DK"
+        }
+      },
+      "battery_voltage": {
+        "job": "STATUS_UBATT",
+        "result": "STATUS_UBATT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Ubatt",
+          "source": "LINRAM",
+          "cell": "0xDA5B",
+          "order": "--",
+          "scale_a": 0.102,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "maf_voltage": {
+        "job": "STATUS_LMM_VOLT",
+        "result": "STATUS_LMM_VOLT_WERT",
+        "type": "real",
+        "available": true
+      },
+      "maf_airflow": {
+        "job": "STATUS_LMM",
+        "result": "STATUS_LMM_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Luftmasse",
+          "source": "LINRAM",
+          "cell": "0xDA34",
+          "order": "LH",
+          "scale_a": 0.25,
+          "offset_b": 0.0,
+          "unit": "kg/h"
+        }
+      },
+      "load": {
+        "job": "STATUS_LAST",
+        "result": "STATUS_LAST_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Last",
+          "source": "LINRAM",
+          "cell": "0xE78E",
+          "order": "HL",
+          "scale_a": 0.02119,
+          "offset_b": 0.0,
+          "unit": "mg/Hub"
+        }
+      },
+      "ignition": {
+        "job": "STATUS_ZUENDWINKEL",
+        "result": "STATUS_ZUENDWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Zuendwinkel",
+          "source": "LINRAM",
+          "cell": "0xE818",
+          "order": "HL",
+          "scale_a": 0.01458,
+          "offset_b": -23.6,
+          "unit": "Grad KW"
+        }
+      },
+      "injector_pulse_width": {
+        "job": "STATUS_EINSPRITZZEIT",
+        "result": "STATUS_EINSPRITZZEIT_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Einspritzzeit",
+          "source": "LINRAM",
+          "cell": "0xDA1E",
+          "order": "HL",
+          "scale_a": 0.005339,
+          "offset_b": 0.0,
+          "unit": "ms"
+        }
+      },
+      "lambda_bank1": {
+        "job": "STATUS_L_SONDE",
+        "result": "STATUS_L_SONDE_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_1",
+          "source": "LINRAM",
+          "cell": "0xD1C9",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "lambda_bank2": {
+        "job": "STATUS_L_SONDE_2",
+        "result": "STATUS_L_SONDE_2_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Lambdasonde_2",
+          "source": "LINRAM",
+          "cell": "0x12be",
+          "order": "--",
+          "scale_a": 1.0,
+          "offset_b": 0.0,
+          "unit": "Volt"
+        }
+      },
+      "knock_bank1": {
+        "job": "STATUS_KLOPF_ADC1",
+        "result": "STATUS_KLOPF_ADC1_WERT",
+        "type": "real",
+        "available": true
+      },
+      "knock_bank2": {
+        "job": "STATUS_KLOPF_ADC2",
+        "result": "STATUS_KLOPF_ADC2_WERT",
+        "type": "real",
+        "available": true
+      },
+      "idle_actuator_duty": {
+        "job": "STATUS_TAST_LL_STELLER",
+        "result": "STATUS_TAST_LL_STELLER_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Tast_ll_Steller",
+          "source": "LINRAM",
+          "cell": "0xDA38",
+          "order": "HL",
+          "scale_a": 655.35,
+          "offset_b": 0.0,
+          "unit": "%"
+        }
+      },
+      "vanos_angle": {
+        "job": "STATUS_VANOS_VERSTELLWINKEL",
+        "result": "STATUS_VANOS_VERSTELLWINKEL_WERT",
+        "type": "real",
+        "available": true,
+        "fast_ram": {
+          "name": "Verstellwinkel",
+          "source": "LINRAM",
+          "cell": "0xDAA4",
+          "order": "--",
+          "scale_a": 0.02,
+          "offset_b": 0.0,
+          "unit": "Grad KW"
+        }
+      }
+    },
+    "status_digital_job": "STATUS_DIGITAL",
+    "booleans": [
+      {
+        "result": "STATUS_VL_EIN",
+        "type": "int",
+        "meaning": "full-load switch"
+      },
+      {
+        "result": "STATUS_LL_EIN",
+        "type": "int",
+        "meaning": "idle switch"
+      },
+      {
+        "result": "STATUS_SCHUB_AB_EIN",
+        "type": "int",
+        "meaning": "overrun fuel cut active"
+      },
+      {
+        "result": "STATUS_DWA_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_FS_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_KO_EIN",
+        "type": "int",
+        "meaning": "A/C compressor active"
+      },
+      {
+        "result": "STATUS_AC_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_GE_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_1_EIN",
+        "type": "int",
+        "meaning": "bank 1 closed loop active"
+      },
+      {
+        "result": "STATUS_LAMBDAREGELUNG_2_EIN",
+        "type": "int",
+        "meaning": "bank 2 closed loop active"
+      },
+      {
+        "result": "STATUS_VANOS_EIN",
+        "type": "int",
+        "meaning": "VANOS actuation active"
+      },
+      {
+        "result": "STATUS_EKP_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_CAN_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_ASR_EIN",
+        "type": "int",
+        "meaning": ""
+      },
+      {
+        "result": "STATUS_MSR_EIN",
+        "type": "int",
+        "meaning": "MSR/ASC intervention"
+      }
+    ],
+    "unsupported_signals": [
+      "tank_pressure"
+    ]
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "stage": "stage1",
+  "variant": "v3",
+  "customer": "пример: вариант 3 (машина без катализатора)",
+  "notes": "вариант 2 + хлопки и диагностический слой; катализатор удалён физически (подтверждение обязательно). Доказательства выданы анализатором (см. logs/*.csv и logs/evidence_*.json); заявку запускать из каталога примеров, чтобы пути к доказательствам сошлись.",
+  "no_catalyst": true,
+  "acknowledge_legality": true,
+  "acknowledge_temperature": true,
+  "intents": [
+    {
+      "id": "ign1",
+      "kind": "ignition",
+      "delta_deg": 2.5,
+      "evidence": "logs/evidence_ignition.json"
+    },
+    {
+      "id": "fuel1",
+      "kind": "fuel",
+      "tib_add_ms": 0.15,
+      "tib_add_percent": 4.0,
+      "ti_fl_enrich_lambda": 0.03,
+      "evidence": "logs/evidence_fuel.json"
+    },
+    {
+      "id": "van1",
+      "kind": "vanos",
+      "shift_in_deg": 2.0,
+      "shift_ex_deg": -2.0,
+      "evidence": "logs/evidence_vanos.json"
+    },
+    {
+      "id": "rpm1",
+      "kind": "rpm_limit",
+      "transmission": "manual",
+      "soft_rpm": 6688,
+      "hard_rpm": 6720,
+      "acknowledge_risk": true,
+      "acknowledge_oil_pump": true
+    },
+    {
+      "id": "dtc1",
+      "kind": "dtc",
+      "groups": [
+        "cat",
+        "dmtl",
+        "lambda",
+        "sap"
+      ]
+    },
+    {
+      "id": "pop1",
+      "kind": "popcorn",
+      "band": "light",
+      "no_catalyst": "катализатор удалён физически, машина используется вне дорог общего пользования",
+      "thermal_watch": true,
+      "road_validation_plan": "первые заезды: 2-я и 3-я передачи, 10 минут, следить за температурой выпуска и ОЖ, откат на стоковый бэкап при перегреве"
+    }
+  ]
+}

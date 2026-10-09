@@ -1,0 +1,7 @@
+WERT,UWTEXT
+0x00,0 Drosselklappe kein Notlauf
+0x01,1 Drosselklappe Notlauf 1
+0x02,2 Drosselklappe Notlauf 2 invertiert
+0x04,4 Drosselklappe Notlauf 2
+0x08,8 Drosselklappe Notlauf 3
+0xFF,FF Status unbekannt

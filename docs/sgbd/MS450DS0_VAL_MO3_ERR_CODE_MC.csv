@@ -1,0 +1,15 @@
+WERT,UWTEXT
+0x00,0 kein Fehler
+0x01,1 Fehler Prüfsumme in Kommunikation
+0x02,2 Falscher Header von MU
+0x03,3 Predrive Check: MU schaltet Endstufen nicht ab
+0x04,4 SW Referenz: MU sendet falsche SW Version
+0x05,5 SW Referenz: MU sendet falschen Varianten code
+0x06,6 Kopie Prozessüberwachung: MU incrementiert nicht ABC_CPM_MU
+0x07,7 Kopie Prozessüberwachung: MU incrementiert nicht Frage
+0x08,8 Programmablauf: MU ändert nicht die Kontrollbits
+0x09,9 ROM Test Level 2
+0x0A,10 RAM Test Level 2
+0x0B,11 ROM Test Level 1
+0x0C,12 ROM Test Level 2
+0xFF,FF Status unbekannt

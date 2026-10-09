@@ -1,0 +1,25 @@
+{
+  "stage": "stage1",
+  "customer": "Пример: E46 330i, M54B30, механическая КПП",
+  "notes": "Катализатор удалён, машина используется в клубных выездах. Требуется поднять ограничитель скорости и отсечку, включить хлопки на сбросе газа.",
+  "no_catalyst": true,
+  "acknowledge_legality": true,
+  "acknowledge_temperature": true,
+  "intents": [
+    {
+      "kind": "vmax",
+      "value": 255
+    },
+    {
+      "kind": "rev_limit",
+      "value": 6800,
+      "transmission": "mt",
+      "acknowledge_risk": true
+    },
+    {
+      "kind": "pops",
+      "delay_s": 0.5,
+      "profile": "light"
+    }
+  ]
+}

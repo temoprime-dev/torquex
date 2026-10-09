@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-i18n-title="feedback.title">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="TorqueX: feedback, reports from the car, ideas.">
+<title>TorqueX</title>
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="feedback.js"></script>
+</head>
+<body data-page="feedback">
+<a class="skip-link" href="#main" data-i18n="common.skip"></a>
+<header class="site-header" id="tx-header"></header>
+<div id="tx-demo-banner"></div>
+<p id="tx-live" class="sr-only" role="status" aria-live="polite"></p>
+<p id="tx-alert" class="sr-only" role="alert" aria-live="assertive"></p>
+<div id="tx-toasts" class="toasts" aria-live="polite"></div>
+
+<main id="main" class="wrap">
+  <h1 data-i18n="feedback.title"></h1>
+  <p class="lead" data-i18n="feedback.lead"></p>
+
+  <section class="card">
+    <form id="fb-form" novalidate>
+      <p class="hint" id="fb-context" hidden></p>
+      <div class="field">
+        <label for="fb-kind" data-i18n="feedback.kind"></label>
+        <select id="fb-kind">
+          <option value="result_ok" data-i18n="feedback.kind_result_ok"></option>
+          <option value="result_problem" data-i18n="feedback.kind_result_problem"></option>
+          <option value="bug" data-i18n="feedback.kind_bug"></option>
+          <option value="idea" data-i18n="feedback.kind_idea"></option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fb-message" data-i18n="feedback.message"></label>
+        <textarea id="fb-message" rows="6" maxlength="2000"></textarea>
+        <p class="hint" data-i18n="feedback.message_hint"></p>
+      </div>
+      <div class="field">
+        <label for="fb-contact" data-i18n="feedback.contact"></label>
+        <input type="text" id="fb-contact" maxlength="120" autocomplete="off">
+        <p class="hint" data-i18n="feedback.contact_hint"></p>
+      </div>
+      <div class="field sr-only" aria-hidden="true">
+        <label for="fb-extra">Leave this field empty</label>
+        <input type="text" id="fb-extra" name="fb-extra" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore="true">
+      </div>
+      <button type="submit" class="btn btn-primary" id="fb-submit" data-i18n="feedback.send"></button>
+      <p id="fb-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer" id="tx-footer"></footer>
+</body>
+</html>

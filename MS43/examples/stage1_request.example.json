@@ -1,0 +1,11 @@
+{
+  "stage": "stage1",
+  "customer": "Пример (данные вымышлены)",
+  "notes": "Stage 1 на стоковом железе: ограничители из заявки и launch control. Зажигание, топливо, VANOS и ДМРВ остаются в ожидании логов — так и должно быть.",
+  "intents": [
+    {"id": "v1", "kind": "vmax", "transmission": "manual", "value_kmh": 250, "hard_add_kmh": 5.0, "acknowledge_risk": true},
+    {"id": "r1", "kind": "rpm_limit", "transmission": "manual", "soft_rpm": 6688, "hard_rpm": 6720, "acknowledge_risk": true},
+    {"id": "l1", "kind": "launch_control", "mode": 1, "rpm": 4000, "vmax_kmh": 30},
+    {"id": "l2", "kind": "ral", "pvs_min": 60}
+  ]
+}

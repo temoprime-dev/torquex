@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-i18n-title="wizard.title">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>TorqueX</title>
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="request.js"></script>
+<script src="flow.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="common.skip"></a>
+<header class="site-header" id="tx-header"></header>
+<div id="tx-demo-banner"></div>
+<p id="tx-live" class="sr-only" role="status" aria-live="polite"></p>
+<p id="tx-alert" class="sr-only" role="alert" aria-live="assertive"></p>
+<div id="tx-toasts" class="toasts" aria-live="polite"></div>
+
+<main id="main" class="wrap flow">
+  <div id="demo-panel" class="demo-panel" hidden>
+    <span class="demo-label" data-i18n="wizard.demo_panel"></span>
+    <button class="btn btn-chip" type="button" data-demo-scenario="ok" data-i18n="wizard.demo_ok"></button>
+    <button class="btn btn-chip" type="button" data-demo-scenario="bad_version" data-i18n="wizard.demo_bad_version"></button>
+    <button class="btn btn-chip" type="button" data-demo-scenario="junk" data-i18n="wizard.demo_junk"></button>
+    <button class="btn btn-chip" type="button" data-demo-scenario="reject" data-i18n="wizard.demo_reject"></button>
+  </div>
+
+  <!-- Первый экран: только выбор файла. -->
+  <section id="intake" class="intake first-screen" aria-labelledby="home-title">
+    <h1 id="home-title" data-i18n="wizard.home_title"></h1>
+    <p class="lead" data-i18n="wizard.home_lead"></p>
+    <div id="dropzone" class="dropzone">
+      <p class="dropzone-title"><span aria-hidden="true" class="dropzone-icon">⇩</span> <span data-i18n="wizard.s1.drop"></span></p>
+      <button id="file-choose" class="btn btn-primary btn-big" type="button" data-i18n="wizard.s1.choose"></button>
+      <input id="file-input" class="sr-only" type="file" accept=".bin,application/octet-stream"
+             data-i18n-attr="aria-label:wizard.s1.choose">
+    </div>
+    <p class="hint small-line" id="home-privacy" data-i18n="wizard.home_privacy" data-i18n-vin="wizard.home_privacy_vin"></p>
+    <p class="file-state" id="file-state" role="status" aria-live="polite" hidden></p>
+
+    <div id="detect-skeleton" class="skeleton-host" aria-hidden="true" hidden></div>
+    <p id="detect-line" class="detect-line" role="status" hidden>
+      <span class="ok-mark" aria-hidden="true">✓</span> <span id="detect-text"></span>
+    </p>
+    <details id="detect-tech" class="specialists" hidden>
+      <summary data-i18n="common.specialists"></summary>
+      <dl class="kv" id="detect-facts"></dl>
+    </details>
+    <div id="detect-error" class="error-host" role="alert" aria-live="assertive" hidden></div>
+  </section>
+
+  <!-- Функции: Stage 1 первым, дальше по порядку. -->
+  <section id="functions" class="functions" aria-labelledby="fn-title" hidden>
+    <h2 id="fn-title" class="sr-only" data-i18n="wizard.fn.title"></h2>
+
+    <article class="card fn fn-main" id="fn-stage1">
+      <h3 data-i18n="wizard.fn.stage1"></h3>
+      <ul class="list" id="stage1-lines"></ul>
+      <div class="field" id="field-octane">
+        <label for="opt-octane" data-i18n="wizard.s3.octane"></label>
+        <select id="opt-octane">
+          <option value="" data-i18n="wizard.s3.octane_stock"></option>
+          <option value="ron98" data-i18n="wizard.s3.octane_ron98"></option>
+          <option value="ron95" data-i18n="wizard.s3.octane_ron95"></option>
+          <option value="ron91" data-i18n="wizard.s3.octane_ron91"></option>
+        </select>
+        <p class="hint" id="ignition-auto" hidden></p>
+      </div>
+    </article>
+
+    <article class="card fn" id="fn-rev">
+      <div class="switch-row">
+        <input type="checkbox" id="opt-rev">
+        <label for="opt-rev" data-i18n="wizard.s3.rpm"></label>
+        <button class="btn btn-icon help-btn" type="button" aria-controls="help-rev" aria-expanded="false" data-i18n-attr="aria-label:wizard.fn.help">?</button>
+      </div>
+      <p class="fn-help" id="help-rev" hidden data-i18n="wizard.s3.rpm_detail"></p>
+      <div class="fn-body" id="body-rev" hidden>
+        <div class="field">
+          <label for="opt-rev-value" data-i18n="wizard.s3.rpm_value"></label>
+          <input type="number" id="opt-rev-value" min="500" max="8500" step="8" inputmode="numeric">
+        </div>
+      </div>
+    </article>
+
+    <article class="card fn" id="fn-vmax">
+      <div class="switch-row">
+        <input type="checkbox" id="opt-vmax">
+        <label for="opt-vmax" data-i18n="wizard.s3.vmax"></label>
+        <button class="btn btn-icon help-btn" type="button" aria-controls="help-vmax" aria-expanded="false" data-i18n-attr="aria-label:wizard.fn.help">?</button>
+      </div>
+      <p class="fn-help" id="help-vmax" hidden data-i18n="wizard.s3.vmax_detail"></p>
+      <div class="fn-body" id="body-vmax" hidden>
+        <div class="field">
+          <label for="opt-vmax-value" data-i18n="wizard.s3.vmax_value"></label>
+          <input type="number" id="opt-vmax-value" min="1" max="255" step="1" inputmode="numeric">
+        </div>
+      </div>
+    </article>
+
+    <article class="card fn" id="fn-fullload" hidden>
+      <div class="switch-row">
+        <input type="checkbox" id="opt-fullload">
+        <label for="opt-fullload" data-i18n="wizard.s3.fullload"></label>
+        <button class="btn btn-icon help-btn" type="button" aria-controls="help-fullload" aria-expanded="false" data-i18n-attr="aria-label:wizard.fn.help">?</button>
+      </div>
+      <p class="fn-help" id="help-fullload" hidden data-i18n="wizard.s3.fullload_help"></p>
+    </article>
+
+    <article class="card fn" id="fn-vanos" hidden>
+      <div class="switch-row">
+        <input type="checkbox" id="opt-vanos">
+        <label for="opt-vanos" data-i18n="wizard.s3.vanos"></label>
+        <button class="btn btn-icon help-btn" type="button" aria-controls="help-vanos" aria-expanded="false" data-i18n-attr="aria-label:wizard.fn.help">?</button>
+      </div>
+      <p class="fn-help" id="help-vanos" hidden data-i18n="wizard.s3.vanos_help"></p>
+    </article>
+
+    <article class="card fn" id="fn-trans" hidden>
+      <div class="fn-body">
+        <div class="field" id="field-transmission">
+          <label for="opt-transmission" data-i18n="wizard.s3.transmission"></label>
+          <select id="opt-transmission"></select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card fn" id="fn-pops" hidden>
+      <div class="switch-row">
+        <input type="checkbox" id="opt-pops">
+        <label for="opt-pops" data-i18n="wizard.s3.pops"></label>
+        <button class="btn btn-icon help-btn" type="button" aria-controls="help-pops" aria-expanded="false" data-i18n-attr="aria-label:wizard.fn.help">?</button>
+      </div>
+      <p class="fn-help" id="help-pops" hidden data-i18n="wizard.s3.pops_help"></p>
+      <p class="fn-warn" data-i18n="wizard.pops.warn"></p>
+      <div class="fn-body" id="body-pops" hidden>
+        <div class="switch-row">
+          <input type="checkbox" id="opt-pops-ac">
+          <label for="opt-pops-ac" data-i18n="wizard.s3.pops_ac"></label>
+        </div>
+        <p class="fn-help" data-i18n="wizard.s3.pops_ac_hint"></p>
+      </div>
+    </article>
+
+    <!-- Подтверждения риска: появляются только когда нужны. -->
+    <article class="card fn" id="fn-ack" hidden>
+      <div class="switch-row" id="row-ack-risk">
+        <input type="checkbox" id="ack-risk">
+        <label for="ack-risk" data-i18n="wizard.s3.risk"></label>
+      </div>
+      <div class="switch-row" id="row-ack-oil" hidden>
+        <input type="checkbox" id="ack-oil">
+        <label for="ack-oil" id="ack-oil-label" data-i18n="wizard.s3.oil_pump"></label>
+      </div>
+      <div class="switch-row" id="row-ack-damper" hidden>
+        <input type="checkbox" id="ack-damper">
+        <label for="ack-damper" id="ack-damper-label" data-i18n="wizard.s3.damper"></label>
+      </div>
+    </article>
+
+    <div class="card fn" id="vin-slot" hidden>
+      <div class="field" id="field-vin">
+        <label for="opt-vin" id="opt-vin-label" data-i18n="wizard.s3.vin" data-i18n-vin="wizard.s3.vin_required"></label>
+        <input type="text" id="opt-vin" autocomplete="off" inputmode="text" spellcheck="false" aria-describedby="opt-vin-hint">
+        <p class="hint" id="opt-vin-hint" data-i18n="wizard.s3.vin_hint" data-i18n-vin="wizard.s3.vin_required_hint"></p>
+      </div>
+    </div>
+
+    <p class="hint soon" data-i18n="wizard.fn.soon"></p>
+  </section>
+
+  <!-- Липкая кнопка: серая, пока чего-то не хватает, и строка рядом говорит чего. -->
+  <div id="build-bar" class="build-bar" hidden>
+    <p id="build-hint" class="hint build-hint" role="status" aria-live="polite"></p>
+    <button id="build" class="btn btn-primary btn-big btn-block" type="button"
+            aria-describedby="build-hint"  data-i18n="wizard.s3.to_result"></button>
+  </div>
+
+  <!-- Результат заменяет список функций. -->
+  <section id="result" class="result" aria-labelledby="result-title" aria-live="polite" hidden>
+    <h2 id="result-title" tabindex="-1"></h2>
+    <div id="result-body"></div>
+  </section>
+</main>
+
+<footer class="site-footer" id="tx-footer"></footer>
+</body>
+</html>

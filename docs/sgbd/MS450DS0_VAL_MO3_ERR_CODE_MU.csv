@@ -1,0 +1,23 @@
+WERT,UWTEXT
+0x00,0 kein Fehler
+0x01,1 Falscher Header in der Kommunikation
+0x02,2 Fehler Prüfsumme in Kommunikation
+0x03,3 Fehler Ausgang Extension
+0x04,4 MU passt nicht zu MC Software
+0x05,5 Timeout Fehler Maximum
+0x06,6 Timeout Fehler Minimum
+0x07,7 RAM Fehler
+0x08,8 ROM Fehler
+0x09,9 Fehler Level 2
+0x0A,10 Redundant switch off path was triggerd by MC
+0x0B,11 Programmablauf Überwachung 1
+0x0C,12 Programmablauf Überwachung 2
+0x0D,13 Programmablauf Überwachung 3
+0x0E,14 Programmablauf Überwachung 4
+0x0F,15 Programmablauf Überwachung 5
+0x10,16 Programmablauf Überwachung 6
+0x11,17 Programmablauf Überwachung 7
+0x12,18 Programmablauf Überwachung 8
+0x13,19 Watchdog Fehler
+0x14,"20 Fehler Kommunikation, falsches enable Byte"
+0xFF,FF Status unbekannt

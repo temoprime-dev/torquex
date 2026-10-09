@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>База знаний MS4X для MS42</title>
+<style>
+ :root { color-scheme: dark; }
+ * { box-sizing: border-box; }
+ body { margin: 0; background: #14161a; color: #e7e9ee;
+        font: 15px/1.55 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+ header { padding: 28px 24px 18px; background: linear-gradient(135deg, #1d2027, #14161a);
+          border-bottom: 1px solid #262b33; }
+ h1 { margin: 0 0 4px; font-size: 24px; }
+ .meta { color: #9aa3b2; font-size: 13px; }
+ main { max-width: 1080px; margin: 0 auto; padding: 20px 24px 60px; }
+ .controls { position: sticky; top: 0; background: #14161aee; backdrop-filter: blur(6px);
+             padding: 12px 0; display: flex; flex-wrap: wrap; gap: 8px;
+             border-bottom: 1px solid #262b33; z-index: 2; }
+ input[type=search] { flex: 1 1 260px; padding: 9px 12px; border-radius: 8px;
+                      border: 1px solid #2c333d; background: #1b1f26; color: inherit; }
+ button.filter { padding: 8px 12px; border-radius: 8px; border: 1px solid #2c333d;
+                 background: #1b1f26; color: #cfd6e2; cursor: pointer; }
+ button.filter.active { border-color: #4b7bec; color: #fff; background: #24304a; }
+ .count { color: #8f9bb0; font-size: 12px; }
+ .entry { border: 1px solid #262b33; border-radius: 12px; padding: 16px 18px;
+          margin: 14px 0; background: #181b21; }
+ .entry h3 { margin: 0 0 10px; font-size: 17px; display: flex; flex-wrap: wrap; gap: 8px;
+              align-items: center; }
+ .verdict { font-size: 12px; padding: 2px 8px; border-radius: 999px; border: 1px solid; }
+ .verdict.implemented { color: #7ee2a8; border-color: #2f6b48; background: #16301f; }
+ .verdict.gated { color: #8fd3ff; border-color: #2c5a7a; background: #142a38; }
+ .verdict.requires_data { color: #ffd479; border-color: #7a6220; background: #33290d; }
+ .verdict.research { color: #c4b5fd; border-color: #4c3d80; background: #241d3a; }
+ .verdict.refused { color: #ff9b9b; border-color: #7c3030; background: #331616; }
+ .stage { font-size: 12px; color: #8f9bb0; }
+ .summary { margin: 0 0 12px; }
+ .row { display: flex; gap: 10px; margin: 8px 0; align-items: baseline; }
+ .label { flex: 0 0 108px; color: #8f9bb0; font-size: 13px; }
+ .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+ code { background: #11141a; border: 1px solid #262b33; border-radius: 6px;
+        padding: 1px 6px; font-size: 12.5px; color: #d7e0f0; }
+ ul { margin: 0; padding-left: 18px; }
+ .sources a { color: #8fd3ff; text-decoration: none; margin-right: 12px; }
+ .sources a:hover { text-decoration: underline; }
+ details { margin-top: 26px; border: 1px solid #262b33; border-radius: 12px; padding: 12px 18px; }
+ summary { cursor: pointer; color: #cfd6e2; }
+ .retrieved { color: #7c8698; font-size: 12px; }
+ .what { color: #9aa3b2; font-size: 13px; }
+ .hidden { display: none; }
+ footer { color: #7c8698; font-size: 12px; margin-top: 28px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>База знаний MS4X для MS42</h1>
+  <div class="meta">Обновлено 2026-10-05 · записей: 30 ·
+  источников: 6 · каждый символ проверен по XDF MS42</div>
+</header>
+<main>
+  <div class="controls">
+    <input type="search" id="search" placeholder="Поиск по названию, символу, тексту…">
+    <button class="filter active" data-verdict="all">Все</button>
+    <button class="filter" data-verdict="implemented">Реализовано <span class="count">6</span></button><button class="filter" data-verdict="gated">По документу <span class="count">6</span></button><button class="filter" data-verdict="requires_data">Нужны данные <span class="count">0</span></button><button class="filter" data-verdict="research">Исследование <span class="count">16</span></button><button class="filter" data-verdict="refused">Отказано <span class="count">2</span></button>
+  </div>
+  <div id="entries">
+<article class="entry" data-verdict="implemented" data-stage="" data-text="три записи crc16 boot @0x3c24 (seed 0x2d2d), cal @0x4fee0 (seed 0x3643, покрытие 0x48000..0x4f843), prog @0x50306 (seed 0x3030, 7 сегментов). crc-16/arc, little endian, самоописывающие записи. доказано на 16/16 образах. checksums">
+<h3>Три записи CRC16 <span class="verdict implemented">Реализовано</span><span class="stage">вне стейджей</span></h3>
+<p class="summary">boot @0x3C24 (seed 0x2D2D), cal @0x4FEE0 (seed 0x3643, покрытие 0x48000..0x4F843), prog @0x50306 (seed 0x3030, 7 сегментов). CRC-16/ARC, little endian, самоописывающие записи. Доказано на 16/16 образах.</p>
+<div class="row"><span class="label">Что нужно</span><ul><li>checksum.py: verify + repair, повторная проверка перед записью файла</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="implemented" data-stage="1" data-text="гистерезис отсечки на сбросе газа два порога возврата/удержания отсечки при отпущенном газе. сами по себе не создают хлопков: задержка и углы — отдельные таблицы. hardcut c_n_hys_max_puc c_n_hys_min_puc">
+<h3>Гистерезис отсечки на сбросе газа <span class="verdict implemented">Реализовано</span><span class="stage">Stage 1</span></h3>
+<p class="summary">Два порога возврата/удержания отсечки при отпущенном газе. Сами по себе не создают хлопков: задержка и углы — отдельные таблицы.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>c_n_hys_max_puc</code><code>c_n_hys_min_puc</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>пересечение порогов отклоняется планировщиком</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="implemented" data-stage="2" data-text="disa и впуск m50/m54 ms4x: у m52tu заслонка disa закрывает канал ровно там, где мотор выдаёт пиковую мощность, и это программно ограничивает полку после 5500 об/мин; для m54 карты другие, и «перенос 1:1» предлагается как рецепт. донорские калибровки ms43 лежат в ms43/firmware, и перенос карт disa сделан инструментом (tools/donor.py) с доказательством адресации донора, проверками формы, шкалы, порядка байт и политики. замена коллектора на m50 — отдельный рыночный stage 2. intake-disa id_vim_fl__n_vim id_vim_pl__n_vim__maf">
+<h3>DISA и впуск M50/M54 <span class="verdict implemented">Реализовано</span><span class="stage">Stage 2</span></h3>
+<p class="summary">MS4X: у M52TU заслонка DISA закрывает канал ровно там, где мотор выдаёт пиковую мощность, и это программно ограничивает полку после 5500 об/мин; для M54 карты другие, и «перенос 1:1» предлагается как рецепт. Донорские калибровки MS43 лежат в MS43/firmware, и перенос карт DISA сделан инструментом (tools/donor.py) с доказательством адресации донора, проверками формы, шкалы, порядка байт и политики. Замена коллектора на M50 — отдельный рыночный Stage 2.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>id_vim_fl__n_vim</code><code>id_vim_pl__n_vim__maf</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>каталог переносов MS42/donor/ms43_to_ms42.json (пары заданы руками, каждая с запиской и источником)</li><li>перенос применяется только вместе с документированной заменой впуска (hardware.intake) и требует дорожной проверки</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=M52TUB25_Tuning" target="_blank" rel="noopener">MS4X Wiki — M52TUB25 Tuning</a><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="implemented" data-stage="" data-text="раскладка памяти 512 киб bootloader 0x00000–0x0ffff, программный код 0x10000–0x3ffff и 0x50000–0x7ffff, калибровка 0x48000–0x4ffff (32 киб), 0x40000–0x47fff не используется. инструменты определяют раскладку по размеру и по подписи 0110c6, а не по имени файла. memory-layout">
+<h3>Раскладка памяти 512 КиБ <span class="verdict implemented">Реализовано</span><span class="stage">вне стейджей</span></h3>
+<p class="summary">Bootloader 0x00000–0x0FFFF, программный код 0x10000–0x3FFFF и 0x50000–0x7FFFF, калибровка 0x48000–0x4FFFF (32 КиБ), 0x40000–0x47FFF не используется. Инструменты определяют раскладку по размеру и по подписи 0110C6, а не по имени файла.</p>
+<div class="row"><span class="label">Что нужно</span><ul><li>analyze_firmware.py: 16/16 образов распознаны как full-flash-512K</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="implemented" data-stage="1,2" data-text="ограничитель оборотов мягкая отсечка гасит цилиндры по шаблону (счётчик шагов id_n_max_cycnr__vs), жёсткая отключает все. отдельные таблицы для mt и at: генератор требует указать коробку и не трогает вторую пару. выше 6750 об/мин требуется отдельное подтверждение acknowledge_oil_pump: таблицы представимы до 8160 об/мин, но штатный насос — известное слабое место, а измерений у нас нет. rpm-limit id_n_max_mt__nvs id_n_max_max_mt__nvs id_n_max_at__nvs id_n_max_max_at__nvs id_n_max_cycnr__vs c_n_max_hys c_n_max_hys_max">
+<h3>Ограничитель оборотов <span class="verdict implemented">Реализовано</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Мягкая отсечка гасит цилиндры по шаблону (счётчик шагов id_n_max_cycnr__vs), жёсткая отключает все. Отдельные таблицы для MT и AT: генератор требует указать коробку и не трогает вторую пару. Выше 6750 об/мин требуется отдельное подтверждение acknowledge_oil_pump: таблицы представимы до 8160 об/мин, но штатный насос — известное слабое место, а измерений у нас нет.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>id_n_max_mt__nvs</code><code>id_n_max_max_mt__nvs</code><code>id_n_max_at__nvs</code><code>id_n_max_max_at__nvs</code><code>id_n_max_cycnr__vs</code><code>c_n_max_hys</code><code>c_n_max_hys_max</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>любой подъём выше стока требует acknowledge_risk</li><li>выше 6750 об/мин — acknowledge_oil_pump после acknowledge_risk (реализовано в генераторе)</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a><a href="https://www.seemslegitgarage.com/product-page/SLGECU" target="_blank" rel="noopener">Seems Legit Garage — описание услуг по MS42/MS43</a></div></div>
+</article>
+<article class="entry" data-verdict="implemented" data-stage="1,2" data-text="ограничитель скорости мягкая ступень — c_vs_max_1 (отключение цилиндров), жёсткая — c_vs_max_1 + c_vs_max_add (отсечка бензонасоса). полное снятие — поднять порог активации c_n_min_vs_max до 8160 об/мин (raw 255). сток: 216 км/ч на b20, 255 на остальных. vmax c_vs_max_1 c_vs_max_add c_vs_max_hys c_n_min_vs_max">
+<h3>Ограничитель скорости <span class="verdict implemented">Реализовано</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Мягкая ступень — c_vs_max_1 (отключение цилиндров), жёсткая — c_vs_max_1 + c_vs_max_add (отсечка бензонасоса). Полное снятие — поднять порог активации c_n_min_vs_max до 8160 об/мин (raw 255). Сток: 216 км/ч на B20, 255 на остальных.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>c_vs_max_1</code><code>c_vs_max_add</code><code>c_vs_max_hys</code><code>c_n_min_vs_max</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>генератор: value_kmh / hard_add_kmh / disable + acknowledge_risk</li><li>дорожная проверка обязательна: модель ступеней из документации сообщества</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="gated" data-stage="1,2" data-text="хлопки на сбросе газа (popcorn) порог отсечки, углы во время отсечки и задержка перед ней. пишутся через tools/popcorn.py и stages.py --popcorn только по профилю клиента: письменное подтверждение «катализатора нет», согласие следить за температурой, план дорожной проверки и полоса light/medium. публичного агрессивного пресета нет сознательно. exhaust-pops ip_n_min_puc__tco ip_n_min_accin_puc__tco ip_iga_puc__n__tco ip_iga_accin_puc__n__tco ip_t_puc_deacc__n__maf_mmv">
+<h3>Хлопки на сбросе газа (popcorn) <span class="verdict gated">По документу</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Порог отсечки, углы во время отсечки и задержка перед ней. Пишутся через tools/popcorn.py и stages.py --popcorn только по профилю клиента: письменное подтверждение «катализатора нет», согласие следить за температурой, план дорожной проверки и полоса light/medium. Публичного агрессивного пресета нет сознательно.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_n_min_puc__tco</code><code>ip_n_min_accin_puc__tco</code><code>ip_iga_puc__n__tco</code><code>ip_iga_accin_puc__n__tco</code><code>ip_t_puc_deacc__n__maf_mmv</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>письменное подтверждение «катализатора нет» (no_catalyst)</li><li>план дорожной проверки (road_validation_plan) и thermal_watch</li><li>полоса light (порог ≤ +600 об/мин, угол ≥ −6°, задержка ≤ 1.2 с) или medium</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="gated" data-stage="2" data-text="коррекция расхода топлива после масштабирования форсунок на множитель f таблицу расхода делят на f, иначе прибор показывает неверный расход. в xdf у заголовка лишний пробел после &#x27;pq_&#x27; и неверные единицы измерения. fuel-consumption-gauge ip_fco_map_cor__pq_ main_col">
+<h3>Коррекция расхода топлива <span class="verdict gated">По документу</span><span class="stage">Stage 2</span></h3>
+<p class="summary">После масштабирования форсунок на множитель f таблицу расхода делят на f, иначе прибор показывает неверный расход. В XDF у заголовка лишний пробел после &#x27;pq_&#x27; и неверные единицы измерения.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_fco_map_cor__pq_ main_col</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>применяется автоматически тем же профилем, что и масштабирование</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="gated" data-stage="2" data-text="время срабатывания форсунок kf_ti_add_totz — коррекция мёртвого времени по напряжению бортсети, 1x8 при 0.032 мс на шаг, сток 0.064..3.616 мс. меняется только вместе с документированной кривой новых форсунок, ось напряжений не трогается. injector-dead-time ip_ti_add_dly__vb">
+<h3>Время срабатывания форсунок <span class="verdict gated">По документу</span><span class="stage">Stage 2</span></h3>
+<p class="summary">KF_TI_ADD_TOTZ — коррекция мёртвого времени по напряжению бортсети, 1x8 при 0.032 мс на шаг, сток 0.064..3.616 мс. Меняется только вместе с документированной кривой новых форсунок, ось напряжений не трогается.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_ti_add_dly__vb</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>профиль форсунок обязан содержать 8 значений кривой</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="gated" data-stage="2" data-text="масштабирование форсунок ms4x: умножать карты длительности впрыска на отношение потоков, обогатительные множители (ip_ti_cast, ip_ti_cr_cst, ip_ti_cr_cast) не трогать. цель — лямбда-интеграторы в ±5 %, скважность форсунок не выше ~90 %. injector-scaling ip_tipr_cst__tco ip_ti_cst__n__tco ip_ti_tco_1_is_ivvt__n__maf ip_tib__n__maf ip_ti_tco_2_is_ivvt__n__maf ip_ti_tco_2_pl_ivvt_1__n__maf ip_ti_tco_2_pl_ivvt_2__n__maf ip_ti_slow_wf_thd_min__tco ip_ti_fast_wf_thd_min__tco">
+<h3>Масштабирование форсунок <span class="verdict gated">По документу</span><span class="stage">Stage 2</span></h3>
+<p class="summary">MS4X: умножать карты длительности впрыска на отношение потоков, обогатительные множители (ip_ti_cast, ip_ti_cr_cst, ip_ti_cr_cast) не трогать. Цель — лямбда-интеграторы в ±5 %, скважность форсунок не выше ~90 %.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_tipr_cst__tco</code><code>ip_ti_cst__n__tco</code><code>ip_ti_tco_1_is_ivvt__n__maf</code><code>ip_tib__n__maf</code><code>ip_ti_tco_2_is_ivvt__n__maf</code><code>ip_ti_tco_2_pl_ivvt_1__n__maf</code><code>ip_ti_tco_2_pl_ivvt_2__n__maf</code><code>ip_ti_slow_wf_thd_min__tco</code><code>ip_ti_fast_wf_thd_min__tco</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>нужен задокументированный профиль форсунок: поток и кривая задержки</li><li>после прошивки обязательны логи интеграторов и скважности</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="gated" data-stage="2" data-text="кривая дмрв передаточная функция 0–5 в → кг/ч, 256 точек по 0.015625 кг/ч; интерполяции нет, шкала напряжений задана разрядностью ацп и не настраивается. замена кривой допустима только под документированный датчик: правка скейла смещает нагрузку примерно в 30 таблицах. maf-curve id_maf_tab id_maf_tab__v_maf_1__v_maf_2">
+<h3>Кривая ДМРВ <span class="verdict gated">По документу</span><span class="stage">Stage 2</span></h3>
+<p class="summary">Передаточная функция 0–5 В → кг/ч, 256 точек по 0.015625 кг/ч; интерполяции нет, шкала напряжений задана разрядностью АЦП и не настраивается. Замена кривой допустима только под документированный датчик: правка скейла смещает нагрузку примерно в 30 таблицах.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>id_maf_tab</code><code>id_maf_tab__v_maf_1__v_maf_2</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>нужен файл кривой с происхождением (даташит или стенд)</li><li>кривая обязана быть неубывающей и внутри 0..1023.98 кг/ч</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a><a href="https://www.hpacademy.com/forum/reflashing/show/fuel-tuning-maf-scaling-vs-injector-pulsewidth-map/" target="_blank" rel="noopener">HPAcademy — Fuel tuning: MAF scaling vs injector pulsewidth map</a></div></div>
+</article>
+<article class="entry" data-verdict="gated" data-stage="1,2" data-text="совет по отсечке свыше 6750 об/мин практика сообщества: без решения по масляному насосу отсечку выше 6750 об/мин не поднимать. генератор реализует это как ворота: подъём выше стока требует acknowledge_risk, а выше 6750 об/мин — отдельного acknowledge_oil_pump; без него файл не собирается. rev-limit-advice">
+<h3>Совет по отсечке свыше 6750 об/мин <span class="verdict gated">По документу</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Практика сообщества: без решения по масляному насосу отсечку выше 6750 об/мин не поднимать. Генератор реализует это как ворота: подъём выше стока требует acknowledge_risk, а выше 6750 об/мин — отдельного acknowledge_oil_pump; без него файл не собирается.</p>
+<div class="row"><span class="label">Что нужно</span><ul><li>внешний источник, не наши измерения</li><li>ворота HIGH_RPM_OIL_PUMP_ACK_REQUIRED в tools/generate_patches.py</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.seemslegitgarage.com/product-page/SLGECU" target="_blank" rel="noopener">Seems Legit Garage — описание услуг по MS42/MS43</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="1,2" data-text="anti-jerk (сглаживание момента) карты _aj кратковременно задерживают зажигание при резком открытии газа. ms4x: функция отключается поднятием c_tco_min_aj до ~142.5 °c; на наддуве вместо отключения советуют править переходную детонацию (tra_knk). anti-jerk c_tco_min_aj ip_iga_aj_ron91__n__maf ip_iga_aj_ron98__n__maf">
+<h3>Anti-Jerk (сглаживание момента) <span class="verdict research">Исследование</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Карты _aj кратковременно задерживают зажигание при резком открытии газа. MS4X: функция отключается поднятием c_tco_min_aj до ~142.5 °C; на наддуве вместо отключения советуют править переходную детонацию (tra_knk).</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>c_tco_min_aj</code><code>ip_iga_aj_ron91__n__maf</code><code>ip_iga_aj_ron98__n__maf</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>отключение anti-jerk меняет поведение машины; нужно подтверждение клиента и дорожная проверка</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="2" data-text="калибровка распредвалов при установке других валов правятся длительность, максимальный диапазон vanos, начальный опорный угол и коррекция опорного угла; после этого пересчитываются уставки vanos. диагностика валов имеет окна допустимых зубьев, выход за них = ошибка. camshaft-calibration c_cam_op_in c_cam_op_ex c_cam_adj_rng_max_in c_cam_adj_rng_max_ex c_cam_ini_in c_cam_ini_ex c_cor_cam_in_ref c_cor_cam_ex_ref">
+<h3>Калибровка распредвалов <span class="verdict research">Исследование</span><span class="stage">Stage 2</span></h3>
+<p class="summary">При установке других валов правятся длительность, максимальный диапазон VANOS, начальный опорный угол и коррекция опорного угла; после этого пересчитываются уставки VANOS. Диагностика валов имеет окна допустимых зубьев, выход за них = ошибка.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>c_cam_op_in</code><code>c_cam_op_ex</code><code>c_cam_adj_rng_max_in</code><code>c_cam_adj_rng_max_ex</code><code>c_cam_ini_in</code><code>c_cam_ini_ex</code><code>c_cor_cam_in_ref</code><code>c_cor_cam_ex_ref</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>нужны паспортные данные валов и проверка фаз на машине</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="1" data-text="прогрев катализатора (_ch) карты с «_ch» намеренно задерживают зажигание после холодного пуска, чтобы ускорить прогрев катализатора. их правка напрямую влияет на выбросы и температуру выпуска. catalyst-heating">
+<h3>Прогрев катализатора (_ch) <span class="verdict research">Исследование</span><span class="stage">Stage 1</span></h3>
+<p class="summary">Карты с «_ch» намеренно задерживают зажигание после холодного пуска, чтобы ускорить прогрев катализатора. Их правка напрямую влияет на выбросы и температуру выпуска.</p>
+<div class="row"><span class="label">Что нужно</span><ul><li>не предлагается без стенда и ясной причины</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="1,2" data-text="полная нагрузка полная нагрузка включается по порогам педали/оборотов, после чего впрыск обогащается множителем ip_ti_fl__n, vanos и disa переходят на отдельные таблицы, а компрессор кондиционера отключается по c_pvs_fl_accin. full-load c_n_min_fl id_pvs_fl__n id_pvs_fl_ivvt__n ip_ti_fl__n id_vim_fl__n_vim c_pvs_fl_accin">
+<h3>Полная нагрузка <span class="verdict research">Исследование</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Полная нагрузка включается по порогам педали/оборотов, после чего впрыск обогащается множителем ip_ti_fl__n, VANOS и DISA переходят на отдельные таблицы, а компрессор кондиционера отключается по c_pvs_fl_accin.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>c_n_min_fl</code><code>id_pvs_fl__n</code><code>id_pvs_fl_ivvt__n</code><code>ip_ti_fl__n</code><code>id_vim_fl__n_vim</code><code>c_pvs_fl_accin</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>правка обогащения и порогов требует стенда; сейчас только исследование</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="2" data-text="lumpy idle / ghost cam неровный холостой ход получается расширением перекрытия клапанов на холостом ходу (впуск до ~80–86°, выпуск в минус). ms4x описывает рецепт, но это меняет устойчивость холостого хода и выбросы. ghost-cam ip_cam_sp_tco_2_in_is__n__maf_ivvt ip_cam_sp_tco_2_ex_is__n__maf_ivvt c_cam_adj_rng_max_in c_cam_adj_rng_max_ex">
+<h3>Lumpy idle / ghost cam <span class="verdict research">Исследование</span><span class="stage">Stage 2</span></h3>
+<p class="summary">Неровный холостой ход получается расширением перекрытия клапанов на холостом ходу (впуск до ~80–86°, выпуск в минус). MS4X описывает рецепт, но это меняет устойчивость холостого хода и выбросы.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_cam_sp_tco_2_in_is__n__maf_ivvt</code><code>ip_cam_sp_tco_2_ex_is__n__maf_ivvt</code><code>c_cam_adj_rng_max_in</code><code>c_cam_adj_rng_max_ex</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>нужна проверка холостого хода и стабильности; измеренных данных нет</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="2" data-text="удаление рхх при удалении клапана холостого хода перестраиваются таблицы связи pvs/isa и уставки дросселя, чтобы холостой ход держался дросселем. icv-delete ip_pvs_isa_isapwm__isapwm ip_tps_sp_pvs_tco_1__pvs__n ip_tps_sp_pvs_tco_2__pvs__n c_cam_sp_in_isapwm_min_lgrd">
+<h3>Удаление РХХ <span class="verdict research">Исследование</span><span class="stage">Stage 2</span></h3>
+<p class="summary">При удалении клапана холостого хода перестраиваются таблицы связи PVS/ISA и уставки дросселя, чтобы холостой ход держался дросселем.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_pvs_isa_isapwm__isapwm</code><code>ip_tps_sp_pvs_tco_1__pvs__n</code><code>ip_tps_sp_pvs_tco_2__pvs__n</code><code>c_cam_sp_in_isapwm_min_lgrd</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>аппаратное изменение; нужна проверка холостого хода и пуска</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="1" data-text="обороты холостого хода задание холостого хода складывается из базовой уставки, надбавок (кондиционер, прогрев, обогрев) и упирается в таблицы скважности рхх. ms4x прямо предупреждает: подняв уставку и не поправив скважность, регулятор упрётся в предел. idle-speed ip_n_sp_is__tco ip_dri_n_sp_is__tco ip_acin_n_sp_is__tco ip_isapwm__tco ip_isapwm_dri__tco ip_isapwm_acin__tco ip_isapwm_dri_acin__tco c_n_sp_lgrd_is">
+<h3>Обороты холостого хода <span class="verdict research">Исследование</span><span class="stage">Stage 1</span></h3>
+<p class="summary">Задание холостого хода складывается из базовой уставки, надбавок (кондиционер, прогрев, обогрев) и упирается в таблицы скважности РХХ. MS4X прямо предупреждает: подняв уставку и не поправив скважность, регулятор упрётся в предел.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_n_sp_is__tco</code><code>ip_dri_n_sp_is__tco</code><code>ip_acin_n_sp_is__tco</code><code>ip_isapwm__tco</code><code>ip_isapwm_dri__tco</code><code>ip_isapwm_acin__tco</code><code>ip_isapwm_dri_acin__tco</code><code>c_n_sp_lgrd_is</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>нужен лог холостого хода и скважности РХХ; в скобках — единицы XDF для этих таблиц подписаны неверно (сказано °C)</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="1,2" data-text="карты оптимального зажигания (mbt) это не цели, а ориентиры mbt: используются для расчёта снижения момента и температуры выпуска. если целевой угол их превышает, эбу вмешивается в момент. ignition-mbt ip_iga_optm_tco_1__n__maf ip_iga_optm_tco_2__n__maf">
+<h3>Карты оптимального зажигания (MBT) <span class="verdict research">Исследование</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Это не цели, а ориентиры MBT: используются для расчёта снижения момента и температуры выпуска. Если целевой угол их превышает, ЭБУ вмешивается в момент.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_iga_optm_tco_1__n__maf</code><code>ip_iga_optm_tco_2__n__maf</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>изменять только по стендовым данным; сейчас не входят в allowlist</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="1,2" data-text="зажигание: ron91/ron98 и адаптация по топливу сток непрерывно интерполирует между картами ron91 и ron98 по выученному октановому фактору (на основе детонации). ron91 обязан остаться консервативным; ron98 можно оптимизировать, но заводская калибровка уже агрессивна. ignition-ron ip_iga_tco_1_is_ivvt__n__maf ip_iga_tco_1_pl_ivvt__n__maf ip_iga_tco_2_is_ivvt__n__maf ip_iga_ron_91_pl_ivvt__n__maf ip_iga_ron_98_pl_ivvt__n__maf">
+<h3>Зажигание: RON91/RON98 и адаптация по топливу <span class="verdict research">Исследование</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Сток непрерывно интерполирует между картами RON91 и RON98 по выученному октановому фактору (на основе детонации). RON91 обязан остаться консервативным; RON98 можно оптимизировать, но заводская калибровка уже агрессивна.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_iga_tco_1_is_ivvt__n__maf</code><code>ip_iga_tco_1_pl_ivvt__n__maf</code><code>ip_iga_tco_2_is_ivvt__n__maf</code><code>ip_iga_ron_91_pl_ivvt__n__maf</code><code>ip_iga_ron_98_pl_ivvt__n__maf</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>нужны стенд, лог детонации и широкополосная лямбда</li><li>наш продукт: отдельные BIN под RON 91/95/98 — что именно заливать в карты, решается только по замерам</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="2" data-text="модель нагрузки и vo-таблицы нагрузка для впрыска и зажигания считается через объёмную модель впуска: давление по уравнению состояния, затем 8 vo-таблиц по перекрытию клапанов. при серьёзном изменении впуска (наддув, коллектор) правится именно эта модель, иначе топливо упирается в «lean wall». load-model-vo ip_maf_vo_1__map__n ip_maf_vo_2__map__n ip_maf_vo_3__map__n ip_maf_vo_4__map__n ip_maf_vo_5__map__n ip_maf_vo_6__map__n ip_maf_vo_7__map__n ip_maf_vo_8__map__n ip_vol_im__n__maf_mes ip_vol_im_neg__n__maf_mes">
+<h3>Модель нагрузки и VO-таблицы <span class="verdict research">Исследование</span><span class="stage">Stage 2</span></h3>
+<p class="summary">Нагрузка для впрыска и зажигания считается через объёмную модель впуска: давление по уравнению состояния, затем 8 VO-таблиц по перекрытию клапанов. При серьёзном изменении впуска (наддув, коллектор) правится именно эта модель, иначе топливо упирается в «lean wall».</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_maf_vo_1__map__n</code><code>ip_maf_vo_2__map__n</code><code>ip_maf_vo_3__map__n</code><code>ip_maf_vo_4__map__n</code><code>ip_maf_vo_5__map__n</code><code>ip_maf_vo_6__map__n</code><code>ip_maf_vo_7__map__n</code><code>ip_maf_vo_8__map__n</code><code>ip_vol_im__n__maf_mes</code><code>ip_vol_im_neg__n__maf_mes</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>нужны логи нагрузки/давления и понимание модели; отдельная задача, не Stage 1</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="2" data-text="диагностика и failsafe дмрв при росте продувки ms4x советует поднять c_maf_max_diag чуть выше максимальной нагрузки мотора и перестроить таблицу подмены ip_maf_1_diag__n__tps_av (по логам maf/pedal/rpm). таблица подмены не заменяет датчик. порог c_maf_max_diag можно взять справочным значением с донорской калибровки ms43 (режим reference, только по явному hardware.use_donor_references) или заменить измеренным максимумом нагрузки. maf-diagnostics c_maf_max_diag c_maf_min_diag ip_maf_1_diag__n__tps_av">
+<h3>Диагностика и failsafe ДМРВ <span class="verdict research">Исследование</span><span class="stage">Stage 2</span></h3>
+<p class="summary">При росте продувки MS4X советует поднять c_maf_max_diag чуть выше максимальной нагрузки мотора и перестроить таблицу подмены ip_maf_1_diag__n__tps_av (по логам MAF/pedal/rpm). Таблица подмены не заменяет датчик. Порог c_maf_max_diag можно взять справочным значением с донорской калибровки MS43 (режим reference, только по явному hardware.use_donor_references) или заменить измеренным максимумом нагрузки.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>c_maf_max_diag</code><code>c_maf_min_diag</code><code>ip_maf_1_diag__n__tps_av</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>нужны логи нагрузки и педали; без них значение c_maf_max_diag — догадка</li><li>донор: c_maf_max_diag M54B30 = 890 кг/ч против 750 у M52TUB28 (MS43/firmware/, режим reference)</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="2" data-text="сокращение карт (map reduction) обнуление температурного смешивания (1.0 вместо переходных факторов) убирает плавность: холодные и тёплые карты перестают смешиваться. применяется для упрощения калибровки на гоночных машинах. map-reduction ip_fac_cam_sp_in_pl__tco__tco_st ip_fac_cam_sp_ex_pl__tco__tco_st ip_fac_pl_ivvt__tco__tco_st ip_fac_is_ivvt__tco__tco_st">
+<h3>Сокращение карт (map reduction) <span class="verdict research">Исследование</span><span class="stage">Stage 2</span></h3>
+<p class="summary">Обнуление температурного смешивания (1.0 вместо переходных факторов) убирает плавность: холодные и тёплые карты перестают смешиваться. Применяется для упрощения калибровки на гоночных машинах.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_fac_cam_sp_in_pl__tco__tco_st</code><code>ip_fac_cam_sp_ex_pl__tco__tco_st</code><code>ip_fac_pl_ivvt__tco__tco_st</code><code>ip_fac_is_ivvt__tco__tco_st</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>ухудшает холодный пуск и переходные режимы; не для дорожных машин</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="1,2" data-text="отдельные bin под ron 91/95/98 сток сам интерполирует между ron91 и ron98 по выученной детонации, поэтому «бины под топливо» для ms42 — это не переключение карт, а разные калибровки под измеренный запас по детонации. продуктовое правило «отдельный bin на ron» остаётся, но наполнение требует стенда. octane-bins ip_iga_ron_91_pl_ivvt__n__maf ip_iga_ron_98_pl_ivvt__n__maf">
+<h3>Отдельные BIN под RON 91/95/98 <span class="verdict research">Исследование</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Сток сам интерполирует между RON91 и RON98 по выученной детонации, поэтому «бины под топливо» для MS42 — это не переключение карт, а разные калибровки под измеренный запас по детонации. Продуктовое правило «отдельный BIN на RON» остаётся, но наполнение требует стенда.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_iga_ron_91_pl_ivvt__n__maf</code><code>ip_iga_ron_98_pl_ivvt__n__maf</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>без стенда и лога детонации разница между бинами недоказуема</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="1,2" data-text="что такое stage 1 и stage 2 на рынке stage 1 у всех продавцов — стоковое железо: зажигание, топливо, vanos, отсечка, ограничитель, холостой ход, хлопки; ожидания +5–10 л.с. stage 2 — впуск/выпуск/коллектор/каты: +10–15 л.с. эти цифры — маркетинговые ожидания, а не измеренный результат конкретной машины. stage-definition">
+<h3>Что такое Stage 1 и Stage 2 на рынке <span class="verdict research">Исследование</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Stage 1 у всех продавцов — стоковое железо: зажигание, топливо, VANOS, отсечка, ограничитель, холостой ход, хлопки; ожидания +5–10 л.с. Stage 2 — впуск/выпуск/коллектор/каты: +10–15 л.с. Эти цифры — маркетинговые ожидания, а не измеренный результат конкретной машины.</p>
+<div class="row"><span class="label">Что нужно</span><ul><li>наши стендовые данные отсутствуют: мощность в наряд не попадает</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.e36tuning.co.uk/guides" target="_blank" rel="noopener">e36tuning.co.uk — Tuning Guides (E36 M52)</a><a href="https://www.chaoscalibrations.com/store/MS41-ECU-Tuning-Performance-Tune-E36-3-Series-Z3-E39-5-Series-p421623718" target="_blank" rel="noopener">Chaos Calibrations — MS41 Stage 0+/1/2 (рыночная структура)</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="1,2" data-text="уставки vanos холодные и тёплые уставки для холостого хода, частичной и полной нагрузки; переход между состояниями смешивается по таблицам ip_fac_*__tco__tco_st. рабочий диапазон ограничен c_cam_ini ± c_cam_adj_rng_max (около 40 °crk). vanos-setpoints ip_cam_sp_tco_1_in_is__n__maf_ivvt ip_cam_sp_tco_1_ex_is__n__maf_ivvt ip_cam_sp_tco_1_in_pl__n__maf_ivvt ip_cam_sp_tco_1_ex_pl__n__maf_ivvt ip_cam_sp_tco_1_in_fl__n ip_cam_sp_tco_1_ex_fl__n ip_cam_sp_tco_2_in_is__n__maf_ivvt ip_cam_sp_tco_2_ex_is__n__maf_ivvt ip_cam_sp_tco_2_in_pl__n__maf_ivvt ip_cam_sp_tco_2_ex_pl__n__maf_ivvt ip_cam_sp_tco_2_in_fl__n ip_cam_sp_tco_2_ex_fl__n">
+<h3>Уставки VANOS <span class="verdict research">Исследование</span><span class="stage">Stage 1 · Stage 2</span></h3>
+<p class="summary">Холодные и тёплые уставки для холостого хода, частичной и полной нагрузки; переход между состояниями смешивается по таблицам ip_fac_*__tco__tco_st. Рабочий диапазон ограничен c_cam_ini ± c_cam_adj_rng_max (около 40 °CRK).</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>ip_cam_sp_tco_1_in_is__n__maf_ivvt</code><code>ip_cam_sp_tco_1_ex_is__n__maf_ivvt</code><code>ip_cam_sp_tco_1_in_pl__n__maf_ivvt</code><code>ip_cam_sp_tco_1_ex_pl__n__maf_ivvt</code><code>ip_cam_sp_tco_1_in_fl__n</code><code>ip_cam_sp_tco_1_ex_fl__n</code><code>ip_cam_sp_tco_2_in_is__n__maf_ivvt</code><code>ip_cam_sp_tco_2_ex_is__n__maf_ivvt</code><code>ip_cam_sp_tco_2_in_pl__n__maf_ivvt</code><code>ip_cam_sp_tco_2_ex_pl__n__maf_ivvt</code><code>ip_cam_sp_tco_2_in_fl__n</code><code>ip_cam_sp_tco_2_ex_fl__n</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>нужно измеренное сравнение «задано/фактически» и прирост момента на точку</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="research" data-stage="" data-text="вариантные переключатели (c_conf_*) конфигурация лямбда-зондов, круиза, электро-вентилятора, заслонки выпуска, dmtl и диагностики sav задаётся константами, а не кодированием по vin. после смены c_conf_cat нужен сброс выученных вариантов и отключение лишних зондов. переключателя dmtl в определении 0110c6 нет, хотя вики его перечисляет: в этом наборе он не подтверждён. variant-switches c_conf_cat c_conf_cru_main_swi c_conf_ecf c_conf_ef c_conf_sav_diag">
+<h3>Вариантные переключатели (c_conf_*) <span class="verdict research">Исследование</span><span class="stage">вне стейджей</span></h3>
+<p class="summary">Конфигурация лямбда-зондов, круиза, электро-вентилятора, заслонки выпуска, DMTL и диагностики SAV задаётся константами, а не кодированием по VIN. После смены c_conf_cat нужен сброс выученных вариантов и отключение лишних зондов. Переключателя DMTL в определении 0110C6 нет, хотя вики его перечисляет: в этом наборе он не подтверждён.</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>c_conf_cat</code><code>c_conf_cru_main_swi</code><code>c_conf_ecf</code><code>c_conf_ef</code><code>c_conf_sav_diag</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>нужно решение о юридических последствиях и подтверждение конфигурации конкретной машины</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="refused" data-stage="" data-text="отключение контрольной суммы калибровки рецепт сообщества (0x4fefe = 0xffff, 0x5002c = 0xa8) отключает проверку целостности калибровки. инструмент этого не делает: без проверки эбу теряет способность замечать повреждение данных. checksum-disable">
+<h3>Отключение контрольной суммы калибровки <span class="verdict refused">Отказано</span><span class="stage">вне стейджей</span></h3>
+<p class="summary">Рецепт сообщества (0x4FEFE = 0xFFFF, 0x5002C = 0xA8) отключает проверку целостности калибровки. Инструмент этого не делает: без проверки ЭБУ теряет способность замечать повреждение данных.</p>
+<div class="row"><span class="label">Что нужно</span><ul><li>сама MS4X помечает раздел как «только для образовательных целей»</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a></div></div>
+</article>
+<article class="entry" data-verdict="refused" data-stage="2" data-text="подавление dtc ms4x описывает подавление ошибок через обнуление порогов c_abc_inc_*: функция остаётся активной, но ошибка не выставляется. мы это не продаём: скрытая ошибка неотличима от исправной машины, а sap/rear-o2 bypass — предмет отдельного юридического решения (off-road). dtc-suppression c_abc_inc_cam c_abc_inc_cam_ex c_abc_inc_isa_1 c_abc_inc_isa_2">
+<h3>Подавление DTC <span class="verdict refused">Отказано</span><span class="stage">Stage 2</span></h3>
+<p class="summary">MS4X описывает подавление ошибок через обнуление порогов c_abc_inc_*: функция остаётся активной, но ошибка не выставляется. Мы это не продаём: скрытая ошибка неотличима от исправной машины, а SAP/rear-O2 bypass — предмет отдельного юридического решения (off-road).</p>
+<div class="row"><span class="label">Символы</span><div class="chips"><code>c_abc_inc_cam</code><code>c_abc_inc_cam_ex</code><code>c_abc_inc_isa_1</code><code>c_abc_inc_isa_2</code></div></div>
+<div class="row"><span class="label">Что нужно</span><ul><li>сознательный отказ, зафиксирован в документах</li></ul></div>
+<div class="row"><span class="label">Источники</span><div class="sources"><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a><a href="https://www.chaoscalibrations.com/store/MS41-ECU-Tuning-Performance-Tune-E36-3-Series-Z3-E39-5-Series-p421623718" target="_blank" rel="noopener">Chaos Calibrations — MS41 Stage 0+/1/2 (рыночная структура)</a></div></div>
+</article>
+  </div>
+  <footer id="empty" class="hidden">Ничего не найдено.</footer>
+  <details>
+    <summary>Источники (6)</summary>
+    <ul><li><a href="https://www.ms4x.net/index.php?title=Siemens_MS42" target="_blank" rel="noopener">MS4X Wiki — Siemens MS42</a> <span class="retrieved">2026-10-05</span><br><span class="what">Лагерь памяти, контрольные суммы, вариантные переключатели, MAF, модель нагрузки, впрыск, зажигание, VANOS, холостой ход, полная нагрузка, ограничители, хлопки, ghost cam, удаление РХХ, подавление DTC.</span></li><li><a href="https://www.ms4x.net/index.php?title=M52TUB25_Tuning" target="_blank" rel="noopener">MS4X Wiki — M52TUB25 Tuning</a> <span class="retrieved">2026-10-05</span><br><span class="what">Разбор, чем BMW ограничил M52TU относительно M54: DISA закрывает канал ровно на пике мощности; карты DISA предлагается переносить 1:1.</span></li><li><a href="https://www.e36tuning.co.uk/guides" target="_blank" rel="noopener">e36tuning.co.uk — Tuning Guides (E36 M52)</a> <span class="retrieved">2026-10-05</span><br><span class="what">Рыночное определение Stage 1 / Stage 2 для M52: Stage 1 — стоковое железо (+5–10 л.с. по их оценке), Stage 2 — впуск M50, выпуск, каты.</span></li><li><a href="https://www.chaoscalibrations.com/store/MS41-ECU-Tuning-Performance-Tune-E36-3-Series-Z3-E39-5-Series-p421623718" target="_blank" rel="noopener">Chaos Calibrations — MS41 Stage 0+/1/2 (рыночная структура)</a> <span class="retrieved">2026-10-05</span><br><span class="what">Что рынок кладёт в Stage 1 (сток) и Stage 2 (впуск/выпуск/коллектор), включая SAP/rear-O2 bypass и ожидания по мощности.</span></li><li><a href="https://www.seemslegitgarage.com/product-page/SLGECU" target="_blank" rel="noopener">Seems Legit Garage — описание услуг по MS42/MS43</a> <span class="retrieved">2026-10-05</span><br><span class="what">Практическое предупреждение: не поднимать отсечку выше 6750 об/мин без решения по масляному насосу; варианты burble/launch.</span></li><li><a href="https://www.hpacademy.com/forum/reflashing/show/fuel-tuning-maf-scaling-vs-injector-pulsewidth-map/" target="_blank" rel="noopener">HPAcademy — Fuel tuning: MAF scaling vs injector pulsewidth map</a> <span class="retrieved">2026-10-05</span><br><span class="what">Обсуждение, почему на MS41/MS42 правка MAF-скейла затрагивает ~30 таблиц нагрузки и допустима только при замене датчика.</span></li></ul>
+  </details>
+  <footer>Сгенерировано MS42/tools/knowledge_base.py. Вердикты: реализовано,
+  по документу, нужны данные, исследование, отказано. Файл автономный: без сети и внешних
+  скриптов.</footer>
+</main>
+<script>
+ (function () {
+   const entries = Array.from(document.querySelectorAll('.entry'));
+   const search = document.getElementById('search');
+   const buttons = Array.from(document.querySelectorAll('button.filter'));
+   const empty = document.getElementById('empty');
+   let verdict = 'all';
+   function apply() {
+     const needle = search.value.trim().toLowerCase();
+     let shown = 0;
+     for (const entry of entries) {
+       const matchesVerdict = verdict === 'all' || entry.dataset.verdict === verdict;
+       const matchesText = !needle || entry.dataset.text.includes(needle);
+       const visible = matchesVerdict && matchesText;
+       entry.classList.toggle('hidden', !visible);
+       if (visible) shown += 1;
+     }
+     empty.classList.toggle('hidden', shown !== 0);
+   }
+   search.addEventListener('input', apply);
+   for (const button of buttons) {
+     button.addEventListener('click', () => {
+       verdict = button.dataset.verdict;
+       for (const other of buttons) other.classList.toggle('active', other === button);
+       apply();
+     });
+   }
+ })();
+</script>
+</body>
+</html>

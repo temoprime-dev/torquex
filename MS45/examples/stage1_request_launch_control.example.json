@@ -1,0 +1,7 @@
+{
+  "stage": "stage1",
+  "customer": "Пример: клиент просит launch control",
+  "intents": [
+    {"kind": "launch_control"}
+  ]
+}

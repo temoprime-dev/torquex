@@ -1,0 +1,214 @@
+{
+ "MS410DS0": {
+  "jobs": 83,
+  "tables": [
+   "MS410DS0",
+   "BETRIEBSWMATRIX",
+   "BITS",
+   "FORTTEXTE",
+   "FARTMATRIX",
+   "FARTTEXTE",
+   "FUMWELTTEXTE",
+   "NULLEINSTEXTE",
+   "JOBRESULT"
+  ],
+  "exported_tables": {
+   "BETRIEBSWMATRIX": 28
+  },
+  "info": {
+   "ECU": "MS 41.0 fuer M52",
+   "ORIGIN": "BMW ET-421 Weber",
+   "REVISION": "1.905",
+   "AUTHOR": "BMW ET-421 Weber",
+   "COMMENT": "",
+   "SPRACHE": "deutsch"
+  }
+ },
+ "MS410DS1": {
+  "jobs": 86,
+  "tables": [
+   "MS410DS1",
+   "BETRIEBSWMATRIX",
+   "BITS",
+   "FORTTEXTE",
+   "FARTMATRIX",
+   "FARTTEXTE",
+   "FUMWELTTEXTE",
+   "NULLEINSTEXTE",
+   "JOBRESULT"
+  ],
+  "exported_tables": {
+   "BETRIEBSWMATRIX": 31
+  },
+  "info": {
+   "ECU": "MS 41.0 for M52",
+   "ORIGIN": "BMW TI-433 Schiefer",
+   "REVISION": "1.10",
+   "AUTHOR": "BMW TP-421 Weber, BMW TI-433 Schiefer",
+   "COMMENT": "",
+   "SPRACHE": "English"
+  }
+ },
+ "MS410DS2": {
+  "jobs": 89,
+  "tables": [
+   "MS410DS2",
+   "BETRIEBSWMATRIX",
+   "BITS",
+   "FORTTEXTE",
+   "FARTMATRIX",
+   "FARTTEXTE",
+   "FUMWELTTEXTE",
+   "NULLEINSTEXTE",
+   "JOBRESULT"
+  ],
+  "exported_tables": {
+   "BETRIEBSWMATRIX": 32
+  },
+  "info": {
+   "ECU": "MS 41.0 for M52 Flash",
+   "ORIGIN": "BMW TI-433 Schiefer",
+   "REVISION": "1.10",
+   "AUTHOR": "BMW TP-421 Weber, BMW TI-433 Schiefer",
+   "COMMENT": "",
+   "SPRACHE": "English"
+  }
+ },
+ "MS410DS3": {
+  "jobs": 91,
+  "tables": [
+   "MS410DS3",
+   "BETRIEBSWMATRIX",
+   "BITS",
+   "FORTTEXTE",
+   "FARTMATRIX",
+   "FARTTEXTE",
+   "FUMWELTTEXTE",
+   "NULLEINSTEXTE",
+   "JOBRESULT"
+  ],
+  "exported_tables": {
+   "BETRIEBSWMATRIX": 32
+  },
+  "info": {
+   "ECU": "MS 41.0 for M52 Flash",
+   "ORIGIN": "BMW TI-433 Schiefer",
+   "REVISION": "1.08",
+   "AUTHOR": "BMW TP-421 Weber, BMW TI-433 Schiefer",
+   "COMMENT": "",
+   "SPRACHE": "English"
+  }
+ },
+ "MS411DS1": {
+  "jobs": 118,
+  "tables": [
+   "MS411DS1",
+   "BETRIEBSWMATRIX",
+   "BITS",
+   "FORTTEXTE",
+   "FARTMATRIX",
+   "FARTTEXTE",
+   "FUMWELTTEXTE",
+   "NULLEINSTEXTE",
+   "JOBRESULT"
+  ],
+  "exported_tables": {
+   "BETRIEBSWMATRIX": 37
+  },
+  "info": {
+   "ECU": "MS 41.1 for M52 OBD II",
+   "ORIGIN": "BMW TI-433 Schiefer",
+   "REVISION": "1.13",
+   "AUTHOR": "BMW TP-421 Weber, BMW TI-433 Schiefer",
+   "COMMENT": "",
+   "SPRACHE": "English"
+  }
+ },
+ "MS411DS2": {
+  "jobs": 120,
+  "tables": [
+   "MS411DS2",
+   "BETRIEBSWMATRIX",
+   "BITS",
+   "FORTTEXTE",
+   "FARTMATRIX",
+   "FARTTEXTE",
+   "FUMWELTTEXTE",
+   "JOBRESULT"
+  ],
+  "exported_tables": {
+   "BETRIEBSWMATRIX": 37
+  },
+  "info": {
+   "ECU": "MS 41.1 fuer M52 OBD II LDP",
+   "ORIGIN": "BMW TI-433 Schiefer",
+   "REVISION": "1.03",
+   "AUTHOR": "BMW TP-421 Weber, BMW TI-433 Schiefer",
+   "COMMENT": "",
+   "SPRACHE": "deutsch"
+  }
+ },
+ "MS420DS0": {
+  "jobs": 186,
+  "tables": [
+   "MS420DS0",
+   "BETRIEBSWMATRIX",
+   "BETRIEBSWTAB",
+   "BITS",
+   "OBD_BITS",
+   "FORTTEXTE",
+   "FARTMATRIX",
+   "FARTTEXTE",
+   "FUMWELTTEXTE",
+   "FORTMATRIX",
+   "JOBRESULT"
+  ],
+  "exported_tables": {
+   "BETRIEBSWTAB": 6,
+   "BETRIEBSWMATRIX": 22
+  },
+  "info": {
+   "ECU": "MS 42.0 fuer M52 mit EWS 3",
+   "ORIGIN": "BMW TI-433 Schiefer",
+   "REVISION": "1.32",
+   "AUTHOR": "BMW TP-421 Weber, TP-421 Spoljarec, TI-433 Schiefer, TI-433 Schaller",
+   "COMMENT": "",
+   "SPRACHE": "English"
+  }
+ },
+ "MS430DS0": {
+  "jobs": 230,
+  "tables": [
+   "MS430DS0",
+   "FORTTEXTE",
+   "FARTMATRIX",
+   "FARTTEXTE",
+   "FUMWELTTEXTE",
+   "FORTMATRIX",
+   "JOBRESULT",
+   "BETRIEBSWMATRIX",
+   "BITS",
+   "OBD_BITS",
+   "BETRIEBSWTAB",
+   "PARAMETERVARTAB",
+   "LDPSTATUS",
+   "LDPSTATUS15",
+   "DIGITALARGUMENT"
+  ],
+  "exported_tables": {
+   "BETRIEBSWTAB": 175,
+   "BETRIEBSWMATRIX": 24,
+   "PARAMETERVARTAB": 6,
+   "DIGITALARGUMENT": 16
+  },
+  "info": {
+   "ECU": "MS 43.0 for M54 with EWS3",
+   "ORIGIN": "BMW TI-431 Schaller",
+   "REVISION": "2.00",
+   "AUTHOR": "BMW EA-33 Muellerwiebus, BMW TI-431 Schiefer, BMW TI-431 Schaller",
+   "COMMENT": "",
+   "PACKAGE": "1.00",
+   "SPRACHE": "English"
+  }
+ }
+}

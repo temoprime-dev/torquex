@@ -1,0 +1,15 @@
+ARTNR,ARTTEXT
+0x00,kein passendes Fehlersymptom
+0x01,Signal oder Wert oberhalb Schwelle
+0x02,Signal oder Wert unterhalb Schwelle
+0x04,kein Signal oder Wert
+0x08,unplausibles Signal oder Wert
+0x10,Testbedingungen erfüllt
+0x11,Testbedingungen noch nicht erfüllt
+0x20,"Fehler momentan nicht vorhanden, nicht OBD-entprellt"
+0x21,"Fehler momentan nicht vorhanden, OBD-entprellt"
+0x22,"Fehler momentan vorhanden, noch nicht OBD-entprellt"
+0x23,"Fehler momentan vorhanden, OBD-entprellt"
+0x30,Fehler verursacht kein Aufleuchten der Warnlampe (MIL)
+0x31,Fehler wuerde das Aufleuchten der Warnlampe (MIL) verursachen
+0xFF,unbekannte Fehlerart

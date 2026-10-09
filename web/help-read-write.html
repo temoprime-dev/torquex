@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-i18n-title="rw.title">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="TorqueX: как прочитать и записать ЭБУ BMW Siemens MS41–MS45 — короткая версия гайда клиента.">
+<title>TorqueX</title>
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="page.js"></script>
+</head>
+<body data-page="read_write">
+<a class="skip-link" href="#main" data-i18n="common.skip"></a>
+<header class="site-header" id="tx-header"></header>
+<div id="tx-demo-banner"></div>
+<p id="tx-live" class="sr-only" role="status" aria-live="polite"></p>
+<p id="tx-alert" class="sr-only" role="alert" aria-live="assertive"></p>
+<div id="tx-toasts" class="toasts" aria-live="polite"></div>
+
+<main id="main" class="wrap">
+  <h1 data-i18n="rw.title"></h1>
+  <p class="lead" data-i18n="rw.lead"></p>
+  <p class="alert alert-warn" data-i18n="rw.safety"></p>
+
+  <section class="card">
+    <h2 data-i18n="rw.need_title"></h2>
+    <ul class="list">
+      <li data-i18n="rw.need1"></li>
+      <li data-i18n="rw.need2"></li>
+      <li data-i18n="rw.need3"></li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="rw.step0_title"></h2>
+    <p data-i18n="rw.step0_text"></p>
+    <div class="table-scroll">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" data-i18n="rw.table_tool"></th>
+            <th scope="col" data-i18n="rw.table_how"></th>
+            <th scope="col" data-i18n="rw.table_what"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" data-i18n="rw.row_ms43"></th>
+            <td>MS4x Flasher</td>
+            <td data-i18n="rw.ms43_read"></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="rw.row_ms45"></th>
+            <td>MS45-Flasher</td>
+            <td data-i18n="rw.ms45_read"></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="rw.row_ms41"></th>
+            <td>MS41 read tool / boot mode</td>
+            <td data-i18n="rw.ms41_read"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="rw.step1_title"></h2>
+    <p data-i18n="rw.step1_text"></p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="rw.step2_title"></h2>
+    <p data-i18n="rw.step2_text"></p>
+    <p class="mono-row" id="cmd-build">
+      <code class="mono">python3 tools/torquex.py build --file stock.bin --request request.json --out file.bin</code>
+    </p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="rw.step3_title"></h2>
+    <p data-i18n="rw.step3_text"></p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="rw.step4_title"></h2>
+    <p data-i18n="rw.step4_text"></p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="rw.rollback_title"></h2>
+    <p data-i18n="rw.rollback_text"></p>
+    <p class="mono-row">
+      <code class="mono">python3 tools/torquex.py rollback --help</code>
+    </p>
+  </section>
+</main>
+
+<footer class="site-footer" id="tx-footer"></footer>
+</body>
+</html>

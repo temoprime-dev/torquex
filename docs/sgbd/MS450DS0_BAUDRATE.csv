@@ -1,0 +1,8 @@
+NR,BAUD,BAUD_TEXT
+0x01,PC9600,Baudrate 9.6 kBaud
+0x02,PC19200,Baudrate 19.2 kBaud
+0x03,PC38400,Baudrate 38.4 kBaud
+0x04,PC57600,Baudrate 57.6 kBaud
+0x05,PC115200,Baudrate 115.2 kBaud
+0x06,SB,Specific Baudrate
+0xXY,--,unbekannte Baudrate

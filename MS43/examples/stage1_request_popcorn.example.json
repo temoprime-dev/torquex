@@ -1,0 +1,24 @@
+{
+  "stage": "stage1",
+  "customer": "Пример (данные вымышлены, off-road)",
+  "notes": "Хлопки только на машине без катализатора. Профиль можно задать прямо в намерении (поля ниже) либо отдельным файлом через --popcorn popcorn.example.json.",
+  "intents": [
+    {
+      "id": "v1",
+      "kind": "vmax",
+      "transmission": "manual",
+      "value_kmh": 250,
+      "hard_add_kmh": 5.0,
+      "acknowledge_risk": true
+    },
+    {
+      "id": "p1",
+      "kind": "popcorn",
+      "band": "light",
+      "no_catalyst": "катализатор удалён физически, машина используется вне дорог общего пользования",
+      "thermal_watch": true,
+      "road_validation_plan": "первые заезды: 2-я и 3-я передачи, 10 минут, следить за температурой выпуска и ОЖ, откат на стоковый бэкап при перегреве"
+    }
+  ],
+  "acknowledge_legality": true
+}

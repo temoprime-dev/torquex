@@ -1,0 +1,2352 @@
+[
+  {
+    "variant": "MS410DS0",
+    "ecu": "MS 41.0 fuer M52",
+    "profiles": {
+      "stage0": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_LMM",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_UBATT",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "battery_voltage",
+            "job": "STATUS_UBATT",
+            "result": "STATUS_UBATT_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "wot": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": [
+          "throttle"
+        ]
+      },
+      "ignition": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          }
+        ],
+        "missing": []
+      },
+      "fueling": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": [
+          "throttle"
+        ]
+      }
+    }
+  },
+  {
+    "variant": "MS410DS1",
+    "ecu": "MS 41.0 fuer M52",
+    "profiles": {
+      "stage0": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_LMM",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_UBATT",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "battery_voltage",
+            "job": "STATUS_UBATT",
+            "result": "STATUS_UBATT_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "wot": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_DKP_VOLT",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "throttle",
+            "job": "STATUS_DKP_VOLT",
+            "result": "STATUS_DKP_VOLT_WERT",
+            "type": "real",
+            "unit": "Grad DK",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "ignition": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          }
+        ],
+        "missing": []
+      },
+      "fueling": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_DKP_VOLT",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "throttle",
+            "job": "STATUS_DKP_VOLT",
+            "result": "STATUS_DKP_VOLT_WERT",
+            "type": "real",
+            "unit": "Grad DK",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      }
+    }
+  },
+  {
+    "variant": "MS410DS2",
+    "ecu": "MS 41.0 fuer M52 Flash",
+    "profiles": {
+      "stage0": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_LMM",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_UBATT",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "battery_voltage",
+            "job": "STATUS_UBATT",
+            "result": "STATUS_UBATT_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "wot": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_DKP_VOLT",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "throttle",
+            "job": "STATUS_DKP_VOLT",
+            "result": "STATUS_DKP_VOLT_WERT",
+            "type": "real",
+            "unit": "Grad DK",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "ignition": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          }
+        ],
+        "missing": []
+      },
+      "fueling": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_DKP_VOLT",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "throttle",
+            "job": "STATUS_DKP_VOLT",
+            "result": "STATUS_DKP_VOLT_WERT",
+            "type": "real",
+            "unit": "Grad DK",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      }
+    }
+  },
+  {
+    "variant": "MS410DS3",
+    "ecu": "MS 41.0 fuer M52 Flash",
+    "profiles": {
+      "stage0": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_LMM",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_UBATT",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "battery_voltage",
+            "job": "STATUS_UBATT",
+            "result": "STATUS_UBATT_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "wot": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_DKP_VOLT",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "throttle",
+            "job": "STATUS_DKP_VOLT",
+            "result": "STATUS_DKP_VOLT_WERT",
+            "type": "real",
+            "unit": "Grad DK",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "ignition": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          }
+        ],
+        "missing": []
+      },
+      "fueling": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_DKP_VOLT",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "throttle",
+            "job": "STATUS_DKP_VOLT",
+            "result": "STATUS_DKP_VOLT_WERT",
+            "type": "real",
+            "unit": "Grad DK",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      }
+    }
+  },
+  {
+    "variant": "MS411DS1",
+    "ecu": "MS 41.1 fuer M52 OBD II",
+    "profiles": {
+      "stage0": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_LMM",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_UBATT",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "battery_voltage",
+            "job": "STATUS_UBATT",
+            "result": "STATUS_UBATT_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "wot": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_DKP_VOLT",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "throttle",
+            "job": "STATUS_DKP_VOLT",
+            "result": "STATUS_DKP_VOLT_WERT",
+            "type": "real",
+            "unit": "Grad DK",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "ignition": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          }
+        ],
+        "missing": []
+      },
+      "fueling": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_DKP_VOLT",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "throttle",
+            "job": "STATUS_DKP_VOLT",
+            "result": "STATUS_DKP_VOLT_WERT",
+            "type": "real",
+            "unit": "Grad DK",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      }
+    }
+  },
+  {
+    "variant": "MS411DS2",
+    "ecu": "MS 41.1 fuer M52 OBD II LDP",
+    "profiles": {
+      "stage0": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_LMM",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_UBATT",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "battery_voltage",
+            "job": "STATUS_UBATT",
+            "result": "STATUS_UBATT_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "wot": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_DKP_VOLT",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_GESCHWINDIGKEIT",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "throttle",
+            "job": "STATUS_DKP_VOLT",
+            "result": "STATUS_DKP_VOLT_WERT",
+            "type": "real",
+            "unit": "Grad DK",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "vehicle_speed",
+            "job": "STATUS_GESCHWINDIGKEIT",
+            "result": "STATUS_GESCHWINDIGKEIT_WERT",
+            "type": "real",
+            "unit": null,
+            "unit_source": null
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      },
+      "ignition": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_KLOPF_ADC1",
+          "STATUS_KLOPF_ADC2",
+          "STATUS_LAST",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR",
+          "STATUS_ZUENDWINKEL"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "ignition",
+            "job": "STATUS_ZUENDWINKEL",
+            "result": "STATUS_ZUENDWINKEL_WERT",
+            "type": "real",
+            "unit": "Grad KW",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "knock_bank1",
+            "job": "STATUS_KLOPF_ADC1",
+            "result": "STATUS_KLOPF_ADC1_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "knock_bank2",
+            "job": "STATUS_KLOPF_ADC2",
+            "result": "STATUS_KLOPF_ADC2_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          }
+        ],
+        "missing": []
+      },
+      "fueling": {
+        "jobs": [
+          "STATUS_AN_LUFTTEMPERATUR",
+          "STATUS_DKP_VOLT",
+          "STATUS_EINSPRITZZEIT",
+          "STATUS_LAST",
+          "STATUS_LMM",
+          "STATUS_LMM_VOLT",
+          "STATUS_L_SONDE",
+          "STATUS_L_SONDE_2",
+          "STATUS_MOTORDREHZAHL",
+          "STATUS_MOTORTEMPERATUR"
+        ],
+        "results": [
+          {
+            "signal": "rpm",
+            "job": "STATUS_MOTORDREHZAHL",
+            "result": "STATUS_MOTORDREHZAHL_WERT",
+            "type": "real",
+            "unit": "1/min",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "load",
+            "job": "STATUS_LAST",
+            "result": "STATUS_LAST_WERT",
+            "type": "real",
+            "unit": "mg/Hub",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_airflow",
+            "job": "STATUS_LMM",
+            "result": "STATUS_LMM_WERT",
+            "type": "real",
+            "unit": "kg/h",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "maf_voltage",
+            "job": "STATUS_LMM_VOLT",
+            "result": "STATUS_LMM_VOLT_WERT",
+            "type": "real",
+            "unit": "V",
+            "unit_source": "einh_comment"
+          },
+          {
+            "signal": "injector_pulse_width",
+            "job": "STATUS_EINSPRITZZEIT",
+            "result": "STATUS_EINSPRITZZEIT_WERT",
+            "type": "real",
+            "unit": "ms",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank1",
+            "job": "STATUS_L_SONDE",
+            "result": "STATUS_L_SONDE_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "lambda_bank2",
+            "job": "STATUS_L_SONDE_2",
+            "result": "STATUS_L_SONDE_2_WERT",
+            "type": "real",
+            "unit": "Volt",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "coolant_temp",
+            "job": "STATUS_MOTORTEMPERATUR",
+            "result": "STATUS_MOTORTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "intake_temp",
+            "job": "STATUS_AN_LUFTTEMPERATUR",
+            "result": "STATUS_AN_LUFTTEMPERATUR_WERT",
+            "type": "real",
+            "unit": "Grad C",
+            "unit_source": "betriebswmatrix"
+          },
+          {
+            "signal": "throttle",
+            "job": "STATUS_DKP_VOLT",
+            "result": "STATUS_DKP_VOLT_WERT",
+            "type": "real",
+            "unit": "Grad DK",
+            "unit_source": "betriebswmatrix"
+          }
+        ],
+        "missing": []
+      }
+    }
+  }
+]

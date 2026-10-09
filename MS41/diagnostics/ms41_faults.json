@@ -1,0 +1,2166 @@
+{
+  "MS410DS0": [
+    {
+      "code": "0x01",
+      "text": "Zuendspule Zylinder 1"
+    },
+    {
+      "code": "0x02",
+      "text": "Zuendspule Zylinder 4"
+    },
+    {
+      "code": "0x03",
+      "text": "Zuendspule Zylinder 6"
+    },
+    {
+      "code": "0x05",
+      "text": "Einspritzventil Zylinder  2"
+    },
+    {
+      "code": "0x06",
+      "text": "Einspritzventil Zylinder  1"
+    },
+    {
+      "code": "0x08",
+      "text": "Luftmassenmesser"
+    },
+    {
+      "code": "0x0A",
+      "text": "Temperaturfuehler Kuehlwasser"
+    },
+    {
+      "code": "0x0C",
+      "text": "Drosselklappenpoti"
+    },
+    {
+      "code": "0x0E",
+      "text": "Temperaturfuehler Ansaugluft"
+    },
+    {
+      "code": "0x12",
+      "text": "Fehler EWS-Datenleitung"
+    },
+    {
+      "code": "0x15",
+      "text": "VANOS elektrisch ??????"
+    },
+    {
+      "code": "0x16",
+      "text": "Einspritzventil Zylinder 3"
+    },
+    {
+      "code": "0x17",
+      "text": "Einspritzventil Zylinder 6"
+    },
+    {
+      "code": "0x18",
+      "text": "Einspritzventil Zylinder 4"
+    },
+    {
+      "code": "0x19",
+      "text": "Lambdasondenheizung Sonde 1"
+    },
+    {
+      "code": "0x1B",
+      "text": "Leerlaufsteller/ schließende Spule"
+    },
+    {
+      "code": "0x1D",
+      "text": "Zuendspule Zylinder 1"
+    },
+    {
+      "code": "0x1E",
+      "text": "Zuendspule Zylinder 3"
+    },
+    {
+      "code": "0x1F",
+      "text": "Zuendspule Zylinder 5"
+    },
+    {
+      "code": "0x21",
+      "text": "Einspritzventil Zyl. 5"
+    },
+    {
+      "code": "0x34",
+      "text": "Abgasklappe"
+    },
+    {
+      "code": "0x35",
+      "text": "Leerlaufsteller oeffnende Spule"
+    },
+    {
+      "code": "0x37",
+      "text": "Lambdasondenheizung Sonde 2"
+    },
+    {
+      "code": "0x38",
+      "text": "ZSR Widerstand Unterbrechung"
+    },
+    {
+      "code": "0x39",
+      "text": "Klopfsensor 1"
+    },
+    {
+      "code": "0x3B",
+      "text": "Klopfsensor 2"
+    },
+    {
+      "code": "0x41",
+      "text": "Nockenwellen - Geber"
+    },
+    {
+      "code": "0x44",
+      "text": "Tankentlueftungsventil"
+    },
+    {
+      "code": "0x45",
+      "text": "Kraftstoffpumpenrelais"
+    },
+    {
+      "code": "0x4A",
+      "text": "Relais Klimakompressor"
+    },
+    {
+      "code": "0x4B",
+      "text": "Lambdasonde 1"
+    },
+    {
+      "code": "0x4C",
+      "text": "Lambdasonde 2"
+    },
+    {
+      "code": "0x50",
+      "text": "ASC - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x51",
+      "text": "MSR - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x52",
+      "text": "EML - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x53",
+      "text": "Kurbelwellen - Geber"
+    },
+    {
+      "code": "0x64",
+      "text": "Steuergeraete Selbsttest"
+    },
+    {
+      "code": "0xC8",
+      "text": "Spannungshub L-Sonde 1"
+    },
+    {
+      "code": "0xC9",
+      "text": "Spannungshub L-Sonde 2"
+    },
+    {
+      "code": "0xCA",
+      "text": "Lambdareglergrenze Bank 1"
+    },
+    {
+      "code": "0xCB",
+      "text": "Lambdareglergrenze Bank 2"
+    },
+    {
+      "code": "0xD2",
+      "text": "ZSR Fehler bei mehr als 2 Zylinder"
+    },
+    {
+      "code": "0xD6",
+      "text": "Tachosignal unplausibel"
+    },
+    {
+      "code": "0xD7",
+      "text": "ASC / MSR   Signalkombination"
+    },
+    {
+      "code": "0xD8",
+      "text": "Gang Inf-Signal nicht definiert"
+    },
+    {
+      "code": "0xD9",
+      "text": "Timeout CAN Botschaft EGS 1"
+    },
+    {
+      "code": "0xDA",
+      "text": "CAN-Baustein warning level erreicht"
+    },
+    {
+      "code": "0xDB",
+      "text": "CAN-Baustein Bus aus"
+    },
+    {
+      "code": "0xD3",
+      "text": "Leerlaufsteller mechanisches Klemmen"
+    },
+    {
+      "code": "0xD4",
+      "text": "VANOS mechanisches Klemmen"
+    },
+    {
+      "code": "0xXY",
+      "text": "unbekannter Fehlerort"
+    }
+  ],
+  "MS410DS1": [
+    {
+      "code": "0x01",
+      "text": "Zuendung Zylinder 2"
+    },
+    {
+      "code": "0x02",
+      "text": "Zuendung Zylinder 4"
+    },
+    {
+      "code": "0x03",
+      "text": "Zuendung Zylinder 6"
+    },
+    {
+      "code": "0x05",
+      "text": "Einspritzventil Zylinder 2"
+    },
+    {
+      "code": "0x06",
+      "text": "Einspritzventil Zylinder 1"
+    },
+    {
+      "code": "0x08",
+      "text": "Luftmassenmesser"
+    },
+    {
+      "code": "0x0A",
+      "text": "Temperaturfuehler Motortemperatur"
+    },
+    {
+      "code": "0x0B",
+      "text": "Tankdrucksensor (TDS)"
+    },
+    {
+      "code": "0x0C",
+      "text": "Drosselklappenpotentiometer"
+    },
+    {
+      "code": "0x0E",
+      "text": "Temperaturfuehler Ansaugluft"
+    },
+    {
+      "code": "0x10",
+      "text": "Pulsweitenmoduliertes Eingangssignal Schalter Klimakompressor"
+    },
+    {
+      "code": "0x12",
+      "text": "EWS-Signal (DWA-Eingang) nicht vorhanden oder fehlerhaft"
+    },
+    {
+      "code": "0x14",
+      "text": "Diagnoselampe (MIL)"
+    },
+    {
+      "code": "0x15",
+      "text": "VANOS Ansteller, elektrischer Fehler"
+    },
+    {
+      "code": "0x16",
+      "text": "Einspritzventil Zylinder 3"
+    },
+    {
+      "code": "0x17",
+      "text": "Einspritzventil Zylinder 6"
+    },
+    {
+      "code": "0x18",
+      "text": "Einspritzventil Zylinder 4"
+    },
+    {
+      "code": "0x19",
+      "text": "Lambdasondenheizung Sonde 1"
+    },
+    {
+      "code": "0x1B",
+      "text": "Leerlaufsteller / schliessende Spule"
+    },
+    {
+      "code": "0x1D",
+      "text": "Zuendung Zylinder 1"
+    },
+    {
+      "code": "0x1E",
+      "text": "Zuendung Zylinder 3"
+    },
+    {
+      "code": "0x1F",
+      "text": "Zuendung Zylinder 5"
+    },
+    {
+      "code": "0x21",
+      "text": "Einspritzventil Zylinder 5"
+    },
+    {
+      "code": "0x23",
+      "text": "Relais Sekundaerluftpumpe"
+    },
+    {
+      "code": "0x2E",
+      "text": "Fuellstandssignal Reservelampe"
+    },
+    {
+      "code": "0x2F",
+      "text": "Temperatur nach Vorkatalysator Startwert"
+    },
+    {
+      "code": "0x32",
+      "text": "(3/2 Wege)Magnetventil Running losses"
+    },
+    {
+      "code": "0x33",
+      "text": "Absperrventil Aktivkohlefilter (AAV)"
+    },
+    {
+      "code": "0x34",
+      "text": "Abgasklappe"
+    },
+    {
+      "code": "0x35",
+      "text": "Leerlaufsteller / oeffnende Spule"
+    },
+    {
+      "code": "0x37",
+      "text": "Lambdasondenheizung Sonde 2"
+    },
+    {
+      "code": "0x38",
+      "text": "Zuendstrommessung Widerstand Unterbrechung"
+    },
+    {
+      "code": "0x39",
+      "text": "Klopfsensor 1"
+    },
+    {
+      "code": "0x3B",
+      "text": "Klopfsensor 2"
+    },
+    {
+      "code": "0x3D",
+      "text": "Lambdasondenheizung Sonde 4"
+    },
+    {
+      "code": "0x3E",
+      "text": "Sekundaerluftventil"
+    },
+    {
+      "code": "0x41",
+      "text": "Nockenwellen - Geber"
+    },
+    {
+      "code": "0x44",
+      "text": "Tankentlueftungsventil"
+    },
+    {
+      "code": "0x45",
+      "text": "Relais Kraftstoffpumpe"
+    },
+    {
+      "code": "0x4A",
+      "text": "Relais Klimakompressor"
+    },
+    {
+      "code": "0x4B",
+      "text": "Lambdasonde 1"
+    },
+    {
+      "code": "0x4C",
+      "text": "Lambdasonde 2"
+    },
+    {
+      "code": "0x4D",
+      "text": "Lambdasonde 3"
+    },
+    {
+      "code": "0x4E",
+      "text": "Lambdasonde 4"
+    },
+    {
+      "code": "0x4F",
+      "text": "Lambdasondenheizung Sonde 3"
+    },
+    {
+      "code": "0x50",
+      "text": "ASC - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x51",
+      "text": "MSR - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x52",
+      "text": "EML - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x53",
+      "text": "Kurbelwellen - Gebersignal"
+    },
+    {
+      "code": "0x64",
+      "text": "Steuergeraete Selbsttest"
+    },
+    {
+      "code": "0xC8",
+      "text": "Spannungshub Lambdasonde 1"
+    },
+    {
+      "code": "0xC9",
+      "text": "Spannungshub Lambdasonde 2"
+    },
+    {
+      "code": "0xCA",
+      "text": "Lambdareglergrenze Bank 1"
+    },
+    {
+      "code": "0xCB",
+      "text": "Lambdareglergrenze Bank 2"
+    },
+    {
+      "code": "0xD1",
+      "text": "EWS-Signal fehlerhaft"
+    },
+    {
+      "code": "0xD2",
+      "text": "Zuendstrommessung an mehr als 2 Zylinder"
+    },
+    {
+      "code": "0xD3",
+      "text": "Leerlaufsteller, mechanisches Klemmen"
+    },
+    {
+      "code": "0xD4",
+      "text": "VANOS mechanisches Klemmen"
+    },
+    {
+      "code": "0xD6",
+      "text": "Tachosignal unplausibel"
+    },
+    {
+      "code": "0xD7",
+      "text": "ASC / MSR   Signalkombination unplausibel"
+    },
+    {
+      "code": "0xD8",
+      "text": "Waehlhebelpositionssignal nicht definiert"
+    },
+    {
+      "code": "0xD9",
+      "text": "Timeout CAN-Botschaft zum EGS"
+    },
+    {
+      "code": "0xDA",
+      "text": "CAN-Baustein warning level erreicht"
+    },
+    {
+      "code": "0xDB",
+      "text": "CAN-Baustein Bus aus"
+    },
+    {
+      "code": "0xDE",
+      "text": "Lambdaregelung nach vorgegeb. Zeit nicht aktiv"
+    },
+    {
+      "code": "0xE1",
+      "text": "Temperatur nach Vor-KAT 1 Spannungswert"
+    },
+    {
+      "code": "0xE2",
+      "text": "Temperatur nach Vor-KAT 2 Spannungswert"
+    },
+    {
+      "code": "0xE3",
+      "text": "Lambdaregleradaption, Bank 1"
+    },
+    {
+      "code": "0xE4",
+      "text": "Lambdaregleradaption, Bank 2"
+    },
+    {
+      "code": "0xE5",
+      "text": "Regelfrequenz Lambdasonde Bank 1"
+    },
+    {
+      "code": "0xE6",
+      "text": "Regelfrequenz Lambdasonde Bank 2"
+    },
+    {
+      "code": "0xE7",
+      "text": "Sprungzeit Lambdasonde Bank 1"
+    },
+    {
+      "code": "0xE8",
+      "text": "Sprungzeit Lambdasonde Bank 2"
+    },
+    {
+      "code": "0xE9",
+      "text": "KAT Gesamtwirkungsgrad Bank 1"
+    },
+    {
+      "code": "0xEA",
+      "text": "KAT Gesamtwirkungsgrad Bank 2"
+    },
+    {
+      "code": "0xEB",
+      "text": "Nach-KAT-Sondenheizkreis Bank 1"
+    },
+    {
+      "code": "0xEC",
+      "text": "Nach-KAT-Sondenheizkreis Bank 2"
+    },
+    {
+      "code": "0xEE",
+      "text": "Verbrennungsaussetzer, Zylinder 1"
+    },
+    {
+      "code": "0xEF",
+      "text": "Verbrennungsaussetzer, Zylinder 2"
+    },
+    {
+      "code": "0xF0",
+      "text": "Verbrennungsaussetzer, Zylinder 3"
+    },
+    {
+      "code": "0xF1",
+      "text": "Verbrennungsaussetzer, Zylinder 4"
+    },
+    {
+      "code": "0xF2",
+      "text": "Verbrennungsaussetzer, Zylinder 5"
+    },
+    {
+      "code": "0xF3",
+      "text": "Verbrennungsaussetzer, Zylinder 6"
+    },
+    {
+      "code": "0xF4",
+      "text": "Kurbelwellensegmentadaption am Anschlag"
+    },
+    {
+      "code": "0xF5",
+      "text": "Fehler Sekundaerluftsystem Bank 1"
+    },
+    {
+      "code": "0xF6",
+      "text": "Fehler Sekundaerluftsystem Bank 2"
+    },
+    {
+      "code": "0xF7",
+      "text": "Sekundaerluftventil mechanisches Klemmen"
+    },
+    {
+      "code": "0xF8",
+      "text": "Vor-Kat-Wirkungsgrad Bank 1"
+    },
+    {
+      "code": "0xF9",
+      "text": "Vor-Kat-Wirkungsgrad Bank 2"
+    },
+    {
+      "code": "0xFA",
+      "text": "Funktionstest Tankentlueftungsvenzil"
+    },
+    {
+      "code": "0xFB",
+      "text": "Diagnosefehler TE"
+    },
+    {
+      "code": "0xFC",
+      "text": "Fehler beim Absaugen im Tanksystem"
+    },
+    {
+      "code": "0xFD",
+      "text": "Absperrventil klemmt, geschlossen"
+    },
+    {
+      "code": "0xFE",
+      "text": "Tankdeckel fehlt"
+    },
+    {
+      "code": "0xFF",
+      "text": "TEV klemmt, offen"
+    },
+    {
+      "code": "0xXY",
+      "text": "unbekannter Fehlerort"
+    }
+  ],
+  "MS410DS2": [
+    {
+      "code": "0x01",
+      "text": "Zuendung Zylinder 2"
+    },
+    {
+      "code": "0x02",
+      "text": "Zuendung Zylinder 4"
+    },
+    {
+      "code": "0x03",
+      "text": "Zuendung Zylinder 6"
+    },
+    {
+      "code": "0x05",
+      "text": "Einspritzventil Zylinder 2"
+    },
+    {
+      "code": "0x06",
+      "text": "Einspritzventil Zylinder 1"
+    },
+    {
+      "code": "0x08",
+      "text": "Luftmassenmesser"
+    },
+    {
+      "code": "0x0A",
+      "text": "Temperaturfuehler Motortemperatur"
+    },
+    {
+      "code": "0x0B",
+      "text": "Tankdrucksensor (TDS)"
+    },
+    {
+      "code": "0x0C",
+      "text": "Drosselklappenpotentiometer"
+    },
+    {
+      "code": "0x0E",
+      "text": "Temperaturfuehler Ansaugluft"
+    },
+    {
+      "code": "0x10",
+      "text": "Pulsweitenmoduliertes Eingangssignal Schalter Klimakompressor"
+    },
+    {
+      "code": "0x12",
+      "text": "EWS-Signal (DWA-Eingang) nicht vorhanden oder fehlerhaft"
+    },
+    {
+      "code": "0x14",
+      "text": "Diagnoselampe (MIL)"
+    },
+    {
+      "code": "0x15",
+      "text": "VANOS Ansteller, elektrischer Fehler"
+    },
+    {
+      "code": "0x16",
+      "text": "Einspritzventil Zylinder 3"
+    },
+    {
+      "code": "0x17",
+      "text": "Einspritzventil Zylinder 6"
+    },
+    {
+      "code": "0x18",
+      "text": "Einspritzventil Zylinder 4"
+    },
+    {
+      "code": "0x19",
+      "text": "Lambdasondenheizung Sonde 1"
+    },
+    {
+      "code": "0x1B",
+      "text": "Leerlaufsteller / schliessende Spule"
+    },
+    {
+      "code": "0x1D",
+      "text": "Zuendung Zylinder 1"
+    },
+    {
+      "code": "0x1E",
+      "text": "Zuendung Zylinder 3"
+    },
+    {
+      "code": "0x1F",
+      "text": "Zuendung Zylinder 5"
+    },
+    {
+      "code": "0x21",
+      "text": "Einspritzventil Zylinder 5"
+    },
+    {
+      "code": "0x23",
+      "text": "Relais Sekundaerluftpumpe"
+    },
+    {
+      "code": "0x2E",
+      "text": "Fuellstandssignal Reservelampe"
+    },
+    {
+      "code": "0x2F",
+      "text": "Temperatur nach Vorkatalysator Startwert"
+    },
+    {
+      "code": "0x32",
+      "text": "(3/2 Wege)Magnetventil Running losses"
+    },
+    {
+      "code": "0x33",
+      "text": "Absperrventil Aktivkohlefilter (AAV)"
+    },
+    {
+      "code": "0x34",
+      "text": "Abgasklappe"
+    },
+    {
+      "code": "0x35",
+      "text": "Leerlaufsteller / oeffnende Spule"
+    },
+    {
+      "code": "0x37",
+      "text": "Lambdasondenheizung Sonde 2"
+    },
+    {
+      "code": "0x38",
+      "text": "Zuendstrommessung Widerstand Unterbrechung"
+    },
+    {
+      "code": "0x39",
+      "text": "Klopfsensor 1"
+    },
+    {
+      "code": "0x3B",
+      "text": "Klopfsensor 2"
+    },
+    {
+      "code": "0x3D",
+      "text": "Lambdasondenheizung Sonde 4"
+    },
+    {
+      "code": "0x3E",
+      "text": "Sekundaerluftventil"
+    },
+    {
+      "code": "0x41",
+      "text": "Nockenwellen - Geber"
+    },
+    {
+      "code": "0x44",
+      "text": "Tankentlueftungsventil"
+    },
+    {
+      "code": "0x45",
+      "text": "Relais Kraftstoffpumpe"
+    },
+    {
+      "code": "0x4A",
+      "text": "Relais Klimakompressor"
+    },
+    {
+      "code": "0x4B",
+      "text": "Lambdasonde 1"
+    },
+    {
+      "code": "0x4C",
+      "text": "Lambdasonde 2"
+    },
+    {
+      "code": "0x4D",
+      "text": "Lambdasonde 3"
+    },
+    {
+      "code": "0x4E",
+      "text": "Lambdasonde 4"
+    },
+    {
+      "code": "0x4F",
+      "text": "Lambdasondenheizung Sonde 3"
+    },
+    {
+      "code": "0x50",
+      "text": "ASC - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x51",
+      "text": "MSR - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x52",
+      "text": "EML - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x53",
+      "text": "Kurbelwellen - Gebersignal"
+    },
+    {
+      "code": "0x64",
+      "text": "Steuergeraete Selbsttest"
+    },
+    {
+      "code": "0xC8",
+      "text": "Spannungshub Lambdasonde 1"
+    },
+    {
+      "code": "0xC9",
+      "text": "Spannungshub Lambdasonde 2"
+    },
+    {
+      "code": "0xCA",
+      "text": "Lambdareglergrenze Bank 1"
+    },
+    {
+      "code": "0xCB",
+      "text": "Lambdareglergrenze Bank 2"
+    },
+    {
+      "code": "0xD1",
+      "text": "EWS-Signal fehlerhaft"
+    },
+    {
+      "code": "0xD2",
+      "text": "Zuendstrommessung an mehr als 2 Zylinder"
+    },
+    {
+      "code": "0xD3",
+      "text": "Leerlaufsteller, mechanisches Klemmen"
+    },
+    {
+      "code": "0xD4",
+      "text": "VANOS mechanisches Klemmen"
+    },
+    {
+      "code": "0xD6",
+      "text": "Tachosignal unplausibel"
+    },
+    {
+      "code": "0xD7",
+      "text": "ASC / MSR   Signalkombination unplausibel"
+    },
+    {
+      "code": "0xD8",
+      "text": "Waehlhebelpositionssignal nicht definiert"
+    },
+    {
+      "code": "0xD9",
+      "text": "Timeout CAN-Botschaft zum EGS"
+    },
+    {
+      "code": "0xDA",
+      "text": "CAN-Baustein warning level erreicht"
+    },
+    {
+      "code": "0xDB",
+      "text": "CAN-Baustein Bus aus"
+    },
+    {
+      "code": "0xDE",
+      "text": "Lambdaregelung nach vorgegeb. Zeit nicht aktiv"
+    },
+    {
+      "code": "0xE1",
+      "text": "Temperatur nach Vor-KAT 1 Spannungswert"
+    },
+    {
+      "code": "0xE2",
+      "text": "Temperatur nach Vor-KAT 2 Spannungswert"
+    },
+    {
+      "code": "0xE3",
+      "text": "Lambdaregleradaption, Bank 1"
+    },
+    {
+      "code": "0xE4",
+      "text": "Lambdaregleradaption, Bank 2"
+    },
+    {
+      "code": "0xE5",
+      "text": "Regelfrequenz Lambdasonde Bank 1"
+    },
+    {
+      "code": "0xE6",
+      "text": "Regelfrequenz Lambdasonde Bank 2"
+    },
+    {
+      "code": "0xE7",
+      "text": "Sprungzeit Lambdasonde Bank 1"
+    },
+    {
+      "code": "0xE8",
+      "text": "Sprungzeit Lambdasonde Bank 2"
+    },
+    {
+      "code": "0xE9",
+      "text": "KAT Gesamtwirkungsgrad Bank 1"
+    },
+    {
+      "code": "0xEA",
+      "text": "KAT Gesamtwirkungsgrad Bank 2"
+    },
+    {
+      "code": "0xEB",
+      "text": "Nach-KAT-Sondenheizkreis Bank 1"
+    },
+    {
+      "code": "0xEC",
+      "text": "Nach-KAT-Sondenheizkreis Bank 2"
+    },
+    {
+      "code": "0xEE",
+      "text": "Verbrennungsaussetzer, Zylinder 1"
+    },
+    {
+      "code": "0xEF",
+      "text": "Verbrennungsaussetzer, Zylinder 2"
+    },
+    {
+      "code": "0xF0",
+      "text": "Verbrennungsaussetzer, Zylinder 3"
+    },
+    {
+      "code": "0xF1",
+      "text": "Verbrennungsaussetzer, Zylinder 4"
+    },
+    {
+      "code": "0xF2",
+      "text": "Verbrennungsaussetzer, Zylinder 5"
+    },
+    {
+      "code": "0xF3",
+      "text": "Verbrennungsaussetzer, Zylinder 6"
+    },
+    {
+      "code": "0xF4",
+      "text": "Kurbelwellensegmentadaption am Anschlag"
+    },
+    {
+      "code": "0xF5",
+      "text": "Fehler Sekundaerluftsystem Bank 1"
+    },
+    {
+      "code": "0xF6",
+      "text": "Fehler Sekundaerluftsystem Bank 2"
+    },
+    {
+      "code": "0xF7",
+      "text": "Sekundaerluftventil mechanisches Klemmen"
+    },
+    {
+      "code": "0xF8",
+      "text": "Vor-Kat-Wirkungsgrad Bank 1"
+    },
+    {
+      "code": "0xF9",
+      "text": "Vor-Kat-Wirkungsgrad Bank 2"
+    },
+    {
+      "code": "0xFA",
+      "text": "Funktionstest Tankentlueftungsvenzil"
+    },
+    {
+      "code": "0xFB",
+      "text": "Diagnosefehler TE"
+    },
+    {
+      "code": "0xFC",
+      "text": "Fehler beim Absaugen im Tanksystem"
+    },
+    {
+      "code": "0xFD",
+      "text": "Absperrventil klemmt, geschlossen"
+    },
+    {
+      "code": "0xFE",
+      "text": "Tankdeckel fehlt"
+    },
+    {
+      "code": "0xFF",
+      "text": "TEV klemmt, offen"
+    },
+    {
+      "code": "0xXY",
+      "text": "unbekannter Fehlerort"
+    }
+  ],
+  "MS410DS3": [
+    {
+      "code": "0x01",
+      "text": "Zuendung Zylinder 2"
+    },
+    {
+      "code": "0x02",
+      "text": "Zuendung Zylinder 4"
+    },
+    {
+      "code": "0x03",
+      "text": "Zuendung Zylinder 6"
+    },
+    {
+      "code": "0x05",
+      "text": "Einspritzventil Zylinder 2"
+    },
+    {
+      "code": "0x06",
+      "text": "Einspritzventil Zylinder 1"
+    },
+    {
+      "code": "0x08",
+      "text": "Luftmassenmesser"
+    },
+    {
+      "code": "0x0A",
+      "text": "Temperaturfuehler Motortemperatur"
+    },
+    {
+      "code": "0x0B",
+      "text": "Tankdrucksensor (TDS)"
+    },
+    {
+      "code": "0x0C",
+      "text": "Drosselklappenpotentiometer"
+    },
+    {
+      "code": "0x0E",
+      "text": "Temperaturfuehler Ansaugluft"
+    },
+    {
+      "code": "0x10",
+      "text": "Pulsweitenmoduliertes Eingangssignal Schalter Klimakompressor"
+    },
+    {
+      "code": "0x12",
+      "text": "EWS-Signal (DWA-Eingang) nicht vorhanden oder fehlerhaft"
+    },
+    {
+      "code": "0x14",
+      "text": "Diagnoselampe (MIL)"
+    },
+    {
+      "code": "0x15",
+      "text": "VANOS Ansteller, elektrischer Fehler"
+    },
+    {
+      "code": "0x16",
+      "text": "Einspritzventil Zylinder 3"
+    },
+    {
+      "code": "0x17",
+      "text": "Einspritzventil Zylinder 6"
+    },
+    {
+      "code": "0x18",
+      "text": "Einspritzventil Zylinder 4"
+    },
+    {
+      "code": "0x19",
+      "text": "Lambdasondenheizung Sonde 1"
+    },
+    {
+      "code": "0x1B",
+      "text": "Leerlaufsteller / schliessende Spule"
+    },
+    {
+      "code": "0x1D",
+      "text": "Zuendung Zylinder 1"
+    },
+    {
+      "code": "0x1E",
+      "text": "Zuendung Zylinder 3"
+    },
+    {
+      "code": "0x1F",
+      "text": "Zuendung Zylinder 5"
+    },
+    {
+      "code": "0x21",
+      "text": "Einspritzventil Zylinder 5"
+    },
+    {
+      "code": "0x23",
+      "text": "Relais Sekundaerluftpumpe"
+    },
+    {
+      "code": "0x2E",
+      "text": "Fuellstandssignal Reservelampe"
+    },
+    {
+      "code": "0x2F",
+      "text": "Temperatur nach Vorkatalysator Startwert"
+    },
+    {
+      "code": "0x32",
+      "text": "(3/2 Wege)Magnetventil Running losses"
+    },
+    {
+      "code": "0x33",
+      "text": "Absperrventil Aktivkohlefilter (AAV)"
+    },
+    {
+      "code": "0x34",
+      "text": "Abgasklappe"
+    },
+    {
+      "code": "0x35",
+      "text": "Leerlaufsteller / oeffnende Spule"
+    },
+    {
+      "code": "0x37",
+      "text": "Lambdasondenheizung Sonde 2"
+    },
+    {
+      "code": "0x38",
+      "text": "Zuendstrommessung Widerstand Unterbrechung"
+    },
+    {
+      "code": "0x39",
+      "text": "Klopfsensor 1"
+    },
+    {
+      "code": "0x3B",
+      "text": "Klopfsensor 2"
+    },
+    {
+      "code": "0x3D",
+      "text": "Lambdasondenheizung Sonde 4"
+    },
+    {
+      "code": "0x3E",
+      "text": "Sekundaerluftventil"
+    },
+    {
+      "code": "0x41",
+      "text": "Nockenwellen - Geber"
+    },
+    {
+      "code": "0x44",
+      "text": "Tankentlueftungsventil"
+    },
+    {
+      "code": "0x45",
+      "text": "Relais Kraftstoffpumpe"
+    },
+    {
+      "code": "0x4A",
+      "text": "Relais Klimakompressor"
+    },
+    {
+      "code": "0x4B",
+      "text": "Lambdasonde 1"
+    },
+    {
+      "code": "0x4C",
+      "text": "Lambdasonde 2"
+    },
+    {
+      "code": "0x4D",
+      "text": "Lambdasonde 3"
+    },
+    {
+      "code": "0x4E",
+      "text": "Lambdasonde 4"
+    },
+    {
+      "code": "0x4F",
+      "text": "Lambdasondenheizung Sonde 3"
+    },
+    {
+      "code": "0x50",
+      "text": "ASC - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x51",
+      "text": "MSR - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x52",
+      "text": "EML - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x53",
+      "text": "Kurbelwellen - Gebersignal"
+    },
+    {
+      "code": "0x64",
+      "text": "Steuergeraete Selbsttest"
+    },
+    {
+      "code": "0xC8",
+      "text": "Spannungshub Lambdasonde 1"
+    },
+    {
+      "code": "0xC9",
+      "text": "Spannungshub Lambdasonde 2"
+    },
+    {
+      "code": "0xCA",
+      "text": "Lambdareglergrenze Bank 1"
+    },
+    {
+      "code": "0xCB",
+      "text": "Lambdareglergrenze Bank 2"
+    },
+    {
+      "code": "0xD1",
+      "text": "EWS-Signal fehlerhaft"
+    },
+    {
+      "code": "0xD2",
+      "text": "Zuendstrommessung an mehr als 2 Zylinder"
+    },
+    {
+      "code": "0xD3",
+      "text": "Leerlaufsteller, mechanisches Klemmen"
+    },
+    {
+      "code": "0xD4",
+      "text": "VANOS mechanisches Klemmen"
+    },
+    {
+      "code": "0xD6",
+      "text": "Tachosignal unplausibel"
+    },
+    {
+      "code": "0xD7",
+      "text": "ASC / MSR   Signalkombination unplausibel"
+    },
+    {
+      "code": "0xD8",
+      "text": "Waehlhebelpositionssignal nicht definiert"
+    },
+    {
+      "code": "0xD9",
+      "text": "Timeout CAN-Botschaft zum EGS"
+    },
+    {
+      "code": "0xDA",
+      "text": "CAN-Baustein warning level erreicht"
+    },
+    {
+      "code": "0xDB",
+      "text": "CAN-Baustein Bus aus"
+    },
+    {
+      "code": "0xDE",
+      "text": "Lambdaregelung nach vorgegeb. Zeit nicht aktiv"
+    },
+    {
+      "code": "0xE1",
+      "text": "Temperatur nach Vor-KAT 1 Spannungswert"
+    },
+    {
+      "code": "0xE2",
+      "text": "Temperatur nach Vor-KAT 2 Spannungswert"
+    },
+    {
+      "code": "0xE3",
+      "text": "Lambdaregleradaption, Bank 1"
+    },
+    {
+      "code": "0xE4",
+      "text": "Lambdaregleradaption, Bank 2"
+    },
+    {
+      "code": "0xE5",
+      "text": "Regelfrequenz Lambdasonde Bank 1"
+    },
+    {
+      "code": "0xE6",
+      "text": "Regelfrequenz Lambdasonde Bank 2"
+    },
+    {
+      "code": "0xE7",
+      "text": "Sprungzeit Lambdasonde Bank 1"
+    },
+    {
+      "code": "0xE8",
+      "text": "Sprungzeit Lambdasonde Bank 2"
+    },
+    {
+      "code": "0xE9",
+      "text": "KAT Gesamtwirkungsgrad Bank 1"
+    },
+    {
+      "code": "0xEA",
+      "text": "KAT Gesamtwirkungsgrad Bank 2"
+    },
+    {
+      "code": "0xEB",
+      "text": "Nach-KAT-Sondenheizkreis Bank 1"
+    },
+    {
+      "code": "0xEC",
+      "text": "Nach-KAT-Sondenheizkreis Bank 2"
+    },
+    {
+      "code": "0xEE",
+      "text": "Verbrennungsaussetzer, Zylinder 1"
+    },
+    {
+      "code": "0xEF",
+      "text": "Verbrennungsaussetzer, Zylinder 2"
+    },
+    {
+      "code": "0xF0",
+      "text": "Verbrennungsaussetzer, Zylinder 3"
+    },
+    {
+      "code": "0xF1",
+      "text": "Verbrennungsaussetzer, Zylinder 4"
+    },
+    {
+      "code": "0xF2",
+      "text": "Verbrennungsaussetzer, Zylinder 5"
+    },
+    {
+      "code": "0xF3",
+      "text": "Verbrennungsaussetzer, Zylinder 6"
+    },
+    {
+      "code": "0xF4",
+      "text": "Kurbelwellensegmentadaption am Anschlag"
+    },
+    {
+      "code": "0xF5",
+      "text": "Fehler Sekundaerluftsystem Bank 1"
+    },
+    {
+      "code": "0xF6",
+      "text": "Fehler Sekundaerluftsystem Bank 2"
+    },
+    {
+      "code": "0xF7",
+      "text": "Sekundaerluftventil mechanisches Klemmen"
+    },
+    {
+      "code": "0xF8",
+      "text": "Vor-Kat-Wirkungsgrad Bank 1"
+    },
+    {
+      "code": "0xF9",
+      "text": "Vor-Kat-Wirkungsgrad Bank 2"
+    },
+    {
+      "code": "0xFA",
+      "text": "Funktionstest Tankentlueftungsvenzil"
+    },
+    {
+      "code": "0xFB",
+      "text": "Diagnosefehler TE"
+    },
+    {
+      "code": "0xFC",
+      "text": "Fehler beim Absaugen im Tanksystem"
+    },
+    {
+      "code": "0xFD",
+      "text": "Absperrventil klemmt, geschlossen"
+    },
+    {
+      "code": "0xFE",
+      "text": "Tankdeckel fehlt"
+    },
+    {
+      "code": "0xFF",
+      "text": "TEV klemmt, offen"
+    },
+    {
+      "code": "0xXY",
+      "text": "unbekannter Fehlerort"
+    }
+  ],
+  "MS411DS1": [
+    {
+      "code": "0x01",
+      "text": "Zuendung Zylinder 2"
+    },
+    {
+      "code": "0x02",
+      "text": "Zuendung Zylinder 4"
+    },
+    {
+      "code": "0x03",
+      "text": "Zuendung Zylinder 6"
+    },
+    {
+      "code": "0x05",
+      "text": "Einspritzventil Zylinder 2"
+    },
+    {
+      "code": "0x06",
+      "text": "Einspritzventil Zylinder 1"
+    },
+    {
+      "code": "0x08",
+      "text": "Luftmassenmesser"
+    },
+    {
+      "code": "0x0A",
+      "text": "Temperaturfuehler Motortemperatur"
+    },
+    {
+      "code": "0x0B",
+      "text": "Tankdrucksensor (TDS)"
+    },
+    {
+      "code": "0x0C",
+      "text": "Drosselklappenpotentiometer"
+    },
+    {
+      "code": "0x0E",
+      "text": "Temperaturfuehler Ansaugluft"
+    },
+    {
+      "code": "0x10",
+      "text": "Pulsweitenmoduliertes Eingangssignal Schalter Klimakompressor"
+    },
+    {
+      "code": "0x12",
+      "text": "EWS-Signal (DWA-Eingang) nicht vorhanden oder fehlerhaft"
+    },
+    {
+      "code": "0x14",
+      "text": "Diagnoselampe (MIL)"
+    },
+    {
+      "code": "0x15",
+      "text": "VANOS Ansteller, elektrischer Fehler"
+    },
+    {
+      "code": "0x16",
+      "text": "Einspritzventil Zylinder 3"
+    },
+    {
+      "code": "0x17",
+      "text": "Einspritzventil Zylinder 6"
+    },
+    {
+      "code": "0x18",
+      "text": "Einspritzventil Zylinder 4"
+    },
+    {
+      "code": "0x19",
+      "text": "Lambdasondenheizung Sonde 1"
+    },
+    {
+      "code": "0x1B",
+      "text": "Leerlaufsteller / schliessende Spule"
+    },
+    {
+      "code": "0x1D",
+      "text": "Zuendung Zylinder 1"
+    },
+    {
+      "code": "0x1E",
+      "text": "Zuendung Zylinder 3"
+    },
+    {
+      "code": "0x1F",
+      "text": "Zuendung Zylinder 5"
+    },
+    {
+      "code": "0x21",
+      "text": "Einspritzventil Zylinder 5"
+    },
+    {
+      "code": "0x23",
+      "text": "Relais Sekundaerluftpumpe"
+    },
+    {
+      "code": "0x2E",
+      "text": "Fuellstandssignal Reservelampe"
+    },
+    {
+      "code": "0x2F",
+      "text": "Temperatur nach Vorkatalysator Startwert"
+    },
+    {
+      "code": "0x32",
+      "text": "(3/2 Wege)Magnetventil Running losses"
+    },
+    {
+      "code": "0x33",
+      "text": "Absperrventil Aktivkohlefilter (AAV)"
+    },
+    {
+      "code": "0x34",
+      "text": "Abgasklappe"
+    },
+    {
+      "code": "0x35",
+      "text": "Leerlaufsteller / oeffnende Spule"
+    },
+    {
+      "code": "0x37",
+      "text": "Lambdasondenheizung Sonde 2"
+    },
+    {
+      "code": "0x38",
+      "text": "Zuendstrommessung Widerstand Unterbrechung"
+    },
+    {
+      "code": "0x39",
+      "text": "Klopfsensor 1"
+    },
+    {
+      "code": "0x3B",
+      "text": "Klopfsensor 2"
+    },
+    {
+      "code": "0x3D",
+      "text": "Lambdasondenheizung Sonde 4"
+    },
+    {
+      "code": "0x3E",
+      "text": "Sekundaerluftventil"
+    },
+    {
+      "code": "0x41",
+      "text": "Nockenwellen - Geber"
+    },
+    {
+      "code": "0x44",
+      "text": "Tankentlueftungsventil"
+    },
+    {
+      "code": "0x45",
+      "text": "Relais Kraftstoffpumpe"
+    },
+    {
+      "code": "0x4A",
+      "text": "Relais Klimakompressor"
+    },
+    {
+      "code": "0x4B",
+      "text": "Lambdasonde 1"
+    },
+    {
+      "code": "0x4C",
+      "text": "Lambdasonde 2"
+    },
+    {
+      "code": "0x4D",
+      "text": "Lambdasonde 3"
+    },
+    {
+      "code": "0x4E",
+      "text": "Lambdasonde 4"
+    },
+    {
+      "code": "0x4F",
+      "text": "Lambdasondenheizung Sonde 3"
+    },
+    {
+      "code": "0x50",
+      "text": "ASC - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x51",
+      "text": "MSR - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x52",
+      "text": "EML - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x53",
+      "text": "Kurbelwellen - Gebersignal"
+    },
+    {
+      "code": "0x64",
+      "text": "Steuergeraete Selbsttest"
+    },
+    {
+      "code": "0xC8",
+      "text": "Spannungshub Lambdasonde 1"
+    },
+    {
+      "code": "0xC9",
+      "text": "Spannungshub Lambdasonde 2"
+    },
+    {
+      "code": "0xCA",
+      "text": "Lambdareglergrenze Bank 1"
+    },
+    {
+      "code": "0xCB",
+      "text": "Lambdareglergrenze Bank 2"
+    },
+    {
+      "code": "0xD1",
+      "text": "EWS-Signal fehlerhaft"
+    },
+    {
+      "code": "0xD2",
+      "text": "Zuendstrommessung an mehr als 2 Zylinder"
+    },
+    {
+      "code": "0xD3",
+      "text": "Leerlaufsteller ,mechanisches Klemmen"
+    },
+    {
+      "code": "0xD4",
+      "text": "VANOS mechanisches Klemmen"
+    },
+    {
+      "code": "0xD6",
+      "text": "Tachosignal unplausibel"
+    },
+    {
+      "code": "0xD7",
+      "text": "ASC / MSR   Signalkombination unplausibel"
+    },
+    {
+      "code": "0xD8",
+      "text": "Waehlhebelpositionssignal nicht definiert"
+    },
+    {
+      "code": "0xD9",
+      "text": "Timeout CAN-Botschaft zum EGS"
+    },
+    {
+      "code": "0xDA",
+      "text": "CAN-Baustein warning level erreicht"
+    },
+    {
+      "code": "0xDB",
+      "text": "CAN-Baustein Bus aus"
+    },
+    {
+      "code": "0xDE",
+      "text": "Lambdaregelung nach vorgegeb. Zeit nicht aktiv"
+    },
+    {
+      "code": "0xE1",
+      "text": "Temperatur nach Vor-KAT 1 Spannungswert"
+    },
+    {
+      "code": "0xE2",
+      "text": "Temperatur nach Vor-KAT 2 Spannungswert"
+    },
+    {
+      "code": "0xE3",
+      "text": "Lambdaregleradaption, Bank 1"
+    },
+    {
+      "code": "0xE4",
+      "text": "Lambdaregleradaption, Bank 2"
+    },
+    {
+      "code": "0xE5",
+      "text": "Regelfrequenz Lambdasonde Bank 1"
+    },
+    {
+      "code": "0xE6",
+      "text": "Regelfrequenz Lambdasonde Bank 2"
+    },
+    {
+      "code": "0xE7",
+      "text": "Sprungzeit Lambdasonde Bank 1"
+    },
+    {
+      "code": "0xE8",
+      "text": "Sprungzeit Lambdasonde Bank 2"
+    },
+    {
+      "code": "0xE9",
+      "text": "KAT Gesamtwirkungsgrad Bank 1"
+    },
+    {
+      "code": "0xEA",
+      "text": "KAT Gesamtwirkungsgrad Bank 2"
+    },
+    {
+      "code": "0xEB",
+      "text": "Nach-KAT-Sondenheizkreis Bank 1"
+    },
+    {
+      "code": "0xEC",
+      "text": "Nach-KAT-Sondenheizkreis Bank 2"
+    },
+    {
+      "code": "0xEE",
+      "text": "Verbrennungsaussetzer , Zylinder 1"
+    },
+    {
+      "code": "0xEF",
+      "text": "Verbrennungsaussetzer , Zylinder 2"
+    },
+    {
+      "code": "0xF0",
+      "text": "Verbrennungsaussetzer , Zylinder 3"
+    },
+    {
+      "code": "0xF1",
+      "text": "Verbrennungsaussetzer , Zylinder 4"
+    },
+    {
+      "code": "0xF2",
+      "text": "Verbrennungsaussetzer , Zylinder 5"
+    },
+    {
+      "code": "0xF3",
+      "text": "Verbrennungsaussetzer , Zylinder 6"
+    },
+    {
+      "code": "0xF4",
+      "text": "Kurbelwellensegmentadaption am Anschlag"
+    },
+    {
+      "code": "0xF5",
+      "text": "Fehler Sekundaerluftsystem Bank 1"
+    },
+    {
+      "code": "0xF6",
+      "text": "Fehler Sekundaerluftsystem Bank 2"
+    },
+    {
+      "code": "0xF7",
+      "text": "Sekundaerluftventil mechanisches Klemmen"
+    },
+    {
+      "code": "0xF8",
+      "text": "Vor-Kat-Wirkungsgrad Bank 1"
+    },
+    {
+      "code": "0xF9",
+      "text": "Vor-Kat-Wirkungsgrad Bank 2"
+    },
+    {
+      "code": "0xFA",
+      "text": "Funktionstest Tankentlueftungsvenzil"
+    },
+    {
+      "code": "0xFB",
+      "text": "Diagnosefehler TE"
+    },
+    {
+      "code": "0xFC",
+      "text": "Fehler beim Absaugen im Tanksystem"
+    },
+    {
+      "code": "0xFD",
+      "text": "Absperrventil klemmt, geschlossen"
+    },
+    {
+      "code": "0xFE",
+      "text": "Tankdeckel fehlt"
+    },
+    {
+      "code": "0xFF",
+      "text": "TEV klemmt, offen"
+    },
+    {
+      "code": "0xXY",
+      "text": "unbekannter Fehlerort"
+    }
+  ],
+  "MS411DS2": [
+    {
+      "code": "0x01",
+      "text": "Zuendung Zylinder 2"
+    },
+    {
+      "code": "0x02",
+      "text": "Zuendung Zylinder 4"
+    },
+    {
+      "code": "0x03",
+      "text": "Zuendung Zylinder 6"
+    },
+    {
+      "code": "0x05",
+      "text": "Einspritzventil Zylinder 2"
+    },
+    {
+      "code": "0x06",
+      "text": "Einspritzventil Zylinder 1"
+    },
+    {
+      "code": "0x08",
+      "text": "Luftmassenmesser"
+    },
+    {
+      "code": "0x0A",
+      "text": "Temperaturfuehler Motortemperatur"
+    },
+    {
+      "code": "0x0C",
+      "text": "Drosselklappenpotentiometer"
+    },
+    {
+      "code": "0x0E",
+      "text": "Temperaturfuehler Ansaugluft"
+    },
+    {
+      "code": "0x10",
+      "text": "Pulsweitenmoduliertes Eingangssignal Schalter Klimakompressor"
+    },
+    {
+      "code": "0x12",
+      "text": "EWS-Signal (DWA-Eingang) nicht vorhanden oder fehlerhaft"
+    },
+    {
+      "code": "0x14",
+      "text": "Diagnoselampe (MIL)"
+    },
+    {
+      "code": "0x15",
+      "text": "VANOS Ansteller, elektrischer Fehler"
+    },
+    {
+      "code": "0x16",
+      "text": "Einspritzventil Zylinder 3"
+    },
+    {
+      "code": "0x17",
+      "text": "Einspritzventil Zylinder 6"
+    },
+    {
+      "code": "0x18",
+      "text": "Einspritzventil Zylinder 4"
+    },
+    {
+      "code": "0x19",
+      "text": "Lambdasondenheizung Sonde 1"
+    },
+    {
+      "code": "0x1B",
+      "text": "Leerlaufsteller / schliessende Spule"
+    },
+    {
+      "code": "0x1D",
+      "text": "Zuendung Zylinder 1"
+    },
+    {
+      "code": "0x1E",
+      "text": "Zuendung Zylinder 3"
+    },
+    {
+      "code": "0x1F",
+      "text": "Zuendung Zylinder 5"
+    },
+    {
+      "code": "0x21",
+      "text": "Einspritzventil Zylinder 5"
+    },
+    {
+      "code": "0x23",
+      "text": "Relais Sekundaerluftpumpe"
+    },
+    {
+      "code": "0x2E",
+      "text": "Fuellstandssignal Reservelampe"
+    },
+    {
+      "code": "0x2F",
+      "text": "Temperatur nach Vorkatalysator Startwert"
+    },
+    {
+      "code": "0x32",
+      "text": "(3/2 Wege)Magnetventil Running losses"
+    },
+    {
+      "code": "0x33",
+      "text": "Absperrventil Aktivkohlefilter (AAV)"
+    },
+    {
+      "code": "0x34",
+      "text": "Abgasklappe"
+    },
+    {
+      "code": "0x35",
+      "text": "Leerlaufsteller / oeffnende Spule"
+    },
+    {
+      "code": "0x37",
+      "text": "Lambdasondenheizung Sonde 2"
+    },
+    {
+      "code": "0x38",
+      "text": "Zuendstrommessung Widerstand Unterbrechung"
+    },
+    {
+      "code": "0x39",
+      "text": "Klopfsensor 1"
+    },
+    {
+      "code": "0x3B",
+      "text": "Klopfsensor 2"
+    },
+    {
+      "code": "0x3D",
+      "text": "Lambdasondenheizung Sonde 4"
+    },
+    {
+      "code": "0x3E",
+      "text": "Sekundaerluftventil"
+    },
+    {
+      "code": "0x41",
+      "text": "Nockenwellen - Geber"
+    },
+    {
+      "code": "0x44",
+      "text": "Tankentlueftungsventil"
+    },
+    {
+      "code": "0x45",
+      "text": "Relais Kraftstoffpumpe"
+    },
+    {
+      "code": "0x4A",
+      "text": "Relais Klimakompressor"
+    },
+    {
+      "code": "0x4B",
+      "text": "Lambdasonde 1"
+    },
+    {
+      "code": "0x4C",
+      "text": "Lambdasonde 2"
+    },
+    {
+      "code": "0x4D",
+      "text": "Lambdasonde 3"
+    },
+    {
+      "code": "0x4E",
+      "text": "Lambdasonde 4"
+    },
+    {
+      "code": "0x4F",
+      "text": "Lambdasondenheizung Sonde 3"
+    },
+    {
+      "code": "0x50",
+      "text": "ASC - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x51",
+      "text": "MSR - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x52",
+      "text": "EML - Signal Eingriff zu lang"
+    },
+    {
+      "code": "0x53",
+      "text": "Kurbelwellen - Gebersignal"
+    },
+    {
+      "code": "0x64",
+      "text": "Steuergeraete Selbsttest"
+    },
+    {
+      "code": "0xBE",
+      "text": "reed-switch nicht geschlossen"
+    },
+    {
+      "code": "0xBF",
+      "text": "reed-switch oeffnet nicht"
+    },
+    {
+      "code": "0xC0",
+      "text": "reed-switch schliesst nicht mehr"
+    },
+    {
+      "code": "0xC1",
+      "text": "clamped tube"
+    },
+    {
+      "code": "0xC2",
+      "text": "Grobleck TE-System"
+    },
+    {
+      "code": "0xC3",
+      "text": "kleines Leck TE-System"
+    },
+    {
+      "code": "0xC4",
+      "text": "Magnetventil LDP"
+    },
+    {
+      "code": "0xC5",
+      "text": "Umdgebungsdrucksensor"
+    },
+    {
+      "code": "0xC8",
+      "text": "Spannungshub Lambdasonde 1"
+    },
+    {
+      "code": "0xC9",
+      "text": "Spannungshub Lambdasonde 2"
+    },
+    {
+      "code": "0xCA",
+      "text": "Lambdareglergrenze Bank 1"
+    },
+    {
+      "code": "0xCB",
+      "text": "Lambdareglergrenze Bank 2"
+    },
+    {
+      "code": "0xD1",
+      "text": "EWS-Signal fehlerhaft"
+    },
+    {
+      "code": "0xD2",
+      "text": "Zuendstrommessung an mehr als 2 Zylinder"
+    },
+    {
+      "code": "0xD3",
+      "text": "Leerlaufsteller ,mechanisches Klemmen"
+    },
+    {
+      "code": "0xD4",
+      "text": "VANOS mechanisches Klemmen"
+    },
+    {
+      "code": "0xD6",
+      "text": "Tachosignal unplausibel"
+    },
+    {
+      "code": "0xD7",
+      "text": "ASC / MSR   Signalkombination unplausibel"
+    },
+    {
+      "code": "0xD8",
+      "text": "Waehlhebelpositionssignal nicht definiert"
+    },
+    {
+      "code": "0xD9",
+      "text": "Timeout CAN-Botschaft zum EGS"
+    },
+    {
+      "code": "0xDA",
+      "text": "CAN-Baustein warning level erreicht"
+    },
+    {
+      "code": "0xDB",
+      "text": "CAN-Baustein Bus aus"
+    },
+    {
+      "code": "0xDE",
+      "text": "Lambdaregelung nach vorgegeb. Zeit nicht aktiv"
+    },
+    {
+      "code": "0xE1",
+      "text": "Temperatur nach Vor-KAT 1 Spannungswert"
+    },
+    {
+      "code": "0xE2",
+      "text": "Temperatur nach Vor-KAT 2 Spannungswert"
+    },
+    {
+      "code": "0xE3",
+      "text": "Lambdaregleradaption, Bank 1"
+    },
+    {
+      "code": "0xE4",
+      "text": "Lambdaregleradaption, Bank 2"
+    },
+    {
+      "code": "0xE5",
+      "text": "Regelfrequenz Lambdasonde Bank 1"
+    },
+    {
+      "code": "0xE6",
+      "text": "Regelfrequenz Lambdasonde Bank 2"
+    },
+    {
+      "code": "0xE7",
+      "text": "Sprungzeit Lambdasonde Bank 1"
+    },
+    {
+      "code": "0xE8",
+      "text": "Sprungzeit Lambdasonde Bank 2"
+    },
+    {
+      "code": "0xE9",
+      "text": "KAT Gesamtwirkungsgrad Bank 1"
+    },
+    {
+      "code": "0xEA",
+      "text": "KAT Gesamtwirkungsgrad Bank 2"
+    },
+    {
+      "code": "0xEB",
+      "text": "Nach-KAT-Sondenheizkreis Bank 1"
+    },
+    {
+      "code": "0xEC",
+      "text": "Nach-KAT-Sondenheizkreis Bank 2"
+    },
+    {
+      "code": "0xEE",
+      "text": "Verbrennungsaussetzer , Zylinder 1"
+    },
+    {
+      "code": "0xEF",
+      "text": "Verbrennungsaussetzer , Zylinder 2"
+    },
+    {
+      "code": "0xF0",
+      "text": "Verbrennungsaussetzer , Zylinder 3"
+    },
+    {
+      "code": "0xF1",
+      "text": "Verbrennungsaussetzer , Zylinder 4"
+    },
+    {
+      "code": "0xF2",
+      "text": "Verbrennungsaussetzer , Zylinder 5"
+    },
+    {
+      "code": "0xF3",
+      "text": "Verbrennungsaussetzer , Zylinder 6"
+    },
+    {
+      "code": "0xF4",
+      "text": "Kurbelwellensegmentadaption am Anschlag"
+    },
+    {
+      "code": "0xF5",
+      "text": "Fehler Sekundaerluftsystem Bank 1"
+    },
+    {
+      "code": "0xF6",
+      "text": "Fehler Sekundaerluftsystem Bank 2"
+    },
+    {
+      "code": "0xF7",
+      "text": "Sekundaerluftventil mechanisches Klemmen"
+    },
+    {
+      "code": "0xF8",
+      "text": "Vor-Kat-Wirkungsgrad Bank 1"
+    },
+    {
+      "code": "0xF9",
+      "text": "Vor-Kat-Wirkungsgrad Bank 2"
+    },
+    {
+      "code": "0xFA",
+      "text": "Funktionstest Tankentlueftungsvenzil"
+    },
+    {
+      "code": "0xFB",
+      "text": "Diagnosefehler TE"
+    },
+    {
+      "code": "0xFC",
+      "text": "Fehler beim Absaugen im Tanksystem"
+    },
+    {
+      "code": "0xFD",
+      "text": "Absperrventil klemmt, geschlossen"
+    },
+    {
+      "code": "0xFE",
+      "text": "Tankdeckel fehlt"
+    },
+    {
+      "code": "0xFF",
+      "text": "TEV klemmt, offen"
+    },
+    {
+      "code": "0xXY",
+      "text": "unbekannter Fehlerort"
+    }
+  ]
+}

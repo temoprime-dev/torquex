@@ -1,0 +1,14 @@
+WERT,UWTEXT
+0x00,0 Systemtest Sekundärluft nicht aktiv
+0x01,1 Systemtest Sekundärluft verzögert
+0x02,2 Systemtest Sekundärluft aktiv
+0x03,3 Systemtest Sekundärluft Unterbrechung
+0x04,4 Systemtest Sekundärluft Pumpe verzögert
+0x05,5 Systemtest Sekundärluft nicht aktiv
+0x06,6 Systemtest Sekundärluft abgebrochen
+0x07,7 Sekundärluft externe Ansteuerung
+0x08,8 Sekundärluft externe Ansteuerung beendet
+0x09,9 Bandendetest Sekundärluft aktiv
+0x0A,10 Bandendetest Sekundärluft Pumpe
+0x0B,11 Bandendetest Sekundärluft  Ende
+0xFF,FF Status unbekannt

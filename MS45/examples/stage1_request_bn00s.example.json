@@ -1,0 +1,25 @@
+{
+  "stage": "stage1",
+  "customer": "Пример: E60 530i, M54B30, механическая КПП (4560BN00S)",
+  "notes": "Катализатор удалён. Требуется ограничитель 255 км/ч, отсечка 6700 и хлопки на сбросе газа.",
+  "no_catalyst": true,
+  "acknowledge_legality": true,
+  "acknowledge_temperature": true,
+  "intents": [
+    {
+      "kind": "vmax",
+      "value": 255
+    },
+    {
+      "kind": "rev_limit",
+      "value": 6700,
+      "transmission": "mt",
+      "acknowledge_risk": true
+    },
+    {
+      "kind": "pops",
+      "delay_s": 0.45,
+      "profile": "light"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "stage": "stage1",
+  "customer": "Пример: E46 330i, M54B30, механическая КПП",
+  "notes": "Просят хлопки на сбросе газа, форсунки под замену и перевод на E85. Выпускаются только хлопки: под форсунки и E85 нет замеров, поэтому они уходят в REQUIRES_DATA со списком того, что нужно измерить.",
+  "no_catalyst": true,
+  "acknowledge_legality": true,
+  "acknowledge_temperature": true,
+  "intents": [
+    {
+      "kind": "pops",
+      "delay_s": 0.45,
+      "profile": "light"
+    },
+    {
+      "kind": "injectors"
+    },
+    {
+      "kind": "e85"
+    }
+  ]
+}

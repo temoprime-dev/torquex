@@ -1,0 +1,10 @@
+WERT,UWTEXT
+0x00,0 Tankentlüftung nicht aktiv
+0x01,1 Tankentlüftung keine
+0x02,2 Tankentlüftung Minimum
+0x03,3 Tankentlüftung öffnen
+0x04,4 Tankentlüftung schnell öffnen
+0x05,5 Tankentlüftung Maximum
+0x06,6 Tankentlüftung schliessen
+0x07,7 Tankentlüftung warten auf offen
+0xFF,FF Status unbekannt

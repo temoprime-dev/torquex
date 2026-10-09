@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "ecu": "MS42",
+  "prg_variants": [
+    "MS420DS0"
+  ],
+  "function": "vanos",
+  "title_ru": "VANOS: фактические и заданные фазы по зонам",
+  "how_to_ru": [
+    "File → Detect ECU: проверить, что определился правильный ЭБУ и версия (не похожее семейство).",
+    "В окне ЭБУ выбрать job из списка и перетащить в график нужные результаты (*_WERT).",
+    "Settings → Logging: папка <Desktop>\\Test0_Logs, разделитель CSV и формат времени — по умолчанию.",
+    "Внешний широкополосный зонд: подключить и выбрать как внешний источник ДО начала записи.",
+    "Сохранить набор как пресет Test0 (имя TorqueX_<ЭБУ>_<функция>) — дальше запуск одной кнопкой.",
+    "Перед заездом включить запись и убедиться, что все колонки заполняются."
+  ],
+  "test0_ru": "Пресет собирается в UI Test0: выбрать job-ы и результаты из списка jobs ниже и сохранить набор под именем TorqueX_MS42_vanos.",
+  "jobs": [
+    {
+      "job": "STATUS_MOTORDREHZAHL",
+      "results": [
+        "STAT_MOTORDREHZAHL_WERT",
+        "STATUS_MOTORDREHZAHL_WERT"
+      ],
+      "channel": "rpm",
+      "unit_hint": "1/min",
+      "title_ru": "обороты двигателя"
+    },
+    {
+      "job": "STATUS_LAST",
+      "results": [
+        "STAT_LAST_WERT"
+      ],
+      "channel": "load",
+      "unit_hint": "mg/stroke",
+      "title_ru": "нагрузка (мг/такт)"
+    },
+    {
+      "job": "STATUS_VANOS_NW_LAGE_EINLASS",
+      "results": [
+        "STAT_VANOS_NW_LAGE_EINLASS_IST_WERT"
+      ],
+      "channel": "vanos_intake_actual",
+      "unit_hint": "deg_crank",
+      "title_ru": "фазы впуска, факт, °КВ"
+    },
+    {
+      "job": "STATUS_VANOS_NW_LAGE_EINLASS",
+      "results": [
+        "STAT_VANOS_NW_LAGE_EINLASS_SOLL_WERT"
+      ],
+      "channel": "vanos_intake_target",
+      "unit_hint": "deg_crank",
+      "title_ru": "фазы впуска, цель, °КВ"
+    },
+    {
+      "job": "STATUS_VANOS_NW_LAGE_AUSLASS",
+      "results": [
+        "STAT_VANOS_NW_LAGE_AUSLASS_IST_WERT"
+      ],
+      "channel": "vanos_exhaust_actual",
+      "unit_hint": "deg_crank",
+      "title_ru": "фазы выпуска, факт, °КВ"
+    },
+    {
+      "job": "STATUS_VANOS_NW_LAGE_AUSLASS",
+      "results": [
+        "STAT_VANOS_NW_LAGE_AUSLASS_SOLL_WERT"
+      ],
+      "channel": "vanos_exhaust_target",
+      "unit_hint": "deg_crank",
+      "title_ru": "фазы выпуска, цель, °КВ"
+    },
+    {
+      "job": "STATUS_MOTORTEMPERATUR",
+      "results": [
+        "STAT_MOTORTEMPERATUR_WERT",
+        "STATUS_MOTORTEMPERATUR_WERT"
+      ],
+      "channel": "coolant_temp",
+      "unit_hint": "C",
+      "title_ru": "температура охлаждающей жидкости, °C",
+      "alternatives_ru": [
+        "STATUS_MOTORTEMPERATUR_MWB: STAT_MOTORTEMPERATUR_MWB_WERT, STATUS_MOTORTEMPERATUR_MWB_WERT"
+      ]
+    },
+    {
+      "job": "STATUS_DKP_WINKEL",
+      "results": [
+        "STAT_DKP_WINKEL_WERT"
+      ],
+      "channel": "pedal",
+      "unit_hint": "percent_or_deg",
+      "title_ru": "ход педали / положение дросселя, % или °",
+      "alternatives_ru": [
+        "STATUS_PWG_WINKEL: STAT_PWG_WINKEL_WERT"
+      ]
+    }
+  ],
+  "unavailable_ru": [],
+  "drive_ru": [
+    "Только прогретый двигатель (ОЖ ≥ 80 °C).",
+    "Удерживать по 3–5 секунд точки 2000/3000/4000/5000/6000 об/мин на нагрузках 150/300/450/600 мг/такт (где это безопасно).",
+    "Один контрольный разгон «газ в пол» с 2000 до 6000 об/мин."
+  ],
+  "pack": "vanos",
+  "pack_covered": [
+    "coolant_temp",
+    "load",
+    "pedal",
+    "rpm",
+    "vanos_exhaust_actual",
+    "vanos_exhaust_target",
+    "vanos_intake_actual",
+    "vanos_intake_target"
+  ]
+}

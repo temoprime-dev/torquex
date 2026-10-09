@@ -1,0 +1,11 @@
+{
+  "stage": "stage1",
+  "customer": "Пример (данные вымышлены)",
+  "notes": "Stage 1 на стоковом железе: ограничители из заявки. Зажигание, топливо, холостой ход и хлопки остаются в ожидании данных — так и должно быть.",
+  "intents": [
+    {"id": "v1", "kind": "vmax", "value_kmh": 240, "hard_add_kmh": 8.0},
+    {"id": "r1", "kind": "rpm_limit", "transmission": "manual",
+     "soft_rpm": 6688, "hard_rpm": 6720, "acknowledge_risk": true},
+    {"id": "h1", "kind": "hardcut", "upper_rpm": 704, "lower_rpm": 160}
+  ]
+}
